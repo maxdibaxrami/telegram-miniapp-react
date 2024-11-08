@@ -11,6 +11,7 @@ const MainPage = () => {
             <ChatPage/>
         </div>
     </Page>
+    
 }
 
 export default MainPage
