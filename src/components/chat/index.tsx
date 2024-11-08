@@ -10,8 +10,10 @@ const ChatPage = () => {
         maxHeight: "100vh",
         paddingTop: "4.5rem",
         paddingBottom: "1rem",
-        zIndex:5
+        zIndex:5,
+        backgroundColor:"#3fdf9fe"
       }}
+      
     >
       <div className="flex justify-between py-2 items-center">
         <span className="text-large">Matches</span>
