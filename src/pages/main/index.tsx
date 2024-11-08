@@ -1,4 +1,3 @@
-import {useRef} from 'react'
 import ChatPage from '@/components/chat'
 import NavBar from '@/components/NavBar/index'
 import TopBar from '@/components/tobBar'
@@ -10,11 +9,6 @@ import { useSearchParams } from "react-router-dom";
 import ChatFiltermenu from '@/components/chat/chatFilterMenu';
 import ProfilePage from '@/components/profile';
 import { Link } from 'react-router-dom';
-
-interface ModalHandle {
-  openModal: () => void;
-  closeModal: () => void;
-}
 
 const MainPage = () => {
     const [searchParams] = useSearchParams();
@@ -109,7 +103,7 @@ const MainPage = () => {
                   duration: 0.5,
                 }}
               >
-                <Button className="color-white" onPress={handleOpenModal} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
                   <FitlerIcon stroke="#FFF"/>
                 </Button>  
               </motion.div>
