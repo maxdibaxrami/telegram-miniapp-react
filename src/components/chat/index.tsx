@@ -9,7 +9,7 @@ const ChatPage = () => {
         overflow: "scroll",
         maxHeight: "100vh",
         paddingTop: "4.5rem",
-        paddingBottom: "6rem",
+        paddingBottom: "1rem",
         zIndex:5
       }}
     >
