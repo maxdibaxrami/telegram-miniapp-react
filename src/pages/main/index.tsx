@@ -13,27 +13,31 @@ import { Link } from 'react-router-dom';
 import NearByFilter from '@/components/Filter/NearByFilter';
 import ExploreFilter from '@/components/Filter/exploreFilter';
 
+interface ModalHandle {
+  openModal: () => void;
+  closeModal: () => void;
+}
+
 const MainPage = () => {
     const [searchParams] = useSearchParams();
 
-    const childRef = useRef();
-    const childRefExplore = useRef();
+    const childRef = useRef<ModalHandle>();
+    const childRefExplore = useRef<ModalHandle>();
 
     const handleOpenModal = () => {
       if (childRef.current) {
-          childRef.current.openModal();
+          childRef.current?.openModal();
       }
     };
     
     const handleOpenModalExplore = () => {
       if (childRefExplore.current) {
-          childRefExplore.current.openModal();
+          childRefExplore.current?.openModal();
       }
     };
     
 
     return <Page>
-    
             <TopBar/>
             <NavBar/>
             <section className="flex flex-col items-center justify-center gap-4 ">

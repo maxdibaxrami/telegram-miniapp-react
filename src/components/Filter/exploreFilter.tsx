@@ -12,10 +12,15 @@ import {
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 
+interface ModalHandle {
+  openModal: () => void;
+  closeModal: () => void;
+}
 
-const ExploreFilter = forwardRef((ref) => { {
+const ExploreFilter = forwardRef<ModalHandle>((ref) => { {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // @ts-ignore
   useImperativeHandle(ref, () => ({
     openModal: onOpen,
     closeModal: onClose

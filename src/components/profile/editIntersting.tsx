@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from "react";
 import {
   Modal,
@@ -15,7 +16,7 @@ import { PenIcon } from "@/Icons/index";
 
 const EditIntersting = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [values, setValues] = React.useState<Selection>(
+  const [values, setValues] = React.useState<any>(
     new Set(["cat", "dog"]),
   );
 
