@@ -5,9 +5,11 @@ import { Page } from '@/components/Page.tsx';
 
 const MainPage = () => {
     return <Page>
-        <TopBar/>
-        <NavBar/>
-        <ChatPage/>
+        <div style={{backgroundColor:"3fdf9fe"}}>
+            <TopBar/>
+            <NavBar/>
+            <ChatPage/>
+        </div>
     </Page>
 }
 
