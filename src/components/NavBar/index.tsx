@@ -4,7 +4,8 @@ import {
     FireIcon,
     ChatIcon,
     ProfileIcon,
-    LikeIcon
+    LikeIcon,
+    RandomChatIcon
 } from '@/Icons/index'
 
 import { useSearchParams } from "react-router-dom";
@@ -24,9 +25,9 @@ const BottomMenu = () => {
          animate={{ right: "10px", opacity:1 }}
          exit={{ right:"-40px", opacity:0}}
  
-         className={"flex w-full flex-col fixed items-center background-drop---navbar"}
+         className={"flex w-full flex-col fixed items-center backdrop-blur background-drop---navbar"}
          style={{
-           zIndex: "10",
+           zIndex: "500",
            width: "57px",
            borderRadius: "14px",
            overflow: "hidden",
@@ -78,12 +79,12 @@ const BottomMenu = () => {
            />
  
            <Tab
-             key="nearby"
-             href="/#/main?page=nearby"
+             key="randomcharr"
+             href="/#/main?page=randomcharr"
 
              title={
                <div className="flex items-center space-x-2">
-                 <FireIcon/>
+                 <RandomChatIcon/>
                </div>
              }
            />

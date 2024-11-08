@@ -2,13 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   background: var(--tg-theme-secondary-bg-color, white);
   padding: 0;
   margin: 0;
 }
+
 *{
-  outline: unset !important;
+  font-family: "Signika Negative", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+*:focus {
+  outline: none !important;
 }
 
 .background-drop---navbar{
@@ -19,3 +27,7 @@ body {
   backdrop-filter: blur(8px);
 
 }
+
+
+
+
