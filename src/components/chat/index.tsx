@@ -11,7 +11,6 @@ const ChatPage = () => {
         paddingTop: "4.5rem",
         paddingBottom: "1rem",
         zIndex:5,
-        backgroundColor:"#3fdf9fe"
       }}
       
     >

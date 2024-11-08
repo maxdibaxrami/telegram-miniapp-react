@@ -10,8 +10,6 @@ import { useSearchParams } from "react-router-dom";
 import ChatFiltermenu from '@/components/chat/chatFilterMenu';
 import ProfilePage from '@/components/profile';
 import { Link } from 'react-router-dom';
-import NearByFilter from '@/components/Filter/NearByFilter';
-import ExploreFilter from '@/components/Filter/exploreFilter';
 
 interface ModalHandle {
   openModal: () => void;
@@ -21,26 +19,10 @@ interface ModalHandle {
 const MainPage = () => {
     const [searchParams] = useSearchParams();
 
-    const childRef = useRef<ModalHandle>();
-    const childRefExplore = useRef<ModalHandle>();
-
-    const handleOpenModal = () => {
-      if (childRef.current) {
-          childRef.current?.openModal();
-      }
-    };
-    
-    const handleOpenModalExplore = () => {
-      if (childRefExplore.current) {
-          childRefExplore.current?.openModal();
-      }
-    };
-    
-
     return <Page>
             <TopBar/>
             <NavBar/>
-            <section className="flex flex-col items-center justify-center gap-4 ">
+            <section className="flex flex-col items-center light-background--color justify-center gap-4 ">
         {searchParams.get('page') === "explore" && (
           <AnimatePresence mode="wait">
             <motion.div
@@ -205,7 +187,7 @@ const MainPage = () => {
                   duration: 0.25,
                 }}
               >
-                <Button  className="color-white" onPress={handleOpenModalExplore} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button  className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
                   <FitlerIcon stroke="#FFF"/>
                 </Button>  
               </motion.div>
@@ -232,10 +214,6 @@ const MainPage = () => {
           )}
         </AnimatePresence>
 
-
-
-        <NearByFilter ref={childRef} />
-        <ExploreFilter ref={childRefExplore}/>
 
       </section>
     </Page>
