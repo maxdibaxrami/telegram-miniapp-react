@@ -1,6 +1,5 @@
 import ChatList from "./chatList";
 import MatchList from "./matchList";
-import ChatFiltermenu from "./chatFilterMenu";
 
 const ChatPage = () => {
   return (

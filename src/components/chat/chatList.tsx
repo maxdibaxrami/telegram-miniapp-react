@@ -1,5 +1,4 @@
-"use client";
-import React from "react";
+
 import { Listbox, ListboxItem, Avatar, Badge, Chip } from "@nextui-org/react";
 
 import { FavoriteSmall } from "@/Icons/index";
