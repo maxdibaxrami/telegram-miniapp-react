@@ -79,8 +79,8 @@ const BottomMenu = () => {
            />
  
            <Tab
-             key="randomcharr"
-             href="/#/main?page=randomcharr"
+             key="randomchat"
+             href="/#/main?page=randomchat"
 
              title={
                <div className="flex items-center space-x-2">

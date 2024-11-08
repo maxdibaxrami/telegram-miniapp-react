@@ -5,6 +5,7 @@ import { Route, Routes, HashRouter } from 'react-router-dom';
 import { routes } from '@/navigation/routes.tsx';
 
 export function App() {
+
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
