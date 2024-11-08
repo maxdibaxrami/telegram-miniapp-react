@@ -1,4 +1,4 @@
-const FireIcon = (props) => {
+const FireIcon = (props:JSX.IntrinsicElements['svg']) => {
     return (
       <svg
         className="size-6"
@@ -23,16 +23,17 @@ const FireIcon = (props) => {
     );
   };
   
-  const LocationIcon = (props) => {
+  const LocationIcon = (props:any) => {
     return (
       <svg
+
+        {...props}
         className="size-6"
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
-        {...props}
       >
         <path
           d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
@@ -50,13 +51,14 @@ const FireIcon = (props) => {
     );
   };
   
-  const ChatIconSm = () => {
+  const ChatIconSm = (props:JSX.IntrinsicElements['svg'])=> {
     return (
       <svg
         className="size-4"
         fill="currentColor"
         viewBox="0 0 16 16"
         xmlns="http://www.w3.org/2000/svg"
+        {...props}
       >
         <path
           clipRule="evenodd"
@@ -67,7 +69,7 @@ const FireIcon = (props) => {
     );
   };
   
-  const ChatIcon = (props) => {
+  const ChatIcon = (props:JSX.IntrinsicElements['svg']) => {
     return (
       <svg
         className="size-6"
@@ -87,7 +89,7 @@ const FireIcon = (props) => {
     );
   };
   
-  const ProfileIcon = (props) => {
+  const ProfileIcon = (props:JSX.IntrinsicElements['svg']) => {
     return (
       <svg
         className="size-6"
@@ -106,27 +108,8 @@ const FireIcon = (props) => {
       </svg>
     );
   };
-  
-  const CloseIcon = () => {
-    return (
-      <svg
-        className="size-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  };
-  
-  const ArrowRight = (props) => {
+
+  const ArrowRight = (props:JSX.IntrinsicElements['svg'])=> {
     return (
       <svg
         className="size-6"
@@ -146,7 +129,7 @@ const FireIcon = (props) => {
     );
   };
   
-  const LikeIcon = (props) => {
+  const LikeIcon = (props:JSX.IntrinsicElements['svg']) => {
     return (
       <svg
         className="size-6"
@@ -170,7 +153,6 @@ const FireIcon = (props) => {
     FireIcon,
     ChatIcon,
     ProfileIcon,
-    CloseIcon,
     ArrowRight,
     LocationIcon,
     LikeIcon,

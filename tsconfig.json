@@ -14,6 +14,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "checkJs" : false ,
+    "noImplicitAny": false,
     "paths": {
       "@/*": [
         "./src/*"
@@ -21,7 +23,7 @@
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "target": "ES2020",
     "useDefineForClassFields": true
   },

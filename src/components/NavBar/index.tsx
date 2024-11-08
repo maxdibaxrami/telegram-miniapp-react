@@ -11,9 +11,8 @@ import { useSearchParams } from "react-router-dom";
 
 
 const BottomMenu = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  //console.log(searchParams.get("page"))
   return (
     <AnimatePresence >
         <motion.div
