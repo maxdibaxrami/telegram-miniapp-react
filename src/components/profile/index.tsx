@@ -33,7 +33,7 @@ const ProfilePage = () => {
               style={{
                 borderRadius: "20px",
                 objectFit: "cover",
-                padding: "10px 10px 5px 10px",
+                padding: "0px 0px 5px 0px",
                 height: "calc(50vh - 4rem)",
 
               }}
@@ -52,7 +52,7 @@ const ProfilePage = () => {
                 style={{
                   objectFit: "cover",
                   borderRadius: "20px",
-                  padding: "5px 5px 10px 10px",
+                  padding: "5px 5px 0px 0px",
                   height: "calc(34vh - 4rem)",
                 }}
               />
@@ -69,7 +69,7 @@ const ProfilePage = () => {
                 style={{
                   objectFit: "cover",
                   borderRadius: "20px",
-                  padding: "5px 10px 10px 5px",
+                  padding: "5px 0px 0px 5px",
                   height: "calc(34vh - 4rem)",
                   width:"100%"
                 }}
