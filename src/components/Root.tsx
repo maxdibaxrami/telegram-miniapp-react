@@ -5,6 +5,8 @@ import { App } from '@/components/App.tsx';
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { publicUrl } from '@/helpers/publicUrl.ts';
 
+import {ThemeProvider as NextThemesProvider} from "next-themes";
+
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
     <div>
@@ -29,7 +31,9 @@ export function Root() {
         <TonConnectUIProvider
           manifestUrl={publicUrl('tonconnect-manifest.json')}
         >
-          <App/>
+          <NextThemesProvider attribute="class" defaultTheme="dark">
+            <App/>
+          </NextThemesProvider>
         </TonConnectUIProvider>
       </NextUIProvider>
     </ErrorBoundary>

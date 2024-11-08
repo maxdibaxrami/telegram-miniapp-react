@@ -3,10 +3,8 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Chip,
 } from "@nextui-org/react";
 
-import { ChatIconSm } from "@/Icons/index";
 
 import {
   FireIcon,
@@ -15,6 +13,8 @@ import {
   RandomChatIcon,
   LikeIcon,
 } from "@/Icons/index";
+
+import { ThemeSwitch } from "./SwitchTheme";
 
 import { useSearchParams } from "react-router-dom";
 
@@ -46,17 +46,7 @@ const TopBar = () => {
 
       <NavbarContent justify="end">
         <NavbarItem className="flex items-center">
-          {searchParams.get("page") === "nearby" && (
-            <Chip
-              className="mx-2 text-center background-drop--bluebase---darker backdrop-blur-sm	"
-              color="default"
-              startContent={<ChatIconSm />}
-              variant="flat"
-            >
-              5
-            </Chip>
-          )}
-
+          <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>
     </Navbar>
