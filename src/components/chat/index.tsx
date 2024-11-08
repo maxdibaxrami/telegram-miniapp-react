@@ -22,6 +22,7 @@ const ChatPage = () => {
       </div>
 
       <ChatList />
+      
     </div>
   );
 };
