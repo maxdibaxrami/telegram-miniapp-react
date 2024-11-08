@@ -1,4 +1,5 @@
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import {NextUIProvider} from "@nextui-org/react";
 
 import { App } from '@/components/App.tsx';
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
@@ -24,11 +25,13 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 export function Root() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
-      <TonConnectUIProvider
-        manifestUrl={publicUrl('tonconnect-manifest.json')}
-      >
-        <App/>
-      </TonConnectUIProvider>
+      <NextUIProvider>
+        <TonConnectUIProvider
+          manifestUrl={publicUrl('tonconnect-manifest.json')}
+        >
+          <App/>
+        </TonConnectUIProvider>
+      </NextUIProvider>
     </ErrorBoundary>
   );
 }
