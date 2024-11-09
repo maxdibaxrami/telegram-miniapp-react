@@ -44,3 +44,12 @@ body {
 .maxcontentimportant{
   max-width: none !important;
 }
+
+.exploreSipwePagination {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: unset !important;
+  background: rgba(165, 148, 249, 0.341);
+  backdrop-filter: blur(8px);
+  color: #FFF;
+}

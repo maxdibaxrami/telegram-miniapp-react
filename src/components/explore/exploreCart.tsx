@@ -117,7 +117,7 @@ const ExploreCard = (props) => {
                     overflow: "scroll",
                     backgroundColor: theme.theme === "dark" ? "#090031" : "#e8e3ff",
                 }}
-                animate={openCard ? { height: "calc(100vh - 30px)" } : { height: "calc(100vh - 125px)" }}
+                animate={openCard ? { height: "calc(100vh - 30px)" } : { height: "calc(100vh - 147px)" }}
                 ref={divRef}
                 className="backdrop-blur"
             >
@@ -125,7 +125,7 @@ const ExploreCard = (props) => {
                     <ExploreCardOption />
                     <Pagination
                         disableAnimation
-                        classNames={{ wrapper: "flex-col flex", item: "exploreSwipePagination" }}
+                        classNames={{ wrapper: "flex-col flex", item: "exploreSipwePagination" }}
                         className="absolute z-50 right-2"
                         style={{ top: "40%" }}
                         total={3}
