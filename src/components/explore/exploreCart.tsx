@@ -9,12 +9,12 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import {Pagination, User} from "@nextui-org/react";
-import { HeartIcon, VerifyIcon, LocationIcon } from "@/Icons/index";
+import { HeartIcon, VerifyIcon } from "@/Icons/index";
+import { LocationIcon } from "@/Icons/index";
 
 import ExploreCardImage from './exploreCardImage'
 import { Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
 import ExploreCardOption from "./exploreCardOption";
-import { useTheme } from "next-themes";
 
 import {
   SearchIcon,
@@ -22,27 +22,46 @@ import {
   WorkAndStudyIcon,
   WhyYouAreHereIcon,
 } from "@/Icons/index";
+import { useTheme } from "next-themes";
 
 const ExploreCard = (props) => {
     const [exitX, setExitX] = useState(0);
-    const [ActiveSlide, setActiveSlide] = useState(1);
-    const [openCard , setOpenCard] = useState(false)
+    const [ActiveSlide, setActiveSlide] = useState(1); // Starting from slide 1
+    const [openCard, setOpenCard] = useState(false);
     const divRef = useRef(null);
 
     // Set up scroll tracking on the ref
     const { scrollYProgress } = useScroll({ container: divRef });
 
+    // Use an event listener to detect scrolling
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-      setOpenCard(latest > 0);
+      setOpenCard(false);
+
+      if (latest > 0) {
+        setOpenCard(true);
+      }
     });
 
     const theme = useTheme();
+
     const x = useMotionValue(0);
-    const rotate = useTransform(x, [-20, 0, 20], [-15, 0, 15], { clamp: true });
+
+    const scale = useTransform(x, [-80, 0, 80], [0.8, 1, 0.8], {
+      clamp: true,
+    });
+
+    const rotate = useTransform(x, [-20, 0, 20], [-15, 0, 15], {
+      clamp: true,
+    });
 
     const variantsFrontCard = {
         animate: { scale: 1, y: 0, opacity: 1 },
-        exit: (custom) => ({ x: custom, opacity: 0, scale: 0.8, transition: { duration: 0.2 } })
+        exit: (custom) => ({
+            x: custom,
+            opacity: 0,
+            scale: 0.8,
+            transition: { duration: 0.2 }
+        })
     };
     const variantsBackCard = {
         initial: { scale: 0, y: 55, opacity: 0 },
@@ -65,17 +84,19 @@ const ExploreCard = (props) => {
             style={{
                 width: "100%",
                 height: "100%",
-                overflow: "hidden", // Set main container overflow to hidden
+                maxHeight: "100%",
+                overflow: "scroll",
                 position: "absolute",
                 top: 0,
                 x,
                 rotate,
-                cursor: "grab"
+                cursor: "grab",
             }}
             whileTap={{ cursor: "grabbing" }}
-            drag={props.drag}
-            dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
+            // Allow horizontal dragging only
+            drag="x"
             onDragEnd={handleDragEnd}
+            // Animation
             variants={props.frontCard ? variantsFrontCard : variantsBackCard}
             initial="initial"
             animate="animate"
@@ -87,15 +108,22 @@ const ExploreCard = (props) => {
                     : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
             }
         >
+            {/* Inner content (no changes needed here) */}
             <motion.div
                 style={{
                     width: "calc(100vw - 26px)",
                     borderRadius: 16,
                     padding: "12px",
-                    overflowY: "auto", // Enable scrolling for inner content
+                    left: 0,
+                    right: 0,
+                    margin: "auto",
+                    marginTop: "0.5rem",
+                    scale,
+                    height: "calc(100vh - 145px)",
+                    overflow: "scroll",
                     backgroundColor: theme.theme === "dark" ? "#090031" : "#e8e3ff",
-                    maxHeight: openCard ? "calc(100vh - 30px)" : "calc(100vh - 125px)"
                 }}
+                animate={openCard ? { height: "calc(100vh - 30px)" } : { height: "calc(100vh - 125px)" }}
                 ref={divRef}
                 className="backdrop-blur"
             >
