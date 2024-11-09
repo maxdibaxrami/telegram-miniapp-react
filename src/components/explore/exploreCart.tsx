@@ -50,10 +50,6 @@ const ExploreCard = (props) => {
       clamp: true,
     });
 
-    const rotate = useTransform(x, [-20, 0, 20], [-15, 0, 15], {
-      clamp: true,
-    });
-
     const variantsFrontCard = {
         animate: { scale: 1, y: 0, opacity: 1 },
         exit: (custom) => ({
@@ -89,7 +85,6 @@ const ExploreCard = (props) => {
                 position: "absolute",
                 top: 0,
                 x,
-                rotate,
                 cursor: "grab",
             }}
             whileTap={{ cursor: "grabbing" }}
