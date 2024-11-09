@@ -5,7 +5,7 @@ const ExploreCardImage = (props) => {
     
     const swiper = useSwiper();
 
-    return <Image onClick={() => swiper.slideNext() } {...props} />
+    return <Image draggable="false" onClick={() => swiper.slideNext() } {...props} />
 }
 
 export default ExploreCardImage
