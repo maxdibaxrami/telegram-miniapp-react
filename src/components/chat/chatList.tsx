@@ -4,6 +4,7 @@ import { FavoriteSmall } from "@/Icons/index";
 
 import { ListboxWrapper } from "./listWapper";
 import ChatItemMenu from "./chatItemMenu";
+import { Link } from "react-router-dom";
 
 const ChatList = () => {
 
@@ -36,6 +37,9 @@ const ChatList = () => {
           <ListboxItem
             key={item.id}
             endContent={<ChatItemMenu /> }
+            as={Link}
+            //@ts-ignore
+            to="/chat-detail"
             startContent={
               <Badge
                 isOneChar
