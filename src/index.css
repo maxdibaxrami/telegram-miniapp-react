@@ -53,3 +53,22 @@ body {
   backdrop-filter: blur(8px);
   color: #FFF;
 }
+
+.footerswipcard{
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  bottom: -80px;
+  border-radius: 50vw !important;
+  will-change: transform;
+
+}
+
+
+.background-drop--whitebase{
+  background: rgba(255, 255, 255, 0.341);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  will-change: transform;
+  transition: backdrop-filter 0.3s ease;
+}
