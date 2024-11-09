@@ -24,9 +24,9 @@ const ChatList = () => {
   return (
     <ListboxWrapper>
       <Listbox
-      className="bg-white"
+      className="backgroundowhite backdrop-blur-sm	"
         classNames={{
-          base: "w-full ",
+          base: "w-full",
           list: "overflow-scroll",
         }}
         items={usersData}

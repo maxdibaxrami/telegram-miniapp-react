@@ -10,7 +10,7 @@ import DataList from "./dataList";
 const ProfilePage = () => {
   return (
     <div
-      className="w-full h-full pb-16"
+      className="w-full h-full pb-16 backgroundowhite backdrop-blur-sm"
       style={{
         overflow: "scroll",
         maxHeight: "100vh",
