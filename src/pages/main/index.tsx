@@ -10,6 +10,7 @@ import ChatFiltermenu from '@/components/chat/chatFilterMenu';
 import ProfilePage from '@/components/profile';
 import { Link } from 'react-router-dom';
 import LikesPage from '@/components/like';
+import ExplorePage from '@/components/explore';
 
 const MainPage = () => {
     const [searchParams] = useSearchParams();
@@ -29,7 +30,7 @@ const MainPage = () => {
                 opacity: { duration: 0.6 },
               }}
             >
-
+              <ExplorePage/>
 
 
             </motion.div>

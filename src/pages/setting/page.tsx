@@ -16,14 +16,14 @@ import {
 import TopBarPages from "@/components/tobBar/topBarPages";
 export default function Setting() {
   return (
-    <div className="container mx-auto max-w-7xl flex-grow">
+    <div className="container mx-auto max-w-7xl flex-grow light-background--color">
       <section className="flex flex-col items-center justify-center gap-4 app-background">
         <TopBarPages />
         <div className="w-full h-full px-6 pb-4">
           <Switch
             classNames={{
               base: cn(
-                "inline-flex flex-row-reverse w-full max-w-md bg-content1 hover:bg-content2 items-center",
+                "inline-flex flex-row-reverse w-full max-w-md items-center",
                 "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",
                 "data-[selected=true]:border-primary",
               ),
@@ -48,7 +48,7 @@ export default function Setting() {
             </div>
           </Switch>
 
-          <div className="w-full mt-2 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+          <div className="w-full bg-white mt-2 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
             <Listbox
               aria-label="Listbox menu with descriptions"
               variant="solid"

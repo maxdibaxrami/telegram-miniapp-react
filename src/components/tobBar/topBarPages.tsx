@@ -5,7 +5,7 @@ const TopBarPages = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar disableAnimation isBordered className="">
+    <Navbar disableAnimation className="">
       <NavbarContent justify="start">
         <NavbarItem>
             <Button size="sm" onPress={()=> {navigate("/main?page=profile")}} isIconOnly aria-label="Like" color="primary">
