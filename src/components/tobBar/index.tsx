@@ -10,7 +10,6 @@ import {
   FireIcon,
   ChatIcon,
   ProfileIcon,
-  RandomChatIcon,
   LikeIcon,
   LocationIcon,
 } from "@/Icons/index";
