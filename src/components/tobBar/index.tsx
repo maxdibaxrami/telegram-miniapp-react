@@ -25,7 +25,8 @@ const TopBar = () => {
   
   return (
     <Navbar
-      className="top-0 fixed top-0 backdrop-blur	"
+      className="top-0 fixed top-0 backgroundowhite"
+      
       style={{ height: "4rem" }}
     >
       <NavbarBrand>

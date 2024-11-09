@@ -24,7 +24,7 @@ const ChatList = () => {
   return (
     <ListboxWrapper>
       <Listbox
-      className="backgroundowhite backdrop-blur-sm	"
+      className="backdrop-blur-sm	"
         classNames={{
           base: "w-full",
           list: "overflow-scroll",
