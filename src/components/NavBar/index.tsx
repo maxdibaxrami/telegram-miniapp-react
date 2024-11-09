@@ -16,6 +16,8 @@ const BottomMenu = () => {
 
   return (
     <AnimatePresence >
+      {searchParams.get('page')!=="explore" && (
+
         <motion.div
           transition={{
           ease: "anticipate",
@@ -123,7 +125,7 @@ const BottomMenu = () => {
            />
          </Tabs>
        </motion.div>
-     
+      )}
     </AnimatePresence>
   );
 };

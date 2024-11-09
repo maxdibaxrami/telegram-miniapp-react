@@ -84,8 +84,6 @@ const ExploreCard = (props) => {
                 overflow: "scroll",
                 position: "absolute",
                 top: 0,
-                x,
-                cursor: "grab",
             }}
             whileTap={{ cursor: "grabbing" }}
             // Allow horizontal dragging only
@@ -94,6 +92,7 @@ const ExploreCard = (props) => {
             // Animation
             variants={props.frontCard ? variantsFrontCard : variantsBackCard}
             initial="initial"
+            dragListener={false}
             animate="animate"
             exit="exit"
             custom={exitX}

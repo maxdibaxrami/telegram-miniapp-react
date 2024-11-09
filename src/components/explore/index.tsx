@@ -37,7 +37,7 @@ const ExplorePage = () => {
   };
 
   return (
-    <div style={{height:"100vh", marginTop:"4rem"}} className="relative">
+    <div style={{height:"100vh"}} className="relative">
         <motion.div style={{ width: "100vw", height: "100vh", position: "relative", overflow:"scroll" , maxHeight:"calc(100vh)" }}>
             <AnimatePresence initial={false}>
                 <ExploreCard profile={mockProfiles[index+1]} key={index + 1} frontCard={false} />
