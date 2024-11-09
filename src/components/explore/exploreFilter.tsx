@@ -12,14 +12,17 @@ import {
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 
-const ExploreFilter = forwardRef((ref:any) => { {
+const ExploreFilter = forwardRef((props,ref) => { {
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useImperativeHandle(ref, () => ({
     openModal: onOpen,
     closeModal: onClose
   }));
-
+  if(false){
+    console.log(props);
+  }
   return (
       <Modal
         backdrop="blur"
@@ -33,7 +36,6 @@ const ExploreFilter = forwardRef((ref:any) => { {
       >
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">Set filters</ModalHeader>
-
           <ModalBody>
             <form className="flex flex-col gap-4">
               <ButtonGroup className="w-full flex">

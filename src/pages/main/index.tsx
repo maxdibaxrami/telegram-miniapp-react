@@ -12,10 +12,26 @@ import { Link } from 'react-router-dom';
 import LikesPage from '@/components/like';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
+import {useRef} from 'react'
+import ExploreFilter from '@/components/explore/exploreFilter';
+
+interface ExploreFilterRef {
+  openModal: () => void;
+  closeModal: () => void;
+}
 
 const MainPage = () => {
     const [searchParams] = useSearchParams();
+
+    const childRefExplore = useRef<ExploreFilterRef>(null);
+
+    const handleOpenModalExplore = () => {
+      if (childRefExplore.current) {
+        childRefExplore.current.openModal();
+      }
+    };
     const navigate = useNavigate();
+
 
     return <Page>
         <motion.div
@@ -190,7 +206,7 @@ const MainPage = () => {
                   duration: 0.25,
                 }}
               >
-                <Button  className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button onPress={handleOpenModalExplore} className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
                   <FitlerIcon stroke="#FFF"/>
                 </Button>  
               </motion.div>
@@ -217,6 +233,7 @@ const MainPage = () => {
           )}
         </AnimatePresence>
 
+        <ExploreFilter ref={childRefExplore}/>
 
       </section>
     </Page>

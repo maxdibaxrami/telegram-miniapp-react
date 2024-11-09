@@ -611,7 +611,7 @@ const PenIcon = () => {
 const HeartEyesImoji = () => {
   return (
     <svg
-      style={{ height: "75px", width: "75px" }}
+      style={{ height: "100%", width: "100%" }}
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -748,7 +748,7 @@ const HeartEyesImoji = () => {
 const NotLikeImoji = () => {
   return (
     <svg
-      style={{ height: "75px", width: "75px" }}
+      style={{ height: "100%", width: "100%" }}
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >

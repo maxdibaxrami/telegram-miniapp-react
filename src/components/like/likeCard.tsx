@@ -34,8 +34,9 @@ const LikeCard = ({ data }) => {
           bottom: "-25px",
           borderRadius: "54px",
           justifyContent: "space-between",
-          width: "calc(100% - 5%)",
-          marginLeft:"2.5%"
+          width: "calc(100% - 14%)",
+          marginLeft:"7%",
+          marginRight:"7%"
         }}
       >
         <HeartEyesImoji />

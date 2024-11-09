@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
-import {Pagination, User} from "@nextui-org/react";
+import {Pagination, User ,Chip} from "@nextui-org/react";
 import { HeartIcon, VerifyIcon } from "@/Icons/index";
 import { LocationIcon } from "@/Icons/index";
 
@@ -21,6 +21,7 @@ import {
   AboutMeIcon,
   WorkAndStudyIcon,
   WhyYouAreHereIcon,
+  HashtagIcon
 } from "@/Icons/index";
 import { useTheme } from "next-themes";
 
@@ -60,8 +61,8 @@ const ExploreCard = (props) => {
         })
     };
     const variantsBackCard = {
-        initial: { scale: 0, y: 55, opacity: 0 },
-        animate: { scale: 0.9, y: 30, opacity: 0.5 }
+        initial: { scale: 0, y: 90, opacity: 0 },
+        animate: { scale: 0.9, y: 75, opacity: 0.5 }
     };
 
     function handleDragEnd(_, info) {
@@ -172,26 +173,128 @@ const ExploreCard = (props) => {
                 {/* Additional User components can be added here */}
 
                 <div className="w-full mb-4 mt-2">
-                    <Listbox aria-label="Listbox menu with sections" variant="solid">
-                        {/* Profile Section */}
-                        <ListboxSection showDivider title="Profile">
-                            <ListboxItem key="2" isReadOnly description={props.profile.workAndEducation} startContent={<WorkAndStudyIcon />}>
-                                Work and education
-                            </ListboxItem>
-                            <ListboxItem key="3" isReadOnly description={props.profile.whyHere} startContent={<WhyYouAreHereIcon />}>
-                                Why you are here?
-                            </ListboxItem>
-                            <ListboxItem key="4" isReadOnly description={props.profile.aboutMe} startContent={<AboutMeIcon />}>
-                                About me
-                            </ListboxItem>
-                            <ListboxItem key="5" isReadOnly description={props.profile.lookingFor} startContent={<SearchIcon />}>
-                                Looking for?
-                            </ListboxItem>
-                        </ListboxSection>
-                        {/* More Sections */}
-                        {/* Add similar structure for 'More about me!' and 'Interesting' sections */}
-                    </Listbox>
-                </div>
+                <Listbox
+                
+                  aria-label="Listbox menu with sections"
+                  variant="solid"
+                >
+                  <ListboxSection
+                    showDivider
+                    className="relative"
+                    title="Profile"
+                  >
+                    <ListboxItem
+                      key="2"
+                      isReadOnly
+                      description={props.profile.workAndEducation}
+                      startContent={<WorkAndStudyIcon />}
+                    >
+                      Work and education
+                    </ListboxItem>
+
+                    <ListboxItem
+                      key="3"
+                      isReadOnly
+                      description={props.profile.whyHere}
+                      startContent={<WhyYouAreHereIcon />}
+                    >
+                      Why you are here?
+                    </ListboxItem>
+
+                    <ListboxItem
+                      key="4"
+                      isReadOnly
+                      description={props.profile.aboutMe}
+                      startContent={<AboutMeIcon />}
+                    >
+                      About me
+                    </ListboxItem>
+
+                    <ListboxItem
+                      key="5"
+                      isReadOnly
+                      description={props.profile.lookingFor}
+                      startContent={<SearchIcon />}
+                    >
+                      Looking for?
+                    </ListboxItem>
+                  </ListboxSection>
+
+                  <ListboxSection className="relative" title="More about me!">
+                    <ListboxItem
+                      key="7"
+                      isReadOnly
+                      description={props.profile.relationStatus}
+                    >
+                      Relation status
+                    </ListboxItem>
+                    <ListboxItem
+                      key="8"
+                      isReadOnly
+                      description={props.profile.height}
+                    >
+                      Height
+                    </ListboxItem>
+                    <ListboxItem
+                      key="9"
+                      isReadOnly
+                      description={props.profile.kids}
+                    >
+                      Kids
+                    </ListboxItem>
+                    <ListboxItem
+                      key="10"
+                      isReadOnly
+                      description={props.profile.language}
+                    >
+                      Language
+                    </ListboxItem>
+                    <ListboxItem
+                      key="11"
+                      isReadOnly
+                      description={props.profile.sexuality}
+                    >
+                      Sexuality
+                    </ListboxItem>
+                  </ListboxSection>
+
+                  <ListboxSection className="relative" title="Interesting">
+                    <ListboxItem key={"1"} isReadOnly>
+                      <div
+                        className="flex flex-wrap"
+                        style={{ paddingBottom: "40px" }}
+                      >
+                        {Array.isArray(props.profile.interests) &&
+                        props.profile.interests.length > 0
+                          ? props.profile.interests.map((value, index) => (
+                              <Chip
+                                key={index}
+                                className="m-1"
+                                color="success"
+                                startContent={<HashtagIcon />}
+                                variant="solid"
+                              >
+                                {value}
+                              </Chip>
+                            ))
+                          : null}
+                      </div>
+                    </ListboxItem>
+                    <ListboxItem
+                      key="13"
+                      isReadOnly
+                      className="absolute"
+                      style={{
+                        top: "-8px",
+                        right: "0px",
+                        width: "45px",
+                        height: "45px",
+                      }}
+                    />
+                  </ListboxSection>
+                </Listbox>
+              </div>
+
             </motion.div>
         </motion.div>
     );
