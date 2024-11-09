@@ -8,6 +8,7 @@ import { TONConnectPage } from '@/pages/TONConnectPage/TONConnectPage';
 import MainPage from '@/pages/main/index';
 import EditProfile from '@/pages/editprofile/page';
 import Setting from '@/pages/setting/page';
+import ChatPage from '@/pages/chat/page';
 
 interface Route {
   path: string;
@@ -24,6 +25,7 @@ export const routes: Route[] = [
   { path: '/main', Component: MainPage, title: 'Main Page' },
   { path: '/profile-edit', Component: EditProfile, title: 'Main Page' },
   { path: '/setting', Component: Setting, title: 'Main Page' },
+  { path: '/chat-detail', Component: ChatPage, title: 'Main Page' },
 
   {
     path: '/ton-connect',

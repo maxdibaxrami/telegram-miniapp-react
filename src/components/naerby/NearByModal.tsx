@@ -63,7 +63,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
       <ModalContent style={{height:"90vh",backgroundColor:"#e8e3ff"}} className=" backdrop-blur	">
         <ModalBody
                 style={{
-                    width: "calc(100vw - 26px)",
+                    width: "100%",
                     borderRadius: 16,
                     padding: "12px",
                     left: 0,
