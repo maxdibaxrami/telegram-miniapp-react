@@ -1,18 +1,12 @@
 
 import { Listbox, ListboxItem, Avatar, Badge, Chip } from "@nextui-org/react";
-
 import { FavoriteSmall } from "@/Icons/index";
 
 import { ListboxWrapper } from "./listWapper";
 import ChatItemMenu from "./chatItemMenu";
 
-
 const ChatList = () => {
 
-  
-  const OnPress = () => {
-
-  };
 
   const truncateText = (value, maxLength) => {
     if (value.length > maxLength) {
@@ -23,6 +17,9 @@ const ChatList = () => {
     return value;
   };
 
+
+
+  
   return (
     <ListboxWrapper>
       <Listbox
@@ -38,7 +35,7 @@ const ChatList = () => {
         {(item) => (
           <ListboxItem
             key={item.id}
-            endContent={<ChatItemMenu />}
+            endContent={<ChatItemMenu /> }
             startContent={
               <Badge
                 isOneChar
@@ -66,7 +63,6 @@ const ChatList = () => {
               </Badge>
             }
             textValue={truncateText(item.name, 10)}
-            onPress={OnPress}
           >
             <div className="flex gap-2 items-center" style={{ width: "100%" }}>
               <div className="flex pl-2 flex-col">

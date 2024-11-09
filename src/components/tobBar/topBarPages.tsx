@@ -1,14 +1,14 @@
 import { Navbar, NavbarContent, NavbarItem, Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 const TopBarPages = () => {
+  const navigate = useNavigate();
 
   return (
     <Navbar disableAnimation isBordered className="">
       <NavbarContent justify="start">
         <NavbarItem>
-            <Button onPress={()=> {}} isIconOnly aria-label="Like" color="default">
-
-            </Button>
+            <Button size="sm" onPress={()=> {navigate("/main?page=profile")}} isIconOnly aria-label="Like" color="default"/>
         </NavbarItem>
 
         <NavbarItem className="flex items-center justify-center">

@@ -12,7 +12,7 @@ const ChatPage = () => {
         paddingBottom: "1rem",
         zIndex:5,
       }}
-      
+      id="chatScrollcontainer"
     >
       <div className="flex justify-between py-2 items-center">
         <span className="text-large">Matches</span>

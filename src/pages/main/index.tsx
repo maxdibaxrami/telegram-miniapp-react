@@ -124,7 +124,7 @@ const MainPage = () => {
                     duration: 0.25,
                   }}
                 >
-                  <Button as={Link} href="/editprofile" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
+                  <Button as={Link} to="/profile-edit" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
                     <EditProfileIcon stroke="#FFF"/>
                   </Button> 
                 </motion.div>
@@ -140,7 +140,7 @@ const MainPage = () => {
                     duration: 0.25,
                   }}
                 >
-                  <Button as={Link} href="/setting" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
+                  <Button as={Link} to="/profile-edit" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
                     <SettingIcon stroke="#FFF"/>
                   </Button> 
                 </motion.div>
