@@ -264,6 +264,7 @@ const MainPage = () => {
         <NearByFilter ref={childRef} />
 
       </section>
+      
     </Page>
     
 }

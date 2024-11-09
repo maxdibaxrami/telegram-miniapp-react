@@ -99,7 +99,7 @@ const ExploreCard = (props) => {
                     right: 0,
                     margin: "auto",
                     marginTop: "4rem",
-                    backgroundColor: theme.theme === "dark" ? "#090031" : "#e8e3ff",
+                    backgroundColor: theme.theme === "light" ? "rgb(255 255 255 / 45%)" : "#e8e3ff",
                 }}
                 className="backdrop-blur"
             >
@@ -137,14 +137,15 @@ const ExploreCard = (props) => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute background-drop--bluebase backdrop-blur-sm border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
+                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
                         <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
                         <h5 className="flex items-center text-small text-white"><LocationIconSmall fill="#fff" /> {props.profile.location}</h5>
                     </div>
                 </div>
 
                 <User
-                    className="bg-white w-full justify-start pl-4"
+                    
+                    className="w-full backgroundowhite justify-start pl-4"
                     name="Ready for relationship"
                     style={{ marginTop: "1rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
@@ -156,8 +157,8 @@ const ExploreCard = (props) => {
 
                 <div className="w-full mb-4 mt-2">
                 <Listbox
-                  className="bg-white px-2 py-2"
-                  style={{borderRadius:"8px"}}
+                  className=" px-2 py-2"
+                  style={{borderRadius:"8px", backgroundColor:"rgb(255 255 255 / 60%)"}}
                   aria-label="Listbox menu with sections"
                   variant="solid"
                 >

@@ -3,10 +3,64 @@
 @tailwind utilities;
 
 
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 400px 400px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 400px 400px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 400px 400px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 400px 400px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 400px 400px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: 400px 400px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: 400px 400px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 400px 400px;
+  }
+}
+
+.backgroundowhite {
+   background-color:rgb(255 255 255 / 70%)
+}
+
 body {
-  background: var(--tg-theme-secondary-bg-color, white);
   padding: 0;
   margin: 0;
+  background-image: url("/assets/backgroundImage.png");
+  -webkit-animation: bg-scrolling-reverse 60s infinite;
+  -moz-animation: bg-scrolling-reverse 60s infinite;
+  -o-animation: bg-scrolling-reverse 60s infinite;
+  animation: bg-scrolling-reverse 60s infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+
 }
 
 *{
@@ -30,7 +84,7 @@ body {
 }
 
 .light-background--color{
-  background-color: #fdf9fe;
+  background-color: transparent;
 }
 
 .background-drop--bluebase{
@@ -72,3 +126,5 @@ body {
   will-change: transform;
   transition: backdrop-filter 0.3s ease;
 }
+
+
