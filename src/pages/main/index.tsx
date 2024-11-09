@@ -140,7 +140,7 @@ const MainPage = () => {
                     duration: 0.25,
                   }}
                 >
-                  <Button as={Link} to="/profile-edit" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
+                  <Button as={Link} to="/setting" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
                     <SettingIcon stroke="#FFF"/>
                   </Button> 
                 </motion.div>

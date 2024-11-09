@@ -6,7 +6,8 @@ import { LaunchParamsPage } from '@/pages/LaunchParamsPage.tsx';
 import { ThemeParamsPage } from '@/pages/ThemeParamsPage.tsx';
 import { TONConnectPage } from '@/pages/TONConnectPage/TONConnectPage';
 import MainPage from '@/pages/main/index';
-import EditProfile from '@/components/editprofile/page';
+import EditProfile from '@/pages/editprofile/page';
+import Setting from '@/pages/setting/page';
 
 interface Route {
   path: string;
@@ -22,6 +23,7 @@ export const routes: Route[] = [
   { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params' },
   { path: '/main', Component: MainPage, title: 'Main Page' },
   { path: '/profile-edit', Component: EditProfile, title: 'Main Page' },
+  { path: '/setting', Component: Setting, title: 'Main Page' },
 
   {
     path: '/ton-connect',
