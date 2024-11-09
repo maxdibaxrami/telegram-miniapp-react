@@ -155,7 +155,7 @@ const ExploreCard = (props) => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute backdrop-blur-sm border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
+                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute background-drop--bluebase backdrop-blur-sm border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
                         <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
                         <h5 className="flex items-center text-small text-white"><LocationIcon fill="#fff" /> {props.profile.location}</h5>
                     </div>
