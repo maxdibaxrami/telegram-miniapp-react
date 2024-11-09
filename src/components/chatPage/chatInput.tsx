@@ -10,7 +10,7 @@ const ChatInput = () => {
 
   return (
     <div
-      className="flex right-0 items-center justify-between"
+      className="flex right-0 items-center justify-between bottom-textinput"
       style={{ width: "100%", left: "50%", backgroundColor: "#f4f4f5" }}
     >
       <Textarea
