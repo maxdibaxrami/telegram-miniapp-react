@@ -1,8 +1,24 @@
 
-import LikeCard from "@/components/like/likeCard";
-
+import LikeCard from "./likeCard";
+import { useRef, useState } from "react";
+import NearByUserModal from "@/components/naerby/NearByModal";
 export default function LikesPage() {
   
+  const childRef = useRef();
+  const [SelectedCard, setSelectedCard] = useState({});
+
+  const handleClick = () => {
+    if (childRef.current) {
+      /* @ts-ignore */
+      childRef.current.callChildFunction(); // Call the function in the child
+    }
+  };
+
+  const onCardClick = (data) => {
+    setSelectedCard(data);
+    handleClick();
+  };
+
   return (
     <div
     className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
@@ -17,8 +33,11 @@ export default function LikesPage() {
     }}
     >
       {mockProfiles.map((value, index) => {
-        return <LikeCard key={index} data={value} />;
+        return <LikeCard onPressData={onCardClick} key={index} data={value} />;
       })}
+
+      <NearByUserModal ref={childRef} profile={SelectedCard} />
+
     </div>
   );
 }

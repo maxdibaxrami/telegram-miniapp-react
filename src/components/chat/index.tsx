@@ -18,7 +18,7 @@ const ChatPage = () => {
         <span className="text-large">Matches</span>
       </div>
       <MatchList />
-      <div className="flex justify-between py-2 items-center">
+      <div className="flex justify-between py-3 items-center">
         <span className="text-large">Chat</span>
       </div>
 

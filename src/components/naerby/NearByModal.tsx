@@ -69,7 +69,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     left: 0,
                     right: 0,
                     margin: "auto",
-                    marginTop: "2.5rem",
+                    marginTop: "1.5rem",
                     overflow:"scroll"
                 }}
                 className="backdrop-blur"

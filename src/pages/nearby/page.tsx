@@ -15,6 +15,7 @@ export default function NearByPage() {
       childRef.current.callChildFunction(); // Call the function in the child
     }
   };
+  
   const onCardClick = (data) => {
     setSelectedCard(data);
     handleClick();

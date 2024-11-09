@@ -9,12 +9,13 @@ import { useSearchParams } from "react-router-dom";
 import ChatFiltermenu from '@/components/chat/chatFilterMenu';
 import ProfilePage from '@/components/profile';
 import { Link } from 'react-router-dom';
-import LikesPage from '@/components/like';
+import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
 import {useRef} from 'react'
 import ExploreFilter from '@/components/explore/exploreFilter';
 import NearByPage from '@/pages/nearby/page';
+import NearByFilter from '@/components/naerby/NearByFilter';
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -22,16 +23,24 @@ interface ExploreFilterRef {
 }
 
 const MainPage = () => {
+    const childRef = useRef<ExploreFilterRef>(null);
+    const childRefExplore = useRef<ExploreFilterRef>(null);
+
+    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const childRefExplore = useRef<ExploreFilterRef>(null);
 
     const handleOpenModalExplore = () => {
       if (childRefExplore.current) {
         childRefExplore.current.openModal();
       }
     };
-    const navigate = useNavigate();
+    const handleOpenModal = () => {
+      if (childRef.current) {
+          childRef.current?.openModal();
+      }
+    };
+
 
 
     return <Page>
@@ -146,7 +155,7 @@ const MainPage = () => {
                   duration: 0.5,
                 }}
               >
-                <Button className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button className="color-white" onPress={handleOpenModal} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
                   <FitlerIcon stroke="#FFF"/>
                 </Button>  
               </motion.div>
@@ -252,6 +261,7 @@ const MainPage = () => {
         </AnimatePresence>
 
         <ExploreFilter ref={childRefExplore}/>
+        <NearByFilter ref={childRef} />
 
       </section>
     </Page>

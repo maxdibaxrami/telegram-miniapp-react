@@ -29,7 +29,7 @@ const BottomMenu = () => {
  
          className={"flex w-full flex-col fixed items-center backdrop-blur background-drop---navbar"}
          style={{
-           zIndex: "500",
+           zIndex: "50",
            width: "57px",
            borderRadius: "14px",
            overflow: "hidden",

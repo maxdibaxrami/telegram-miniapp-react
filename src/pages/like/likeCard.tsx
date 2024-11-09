@@ -5,7 +5,7 @@ import {
   NotLikeImoji,
 } from "@/Icons/index";
 
-const LikeCard = ({ data }) => {
+const LikeCard = ({ data, onPressData }) => {
   return (
     <div className={"relative w-full mb-8"}>
       <Card
@@ -14,6 +14,7 @@ const LikeCard = ({ data }) => {
         className="border-none w-full relative"
         radius="lg"
         style={{backgroundColor: "transparent" }}
+        onPress={()=> onPressData(data)}
       >
         <Image
           alt="Woman listing to music"
