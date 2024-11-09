@@ -34,11 +34,9 @@ const MainPage = () => {
 
 
     return <Page>
-        <motion.div
-          animate={searchParams.get('page') === "explore"? { y: -10, opacity: 0 }:{ y: 0, opacity: 1 }}
-        >
+
           <TopBar/>
-        </motion.div>
+        
             
             <NavBar/>
             <section className="flex flex-col items-center light-background--color justify-center gap-4 ">
@@ -206,7 +204,7 @@ const MainPage = () => {
                   duration: 0.25,
                 }}
               >
-                <Button onPress={handleOpenModalExplore} className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button onPress={handleOpenModalExplore} className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
                   <FitlerIcon stroke="#FFF"/>
                 </Button>  
               </motion.div>
@@ -226,7 +224,7 @@ const MainPage = () => {
                   duration: 0.25,
                 }}
               >
-                <Button className="color-white" onPress={()=> navigate(-1)} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button className="color-white" onPress={()=> navigate(-1)} isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
                   <ArrowRight stroke="#FFF"/>
                 </Button>  
               </motion.div>

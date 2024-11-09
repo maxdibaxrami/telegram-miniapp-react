@@ -23,6 +23,7 @@ import {
   WhyYouAreHereIcon,
   HashtagIcon
 } from "@/Icons/index";
+
 import { useTheme } from "next-themes";
 
 const ExploreCard = (props) => {
@@ -112,7 +113,7 @@ const ExploreCard = (props) => {
                     left: 0,
                     right: 0,
                     margin: "auto",
-                    marginTop: "0.5rem",
+                    marginTop: "4rem",
                     scale,
                     height: "calc(100vh - 145px)",
                     overflow: "scroll",
@@ -157,7 +158,7 @@ const ExploreCard = (props) => {
                         ))}
                     </Swiper>
                     <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute background-drop--bluebase backdrop-blur-sm border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
-                        <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
+                        <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
                         <h5 className="flex items-center text-small text-white"><LocationIcon fill="#fff" /> {props.profile.location}</h5>
                     </div>
                 </div>
@@ -174,7 +175,8 @@ const ExploreCard = (props) => {
 
                 <div className="w-full mb-4 mt-2">
                 <Listbox
-                
+                  className="bg-white px-2 py-2"
+                  style={{borderRadius:"8px"}}
                   aria-label="Listbox menu with sections"
                   variant="solid"
                 >
