@@ -14,6 +14,7 @@ import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
 import {useRef} from 'react'
 import ExploreFilter from '@/components/explore/exploreFilter';
+import NearByPage from '@/pages/nearby/page';
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -90,6 +91,25 @@ const MainPage = () => {
 
             >
                 <LikesPage/>
+
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {searchParams.get('page') === "nearby" && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              initial={{ y: 10, opacity: 0 }}
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.6 },
+              }}
+              style={{width:"100%"}}
+
+            >
+                <NearByPage/>
 
             </motion.div>
           </AnimatePresence>
