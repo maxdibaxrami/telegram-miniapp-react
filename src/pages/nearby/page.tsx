@@ -41,7 +41,7 @@ export default function NearByPage() {
           onCardClick={onCardClick}
         />
       ))}
-      <NearByUserModal ref={childRef} profileData={SelectedCard} />
+      <NearByUserModal ref={childRef} profile={SelectedCard} />
 
 
     </div>

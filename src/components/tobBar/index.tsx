@@ -12,6 +12,7 @@ import {
   ProfileIcon,
   RandomChatIcon,
   LikeIcon,
+  LocationIcon,
 } from "@/Icons/index";
 
 import { ThemeSwitch } from "./SwitchTheme";
@@ -30,8 +31,8 @@ const TopBar = () => {
     >
       <NavbarBrand>
         {searchParams.get("page") === "explore" && <FireIcon fill="#a594f9" />}
-        {searchParams.get("page") === "randomchat" && (
-          <RandomChatIcon
+        {searchParams.get("page") === "nearby" && (
+          <LocationIcon
             fill="#a594f9"
             stroke={"#000"}
           />
