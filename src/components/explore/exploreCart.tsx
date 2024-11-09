@@ -1,16 +1,13 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import {
     motion,
-    useMotionValue,
     useTransform,
-    useScroll,
-    useMotionValueEvent
+    useMotionValue
 } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import {Pagination, User ,Chip} from "@nextui-org/react";
 import { HeartIcon, VerifyIcon } from "@/Icons/index";
-import { LocationIcon } from "@/Icons/index";
 
 import ExploreCardImage from './exploreCardImage'
 import { Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
@@ -21,88 +18,77 @@ import {
   AboutMeIcon,
   WorkAndStudyIcon,
   WhyYouAreHereIcon,
-  HashtagIcon
+  HashtagIcon,
+  LocationIconSmall
 } from "@/Icons/index";
 
 import { useTheme } from "next-themes";
 
 const ExploreCard = (props) => {
-    const [exitX, setExitX] = useState(0);
     const [ActiveSlide, setActiveSlide] = useState(1); // Starting from slide 1
-    const [openCard, setOpenCard] = useState(false);
-    const divRef = useRef(null);
-
-    // Set up scroll tracking on the ref
-    const { scrollYProgress } = useScroll({ container: divRef });
-
-    // Use an event listener to detect scrolling
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-      setOpenCard(false);
-
-      if (latest > 0) {
-        setOpenCard(true);
-      }
-    });
-
+    const [exitX, setExitX] = useState(0);
     const theme = useTheme();
-
     const x = useMotionValue(0);
 
-    const scale = useTransform(x, [-80, 0, 80], [0.8, 1, 0.8], {
-      clamp: true,
+    const rotate = useTransform(x, [-20, 0, 20], [-15, 0, 15], {
+        clamp: true
     });
 
     const variantsFrontCard = {
-        animate: { scale: 1, y: 0, opacity: 1 },
-        exit: (custom) => ({
-            x: custom,
-            opacity: 0,
-            scale: 0.8,
-            transition: { duration: 0.2 }
-        })
-    };
-    const variantsBackCard = {
-        initial: { scale: 0, y: 90, opacity: 0 },
-        animate: { scale: 0.9, y: 75, opacity: 0.5 }
-    };
+      animate: { scale: 1, y: 0, opacity: 1 },
+      exit: (custom) => ({
+          x: custom,
+          opacity: 0,
+          scale: 0.8,
+          transition: { duration: 0.2 }
+      })
+  };
+  const variantsBackCard = {
+      initial: { scale: 0, y: 55, opacity: 0 },
+      animate: { scale: 0.9, y: 30, opacity: 0.5 }
+  };
 
-    function handleDragEnd(_, info) {
-        if (info.offset.x < -50) {
-            setExitX(-60);
-            props.setIndex(props.index + 1);
-        }
-        if (info.offset.x > 50) {
-            setExitX(60);
-            props.setIndex(props.index + 1);
-        }
-    }
+  function handleDragEnd(_, info) {
+      if (info.offset.x < -50) {
+          setExitX(-60);
+          props.setIndex(props.index + 1);
+      }
+      if (info.offset.x > 50) {
+          setExitX(60);
+          props.setIndex(props.index + 1);
+      }
+  }
 
     return (
         <motion.div
-            style={{
-                width: "100%",
-                height: "100%",
-                maxHeight: "100%",
-                overflow: "scroll",
-                position: "absolute",
-                top: 0,
-            }}
-            whileTap={{ cursor: "grabbing" }}
-            // Allow horizontal dragging only
-            drag="x"
-            onDragEnd={handleDragEnd}
-            // Animation
-            variants={props.frontCard ? variantsFrontCard : variantsBackCard}
-            initial="initial"
-            dragListener={false}
-            animate="animate"
-            exit="exit"
-            custom={exitX}
-            transition={
-                props.frontCard
-                    ? { type: "spring", stiffness: 300, damping: 20 }
-                    : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
-            }
+        style={{
+          width: "100%",
+          height: "100%",
+          maxHeight: "100%",
+          overflow:"scroll",
+          position: "absolute",
+          top: 0,
+          x,
+          rotate,
+          cursor: "grab"
+          }}
+          whileTap={{ cursor: "grabbing" }}
+          // Dragging
+          draggable="false"
+          drag={props.drag}
+          dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
+          onDragEnd={handleDragEnd}
+          // Animation
+          variants={props.frontCard ? variantsFrontCard : variantsBackCard}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          custom={exitX}
+          transition={
+              props.frontCard
+                  ? { type: "spring", stiffness: 300, damping: 20 }
+                  : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
+          }
         >
             {/* Inner content (no changes needed here) */}
             <motion.div
@@ -114,13 +100,8 @@ const ExploreCard = (props) => {
                     right: 0,
                     margin: "auto",
                     marginTop: "4rem",
-                    scale,
-                    height: "calc(100vh - 145px)",
-                    overflow: "scroll",
                     backgroundColor: theme.theme === "dark" ? "#090031" : "#e8e3ff",
                 }}
-                animate={openCard ? { height: "calc(100vh - 30px)" } : { height: "calc(100vh - 147px)" }}
-                ref={divRef}
                 className="backdrop-blur"
             >
                 <div className="relative">
@@ -159,11 +140,12 @@ const ExploreCard = (props) => {
                     </Swiper>
                     <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute background-drop--bluebase backdrop-blur-sm border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
                         <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
-                        <h5 className="flex items-center text-small text-white"><LocationIcon fill="#fff" /> {props.profile.location}</h5>
+                        <h5 className="flex items-center text-small text-white"><LocationIconSmall fill="#fff" /> {props.profile.location}</h5>
                     </div>
                 </div>
 
                 <User
+                    className="bg-white w-full justify-start pl-4"
                     name="Ready for relationship"
                     style={{ marginTop: "1rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
