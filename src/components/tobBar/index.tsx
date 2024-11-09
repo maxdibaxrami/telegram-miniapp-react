@@ -17,6 +17,7 @@ import {
 import { ThemeSwitch } from "./SwitchTheme";
 
 import { useSearchParams } from "react-router-dom";
+import {RotateWords} from '@/components/animate/rotate-words'
 
 const TopBar = () => {
   const [searchParams] = useSearchParams();
@@ -39,9 +40,7 @@ const TopBar = () => {
         {searchParams.get("page") === "likes" && <LikeIcon fill="#a594f9" />}
         {searchParams.get("page") === "profile" && <ProfileIcon fill="#a594f9" />}
 
-        <p className="font-bold ml-1 text-inherit">
-          {searchParams.get("page") !== "randomchat"?searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1) : "Random Chat"}
-        </p>
+          <RotateWords words={searchParams.get("page") !== "randomchat"?searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1) : "Random Chat"} />  
       </NavbarBrand>
 
       <NavbarContent justify="end">

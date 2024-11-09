@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import ChatFiltermenu from '@/components/chat/chatFilterMenu';
 import ProfilePage from '@/components/profile';
 import { Link } from 'react-router-dom';
+import LikesPage from '@/components/like';
 
 const MainPage = () => {
     const [searchParams] = useSearchParams();
@@ -66,7 +67,7 @@ const MainPage = () => {
               style={{width:"100%"}}
 
             >
-
+                <LikesPage/>
 
             </motion.div>
           </AnimatePresence>
