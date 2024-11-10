@@ -47,7 +47,7 @@ const MainPage = () => {
 
             
             <AnimatePresence mode="wait">
-            {searchParams.get('page') !== "explore" && (
+            {true && (
 
               <motion.div
                 animate={{ y: 0, opacity: 1 }}

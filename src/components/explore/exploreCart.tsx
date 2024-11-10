@@ -89,13 +89,14 @@ const ExploreCard = (props) => {
             {/* Inner content (no changes needed here) */}
             <motion.div
                 style={{
-                    width: "calc(100vw - 52px)",
+                    width: "calc(100vw - 24px)",
                     borderRadius: 16,
                     padding: "12px",
                     left: 0,
                     right: 0,
                     margin: "auto",
-                    marginTop: "2rem",
+                    marginTop: "5rem",
+                    marginBottom:"60px",
                     backgroundColor: theme.theme === "light" ? "rgb(255 255 255 / 45%)" : "#e8e3ff",
                 }}
                 className="backdrop-blur border-color--carts"
