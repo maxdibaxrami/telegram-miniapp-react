@@ -12,13 +12,13 @@ const ProfilePage = () => {
     <div
       className="w-full h-full pb-16"
       style={{
-        overflow: "scroll",
-        maxHeight: "100vh",
+        maxHeight: "100%",
+        height:"100%",
         paddingTop: "5rem",
         padding:"12px",
         marginTop:"5rem",
         backgroundColor:"#ffffffc4",
-        width:"calc( 100vw - 3rem )"
+        width:"calc( 100vw - 1.5rem )"
       }}
     >
       <div className="flex mb-4 w-full  justify-between items-center">

@@ -130,6 +130,7 @@ const MainPage = () => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
               initial={{ y: 10, opacity: 0 }}
+              style={{maxHeight:"100vh", overflow:"scroll"}}
               transition={{
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 opacity: { duration: 0.6 },
