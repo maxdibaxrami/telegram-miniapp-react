@@ -95,6 +95,14 @@ body {
   will-change: transform;
 }
 
+.background-drop--bluebase--likecard{
+  background: rgb(217 209 255 / 70%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: backdrop-filter 0.3s ease;
+  will-change: transform;
+}
+
 .maxcontentimportant{
   max-width: none !important;
 }

@@ -30,7 +30,7 @@ const LikeCard = ({ data, onPressData }) => {
       </Card>
 
       <div
-        className="flex items-center background-drop--bluebase backdrop-blur-sm	 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large shadow-small z-10"
+        className="flex items-center background-drop--bluebase--likecard border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large shadow-small z-10"
         style={{
           bottom: "-25px",
           borderRadius: "54px",
