@@ -4,9 +4,8 @@ import {
     useTransform,
     useMotionValue
 } from "framer-motion";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
-import {Pagination, User ,Chip} from "@nextui-org/react";
+
+import {Image, User ,Chip} from "@nextui-org/react";
 import { HeartIcon, VerifyIcon } from "@/Icons/index";
 
 import ExploreCardImage from './exploreCardImage'
@@ -105,39 +104,65 @@ const ExploreCard = (props) => {
             >
                 <div className="relative">
                     <ExploreCardOption />
-                    <Pagination
-                        disableAnimation
-                        classNames={{ wrapper: "flex-col flex", item: "exploreSipwePagination" }}
-                        className="absolute z-50 right-2"
-                        style={{ top: "40%" }}
-                        total={3}
-                        page={ActiveSlide + 1}
-                        initialPage={1}
-                        size={"sm"}
-                    />
-                    <Swiper
-                        spaceBetween={30}
-                        centeredSlides
-                        autoplay={{ delay: 3000, disableOnInteraction: false }}
-                        loop
-                        modules={[Autoplay, Navigation]}
-                        className="mySwiper"
-                        allowTouchMove={false}
-                        onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
-                    >
-                        {[props.profile.mainImage, props.profile.secondImage, props.profile.thirdImage].map((image, index) => (
-                            <SwiperSlide key={index}>
-                                <ExploreCardImage
-                                    classNames={{ wrapper: "max-w-none w-full h-full bg-transparent" }}
-                                    className="w-full"
-                                    alt={`Profile image ${index + 1}`}
-                                    src={image}
-                                    style={{ height: "100%", width: "100%" }}
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] flex flex-col items-start gap-1 absolute border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
+                    <div className="flex w-full flex-col">
+                      <div className="w-full" >
+                        <Image
+                          alt="Profile hero Image"
+                          className="w-full h-full"
+                          classNames={{
+                            wrapper: "w-full maxcontentimportant",
+                          }}
+                          
+                          loading="lazy"
+                          src={props.profile.mainImage} // dynamic image URL
+                          style={{
+                            borderRadius: "20px",
+                            objectFit: "cover",
+                            padding: "0px 0px 5px 0px",
+                            height: "calc(50vh - 4rem)",
+
+                          }}
+                        />
+                      </div>
+
+                      <div className="flex">
+                        <div className="w-full">
+                          <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                              wrapper: "w-full maxcontentimportant",
+                            }}
+                            src={props.profile.secondImage}  // dynamic image URL
+                            style={{
+                              objectFit: "cover",
+                              borderRadius: "20px",
+                              padding: "5px 5px 0px 0px",
+                              height: "calc(34vh - 4rem)",
+                            }}
+                          />
+                        </div>
+                        <div className="w-full">
+                          <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            loading="lazy"
+                            classNames={{
+                              wrapper: "w-full maxcontentimportant",
+                            }}
+                            src={props.profile.thirdImage}  // dynamic image URL
+                            style={{
+                              objectFit: "cover",
+                              borderRadius: "20px",
+                              padding: "5px 0px 0px 5px",
+                              height: "calc(34vh - 4rem)",
+                              width:"100%"
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] background-black--blue flex flex-col items-start gap-1 absolute border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
                         <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
                         <h5 className="flex items-center text-small text-white"><LocationIconSmall fill="#fff" /> {props.profile.location}</h5>
                     </div>

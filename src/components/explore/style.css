@@ -54,3 +54,7 @@
   will-change: transform;
 
 }
+
+.background-black--blue{
+  background-color: #0000004a;
+}

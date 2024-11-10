@@ -14,7 +14,7 @@ const ExploreCardOption = () => {
       <DropdownTrigger>
         <Button
           isIconOnly
-          className="right-2 top-2"
+          className="right-2 top-2 z-50"
           color="primary"
           style={{
             position: "absolute",
