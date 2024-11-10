@@ -98,10 +98,10 @@ const ExploreCard = (props) => {
                     left: 0,
                     right: 0,
                     margin: "auto",
-                    marginTop: "4rem",
+                    marginTop: "5rem",
                     backgroundColor: theme.theme === "light" ? "rgb(255 255 255 / 45%)" : "#e8e3ff",
                 }}
-                className="backdrop-blur"
+                className="backdrop-blur border-color--carts"
             >
                 <div className="relative">
                     <ExploreCardOption />
@@ -145,7 +145,7 @@ const ExploreCard = (props) => {
 
                 <User
                     
-                    className="w-full backgroundowhite justify-start pl-4"
+                    className="w-full backgroundowhite justify-start pl-4 border-color--carts"
                     name="Ready for relationship"
                     style={{ marginTop: "1rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
@@ -155,9 +155,9 @@ const ExploreCard = (props) => {
 
                 {/* Additional User components can be added here */}
 
-                <div className="w-full mb-4 mt-2">
+                <div className="w-full mb-4 mt-2 ">
                 <Listbox
-                  className=" px-2 py-2"
+                  className=" px-2 py-2 border-color--carts"
                   style={{borderRadius:"8px", backgroundColor:"rgb(255 255 255 / 60%)"}}
                   aria-label="Listbox menu with sections"
                   variant="solid"

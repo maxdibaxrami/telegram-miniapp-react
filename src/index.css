@@ -88,7 +88,7 @@ body {
 }
 
 .background-drop--bluebase{
-  background: rgba(165, 148, 249, 0.341);
+  background: rgb(217 209 255 / 34%);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   transition: backdrop-filter 0.3s ease;
@@ -127,4 +127,10 @@ body {
   transition: backdrop-filter 0.3s ease;
 }
 
+.border-color--carts{
+  border: 1px #e5e5e5 solid;
+}
 
+.border-color--carts---modal{
+  border: 1px #b6b6b6 solid;
+}

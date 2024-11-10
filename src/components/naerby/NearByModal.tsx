@@ -59,8 +59,8 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
   return (
     <>
-    <Modal classNames={{"closeButton":"z-50"}} backdrop="opaque" isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent style={{height:"90vh",backgroundColor:"#e8e3ff"}} className=" backdrop-blur	">
+    <Modal classNames={{"closeButton":"z-50"}} backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <ModalContent style={{height:"90vh", backgroundColor:"#ffffffb8"}} className="backdrop-blur">
         <ModalBody
                 style={{
                     width: "100%",
@@ -72,7 +72,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     marginTop: "1.5rem",
                     overflow:"scroll"
                 }}
-                className="backdrop-blur"
+                className=" bg-transparent"
             >
                 <div className="relative">
                     <ExploreCardOption />
@@ -115,7 +115,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                 </div>
 
                 <User
-                    className="bg-white w-full justify-start pl-4"
+                    className="bg-white w-full justify-start pl-4 border-color--carts---modal"
                     name="Ready for relationship"
                     style={{ marginTop: "1rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
@@ -127,7 +127,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
                 <div className="w-full mb-4 mt-2">
                 <Listbox
-                  className="bg-white px-2 py-2"
+                  className="bg-white px-2 py-2 border-color--carts---modal"
                   style={{borderRadius:"8px"}}
                   aria-label="Listbox menu with sections"
                   variant="solid"

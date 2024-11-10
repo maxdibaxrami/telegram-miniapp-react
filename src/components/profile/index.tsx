@@ -10,15 +10,18 @@ import DataList from "./dataList";
 const ProfilePage = () => {
   return (
     <div
-      className="w-full h-full pb-16 backgroundowhite backdrop-blur-sm"
+      className="w-full h-full pb-16"
       style={{
         overflow: "scroll",
         maxHeight: "100vh",
-        paddingTop: "4rem",
+        paddingTop: "5rem",
+        padding:"12px",
+        marginTop:"5rem",
+        backgroundColor:"#ffffffc4",
         width:"calc( 100vw - 3rem )"
       }}
     >
-      <div className="flex mb-4 w-full justify-between items-center">
+      <div className="flex mb-4 w-full  justify-between items-center">
         <div className="flex w-full flex-col">
           <div className="w-full" >
             <Image
