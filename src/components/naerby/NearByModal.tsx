@@ -69,6 +69,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     margin: "auto",
                     marginTop: "1.5rem",
                     overflow:"scroll"
+                    
                 }}
                 className=" bg-transparent"
             >
