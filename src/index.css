@@ -52,10 +52,10 @@ body {
   padding: 0;
   margin: 0;
   background-image: url("/assets/backgroundImage.png");
-  -webkit-animation: bg-scrolling-reverse 60s infinite;
-  -moz-animation: bg-scrolling-reverse 60s infinite;
-  -o-animation: bg-scrolling-reverse 60s infinite;
-  animation: bg-scrolling-reverse 60s infinite;
+  -webkit-animation: bg-scrolling-reverse 120s infinite;
+  -moz-animation: bg-scrolling-reverse 120s infinite;
+  -o-animation: bg-scrolling-reverse 120s infinite;
+  animation: bg-scrolling-reverse 120s infinite;
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function: linear;
   -o-animation-timing-function: linear;
@@ -140,5 +140,5 @@ body {
 }
 
 .border-color--carts---modal{
-  border: 1px #b6b6b6 solid;
+  border: 1px #f0edff solid;
 }
