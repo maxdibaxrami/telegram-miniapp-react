@@ -56,5 +56,6 @@
 }
 
 .background-black--blue{
-  background-color: #0000004a;
+  background-color: rgb(217 209 255 / 34%);
+  backdrop-filter:blur(2px);
 }

@@ -8,7 +8,6 @@ import {
 import {Image, User ,Chip} from "@nextui-org/react";
 import { HeartIcon, VerifyIcon } from "@/Icons/index";
 
-import ExploreCardImage from './exploreCardImage'
 import { Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
 import ExploreCardOption from "./exploreCardOption";
 
@@ -24,7 +23,6 @@ import {
 import { useTheme } from "next-themes";
 
 const ExploreCard = (props) => {
-    const [ActiveSlide, setActiveSlide] = useState(1); // Starting from slide 1
     const [exitX, setExitX] = useState(0);
     const theme = useTheme();
     const x = useMotionValue(0);
