@@ -17,6 +17,7 @@ const ProfilePage = () => {
         paddingTop: "5rem",
         padding:"12px",
         marginTop:"5rem",
+        marginBottom:"5rem",
         backgroundColor:"#ffffffc4",
         width:"calc( 100vw - 1.5rem )"
       }}
