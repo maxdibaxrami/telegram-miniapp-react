@@ -89,13 +89,13 @@ const ExploreCard = (props) => {
             {/* Inner content (no changes needed here) */}
             <motion.div
                 style={{
-                    width: "calc(100vw - 26px)",
+                    width: "calc(100vw - 52px)",
                     borderRadius: 16,
                     padding: "12px",
                     left: 0,
                     right: 0,
                     margin: "auto",
-                    marginTop: "5rem",
+                    marginTop: "2rem",
                     backgroundColor: theme.theme === "light" ? "rgb(255 255 255 / 45%)" : "#e8e3ff",
                 }}
                 className="backdrop-blur border-color--carts"
@@ -114,10 +114,9 @@ const ExploreCard = (props) => {
                           loading="lazy"
                           src={props.profile.mainImage} // dynamic image URL
                           style={{
-                            borderRadius: "20px",
+                            borderRadius: "14px",
                             objectFit: "cover",
-                            padding: "0px 0px 5px 0px",
-                            height: "calc(50vh - 4rem)",
+                            height: "100%",
 
                           }}
                         />
@@ -134,9 +133,11 @@ const ExploreCard = (props) => {
                             src={props.profile.secondImage}  // dynamic image URL
                             style={{
                               objectFit: "cover",
-                              borderRadius: "20px",
-                              padding: "5px 5px 0px 0px",
-                              height: "calc(34vh - 4rem)",
+                              borderRadius: "14px",
+                              padding: "5px 2.5px 0px 0px",
+                              height: "100%",
+                              width:"100%"
+
                             }}
                           />
                         </div>
@@ -151,9 +152,9 @@ const ExploreCard = (props) => {
                             src={props.profile.thirdImage}  // dynamic image URL
                             style={{
                               objectFit: "cover",
-                              borderRadius: "20px",
-                              padding: "5px 0px 0px 5px",
-                              height: "calc(34vh - 4rem)",
+                              borderRadius: "14px",
+                              padding: "5px 0px 0px 2.5px",
+                              height: "100%",
                               width:"100%"
                             }}
                           />

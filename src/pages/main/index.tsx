@@ -45,9 +45,27 @@ const MainPage = () => {
 
     return <Page>
 
-          <TopBar/>
-        
             
+            <AnimatePresence mode="wait">
+            {searchParams.get('page') !== "explore" && (
+
+              <motion.div
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                initial={{ y: 0, opacity: 1 }}
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30, duration: 3999 },
+                  opacity: { duration: 0.6 },
+                }}
+              >
+                  <TopBar/>
+
+              </motion.div>
+                     )}
+
+          </AnimatePresence>
+
+                
             <NavBar/>
             <section className="flex flex-col items-center light-background--color justify-center gap-4 ">
         {searchParams.get('page') === "explore" && (
