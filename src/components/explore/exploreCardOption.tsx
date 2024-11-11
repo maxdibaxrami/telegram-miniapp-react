@@ -14,14 +14,14 @@ const ExploreCardOption = () => {
       <DropdownTrigger>
         <Button
           isIconOnly
-          className="right-2 top-2 z-50"
+          className="right-4 top-4 z-50"
           color="primary"
           style={{
             position: "absolute",
           }}
           variant="flat"
         >
-          <MoreIcon />
+          <MoreIcon stroke="#FFF"/>
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" variant="solid">
