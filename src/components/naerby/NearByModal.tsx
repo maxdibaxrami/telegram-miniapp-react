@@ -57,8 +57,8 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
   return (
     <>
-    <Modal classNames={{"closeButton":"z-50"}} backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent style={{height:"95vh", backgroundColor:"#ffffffd9"}} className="backdrop-blur">
+    <Modal classNames={{"closeButton":"z-50"}} backdrop="transparent" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <ModalContent style={{height:"90vh", backgroundColor:"#ffffffd9"}} className="backdrop-blur">
         <ModalBody
                 style={{
                     width: "100%",
@@ -76,7 +76,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                    <div className="relative">
                     <ExploreCardOption />
                     <div className="flex w-full flex-col">
-                      <div className="w-full p-2" >
+                      <div className="w-full" style={{padding:"0rem 0rem 0.5rem 0rem"}}>
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
@@ -95,7 +95,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                           />
                       </div>
                       <div className="flex">
-                        <div className="w-full p-2">
+                        <div className="w-full" style={{padding:"0.5rem 0.5rem 0.5rem 0rem"}}>
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
@@ -113,7 +113,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                             }}
                           />
                         </div>
-                        <div className="w-full p-2">
+                        <div className="w-full" style={{padding:"0.5rem 0rem 0.5rem 0.5rem"}}>
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"

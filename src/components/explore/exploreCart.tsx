@@ -106,7 +106,7 @@ const ExploreCard = (props) => {
                 <div >
                     <ExploreCardOption />
                     <div className="flex w-full flex-col">
-                      <div className="w-full p-2" >
+                      <div className="w-full" style={{padding:"0rem 0rem 0.5rem 0rem"}} >
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
@@ -125,11 +125,11 @@ const ExploreCard = (props) => {
                           />
                       </div>
                       <div className="flex">
-                        <div className="w-full p-2">
+                        <div className="w-full p-2" style={{padding:"0.5rem 0.5rem 0.5rem 0rem"}}>
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
-
+                            
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
                             }}
@@ -143,11 +143,12 @@ const ExploreCard = (props) => {
                             }}
                           />
                         </div>
-                        <div className="w-full p-2">
+                        <div className="w-full" style={{padding:"0.5rem 0rem 0.5rem 0.5rem"}}>
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
                             loading="lazy"
+                            
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
                             }}
@@ -174,7 +175,7 @@ const ExploreCard = (props) => {
                     
                     className="w-full backgroundowhite text-black justify-start pl-4 border-color--carts"
                     name={<p className="flex items-center text-small font-semibold text-black">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#4596f2" /></p>}
-                    style={{ marginTop: "1rem" }}
+                    style={{ marginTop: "0.8rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
                     description={<p className="flex items-center text-black"><LocationIconSmall fill="#000" /> {props.profile.location}</p>}
                     avatarProps={{ classNames:{"base":"hidden"}} }
@@ -184,7 +185,7 @@ const ExploreCard = (props) => {
                     
                     className="w-full backgroundowhite justify-start pl-4 border-color--carts"
                     name="Ready for relationship"
-                    style={{ marginTop: "1rem" }}
+                    style={{ marginTop: "0.5rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
                     description="@jrgarciadev"
                     avatarProps={{ color: "secondary", icon: <HeartIcon stroke="#fff" fill="#FFF" /> }}
