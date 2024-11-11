@@ -76,44 +76,44 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                    <div className="relative">
                     <ExploreCardOption />
                     <div className="flex w-full flex-col">
-                      <div className="w-full" >
-                        <Image
-                          alt="Profile hero Image"
-                          className="w-full h-full"
-                          classNames={{
-                            wrapper: "w-full maxcontentimportant",
-                          }}
-                          
-                          loading="lazy"
-                          src={props.profile.mainImage} // dynamic image URL
-                          style={{
-                            borderRadius: "20px",
-                            objectFit: "cover",
-                            height: "100%",
-
-                          }}
-                        />
-                      </div>
-
-                      <div className="flex">
-                        <div className="w-full">
+                      <div className="w-full p-2" >
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
                             }}
+                            
+                            loading="lazy"
+                            src={props.profile.mainImage} // dynamic image URL
+                            style={{
+                              borderRadius: "14px",
+                              objectFit: "cover",
+                              height: "100%",
+
+                            }}
+                          />
+                      </div>
+                      <div className="flex">
+                        <div className="w-full p-2">
+                          <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+
+                            classNames={{
+                              wrapper: "w-full maxcontentimportant",
+                            }}
                             src={props.profile.secondImage}  // dynamic image URL
                             style={{
                               objectFit: "cover",
-                              borderRadius: "20px",
-                              padding: "5px 5px 0px 0px",
+                              borderRadius: "14px",
                               height: "100%",
-                              widows:"100%"
+                              width:"100%"
+
                             }}
                           />
                         </div>
-                        <div className="w-full">
+                        <div className="w-full p-2">
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
@@ -124,8 +124,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                             src={props.profile.thirdImage}  // dynamic image URL
                             style={{
                               objectFit: "cover",
-                              borderRadius: "20px",
-                              padding: "5px 0px 0px 5px",
+                              borderRadius: "14px",
                               height: "100%",
                               width:"100%"
                             }}
@@ -133,16 +132,19 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                         </div>
                       </div>
                     </div>
-                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] background-black--blue flex flex-col items-start gap-1 absolute border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
-                        <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
-                        <h5 className="flex items-center text-small text-white"><LocationIconSmall fill="#fff" /> {props.profile.location}</h5>
-                    </div>
                 </div>
+                <User
+                    
+                    className="w-full backgroundowhite text-black justify-start pl-4 border-color--carts"
+                    name={<p className="flex items-center text-small font-semibold text-black">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#4596f2" /></p>}
+                    classNames={{ wrapper: "py-3", base: "px-1" }}
+                    description={<p className="flex items-center text-black"><LocationIconSmall fill="#000" /> {props.profile.location}</p>}
+                    avatarProps={{ classNames:{"base":"hidden"}} }
+                />
 
                 <User
                     className="bg-white w-full justify-start pl-4 border-color--carts---modal"
                     name="Ready for relationship"
-                    style={{ marginTop: "1rem" }}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
                     description="@jrgarciadev"
                     avatarProps={{ color: "secondary", icon: <HeartIcon stroke="#fff" fill="#FFF" /> }}
