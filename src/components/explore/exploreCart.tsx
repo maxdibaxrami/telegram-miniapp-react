@@ -2,7 +2,8 @@ import { useState } from "react";
 import {
     motion,
     useTransform,
-    useMotionValue
+    useMotionValue,
+    AnimatePresence
 } from "framer-motion";
 
 import {Image, User ,Chip} from "@nextui-org/react";
@@ -24,6 +25,8 @@ import { useTheme } from "next-themes";
 
 const ExploreCard = (props) => {
     const [exitX, setExitX] = useState(0);
+    const [touchedImage, setTouchedImage] = useState("")
+
     const theme = useTheme();
     const x = useMotionValue(0);
 
@@ -57,6 +60,7 @@ const ExploreCard = (props) => {
   }
 
     return (
+      <>
         <motion.div
           style={{
           width: "100%",
@@ -101,33 +105,36 @@ const ExploreCard = (props) => {
                 }}
                 className="backdrop-blur border-color--carts"
             >
-                <div className="relative">
+                <div >
                     <ExploreCardOption />
                     <div className="flex w-full flex-col">
-                      <div className="w-full" >
-                        <Image
-                          alt="Profile hero Image"
-                          className="w-full h-full"
-                          classNames={{
-                            wrapper: "w-full maxcontentimportant",
-                          }}
-                          
-                          loading="lazy"
-                          src={props.profile.mainImage} // dynamic image URL
-                          style={{
-                            borderRadius: "14px",
-                            objectFit: "cover",
-                            height: "100%",
+                      <motion.div
+                        onClick={()=> setTouchedImage(touchedImage === "1"? "0" : "1")}
+                        className="w-full" >
+                          <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                              wrapper: "w-full maxcontentimportant",
+                            }}
+                            
+                            loading="lazy"
+                            src={props.profile.mainImage} // dynamic image URL
+                            style={{
+                              borderRadius: "14px",
+                              objectFit: "cover",
+                              height: "100%",
 
-                          }}
-                        />
-                      </div>
-
+                            }}
+                          />
+                      </motion.div>
                       <div className="flex">
                         <div className="w-full">
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
+                            onClick={()=> setTouchedImage("2")}
+
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
                             }}
@@ -146,6 +153,7 @@ const ExploreCard = (props) => {
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
+                            onClick={()=> setTouchedImage("3")}
                             loading="lazy"
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
@@ -162,11 +170,23 @@ const ExploreCard = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] background-black--blue flex flex-col items-start gap-1 absolute border-white/20 border-1 py-1 rounded-large bottom-1 shadow-small">
-                        <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
-                        <h5 className="flex items-center text-small text-white"><LocationIconSmall fill="#fff" /> {props.profile.location}</h5>
-                    </div>
+
                 </div>
+
+            {/*   <div style={{ zIndex: 10, marginLeft: "8px", padding: "8px", marginBottom: "6px" }} className="w-[calc(100%_-_16px)] background-black--blue flex flex-col items-start gap-1  border-white/20 border-1 py-1 rounded-large shadow-small">
+                        <h4 className="flex items-center text-small text-white font-semibold">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#fff" /></h4>
+                        <h5 className="flex items-center text-small text-white"></h5>
+                    </div>*/}  
+
+                  <User
+                    
+                    className="w-full backgroundowhite text-black justify-start pl-4 border-color--carts"
+                    name={<p className="flex items-center text-small font-semibold text-black">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#4596f2" /></p>}
+                    style={{ marginTop: "1rem" }}
+                    classNames={{ wrapper: "py-3", base: "px-1" }}
+                    description={<p className="flex items-center text-black"><LocationIconSmall fill="#000" /> {props.profile.location}</p>}
+                    avatarProps={{ classNames:{"base":"hidden"}} }
+                />
 
                 <User
                     
@@ -306,6 +326,54 @@ const ExploreCard = (props) => {
 
             </motion.div>
         </motion.div>
+                      <AnimatePresence>
+                              {touchedImage==="1" && (
+                                <motion.div
+                                  layoutId={touchedImage}
+                                  initial={{ opacity: 0, y: 0 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  style={{
+                                    position: 'fixed',
+                                    width:"100vw",
+                                    display:"flex",
+                                    alignItems:"center",
+                                    justifyContent:"center",
+                                    height:"100vh",
+                                    borderRadius: '10px',
+                                    right:"0px",
+                                    top:"0px",
+                                    boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.1)',
+                                    zIndex:300
+                                  }}
+                                >
+                                  <div
+                                    onClick={()=> setTouchedImage(touchedImage === "1"? "0" : "1")}
+                                    className="w-full" >
+                                      <Image
+                                        alt="Profile hero Image"
+                                        className="w-full h-full"
+                                        classNames={{
+                                          wrapper: "w-full maxcontentimportant",
+                                        }}
+                                        
+                                        loading="lazy"
+                                        src={props.profile.mainImage} // dynamic image URL
+                                        style={{
+                                          borderRadius: "14px",
+                                          objectFit: "cover",
+                                          height: "100%",
+      
+                                        }}
+                                      />
+                                  </div>
+      
+                  </motion.div>
+                                )}
+                            </AnimatePresence>
+      
+        </>
     );
 };
 
