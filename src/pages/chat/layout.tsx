@@ -1,10 +1,23 @@
+import { useViewportHeightContext } from '@/veiwPortContext';
+
+
 export default function ChatLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const viewportHeight = useViewportHeightContext();
   return (
-    <section className="flex flex-col h-screen ">
+    <section 
+        style={{
+          height: `${viewportHeight}px`,
+          transition: 'height 0.3s ease',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        >            
       {children}
     </section>
   );

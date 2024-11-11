@@ -4,6 +4,7 @@ import {NextUIProvider} from "@nextui-org/react";
 import { App } from '@/components/App.tsx';
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { publicUrl } from '@/helpers/publicUrl.ts';
+import { ViewportHeightProvider } from '@/veiwPortContext';
 
 import {ThemeProvider as NextThemesProvider} from "next-themes";
 
@@ -27,15 +28,17 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 export function Root() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
-      <NextUIProvider>
-        <TonConnectUIProvider
-          manifestUrl={publicUrl('tonconnect-manifest.json')}
-        >
-          <NextThemesProvider attribute="class" defaultTheme="dark">
-            <App/>
-          </NextThemesProvider>
-        </TonConnectUIProvider>
-      </NextUIProvider>
+      <ViewportHeightProvider>
+        <NextUIProvider>
+          <TonConnectUIProvider
+            manifestUrl={publicUrl('tonconnect-manifest.json')}
+          >
+            <NextThemesProvider attribute="class" defaultTheme="dark">
+              <App/>
+            </NextThemesProvider>
+          </TonConnectUIProvider>
+        </NextUIProvider>
+      </ViewportHeightProvider>
     </ErrorBoundary>
   );
 }
