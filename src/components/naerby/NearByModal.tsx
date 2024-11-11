@@ -90,6 +90,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                               borderRadius: "14px",
                               objectFit: "cover",
                               height: "100%",
+                              width:"100%"
 
                             }}
                           />
