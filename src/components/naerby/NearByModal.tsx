@@ -57,7 +57,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
   return (
     <>
-    <Modal classNames={{"closeButton":"z-50"}} backdrop="transparent" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal size={"full"}  classNames={{"closeButton":"z-50 p-2"}} backdrop="transparent" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent style={{ backgroundColor:"#ffffffd9"}} className="backdrop-blur">
         <ModalBody
                 style={{
