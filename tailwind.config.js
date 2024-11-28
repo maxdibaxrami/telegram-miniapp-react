@@ -34,7 +34,7 @@ export default {
             light: "#f4f4f4",
             dark: "#343a40",
             background: "#fcf7ffa3",
-            foreground: "#000",
+            foreground: "#000000",
           },
           typography: {
             fontFamily: "system-ui, sans-serif",

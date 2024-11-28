@@ -34,16 +34,20 @@ export function init(debug: boolean): void {
   miniApp.mount();
   themeParams.mount();
   initData.restore();
+
   void viewport
     .mount()
-    .catch(e => {
+    .catch((e) => {
       console.error('Something went wrong mounting the viewport', e);
     })
     .then(() => {
       viewport.bindCssVars();
     });
 
-  // Define components-related CSS variables.
+  // Bind the theme parameters to CSS variables (colors, etc.).
   miniApp.bindCssVars();
   themeParams.bindCssVars();
+
+
 }
+

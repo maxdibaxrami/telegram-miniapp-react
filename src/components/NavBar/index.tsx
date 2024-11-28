@@ -59,7 +59,6 @@ const BottomMenu = () => {
               backgroundColor: "transparent",
               height:"64px",
               bottom:"10px",
-              color:"#FFF",
 
             }}
             variant="light" 

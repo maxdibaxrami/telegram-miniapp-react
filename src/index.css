@@ -23,7 +23,6 @@ body {
 
 .background-drop---navbar{
   background: rgba(165, 148, 249, 0.322);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.102);
   will-change: transform;
   backdrop-filter: blur(8px);

@@ -25,7 +25,7 @@ const TopBar = () => {
   
   return (
     <Navbar
-      className="top-0 fixed top-0 bg-transparent"
+      className="top-0 fixed top-0 backdrop-blur background-drop---navbar"
       
       style={{ height: "4rem" }}
     >
