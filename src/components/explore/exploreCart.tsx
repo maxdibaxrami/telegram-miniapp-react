@@ -3,23 +3,11 @@ import {
   motion,
   useMotionValue,
   useTransform,
-  AnimatePresence
 } from "framer-motion";
 
-import {Image, User ,Chip} from "@nextui-org/react";
-import { HeartIcon, VerifyIcon } from "@/Icons/index";
-
-import { Listbox, ListboxItem, ListboxSection } from "@nextui-org/react";
+import {Image} from "@nextui-org/react";
 import ExploreCardOption from "./exploreCardOption";
 
-import {
-  SearchIcon,
-  AboutMeIcon,
-  WorkAndStudyIcon,
-  WhyYouAreHereIcon,
-  HashtagIcon,
-  LocationIconSmall
-} from "@/Icons/index";
 
 import { useTheme } from "next-themes";
 
@@ -28,7 +16,6 @@ const ExploreCard = (props) => {
   const [exitX, setExitX] = useState(0);
 
   const x = useMotionValue(0);
-  const scale = useTransform(x, [-150, 0, 150], [0.5, 1, 0.5]);
   const rotate = useTransform(x, [-150, 0, 150], [-45, 0, 45], {
       clamp: false
   });
