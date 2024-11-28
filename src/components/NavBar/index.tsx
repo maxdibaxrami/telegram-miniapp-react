@@ -49,7 +49,7 @@ const BottomMenu = () => {
               tabContent:
                 "text-[#FFF] group-data-[selected=false]:text-[#ffffffbf]",
             }}
-            color="primary"
+            color="default"
             size="lg"
             selectedKey={searchParams.get("page")}
             style={{

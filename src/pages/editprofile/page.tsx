@@ -19,7 +19,7 @@ import EditIntersting from "@/components/profile/editIntersting";
 export default function EditProfilePage() {
   return (
     <div
-      className="container mx-auto max-w-7xl flex-grow light-background--color"
+      className="container mx-auto max-w-7xl flex-grow"
       style={{ overflow: "scroll", maxHeight: "calc(100vh)" }}
     >
       <TopBarPages />
@@ -28,7 +28,7 @@ export default function EditProfilePage() {
         style={{ marginTop: "2rem"}}
         
       >
-      <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem" }} className="light-background--color flex mb-4 w-full justify-between items-center">
+      <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem" }} className="flex mb-4 w-full justify-between items-center">
         <div className="flex w-full flex-col">
           <div className="w-full" >
             <Image
@@ -90,7 +90,7 @@ export default function EditProfilePage() {
       </div>
 
         <div className="px-6 w-full mb-4">
-          <div className="bg-white w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+          <div className="text-default-600 w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
             <Listbox aria-label="Listbox menu with sections" variant="solid">
               <ListboxSection showDivider className="relative" title="Profile">
                 <ListboxItem

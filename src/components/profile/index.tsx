@@ -10,7 +10,7 @@ import DataList from "./dataList";
 const ProfilePage = () => {
   return (
     <div
-      className="w-full h-full pb-16"
+      className="w-full h-full pb-16 text-default-700"
       style={{
         maxHeight: "100%",
         height:"100%",
@@ -18,7 +18,6 @@ const ProfilePage = () => {
         padding:"12px",
         marginTop:"5rem",
         marginBottom:"5rem",
-        backgroundColor:"#ffffffc4",
         width:"calc( 100vw - 1.5rem )"
       }}
     >

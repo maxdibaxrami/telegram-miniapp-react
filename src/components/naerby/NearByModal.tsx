@@ -137,7 +137,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                 </div>
                 <User
                     
-                    className="w-full backgroundowhite text-black justify-start pl-4 border-color--carts"
+                    className="w-full text-black justify-start pl-4 border-color--carts"
                     name={<p className="flex items-center text-small font-semibold text-black">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#4596f2" /></p>}
                     classNames={{ wrapper: "py-3", base: "px-1" }}
                     description={<p className="flex items-center text-black"><LocationIconSmall fill="#000" /> {props.profile.location}</p>}

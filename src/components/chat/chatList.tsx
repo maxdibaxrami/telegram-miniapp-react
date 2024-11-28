@@ -24,7 +24,7 @@ const ChatList = () => {
   return (
     <ListboxWrapper>
       <Listbox
-      className="backdrop-blur-sm	"
+        className="backdrop-blur-sm	"
         classNames={{
           base: "w-full",
           list: "overflow-scroll",
@@ -73,8 +73,8 @@ const ChatList = () => {
                 <span
                   className={
                     item.id % 2 !== 0
-                      ? "text-small text-handller-chat"
-                      : "text-small text-handller-chat font-bold"
+                      ? "text-small text-handller-chat text-default-700"
+                      : "text-small text-handller-chat font-bold text-default-700"
                   }
                 >
                   {item.name}
@@ -82,9 +82,9 @@ const ChatList = () => {
                     className={
                       item.id % 2 !== 0
                         ? "hidden"
-                        : "visible ml-1 background-drop--bluebase---darker backdrop-blur-sm	"
+                        : "visible ml-1"
                     }
-                    color="primary"
+                    color="default"
                     size="sm"
                   >
                     +1 New
@@ -93,8 +93,8 @@ const ChatList = () => {
                 <span
                   className={
                     item.id % 2 !== 0
-                      ? "text-tiny text-handller-chat text-default-400"
-                      : "text-tiny text-handller-chat font-bold text-default-400"
+                      ? "text-tiny text-handller-chat text-default-700 mt-1"
+                      : "text-tiny text-handller-chat font-bold text-default-700 mt-1"
                   }
                 >
                   {item.email}

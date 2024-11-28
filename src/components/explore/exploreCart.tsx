@@ -1,9 +1,10 @@
 import { useState } from "react";
 import {
-    motion,
-    useTransform,
-    useMotionValue
-  } from "framer-motion";
+  motion,
+  useMotionValue,
+  useTransform,
+  AnimatePresence
+} from "framer-motion";
 
 import {Image, User ,Chip} from "@nextui-org/react";
 import { HeartIcon, VerifyIcon } from "@/Icons/index";
@@ -23,39 +24,40 @@ import {
 import { useTheme } from "next-themes";
 
 const ExploreCard = (props) => {
-    const [exitX, setExitX] = useState(0);
+  const theme = useTheme()
+  const [exitX, setExitX] = useState(0);
 
-    const theme = useTheme();
-    const x = useMotionValue(0);
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-150, 0, 150], [0.5, 1, 0.5]);
+  const rotate = useTransform(x, [-150, 0, 150], [-45, 0, 45], {
+      clamp: false
+  });
 
-    const rotate = useTransform(x, [-20, 0, 20], [-15, 0, 15], {
-        clamp: true
-    });
-
-    const variantsFrontCard = {
+  const variantsFrontCard = {
       animate: { scale: 1, y: 0, opacity: 1 },
       exit: (custom) => ({
           x: custom,
           opacity: 0,
-          scale: 0.8,
+          scale: 0.5,
           transition: { duration: 0.2 }
       })
   };
   const variantsBackCard = {
-      initial: { scale: 0, y: 55, opacity: 0 },
-      animate: { scale: 0.9, y: 30, opacity: 0.5 }
+      initial: { scale: 0, y: 105, opacity: 0 },
+      animate: { scale: 0.75, y: 30, opacity: 0.5 }
   };
 
   function handleDragEnd(_, info) {
-      if (info.offset.x < -50) {
-          setExitX(-60);
+      if (info.offset.x < -100) {
+          setExitX(-250);
           props.setIndex(props.index + 1);
       }
-      if (info.offset.x > 50) {
-          setExitX(60);
+      if (info.offset.x > 100) {
+          setExitX(250);
           props.setIndex(props.index + 1);
       }
   }
+
 
     return (
       <>
@@ -72,11 +74,10 @@ const ExploreCard = (props) => {
           cursor: "grab"
           }}
           whileTap={{ cursor: "grabbing" }}
-          // Dragging
-          draggable="false"
-          dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
           onDragEnd={handleDragEnd}
           // Animation
+          drag={props.drag}
+          dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
           variants={props.frontCard ? variantsFrontCard : variantsBackCard}
           initial="initial"
           animate="animate"
@@ -117,6 +118,7 @@ const ExploreCard = (props) => {
                             
                             loading="lazy"
                             src={props.profile.mainImage} // dynamic image URL
+                            draggable="false"
                             style={{
                               borderRadius: "14px",
                               objectFit: "cover",
@@ -130,7 +132,7 @@ const ExploreCard = (props) => {
                           <Image
                             alt="Profile hero Image"
                             className="w-full h-full"
-                            
+                            draggable="false"
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
                             }}
@@ -149,7 +151,7 @@ const ExploreCard = (props) => {
                             alt="Profile hero Image"
                             className="w-full h-full"
                             loading="lazy"
-                            
+                            draggable="false"
                             classNames={{
                               wrapper: "w-full maxcontentimportant",
                             }}
@@ -172,151 +174,9 @@ const ExploreCard = (props) => {
                         <h5 className="flex items-center text-small text-white"></h5>
                     </div>*/}  
 
-                  <User
-                    
-                    className="w-full backgroundowhite text-black justify-start pl-4 border-color--carts"
-                    name={<p className="flex items-center text-small font-semibold text-black">{props.profile.name} , {props.profile.age} <VerifyIcon stroke="#4596f2" /></p>}
-                    style={{ marginTop: "0.8rem" }}
-                    classNames={{ wrapper: "py-3", base: "px-1" }}
-                    description={<p className="flex items-center text-black"><LocationIconSmall fill="#000" /> {props.profile.location}</p>}
-                    avatarProps={{ classNames:{"base":"hidden"}} }
-                />
-
-                <User
-                    
-                    className="w-full backgroundowhite justify-start pl-4 border-color--carts"
-                    name="Ready for relationship"
-                    style={{ marginTop: "0.5rem" }}
-                    classNames={{ wrapper: "py-3", base: "px-1" }}
-                    description="@jrgarciadev"
-                    avatarProps={{ color: "secondary", icon: <HeartIcon stroke="#fff" fill="#FFF" /> }}
-                />
 
                 {/* Additional User components can be added here */}
 
-                <div className="w-full mb-4 mt-2 ">
-                <Listbox
-                  className=" px-2 py-2 border-color--carts"
-                  style={{borderRadius:"8px", backgroundColor:"rgb(255 255 255 / 60%)"}}
-                  aria-label="Listbox menu with sections"
-                  variant="solid"
-                >
-                  <ListboxSection
-                    showDivider
-                    className="relative"
-                    title="Profile"
-                  >
-                    <ListboxItem
-                      key="2"
-                      isReadOnly
-                      description={props.profile.workAndEducation}
-                      startContent={<WorkAndStudyIcon />}
-                    >
-                      Work and education
-                    </ListboxItem>
-
-                    <ListboxItem
-                      key="3"
-                      isReadOnly
-                      description={props.profile.whyHere}
-                      startContent={<WhyYouAreHereIcon />}
-                    >
-                      Why you are here?
-                    </ListboxItem>
-
-                    <ListboxItem
-                      key="4"
-                      isReadOnly
-                      description={props.profile.aboutMe}
-                      startContent={<AboutMeIcon />}
-                    >
-                      About me
-                    </ListboxItem>
-
-                    <ListboxItem
-                      key="5"
-                      isReadOnly
-                      description={props.profile.lookingFor}
-                      startContent={<SearchIcon />}
-                    >
-                      Looking for?
-                    </ListboxItem>
-                  </ListboxSection>
-
-                  <ListboxSection className="relative" title="More about me!">
-                    <ListboxItem
-                      key="7"
-                      isReadOnly
-                      description={props.profile.relationStatus}
-                    >
-                      Relation status
-                    </ListboxItem>
-                    <ListboxItem
-                      key="8"
-                      isReadOnly
-                      description={props.profile.height}
-                    >
-                      Height
-                    </ListboxItem>
-                    <ListboxItem
-                      key="9"
-                      isReadOnly
-                      description={props.profile.kids}
-                    >
-                      Kids
-                    </ListboxItem>
-                    <ListboxItem
-                      key="10"
-                      isReadOnly
-                      description={props.profile.language}
-                    >
-                      Language
-                    </ListboxItem>
-                    <ListboxItem
-                      key="11"
-                      isReadOnly
-                      description={props.profile.sexuality}
-                    >
-                      Sexuality
-                    </ListboxItem>
-                  </ListboxSection>
-
-                  <ListboxSection className="relative" title="Interesting">
-                    <ListboxItem key={"1"} isReadOnly>
-                      <div
-                        className="flex flex-wrap"
-                        style={{ paddingBottom: "40px" }}
-                      >
-                        {Array.isArray(props.profile.interests) &&
-                        props.profile.interests.length > 0
-                          ? props.profile.interests.map((value, index) => (
-                              <Chip
-                                key={index}
-                                className="m-1"
-                                color="success"
-                                startContent={<HashtagIcon />}
-                                variant="solid"
-                              >
-                                {value}
-                              </Chip>
-                            ))
-                          : null}
-                      </div>
-                    </ListboxItem>
-                    <ListboxItem
-                      key="13"
-                      isReadOnly
-                      className="absolute"
-                      style={{
-                        top: "-8px",
-                        right: "0px",
-                        width: "45px",
-                        height: "45px",
-                      }}
-                    />
-                  </ListboxSection>
-                </Listbox>
-              </div>
 
             </motion.div>
         </motion.div>

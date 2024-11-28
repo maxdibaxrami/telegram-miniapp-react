@@ -15,11 +15,11 @@ const ChatPage = () => {
       id="chatScrollcontainer"
     >
       <div className="flex justify-between py-2 items-center">
-        <span className="text-large">Matches</span>
+        <span className="text-large text-default-600">Matches</span>
       </div>
       <MatchList />
       <div className="flex justify-between py-3 items-center">
-        <span className="text-large">Chat</span>
+        <span className="text-large text-default-600">Chat</span>
       </div>
 
       <ChatList />
