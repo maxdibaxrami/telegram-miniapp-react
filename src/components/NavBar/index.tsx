@@ -15,118 +15,118 @@ const BottomMenu = () => {
   const [searchParams] = useSearchParams();
 
   return (
-    <AnimatePresence >
-      {searchParams.get('page')!=="explore" && (
+      <AnimatePresence >
+        {searchParams.get('page')!=="explore" && (
 
-        <motion.div
-          transition={{
-          ease: "anticipate",
-          duration: 0.5,
-        }}
-         initial={{ right:"-40px", opacity:0  }}
-         animate={{ right: "10px", opacity:1 }}
-         exit={{ right:"-40px", opacity:0}}
- 
-         className={"flex w-full flex-col fixed items-center backdrop-blur background-drop---navbar"}
-         style={{
-           zIndex: "50",
-           width: "57px",
-           borderRadius: "14px",
-           overflow: "hidden",
-           right:"-40px",
-           justifyContent:"center",
-           height:"284px",
-           opacity:0,
-           top:"150px"
-           
-         }}
-       >
-         <Tabs
-           aria-label="Options"
-           classNames={{
-             tab: "p-3 h-auto color-white",
-             tabList: "bg-transparent p-1 ",
-             tabContent:
-               "text-[#FFF] group-data-[selected=false]:text-[#ffffffbf]",
-             base: "flex items-center",
-           }}
-           isVertical={true}
-           color="primary"
-           size="lg"
-           selectedKey={searchParams.get("page")}
-           style={{
-             zIndex: "10",
-             width: "57px",
-             borderRadius: "14px",
-             top: "194px",
-             overflow: "hidden",
-             backgroundColor: "transparent",
-             height:"300px",
-             right:"10px",
-             color:"#FFF"
-           }}
-           variant="light"
-           
-           
-         >
-           <Tab
-             key="explore"
-             href="/#/main?page=explore"
+          <motion.div
+            transition={{
+            ease: "anticipate",
+            duration: 0.5,
+          }}
+          initial={{ bottom:"-40px", opacity:0  }}
+          animate={{ bottom: "10px", opacity:1 }}
+          exit={{ bottom:"-40px", opacity:0}}
+  
+          className={"flex w-full fixed items-center backdrop-blur background-drop---navbar"}
+          style={{
+            zIndex: "50",
+            width: "315px",
+            borderRadius: "14px",
+            overflow: "hidden",
+            bottom:"-40px",
+            justifyContent:"center",
+            height:"64px",
+            opacity:0,
+            left:"50%",
+            transform:"translateX(-50%)"
+            
+          }}
+        >
+          <Tabs
+            aria-label="Options"
+            classNames={{
+              tab: " h-auto p-0 color-white",
+              tabContent:
+                "text-[#FFF] group-data-[selected=false]:text-[#ffffffbf]",
+            }}
+            color="primary"
+            size="lg"
+            selectedKey={searchParams.get("page")}
+            style={{
+              zIndex: "10",
+              borderRadius: "14px",
+              overflow: "hidden",
+              backgroundColor: "transparent",
+              height:"64px",
+              bottom:"10px",
+              color:"#FFF",
 
-             title={
-               <div className="flex items-center space-x-2">
-                 <FireIcon/>
-               </div>
-             }
-           />
- 
-           <Tab
-             key="nearby"
-             href="/#/main?page=nearby"
+            }}
+            variant="light" 
+          >
+            <Tab
+              key="explore"
+              href="/#/main?page=explore"
+              title={
+                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                  <FireIcon/>
+                  <p style={{fontSize:"11px"}}>Explore</p>
 
-             title={
-               <div className="flex items-center space-x-2">
-                 <RandomChatIcon/>
-               </div>
-             }
-           />
- 
-           <Tab
-             key="chat"
-             href="/#/main?page=chat"
+                </div>
+              }
+            />
+  
+            <Tab
+              key="nearby"
+              href="/#/main?page=nearby"
+              title={
+                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                  <RandomChatIcon/>
+                  <p style={{fontSize:"11px"}}>Nearby</p>
 
+                </div>
+              }
+            />
+  
+            <Tab
+              key="chat"
+              href="/#/main?page=chat"
+              title={
+                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                  <ChatIcon/>
+                  <p style={{fontSize:"11px"}}>Chat</p>
 
-             title={
-               <div className="flex items-center space-x-2">
-                 <ChatIcon/>
-               </div>
-             }
-           />
- 
-           <Tab
-             key="likes"
-             href="/#/main?page=likes"
+                </div>
+              }
+            />
+  
+            <Tab
+              key="likes"
+              href="/#/main?page=likes"
 
-             title={
-               <div className="flex items-center space-x-2">
-                 <LikeIcon/>
-               </div>
-             }
-           />
- 
-           <Tab
-             key="profile"
-             href="/#/main?page=profile"
-             title={
-               <div className="flex items-center space-x-2">
-                 <ProfileIcon/>
-               </div>
-             }
-           />
-         </Tabs>
-       </motion.div>
-      )}
-    </AnimatePresence>
+              title={
+                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                  <LikeIcon/>
+                  <p style={{fontSize:"11px"}}>Likes</p>
+
+                </div>
+              }
+            />
+  
+            <Tab
+              key="profile"
+              href="/#/main?page=profile"
+              title={
+                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                  <ProfileIcon/>
+                  <p style={{fontSize:"11px"}}>Profile</p>
+                </div>
+              }
+            />
+          </Tabs>
+        </motion.div>
+        )}
+      </AnimatePresence>
   );
 };
 
