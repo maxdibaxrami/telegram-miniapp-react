@@ -4,11 +4,9 @@ import TopBar from '@/components/tobBar'
 import { Page } from '@/components/Page.tsx';
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@nextui-org/button";
-import { ArrowRight, EditProfileIcon, SettingIcon, FitlerIcon } from "@/Icons/index";
+import { ArrowRight, FitlerIcon } from "@/Icons/index";
 import { useSearchParams } from "react-router-dom";
-import ChatFiltermenu from '@/components/chat/chatFilterMenu';
 import ProfilePage from '@/components/profile';
-import { Link } from 'react-router-dom';
 import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
