@@ -30,7 +30,7 @@ export default function NearByPage() {
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
         paddingLeft:"30px",
-        paddingRight:"10px",
+        paddingRight:"30px",
       }}
     >
       {mockProfiles.map((value, index) => (

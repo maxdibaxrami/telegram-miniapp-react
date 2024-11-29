@@ -28,8 +28,7 @@ export default function LikesPage() {
       paddingTop: "4.5rem",
       paddingBottom: "6rem",
       paddingLeft:"30px",
-      paddingRight:"10px",
-      width: "calc(100vw - 71px)",
+      paddingRight:"30px",
     }}
     >
       {mockProfiles.map((value, index) => {
