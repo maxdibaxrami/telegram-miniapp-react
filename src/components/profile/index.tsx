@@ -1,11 +1,14 @@
-import { Image, User, Divider } from "@nextui-org/react";
+import { Image, User, Divider, Button } from "@nextui-org/react";
 
 import {
   VerifyIcon,
   PerimumIcon,
+  EditProfileIcon,
+  SettingIcon,
 } from "@/Icons/index";
 
 import DataList from "./dataList";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   return (
@@ -82,24 +85,38 @@ const ProfilePage = () => {
         </div>
       </div>
       <div className="flex items-center justify-between mt-2">
-        <div className="flex">
-          <User
-            avatarProps={{
-              src: "https://i.pravatar.cc/?u=a04258114e29026702d",
-              className: "hidden",
-            }}
-            className="mt-2"
-            description="moscow, russia"
-            name={"Mahdi bahrami , 24"}
-          />
+        <div className="flex justify-between w-full">
+          <div className="flex">
+            <User
+              avatarProps={{
+                src: "https://i.pravatar.cc/?u=a04258114e29026702d",
+                className: "hidden",
+              }}
+              className="mt-2"
+              description="moscow, russia"
+              name={"Mahdi bahrami , 24"}
+            />
 
-          <div className="flex" style={{ marginTop: "7px", marginLeft: "7px" }}>
-            <div>
-              <VerifyIcon />
+            <div className="flex" style={{ marginTop: "7px", marginLeft: "7px" }}>
+              <div>
+                <VerifyIcon />
+              </div>
+              <div style={{ marginLeft: "4px" }}>
+                <PerimumIcon />
+              </div>
             </div>
-            <div style={{ marginLeft: "4px" }}>
-              <PerimumIcon />
-            </div>
+          </div>
+
+          <div className="flex items-center">
+
+            <Button as={Link} to="/profile-edit" className="color-white mx-2" isIconOnly color="default" style={{borderRadius:"20%"}} size="sm">
+                <EditProfileIcon className="size-5" stroke="#FFF"/>
+            </Button> 
+
+            <Button as={Link} to="/setting" className="color-white" isIconOnly color="default" style={{borderRadius:"20%"}} size="sm">
+                <SettingIcon className="size-5" stroke="#FFF"/>
+            </Button> 
+
           </div>
         </div>
       </div>

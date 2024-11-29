@@ -182,64 +182,6 @@ const MainPage = () => {
         </AnimatePresence>
 
         <AnimatePresence>
-          {searchParams.get('page') === "profile"  && (<>
-                <motion.div
-                  style={{zIndex:30,marginRight:"80px"}}
-                  className="fixed background-drop--bluebase p-2 backdrop-blur-sm	"
-                  initial={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                  animate={{ opacity: 1 , bottom:"43px", scale: 1.1 }}
-                  exit={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                  transition={{
-                    ease: "linear",
-                    duration: 0.25,
-                  }}
-                >
-                  <Button as={Link} to="/profile-edit" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
-                    <EditProfileIcon stroke="#FFF"/>
-                  </Button> 
-                </motion.div>
-          
-              <motion.div
-                  style={{zIndex:30,marginLeft:"80px"}}
-                  className="fixed background-drop--bluebase p-2 backdrop-blur-sm	"
-                  initial={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                  animate={{ opacity: 1 , bottom:"43px", scale: 1.1 }}
-                  exit={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                  transition={{
-                    ease: "linear",
-                    duration: 0.25,
-                  }}
-                >
-                  <Button as={Link} to="/setting" className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg">
-                    <SettingIcon stroke="#FFF"/>
-                  </Button> 
-                </motion.div>
-          
-          </>)}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {searchParams.get('page') === "chat"  && (<>
-                <motion.div
-                  style={{zIndex:30, marginLeft:"17px"}}
-                  className="fixed background-drop--bluebase p-2 backdrop-blur-sm	"
-                  initial={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                  animate={{ opacity: 1 , bottom:"43px", scale: 1.1 }}
-                  exit={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                  transition={{
-                    ease: "linear",
-                    duration: 0.25,
-                  }}
-                  
-                >
-                  <ChatFiltermenu />
-                </motion.div>
-        
-          
-          </>)}
-        </AnimatePresence>
-
-        <AnimatePresence>
           {searchParams.get('page') === "explore"  && (
               <motion.div
                 style={{zIndex:30}}

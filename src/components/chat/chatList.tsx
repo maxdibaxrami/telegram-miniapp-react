@@ -37,9 +37,6 @@ const ChatList = () => {
           <ListboxItem
             key={item.id}
             endContent={<ChatItemMenu /> }
-            as={Link}
-            //@ts-ignore
-            to="/chat-detail"
             startContent={
               <Badge
                 isOneChar
@@ -68,6 +65,7 @@ const ChatList = () => {
             }
             textValue={truncateText(item.name, 10)}
           >
+            <Link to={"/chat-detail"}>
             <div className="flex gap-2 items-center" style={{ width: "100%" }}>
               <div className="flex pl-2 flex-col">
                 <span
@@ -101,6 +99,7 @@ const ChatList = () => {
                 </span>
               </div>
             </div>
+            </Link>
           </ListboxItem>
         )}
       </Listbox>

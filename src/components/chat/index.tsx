@@ -1,3 +1,4 @@
+import ChatFiltermenu from "./chatFilterMenu";
 import ChatList from "./chatList";
 import MatchList from "./matchList";
 
@@ -20,6 +21,8 @@ const ChatPage = () => {
       <MatchList />
       <div className="flex justify-between py-3 items-center">
         <span className="text-large text-default-600">Chat</span>
+        <ChatFiltermenu/>
+
       </div>
 
       <ChatList />

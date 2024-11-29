@@ -12,8 +12,8 @@ const ChatFiltermenu = () => {
   return (
     <Dropdown showArrow backdrop="blur">
       <DropdownTrigger>
-        <Button  isIconOnly aria-label="Like" color="primary" size="lg">
-          <FilterButton stroke='#fff' />
+        <Button  isIconOnly aria-label="Like" color="default" size="sm">
+          <FilterButton className="size-5" stroke='#fff' />
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" variant="solid">
