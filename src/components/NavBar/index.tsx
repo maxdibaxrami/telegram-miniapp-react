@@ -1,4 +1,4 @@
-import { Tabs, Tab, Navbar } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     FireIcon,
