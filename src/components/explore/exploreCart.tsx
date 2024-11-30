@@ -271,11 +271,11 @@ const ExploreCard = (props) => {
                         </ParallaxText>
                     </div>
 
-                <CardFooter className="absolute items-start	 flex-col py-3 bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+                <CardFooter className="absolute items-start	 flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150  bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
                     <div className="flex flex-grow gap-2">
                         <div className="flex flex-col">
-                            <p className="text-white/90 font-medium text-xl">{props.profile.name} , {props.profile.age}</p>
-                            <p className="text-tiny text-white/80">{props.profile.aboutMe}</p>
+                            <p className="text-foreground/90 font-medium text-xl">{props.profile.name} , {props.profile.age}</p>
+                            <p className="text-tiny text-foreground/80">{props.profile.aboutMe}</p>
                         </div>
                     </div>
                 </CardFooter>

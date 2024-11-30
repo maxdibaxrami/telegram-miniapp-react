@@ -22,9 +22,9 @@ const BottomMenu = () => {
             ease: "anticipate",
             duration: 0.5,
           }}
-          initial={{ bottom:"-40px", opacity:0  }}
-          animate={{ bottom: "20px", opacity:1 }}
-          exit={{ bottom:"-40px", opacity:0}}
+          initial={{ bottom:"-120px" }}
+          animate={{ bottom: "20px" }}
+          exit={{ bottom:"-120px"}}
   
           className={"flex w-full fixed items-center"}
           style={{
@@ -32,10 +32,9 @@ const BottomMenu = () => {
             width: "315px",
             borderRadius: "14px",
             overflow: "hidden",
-            bottom:"-40px",
+            bottom:"-120px",
             justifyContent:"center",
             height:"64px",
-            opacity:0,
             left:"50%",
             transform:"translateX(-50%)"
             
@@ -45,6 +44,7 @@ const BottomMenu = () => {
               aria-label="Options"
               classNames={{
                 tab: " h-auto p-0 color-white",
+                tabList: "backdrop-blur	bg-background/80 backdrop-saturate-150"
               }}
               color="primary"
               size="lg"
@@ -53,7 +53,6 @@ const BottomMenu = () => {
                 zIndex: "10",
                 borderRadius: "14px",
                 overflow: "hidden",
-                backgroundColor: "transparent",
                 height:"64px",
                 bottom:"10px",
 
