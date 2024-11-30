@@ -159,25 +159,6 @@ const MainPage = () => {
           </AnimatePresence>
         )}
 
-        <AnimatePresence>
-          {searchParams.get('page') === "nearby"  && (
-              <motion.div
-                style={{zIndex:30}}
-                className="fixed background-drop--bluebase p-2 backdrop-blur-sm	"
-                initial={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                animate={{ opacity: 1 , bottom:"43px", scale: 1.1 }}
-                exit={{ opacity: 0 , bottom:"-80px", scale: 0.5 }}
-                transition={{
-                  ease: "linear",
-                  duration: 0.5,
-                }}
-              >
-                <Button className="color-white" onPress={handleOpenModal} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
-                  <FitlerIcon stroke="#FFF"/>
-                </Button>  
-              </motion.div>
-          )}
-        </AnimatePresence>
 
         <AnimatePresence>
           {searchParams.get('page') === "explore"  && (
@@ -219,8 +200,6 @@ const MainPage = () => {
           )}
         </AnimatePresence>
 
-        <ExploreFilter ref={childRefExplore}/>
-        <NearByFilter ref={childRef} />
 
       </section>
       

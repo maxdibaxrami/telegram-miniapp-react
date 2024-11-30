@@ -17,9 +17,9 @@ const ProfilePage = () => {
       style={{
         maxHeight: "100%",
         height:"100%",
-        paddingTop: "5rem",
+        paddingTop: "4rem",
         padding:"12px",
-        marginTop:"5rem",
+        marginTop:"4rem",
         marginBottom:"5rem",
         width:"calc( 100vw - 1.5rem )"
       }}
@@ -109,12 +109,12 @@ const ProfilePage = () => {
 
           <div className="flex items-center">
 
-            <Button as={Link} to="/profile-edit" className="color-white mx-2" isIconOnly color="default" style={{borderRadius:"20%"}} size="sm">
-                <EditProfileIcon className="size-5" stroke="#FFF"/>
+            <Button as={Link} to="/profile-edit" className="text-default-700 mx-2" isIconOnly color="default" style={{borderRadius:"20%"}} size="sm">
+                <EditProfileIcon className="size-5"/>
             </Button> 
 
-            <Button as={Link} to="/setting" className="color-white" isIconOnly color="default" style={{borderRadius:"20%"}} size="sm">
-                <SettingIcon className="size-5" stroke="#FFF"/>
+            <Button as={Link} to="/setting" className="text-default-700" isIconOnly color="default" style={{borderRadius:"20%"}} size="sm">
+                <SettingIcon className="size-5"/>
             </Button> 
 
           </div>

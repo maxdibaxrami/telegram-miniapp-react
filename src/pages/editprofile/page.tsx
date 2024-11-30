@@ -25,7 +25,7 @@ export default function EditProfilePage() {
       <TopBarPages />
       <section
         className="flex flex-col items-center justify-center gap-4"
-        style={{ marginTop: "2rem"}}
+        style={{ marginTop: "0.2rem"}}
         
       >
       <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem" }} className="flex mb-4 w-full justify-between items-center">
