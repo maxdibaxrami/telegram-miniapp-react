@@ -5,7 +5,6 @@ import {
     ChatIcon,
     ProfileIcon,
     LikeIcon,
-    RandomChatIcon,
     LocationIcon
 } from '@/Icons/index'
 
