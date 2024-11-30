@@ -4,42 +4,20 @@ import TopBar from '@/components/tobBar'
 import { Page } from '@/components/Page.tsx';
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@nextui-org/button";
-import { ArrowRight, FitlerIcon } from "@/Icons/index";
+import { ArrowRight } from "@/Icons/index";
 import { useSearchParams } from "react-router-dom";
 import ProfilePage from '@/components/profile';
 import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
-import {useRef} from 'react'
-import ExploreFilter from '@/components/explore/exploreFilter';
 import NearByPage from '@/pages/nearby/page';
-import NearByFilter from '@/components/naerby/NearByFilter';
 
-interface ExploreFilterRef {
-  openModal: () => void;
-  closeModal: () => void;
-}
+
 
 const MainPage = () => {
-    const childRef = useRef<ExploreFilterRef>(null);
-    const childRefExplore = useRef<ExploreFilterRef>(null);
 
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-
-
-    const handleOpenModalExplore = () => {
-      if (childRefExplore.current) {
-        childRefExplore.current.openModal();
-      }
-    };
-    const handleOpenModal = () => {
-      if (childRef.current) {
-          childRef.current?.openModal();
-      }
-    };
-
-
 
     return <Page back={false}>
 
@@ -160,25 +138,6 @@ const MainPage = () => {
         )}
 
 
-        <AnimatePresence>
-          {searchParams.get('page') === "explore"  && (
-              <motion.div
-                style={{zIndex:30}}
-                className="fixed background-drop--whitebase backdrop-blur-sm	 p-2"
-                initial={{ opacity: 0 , left:"-80px", bottom:"-80px", scale: 0.5 }}
-                animate={{ opacity: 1 , left:"20px" , bottom:"20px", scale: 1.1 }}
-                exit={{ opacity: 0 , left:"-80px", bottom:"-80px", scale: 0.5 }}
-                transition={{
-                  ease: "linear",
-                  duration: 0.25,
-                }}
-              >
-                <Button onPress={handleOpenModalExplore} className="color-white" isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
-                  <FitlerIcon stroke="#FFF"/>
-                </Button>  
-              </motion.div>
-          )}
-        </AnimatePresence>
 
         <AnimatePresence>
           {searchParams.get('page') === "explore"  && (
