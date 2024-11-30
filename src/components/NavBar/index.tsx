@@ -41,13 +41,12 @@ const BottomMenu = () => {
             
           }}
         >
-          <Navbar isBlurred isBordered classNames={{"wrapper":"p-0"}}>
             <Tabs
               aria-label="Options"
               classNames={{
                 tab: " h-auto p-0 color-white",
               }}
-              color="default"
+              color="primary"
               size="lg"
               selectedKey={searchParams.get("page")}
               style={{
@@ -59,7 +58,7 @@ const BottomMenu = () => {
                 bottom:"10px",
 
               }}
-              variant="light" 
+              variant="solid" 
             >
               <Tab
                 key="explore"
@@ -121,7 +120,6 @@ const BottomMenu = () => {
                 }
               />
             </Tabs>
-          </Navbar>
 
           
           </motion.div>

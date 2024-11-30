@@ -52,9 +52,7 @@ const TopBar = () => {
 
       <NavbarContent justify="end">
 
-        <NavbarItem className="flex items-center">
-          <ThemeSwitch />
-        </NavbarItem>
+    
 
         {searchParams.get("page")==="nearby" && (
           <NavbarItem className="flex items-center">
@@ -71,7 +69,10 @@ const TopBar = () => {
             </Button>  
           </NavbarItem>
         )}
-
+        
+        <NavbarItem className="flex items-center">
+          <ThemeSwitch />
+        </NavbarItem>
 
       </NavbarContent>
     </Navbar>
