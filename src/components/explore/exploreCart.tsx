@@ -17,7 +17,7 @@ import 'swiper/css/navigation';
 import './style.css';
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 
 const ExploreCard = (props) => {
@@ -59,7 +59,7 @@ const ExploreCard = (props) => {
       <>
         <motion.div
           style={{
-          width: "100%",
+          width: "calc(100%)",
           height: "100vh",
           maxHeight: "100%",
           overflow:"scroll",
@@ -88,38 +88,44 @@ const ExploreCard = (props) => {
                   : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
           }
         >
-             <Swiper
-                slidesPerView={1}
-                spaceBetween={30}
-                loop={true}
-                pagination={{
-                clickable: false,
-                }}
-                navigation={false}
-                modules={[Pagination]}
-                className="mySwiper"
-            >
-                <SwiperSlide>
-                    <Image
-                        alt="Profile hero Image"
-                        className="w-full h-full"
-                        classNames={{
-                            wrapper: "w-full maxcontentimportant",
-                        }}
-                        onClick={() => swiper.slideNext()}
-                        loading="lazy"
-                        src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
-                        style={{
-                            borderRadius: "20px",
-                            objectFit: "cover",
-                            padding: "0px 0px 5px 0px",
-                        }}
-                    />
-                </SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-            </Swiper>
+             <div style={{width:"calc(100% - 3rem)"}}>
+                <Swiper
+                    slidesPerView={1}
+                    spaceBetween={30}
+                    loop={true}
+                    pagination={{
+                    clickable: false,
+                    }}
+                    navigation={false}
+                    modules={[Pagination, Autoplay]}
+                    className="mySwiper"
+                    autoplay={{
+                        delay: 4000,
+                        disableOnInteraction: false,
+                      }}
+                >
+                    <SwiperSlide>
+                        <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                                wrapper: "w-full maxcontentimportant",
+                            }}
+                            onClick={() => swiper.slideNext()}
+                            loading="lazy"
+                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+                            style={{
+                                borderRadius: "20px",
+                                objectFit: "cover",
+                                padding: "0px 0px 5px 0px",
+                            }}
+                        />
+                    </SwiperSlide>
+                    <SwiperSlide>Slide 2</SwiperSlide>
+                    <SwiperSlide>Slide 3</SwiperSlide>
+                    <SwiperSlide>Slide 4</SwiperSlide>
+                </Swiper>
+            </div>
         </motion.div>
       
         </>
