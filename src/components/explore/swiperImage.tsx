@@ -1,7 +1,7 @@
 import { Image } from "@nextui-org/react";
 import { useSwiper } from "swiper/react";
 
-const SwiperImages = (props) => {
+const SwiperImages = () => {
 
     const swiper = useSwiper();
 

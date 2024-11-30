@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import {
   motion,
   useMotionValue,
   useTransform,
 } from "framer-motion";
 
-import { Card, CardFooter, Chip, Image } from "@nextui-org/react";
+import { Card, CardFooter, Chip } from "@nextui-org/react";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage'
