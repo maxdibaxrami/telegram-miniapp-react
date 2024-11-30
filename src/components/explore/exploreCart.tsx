@@ -5,7 +5,7 @@ import {
   useTransform,
 } from "framer-motion";
 
-import { Image } from "@nextui-org/react";
+import { Card, CardFooter, Chip, Image } from "@nextui-org/react";
 
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 
@@ -19,6 +19,9 @@ import './style.css';
 // import required modules
 import { Pagination, Autoplay } from 'swiper/modules';
 
+import ParallaxText from '@/components/animate/text-slider'
+
+import { HeightIcon, HeartIconOutLine, LanguageIcon, BabyIcon, WorkAndStudyIconSolid, SexualityIcon } from '@/Icons/index'
 
 const ExploreCard = (props) => {
   const swiper = useSwiper();
@@ -89,6 +92,7 @@ const ExploreCard = (props) => {
           }
         >
              <div style={{width:"calc(100% - 3rem)"}}>
+             <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={30}
@@ -121,10 +125,161 @@ const ExploreCard = (props) => {
                             }}
                         />
                     </SwiperSlide>
-                    <SwiperSlide>Slide 2</SwiperSlide>
-                    <SwiperSlide>Slide 3</SwiperSlide>
-                    <SwiperSlide>Slide 4</SwiperSlide>
+                    <SwiperSlide>
+                        <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                                wrapper: "w-full maxcontentimportant",
+                            }}
+                            onClick={() => swiper.slideNext()}
+                            loading="lazy"
+                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+                            style={{
+                                borderRadius: "20px",
+                                objectFit: "cover",
+                                padding: "0px 0px 5px 0px",
+                            }}
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                                wrapper: "w-full maxcontentimportant",
+                            }}
+                            onClick={() => swiper.slideNext()}
+                            loading="lazy"
+                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+                            style={{
+                                borderRadius: "20px",
+                                objectFit: "cover",
+                                padding: "0px 0px 5px 0px",
+                            }}
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                                wrapper: "w-full maxcontentimportant",
+                            }}
+                            onClick={() => swiper.slideNext()}
+                            loading="lazy"
+                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+                            style={{
+                                borderRadius: "20px",
+                                objectFit: "cover",
+                                padding: "0px 0px 5px 0px",
+                            }}
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <Image
+                            alt="Profile hero Image"
+                            className="w-full h-full"
+                            classNames={{
+                                wrapper: "w-full maxcontentimportant",
+                            }}
+                            onClick={() => swiper.slideNext()}
+                            loading="lazy"
+                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+                            style={{
+                                borderRadius: "20px",
+                                objectFit: "cover",
+                                padding: "0px 0px 5px 0px",
+                            }}
+                        />
+                    </SwiperSlide>
                 </Swiper>
+
+                    <div className="absolute" style={{bottom:"72px",zIndex:10}}>
+                        <ParallaxText baseVelocity={2}>
+                            <Chip
+                                variant="solid"
+                                color="primary"
+                                size="md"
+                                style={{marginRight:"10px"}}
+                                startContent={<HeartIconOutLine fill="#FFF" className="size-4"/>}
+
+                            >
+                                {props.profile.relationStatus}
+                            </Chip>
+
+                            <Chip
+                                variant="solid"
+                                color="primary"
+                                size="md"
+                                style={{marginRight:"10px"}}
+                                startContent={<HeightIcon fill="#FFF" className="size-4"/>}
+                            >
+                                {props.profile.height}
+                            </Chip>
+
+                            <Chip
+                                variant="solid"
+                                color="primary"
+                                size="md"
+                                style={{marginRight:"10px"}}
+                                startContent={<BabyIcon fill="#FFF" className="size-4"/>}
+
+                            >
+                                {props.profile.kids}
+                            </Chip>
+
+                            <Chip
+                                variant="solid"
+                                color="primary"
+                                size="md"
+                                startContent={<LanguageIcon className="size-4"/>}
+                                style={{marginRight:"10px"}}
+                            >
+                                {props.profile.language}
+                            </Chip>
+
+                            <Chip
+                                variant="solid"
+                                color="primary"
+                                size="md"
+                                style={{marginRight:"10px"}}
+                                startContent={<SexualityIcon className="size-4"/>}
+
+                            >
+                                {props.profile.sexuality}
+                            </Chip>
+
+                            
+                        </ParallaxText>
+                    </div>
+
+                    <div className="absolute" style={{bottom:"103px",zIndex:10}}>
+                        <ParallaxText baseVelocity={-2}>
+                            <Chip
+                                variant="solid"
+                                color="success"
+                                size="md"
+                                style={{marginRight:"10px"}}
+                                startContent={<WorkAndStudyIconSolid className="size-5"/>}
+                            >
+                                {props.profile.workAndEducation}
+                            </Chip>
+                        </ParallaxText>
+                    </div>
+
+                <CardFooter className="absolute items-start	 flex-col py-3 bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+                    <div className="flex flex-grow gap-2">
+                        <div className="flex flex-col">
+                            <p className="text-white/90 font-medium text-xl">{props.profile.name} , {props.profile.age}</p>
+                            <p className="text-tiny text-white/80">{props.profile.aboutMe}</p>
+                        </div>
+                    </div>
+                </CardFooter>
+              </Card>
             </div>
         </motion.div>
       
@@ -133,3 +288,6 @@ const ExploreCard = (props) => {
 };
 
 export default ExploreCard;
+
+
+    

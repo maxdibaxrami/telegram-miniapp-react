@@ -54,11 +54,11 @@ const ExplorePage = () => {
 
 
 
-
+ 
       <div>
           <motion.div
             className="card background-drop--whitebase backdrop-blur-sm	 p-1 footerswipcard border-1 fixed"
-            animate={{ bottom: "45px", zIndex:50, right:"51%" }}
+            animate={{ bottom: "25px", zIndex:50, right:"51%" }}
             style={{right:"51%"}}
             transition={{ type: "tween" }}
             {...getAnimationProps2()}
@@ -70,7 +70,7 @@ const ExplorePage = () => {
             className="card background-drop--whitebase backdrop-blur-sm	 p-1 footerswipcard border-1 fixed"
             transition={{ type: "tween" }}
             style={{left:"51%"}}
-            animate={{ bottom: "45px", zIndex:50 ,left:"51%" }}
+            animate={{ bottom: "25px", zIndex:50 ,left:"51%" }}
 
             {...getAnimationProps()}
           >
