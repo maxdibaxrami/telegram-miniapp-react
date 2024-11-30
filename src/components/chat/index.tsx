@@ -15,12 +15,12 @@ const ChatPage = () => {
       }}
       id="chatScrollcontainer"
     >
-      <div className="flex justify-between py-2 items-center">
-        <span className="text-large text-default-600">Matches</span>
+      <div style={{paddingBottom:"0.5rem"}} className="flex justify-between items-center">
+        <span style={{fontWeight:"500"}}  className="text-large text-default-600">Matches</span>
       </div>
       <MatchList />
-      <div className="flex justify-between py-3 items-center">
-        <span className="text-large text-default-600">Chat</span>
+      <div className="flex justify-between py-2 items-center">
+        <span style={{fontWeight:"500"}} className="text-large text-default-600">Chat</span>
         <ChatFiltermenu/>
 
       </div>
