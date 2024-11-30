@@ -23,7 +23,7 @@ const BottomMenu = () => {
             duration: 0.5,
           }}
           initial={{ bottom:"-40px", opacity:0  }}
-          animate={{ bottom: "10px", opacity:1 }}
+          animate={{ bottom: "20px", opacity:1 }}
           exit={{ bottom:"-40px", opacity:0}}
   
           className={"flex w-full fixed items-center"}
