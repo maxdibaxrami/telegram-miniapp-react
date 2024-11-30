@@ -41,7 +41,7 @@ const MainPage = () => {
 
 
 
-    return <Page>
+    return <Page back={false}>
 
             
             <AnimatePresence mode="wait">

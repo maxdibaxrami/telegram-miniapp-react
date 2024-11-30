@@ -1,11 +1,12 @@
-import { Tabs, Tab } from "@nextui-org/react";
+import { Tabs, Tab, Navbar } from "@nextui-org/react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     FireIcon,
     ChatIcon,
     ProfileIcon,
     LikeIcon,
-    RandomChatIcon
+    RandomChatIcon,
+    LocationIcon
 } from '@/Icons/index'
 
 import { useSearchParams } from "react-router-dom";
@@ -17,7 +18,6 @@ const BottomMenu = () => {
   return (
       <AnimatePresence >
         {searchParams.get('page')!=="explore" && (
-
           <motion.div
             transition={{
             ease: "anticipate",
@@ -27,7 +27,7 @@ const BottomMenu = () => {
           animate={{ bottom: "10px", opacity:1 }}
           exit={{ bottom:"-40px", opacity:0}}
   
-          className={"flex w-full fixed items-center backdrop-blur background-drop---navbar"}
+          className={"flex w-full fixed items-center"}
           style={{
             zIndex: "50",
             width: "315px",
@@ -42,86 +42,90 @@ const BottomMenu = () => {
             
           }}
         >
-          <Tabs
-            aria-label="Options"
-            classNames={{
-              tab: " h-auto p-0 color-white",
-            }}
-            color="default"
-            size="lg"
-            selectedKey={searchParams.get("page")}
-            style={{
-              zIndex: "10",
-              borderRadius: "14px",
-              overflow: "hidden",
-              backgroundColor: "transparent",
-              height:"64px",
-              bottom:"10px",
+          <Navbar isBlurred isBordered classNames={{"wrapper":"p-0"}}>
+            <Tabs
+              aria-label="Options"
+              classNames={{
+                tab: " h-auto p-0 color-white",
+              }}
+              color="default"
+              size="lg"
+              selectedKey={searchParams.get("page")}
+              style={{
+                zIndex: "10",
+                borderRadius: "14px",
+                overflow: "hidden",
+                backgroundColor: "transparent",
+                height:"64px",
+                bottom:"10px",
 
-            }}
-            variant="light" 
-          >
-            <Tab
-              key="explore"
-              href="/#/main?page=explore"
-              title={
-                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
-                  <FireIcon/>
-                  <p style={{fontSize:"11px"}}>Explore</p>
+              }}
+              variant="light" 
+            >
+              <Tab
+                key="explore"
+                href="/#/main?page=explore"
+                title={
+                  <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                    <FireIcon/>
+                    <p style={{fontSize:"11px"}}>Explore</p>
 
-                </div>
-              }
-            />
-  
-            <Tab
-              key="nearby"
-              href="/#/main?page=nearby"
-              title={
-                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
-                  <RandomChatIcon/>
-                  <p style={{fontSize:"11px"}}>Nearby</p>
+                  </div>
+                }
+              />
+    
+              <Tab
+                key="nearby"
+                href="/#/main?page=nearby"
+                title={
+                  <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                    <LocationIcon/>
+                    <p style={{fontSize:"11px"}}>Nearby</p>
 
-                </div>
-              }
-            />
-  
-            <Tab
-              key="chat"
-              href="/#/main?page=chat"
-              title={
-                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
-                  <ChatIcon/>
-                  <p style={{fontSize:"11px"}}>Chat</p>
+                  </div>
+                }
+              />
+    
+              <Tab
+                key="chat"
+                href="/#/main?page=chat"
+                title={
+                  <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                    <ChatIcon/>
+                    <p style={{fontSize:"11px"}}>Chat</p>
 
-                </div>
-              }
-            />
-  
-            <Tab
-              key="likes"
-              href="/#/main?page=likes"
+                  </div>
+                }
+              />
+    
+              <Tab
+                key="likes"
+                href="/#/main?page=likes"
 
-              title={
-                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
-                  <LikeIcon/>
-                  <p style={{fontSize:"11px"}}>Likes</p>
+                title={
+                  <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                    <LikeIcon/>
+                    <p style={{fontSize:"11px"}}>Likes</p>
 
-                </div>
-              }
-            />
-  
-            <Tab
-              key="profile"
-              href="/#/main?page=profile"
-              title={
-                <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
-                  <ProfileIcon/>
-                  <p style={{fontSize:"11px"}}>Profile</p>
-                </div>
-              }
-            />
-          </Tabs>
-        </motion.div>
+                  </div>
+                }
+              />
+    
+              <Tab
+                key="profile"
+                href="/#/main?page=profile"
+                title={
+                  <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
+                    <ProfileIcon/>
+                    <p style={{fontSize:"11px"}}>Profile</p>
+                  </div>
+                }
+              />
+            </Tabs>
+          </Navbar>
+
+          
+          </motion.div>
         )}
       </AnimatePresence>
   );

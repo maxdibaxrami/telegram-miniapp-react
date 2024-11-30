@@ -23,7 +23,7 @@ export default function NearByPage() {
 
   return (
     <div
-      className="gap-3 grid grid-cols-3 sm:grid-cols-3 py-2"
+      className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         overflow: "scroll",
         maxHeight: "100vh",

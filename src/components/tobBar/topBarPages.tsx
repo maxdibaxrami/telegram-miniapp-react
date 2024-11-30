@@ -5,7 +5,7 @@ const TopBarPages = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar disableAnimation className="">
+    <Navbar disableAnimation className="text-default-600">
       <NavbarContent justify="start">
         <NavbarItem>
             <Button size="sm" onPress={()=> {navigate("/main?page=profile")}} isIconOnly aria-label="Like" color="primary">
@@ -14,7 +14,7 @@ const TopBarPages = () => {
         </NavbarItem>
 
         <NavbarItem className="flex items-center justify-center">
-          <p className="font-bold text-inherit">Glow meet</p>
+          <p className="font-bold">Glow meet</p>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

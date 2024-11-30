@@ -17,7 +17,7 @@ import TopBarPages from "@/components/tobBar/topBarPages";
 export default function Setting() {
   return (
     <div className="container mx-auto max-w-7xl flex-grow light-background--color">
-      <section className="flex flex-col items-center justify-center gap-4 app-background">
+      <section className="flex flex-col items-center justify-center gap-4 text-default-600">
         <TopBarPages />
         <div className="w-full h-full px-6 pb-4">
           <Switch
