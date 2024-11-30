@@ -25,16 +25,8 @@ export default {
             },
           },
           colors: {
-            primary: "#A594F9",
-            secondary: "#f78ce2",
-            success: "#00ba96",
-            danger: "#be4541",
-            warning: "#ffd16b",
-            info: "#3b97eb",
-            light: "#f4f4f4",
-            dark: "#343a40",
-            background: "#fcf7ffa3",
-            foreground: "#000000",
+            background: "#FFFFFF", // or DEFAULT
+            foreground: "#11181C",
           },
           typography: {
             fontFamily: "system-ui, sans-serif",
@@ -72,15 +64,7 @@ export default {
             },
           },
           colors: {
-            primary: "#A594F9",
-            secondary: "#f78ce2",
-            success: "#00ba96",
-            danger: "#be4541",
-            warning: "#ffd16b",
-            info: "#4596f2",
-            light: "#f4f4f4",
-            dark: "#343a40",
-            background: "#000000",
+            background: "#000000", // or DEFAULT
             foreground: "#ECEDEE",
           },
           typography: {

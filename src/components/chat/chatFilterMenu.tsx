@@ -10,7 +10,7 @@ import { FilterButton, NewIcon, Favorite } from "@/Icons/index";
 
 const ChatFiltermenu = () => {
   return (
-    <Dropdown showArrow backdrop="blur">
+    <Dropdown backdrop="blur">
       <DropdownTrigger>
         <Button  isIconOnly aria-label="Like" color="default" size="sm">
           <FilterButton className="size-5" stroke='#fff' />

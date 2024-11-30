@@ -46,8 +46,6 @@ const BottomMenu = () => {
             aria-label="Options"
             classNames={{
               tab: " h-auto p-0 color-white",
-              tabContent:
-                "text-[#FFF] group-data-[selected=false]:text-[#ffffffbf]",
             }}
             color="default"
             size="lg"
