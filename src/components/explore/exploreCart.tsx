@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -8,7 +8,7 @@ import {
 import { Card, CardFooter, Chip, Image } from "@nextui-org/react";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import SwiperImages from './swiperImage'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -26,14 +26,7 @@ import ExploreCartData from './exploreCartData'
 
 const ExploreCard = (props) => {
 
-  const [exitX, setExitX] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const swiperRef = useRef(null);
-
-  const handleSlideChange = (swiper) => {
-    setCurrentIndex(swiper.activeIndex);
-  };
+  const [exitX, setExitX] = useState(1);
 
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-150, 0, 150], [-45, 0, 45], {
@@ -69,6 +62,7 @@ const ExploreCard = (props) => {
 
 
   // Function to go to the next slide
+  {/* 
   const goToNextSlide = () => {
 
     if (swiperRef.current) {
@@ -76,7 +70,7 @@ const ExploreCard = (props) => {
     }
   };
 
-  {/*/ Function to go to the previous slide
+  // Function to go to the previous slide
   const goToPreviousSlide = () => {
     if (swiperRef.current) {
       swiperRef.current.slidePrev();
@@ -134,11 +128,9 @@ const ExploreCard = (props) => {
                     pagination={{
                     clickable: false,
                     }}
-                    onSlideChange={handleSlideChange}
                     onChange={e=> console.log(e)}
                     onSwiper={(swiper) => {
                         console.log(swiper)
-                        swiperRef.current = swiper;
                     }}
                     navigation={false}
                     modules={[Pagination, Autoplay]}
@@ -149,96 +141,27 @@ const ExploreCard = (props) => {
                       }}
                 >
                     <SwiperSlide>
-                        <Image
-                            alt="Profile hero Image"
-                            className="w-full h-full"
-                            classNames={{
-                                wrapper: "w-full maxcontentimportant",
-                            }}
-                            onClick={() => goToNextSlide()}
-                            loading="lazy"
-                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
-                            style={{
-                                borderRadius: "20px",
-                                objectFit: "cover",
-                                padding: "0px 0px 5px 0px",
-                            }}
-                        />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Image
-                            alt="Profile hero Image"
-                            className="w-full h-full"
-                            classNames={{
-                                wrapper: "w-full maxcontentimportant",
-                            }}
-                            onClick={() => goToNextSlide()}
-                            loading="lazy"
-                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
-                            style={{
-                                borderRadius: "20px",
-                                objectFit: "cover",
-                                padding: "0px 0px 5px 0px",
-                            }}
-                        />
+                        <SwiperImages/>
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <Image
-                            alt="Profile hero Image"
-                            className="w-full h-full"
-                            classNames={{
-                                wrapper: "w-full maxcontentimportant",
-                            }}
-                            onClick={() => goToNextSlide()}
-                            loading="lazy"
-                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
-                            style={{
-                                borderRadius: "20px",
-                                objectFit: "cover",
-                                padding: "0px 0px 5px 0px",
-                            }}
-                        />
+                        <SwiperImages/>
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <Image
-                            alt="Profile hero Image"
-                            className="w-full h-full"
-                            classNames={{
-                                wrapper: "w-full maxcontentimportant",
-                            }}
-                            onClick={() => goToNextSlide()}
-                            loading="lazy"
-                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
-                            style={{
-                                borderRadius: "20px",
-                                objectFit: "cover",
-                                padding: "0px 0px 5px 0px",
-                            }}
-                        />
+                        <SwiperImages/>
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <Image
-                            alt="Profile hero Image"
-                            className="w-full h-full"
-                            classNames={{
-                                wrapper: "w-full maxcontentimportant",
-                            }}
-                            onClick={() => goToNextSlide()}
-                            loading="lazy"
-                            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
-                            style={{
-                                borderRadius: "20px",
-                                objectFit: "cover",
-                                padding: "0px 0px 5px 0px",
-                            }}
-                        />
+                        <SwiperImages/>
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <SwiperImages/>
                     </SwiperSlide>
                 </Swiper>
 
-                    <div className="absolute" style={{bottom:"72px",zIndex:10}}>
+                    <div className="absolute" style={{bottom:"105px",zIndex:10}}>
                         <ParallaxText baseVelocity={2}>
                             <Chip
                                 variant="solid"
@@ -301,7 +224,7 @@ const ExploreCard = (props) => {
                     <div className="flex flex-grow gap-2">
                         <div className="flex flex-col">
                             <p className="text-foreground/90 font-medium text-xl">{props.profile.name} , {props.profile.age}</p>
-                            <ExploreCartData aboutMe={props.profile.aboutMe} activeIndex={currentIndex}/>
+                            <ExploreCartData aboutMe={props.profile.aboutMe} activeIndex={1}/>
                             
                         </div>
                     </div>
