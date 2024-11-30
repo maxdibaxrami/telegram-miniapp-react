@@ -4,6 +4,7 @@ import {
   themeParams,
   miniApp,
   initData,
+  expandViewport,
   $debug,
   init as initSDK,
 } from '@telegram-apps/sdk-react';
@@ -19,7 +20,7 @@ export function init(debug: boolean): void {
   // Also, configure the package.
   initSDK();
 
-  // Add Eruda if needed.
+  // Add Eruda if needed (for debugging in development).
   debug && import('eruda')
     .then((lib) => lib.default.init())
     .catch(console.error);
@@ -35,12 +36,14 @@ export function init(debug: boolean): void {
   themeParams.mount();
   initData.restore();
 
+  // Mount and configure the viewport
   void viewport
     .mount()
     .catch((e) => {
       console.error('Something went wrong mounting the viewport', e);
     })
     .then(() => {
+      // Bind the CSS variables for the viewport
       viewport.bindCssVars();
     });
 
@@ -48,6 +51,6 @@ export function init(debug: boolean): void {
   miniApp.bindCssVars();
   themeParams.bindCssVars();
 
-
+  // Expand the viewport to full screen
+  expandViewport()
 }
-
