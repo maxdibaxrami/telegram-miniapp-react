@@ -24,10 +24,12 @@ import ParallaxText from '@/components/animate/text-slider'
 import { HeightIcon, HeartIconOutLine, LanguageIcon, BabyIcon, SexualityIcon } from '@/Icons/index'
 import ExploreCartData from './exploreCartData'
 
+
 const ExploreCard = (props) => {
 
   const [exitX, setExitX] = useState(1);
 
+  const [slideCountrt, setSlideCounter ] = useState(0)
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-150, 0, 150], [-45, 0, 45], {
       clamp: false
@@ -100,8 +102,8 @@ const ExploreCard = (props) => {
                 rotate,
                 cursor: "grab",
                 display:"flex",
-                alignItems:"center",
-                justifyContent:"center"
+                justifyContent:"center",
+                marginTop:"4.5rem"
             }}
             whileTap={{ cursor: "grabbing" }}
             onDragEnd={handleDragEnd}
@@ -128,17 +130,15 @@ const ExploreCard = (props) => {
                     pagination={{
                     clickable: false,
                     }}
-                    onChange={e=> console.log(e)}
-                    onSwiper={(swiper) => {
-                        console.log(swiper)
-                    }}
                     navigation={false}
                     modules={[Pagination, Autoplay]}
                     className="mySwiper"
+                    allowTouchMove={false}
                     autoplay={{
                         delay: 4000,
                         disableOnInteraction: false,
                       }}
+                    onSlideChange={e=> setSlideCounter(slideCountrt + 1)}
                 >
                     <SwiperSlide>
                         <SwiperImages/>
@@ -224,8 +224,9 @@ const ExploreCard = (props) => {
                     <div className="flex flex-grow gap-2">
                         <div className="flex flex-col">
                             <p className="text-foreground/90 font-medium text-xl">{props.profile.name} , {props.profile.age}</p>
-                            <ExploreCartData aboutMe={props.profile.aboutMe} activeIndex={1}/>
-                            
+
+                            <ExploreCartData slideCountrt={slideCountrt} profile={props.profile} activeIndex={1}/>
+                                
                         </div>
                     </div>
                 </CardFooter>
