@@ -138,7 +138,7 @@ const ExploreCard = (props) => {
                         delay: 4000,
                         disableOnInteraction: false,
                       }}
-                    onSlideChange={e=> setSlideCounter(slideCountrt + 1)}
+                    onSlideChange={()=> setSlideCounter(slideCountrt + 1)}
                 >
                     <SwiperSlide>
                         <SwiperImages/>
