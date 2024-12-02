@@ -225,7 +225,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
       <div>
           <motion.div
             className="card background-drop--whitebase p-1 footerswipcard border-1 fixed backdrop-blur-sm	"
-            animate={{ bottom: "25px", zIndex:50, right:"51%",scale:1 }}
+            animate={{ bottom: "20px", zIndex:50, right:"51%",scale:1 }}
             initial={{right:"51%",scale:0.7}}
             exit={{right:"51%",scale:0.7,bottom:"-50px",opacity:0}}
             transition={{ type: "tween" }}
@@ -239,7 +239,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
             transition={{ type: "tween" }}
             initial={{left:"51%",scale:0.7}}
             exit={{left:"51%",scale:0.7,bottom:"-50px",opacity:0}}
-            animate={{ bottom: "25px", zIndex:50 ,left:"51%",scale:1 }}
+            animate={{ bottom: "20px", zIndex:50 ,left:"51%",scale:1 }}
 
             {...getAnimationProps()}
           >
@@ -270,7 +270,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                   duration: 0.25,
                 }}
               >
-                <Button className="color-white" onPress={onClose} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button className="color-white" onPress={onClose} isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
                   <ArrowRight stroke="#FFF"/>
                 </Button>  
               </motion.div>
@@ -291,7 +291,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                   duration: 0.25,
                 }}
               >
-                <Button className="color-white" onPress={onClose} isIconOnly color="primary" style={{borderRadius:"20%"}} size="lg" aria-label="Like">
+                <Button className="color-white" onPress={onClose} isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
                   <ExploreChat fill="#FFF"/>
                 </Button>  
               </motion.div>
