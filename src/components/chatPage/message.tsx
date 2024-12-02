@@ -1,6 +1,7 @@
-"use client";
-import "./style.css";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import "./style.css";
+
 const messages = [
   {
     type: "me",
@@ -35,6 +36,8 @@ const messages = [
     type: "you",
     text: "Nice! React is great for that.",
     time: "11:12",
+    img: "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp", // Image message
+
   },
   {
     type: "me",
@@ -50,7 +53,7 @@ const messages = [
     type: "me",
     text: "",
     time: "11:20",
-    img: "https://via.placeholder.com/", // Image message
+    img: "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp", // Image message
   },
   {
     type: "you",
@@ -75,19 +78,17 @@ const messages = [
     type: "me",
     text: "",
     time: "11:30",
-    img: "https://via.placeholder.com/", // Another image message
+    img: "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp", // Another image message
   },
   {
     type: "time",
     time: "11:05 today",
   },
-
   {
     type: "you",
     text: "That's a great layout! Simple and clean.",
     time: "11:32",
   },
-
   {
     type: "me",
     text: "Thanks! Let me know if you need help with anything.",
@@ -95,36 +96,55 @@ const messages = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05, // Adjust the delay between messages here
+    },
+  },
+};
+
+const messageVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
 const MessageSection = () => {
   const Theme = useTheme();
 
   return (
-    <div
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
       className={`${Theme.theme === "light" ? "message-container-light" : "message-container-dark"} w-full flex flex-col border-small px-1 gradient--telegram rounded-small border-default-200 dark:border-default-100`}
-      style={{ maxHeight: "100%",height:"100%", overflow: "scroll" }}
+      style={{ maxHeight: "100%", height: "100%", overflow: "scroll", flexDirection: "column-reverse" }}
     >
       {messages.map((msg, index) => {
         if (msg.type === "time") {
           return (
-            <div key={index} className="mb-2">
+            <motion.div key={index} variants={messageVariants} className="mb-2">
               <p className="time">{msg.time}</p>
-            </div>
+            </motion.div>
           );
         }
 
         return (
-          <div key={index} className={`chat-${msg.type} chat-m flex flex-col`}>
+          <motion.div key={index} variants={messageVariants} className={`chat-${msg.type} chat-m ${msg.type=="me"?"bg-background text-foreground":""} flex flex-col`}>
             <div className={`chat-bubble chat-${msg.type}`}>
-              <p>{msg.text}</p>
+              {!msg.img && (<p>{msg.text}</p>) }
+
               {msg.img && (
                 <img alt="conversation" className="chat-image" src={msg.img} />
               )}
               <small className={`chat${msg.type}--time`}>{msg.time}</small>
             </div>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

@@ -12,16 +12,16 @@ export default function ChatPage() {
   return (
 
     <ChatLayout>
-      <header className="bg-blue-500 text-white">
+      <header>
         <ChatProfileSection />
       </header>
 
 
-      <main className="flex-grow overflow-y-auto bg-gray-100">
+      <main className="flex-grow overflow-y-auto">
       <MessageSection />
       </main>
 
-      <footer className="bg-white border-t">
+      <footer>
         <form className="flex">
           <ChatInput />
         </form>

@@ -10,6 +10,7 @@ export default function ChatLayout({
   const viewportHeight = useViewportHeightContext();
   return (
     <section 
+        className='bg-background'
         style={{
           height: `${viewportHeight}px`,
           transition: 'height 0.3s ease',
