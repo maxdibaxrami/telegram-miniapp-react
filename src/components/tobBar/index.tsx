@@ -14,7 +14,6 @@ import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
-import { SparklesText } from "../animate/sparkles";
 
 interface ExploreFilterRef {
   openModal: () => void;

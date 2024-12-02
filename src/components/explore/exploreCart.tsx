@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import './style.css';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import { HeartEyesImoji, NotLikeImoji } from "@/components/explore/exploreBottomIcons";
 
@@ -208,6 +208,7 @@ const ExploreCard = (props) => {
                           <p className="text-foreground font-bold  text-xl">
                             {props.profile.name}, {props.profile.age} 
                           </p>
+                          <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>
                         </div>
                         <Button
                           onClick={toggleFooter}

@@ -8,13 +8,12 @@ import {
   Card,
   CardFooter,
 } from "@nextui-org/react";
-import { User } from "@nextui-org/react";
-import { Listbox, ListboxItem, ListboxSection, Chip, Button, Image } from "@nextui-org/react";
+import { Chip, Button } from "@nextui-org/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { forwardRef, useImperativeHandle } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ArowDownIcon, ArowUpIcon, BabyIcon, HeartIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIconSmall, SexualityIcon, VerifyIcon } from "@/Icons/index";
+import { ArowDownIcon, ArowUpIcon, BabyIcon, HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, VerifyIconFill } from "@/Icons/index";
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import { ArrowRight } from "@/Icons/index";
@@ -196,6 +195,8 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                             <p className="text-foreground font-bold  text-xl">
                               {props.profile.name}, {props.profile.age} 
                             </p>
+                            <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>
+
                           </div>
                           <Button
                             onClick={toggleFooter}
