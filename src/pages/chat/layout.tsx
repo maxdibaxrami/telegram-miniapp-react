@@ -12,7 +12,7 @@ export default function ChatLayout({
     <section 
         className='bg-background'
         style={{
-          height: `100vh`,
+          height: `calc(100vh - 40px)`,
           transition: 'height 0.3s ease',
           overflow: 'hidden',
           display: 'flex',
