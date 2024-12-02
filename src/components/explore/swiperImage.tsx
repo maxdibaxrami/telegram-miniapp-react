@@ -21,7 +21,6 @@ const SwiperImages = () => {
             loading="lazy"
             src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
             style={{
-                borderRadius: "20px",
                 objectFit: "cover",
                 padding: "0px 0px 5px 0px",
             }}

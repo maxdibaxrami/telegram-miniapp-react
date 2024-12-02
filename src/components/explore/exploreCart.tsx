@@ -3,34 +3,66 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Button, Card, CardFooter, Chip } from "@nextui-org/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './style.css';
-
-// Import required modules
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeightIcon, HeartIconOutLine, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon} from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
+import { HeartEyesImoji, NotLikeImoji } from "@/components/explore/exploreBottomIcons";
+
+
+
+const getAnimationProps = () => {
+  return {
+    whileTap: {
+      scale: 0.85,
+    },
+  };
+};
+
+const getAnimationProps2 = () => {
+  return {
+    whileTap: {
+      rotate: -18, // Rotate to 348 degrees
+    },
+  };
+};
+
+
 
 const ExploreCard = (props) => {
   const [openFooter, setOpenFooter] = useState(false);
   const [exitX, setExitX] = useState(1);
   const [slideCountrt, setSlideCounter] = useState<number>(1);
-  const x = useMotionValue(0);
-  const rotate = useTransform(x, [-150, 0, 150], [-45, 0, 45], { clamp: false });
 
+  const x = useMotionValue(0);
+  const xInput = [-150, 0, 150]; // Input range for dragging
+  const rotate = useTransform(x, [-150, 0, 150], [-10, 0, 10], { clamp: false });
+
+  // Color transformation based on drag distance
+  const backgroundGreen = useTransform(x, xInput, [
+    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
+    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
+    "linear-gradient(180deg, rgba(230, 255, 0) 0%, rgb(3, 209, 0) 100%)"
+  ]);
+  const backgroundRed = useTransform(x, xInput, [
+    "linear-gradient(180deg, #F31260 0%, #F54180 100%",
+    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
+    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
+  ]);
+
+  // Detecting when the drag motion reaches max left or right
   const handleDragEnd = (_, info) => {
-    if (!openFooter) {  // Disable swapping when footer is open
+    if (!openFooter) { // Disable swapping when footer is open
       if (info.offset.x < -100) {
         setExitX(-250);
-        props.setIndex(props.index + 1);
-      }
-      if (info.offset.x > 100) {
+        props.setIndex(props.index + 1); // Move to next slide
+      } else if (info.offset.x > 100) {
         setExitX(250);
-        props.setIndex(props.index + 1);
+        props.setIndex(props.index + 1); // Move to next slide
       }
     }
   };
@@ -70,7 +102,7 @@ const ExploreCard = (props) => {
           marginTop: "4.5rem"
         }}
         whileTap={{ cursor: "grabbing" }}
-        onDragEnd={handleDragEnd}
+        onDragEnd={handleDragEnd} // Handling drag end with slide transition
         drag={!openFooter} // Disable dragging when footer is open
         dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
         variants={props.frontCard ? variantsFrontCard : variantsBackCard}
@@ -167,14 +199,16 @@ const ExploreCard = (props) => {
               <div className="relative h-full w-full">
                 <CardFooter
                   style={{ height: "100%", maxHeight:"100%" , overflow:"scroll"}}
-                  className="items-start flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150 border-t-1 border-default-600 dark:border-default-100"
+                  className="items-start flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150"
                 >
                   <div className="flex flex-grow gap-2 w-full">
                     <div className="flex flex-col w-full">
-                      <div className="flex items-center justify-between w-full">
-                        <p className="text-foreground/90 font-medium text-xl">
-                          {props.profile.name}, {props.profile.age}
-                        </p>
+                      <div className="flex items-center justify-between w-full mb-1">
+                        <div className="flex items-center">
+                          <p className="text-foreground font-bold  text-xl">
+                            {props.profile.name}, {props.profile.age} 
+                          </p>
+                        </div>
                         <Button
                           onClick={toggleFooter}
                           size="sm"
@@ -187,17 +221,46 @@ const ExploreCard = (props) => {
                         </Button>
                       </div>
 
-                      <ExploreCartData openFooter={openFooter} slideCountrt={slideCountrt} profile={props.profile} />
+                      <ExploreCartData openFooter={openFooter} slideCount={slideCountrt} profile={props.profile} />
                     </div>
                   </div>
-
-                  
                 </CardFooter>
               </div>
             </motion.div>
           </Card>
         </div>
       </motion.div>
+
+      {props.frontCard && (
+        <>
+          <motion.div
+                  className="card backdrop-blur-sm p-1 footerswipcard fixed"
+                  animate={{ bottom: "25px", zIndex:50, right:"51%" }}
+                  style={{right:"51%", background:backgroundRed}}
+                  transition={{ type: "tween" }}
+                  {...getAnimationProps2()}
+                >
+                  <NotLikeImoji NextSlide={props.NextSlide} />
+                </motion.div>
+
+                <motion.div
+                  className="card backdrop-blur-sm p-1 footerswipcard fixed"
+                  transition={{ type: "tween" }}
+                  style={{left:"51%", background:backgroundGreen}}
+                  animate={{ bottom: "25px", zIndex:50 ,left:"51%" }}
+
+                  {...getAnimationProps()}
+                >
+                  <HeartEyesImoji
+                    dataId={props.profile}
+                    openModal={props.openModal}
+                    NextSlide={props.NextSlide}
+                  />
+                </motion.div>
+        </>
+      )}
+                
+          
     </>
   );
 };

@@ -66,9 +66,9 @@ body {
   position: absolute;
   width: fit-content;
   height: fit-content;
-  bottom: -80px;
   border-radius: 50vw !important;
   will-change: transform;
+  bottom: 25px;
 
 }
 

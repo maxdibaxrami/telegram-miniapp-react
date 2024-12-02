@@ -11,9 +11,9 @@ import {
 } from "@/Icons";
 import { Listbox, ListboxSection, ListboxItem, Chip } from "@nextui-org/react"; // Imported components
 
-const ExploreCartData = ({ slideCountrt, profile, openFooter }) => {
+const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   // Memoize the current slide type based on the slide count
-  const currentSlide = useMemo(() => slideCountrt % 4, [slideCountrt]);
+  const currentSlide = useMemo(() => slideCount % 4, [slideCount]);
 
   // Reusable ProfileCard component for profile details
   const ProfileCard = ({ color, gradient, icon, label, text }) => (
@@ -107,78 +107,88 @@ const ExploreCartData = ({ slideCountrt, profile, openFooter }) => {
             ))}
 
             {/* Listbox component with profile details */}
-            <div className="w-full mb-4 mt-2">
-              <Listbox
-                className="py-2"
-                classNames={{
-                  base:"p-0",
-                  list:"px-0"
-                }}
-                style={{ borderRadius: "8px" }}
-                aria-label="Listbox menu with sections"
-                variant="solid"
-              >
+            
+            <motion.div
+              className="w-full mb-4 mt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                ease: "linear",
+                duration: 0.25,
+              }}
+            >
+                <Listbox
+                  className="py-2"
+                  classNames={{
+                    base:"p-0",
+                    list:"px-0"
+                  }}
+                  style={{ borderRadius: "8px" }}
+                  aria-label="Listbox menu with sections"
+                  variant="solid"
+                >
 
-                <ListboxSection classNames={{base:"px-0"}} className="relative" title="More about me!">
-                  <ListboxItem
-                    key="7"
-                    isReadOnly
-                    description={profile.relationStatus}
-                  >
-                    Relation status
-                  </ListboxItem>
-                  <ListboxItem
-                    key="8"
-                    isReadOnly
-                    description={profile.height}
-                  >
-                    Height
-                  </ListboxItem>
-                  <ListboxItem
-                    key="9"
-                    isReadOnly
-                    description={profile.kids}
-                  >
-                    Kids
-                  </ListboxItem>
-                  <ListboxItem
-                    key="10"
-                    isReadOnly
-                    description={profile.language}
-                  >
-                    Language
-                  </ListboxItem>
-                  <ListboxItem
-                    key="11"
-                    isReadOnly
-                    description={profile.sexuality}
-                  >
-                    Sexuality
-                  </ListboxItem>
-                </ListboxSection>
+                  <ListboxSection classNames={{base:"px-0"}} className="relative" title="More about me!">
+                    <ListboxItem
+                      key="7"
+                      isReadOnly
+                      description={profile.relationStatus}
+                    >
+                      Relation status:
+                    </ListboxItem>
+                    <ListboxItem
+                      key="8"
+                      isReadOnly
+                      description={profile.height}
+                    >
+                      Height:
+                    </ListboxItem>
+                    <ListboxItem
+                      key="9"
+                      isReadOnly
+                      description={profile.kids}
+                    >
+                      Kids:
+                    </ListboxItem>
+                    <ListboxItem
+                      key="10"
+                      isReadOnly
+                      description={profile.language}
+                    >
+                      Language:
+                    </ListboxItem>
+                    <ListboxItem
+                      key="11"
+                      isReadOnly
+                      description={profile.sexuality}
+                    >
+                      Sexuality:
+                    </ListboxItem>
+                  </ListboxSection>
 
-                <ListboxSection className="relative" title="Interesting">
-                  <ListboxItem key={"1"} isReadOnly>
-                    <div className="flex flex-wrap">
-                      {Array.isArray(profile.interests) && profile.interests.length > 0
-                        ? profile.interests.map((value, index) => (
-                          <Chip
-                            key={index}
-                            className="m-1"
-                            color="success"
-                            startContent={<HashtagIcon/>}
-                            variant="solid"
-                          >
-                            {value}
-                          </Chip>
-                        ))
-                        : null}
-                    </div>
-                  </ListboxItem>
-                </ListboxSection>
-              </Listbox>
-            </div>
-          </motion.div>
+                  <ListboxSection className="relative" title="Interesting">
+                    <ListboxItem key={"1"} isReadOnly>
+                      <div className="flex flex-wrap">
+                        {Array.isArray(profile.interests) && profile.interests.length > 0
+                          ? profile.interests.map((value, index) => (
+                            <Chip
+                              key={index}
+                              className="m-1"
+                              color="success"
+                              startContent={<HashtagIcon/>}
+                              variant="solid"
+                            >
+                              {value}
+                            </Chip>
+                          ))
+                          : null}
+                      </div>
+                    </ListboxItem>
+                  </ListboxSection>
+                </Listbox>
+                </motion.div>
+            </motion.div>
         ) : (
           <ProfileCard
             color={profileItems[currentSlide].color}

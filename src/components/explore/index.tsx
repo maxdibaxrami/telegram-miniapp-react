@@ -5,7 +5,6 @@ import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import ExploreCard from "./exploreCart";
-import { HeartEyesImoji, NotLikeImoji } from "@/components/explore/exploreBottomIcons";
 
 import MatchModal from "./matchModal";
 
@@ -20,21 +19,7 @@ const ExplorePage = () => {
 
   const NextSlide = () => setIndex(index+1)
 
-  const getAnimationProps = () => {
-    return {
-      whileTap: {
-        scale: 0.85,
-      },
-    };
-  };
-
-  const getAnimationProps2 = () => {
-    return {
-      whileTap: {
-        rotate: -18, // Rotate to 348 degrees
-      },
-    };
-  };
+  
 
   return (
     <div style={{height:"100vh"}} >
@@ -43,6 +28,8 @@ const ExplorePage = () => {
                 <ExploreCard profile={mockProfiles[index+1]} key={index + 1} frontCard={false} />
                 <ExploreCard
                     key={index}
+                    NextSlide={NextSlide}
+                    openModal={openModal}
                     frontCard={true}
                     index={index}
                     profile={mockProfiles[index]}
@@ -51,36 +38,6 @@ const ExplorePage = () => {
                 />
             </AnimatePresence>
         </motion.div>
-
-
-
- 
-      <div>
-          <motion.div
-            className="card background-drop--whitebase backdrop-blur-sm	 p-1 footerswipcard border-1 fixed"
-            animate={{ bottom: "25px", zIndex:50, right:"51%" }}
-            style={{right:"51%"}}
-            transition={{ type: "tween" }}
-            {...getAnimationProps2()}
-          >
-            <NotLikeImoji NextSlide={NextSlide} />
-          </motion.div>
-
-          <motion.div
-            className="card background-drop--whitebase backdrop-blur-sm	 p-1 footerswipcard border-1 fixed"
-            transition={{ type: "tween" }}
-            style={{left:"51%"}}
-            animate={{ bottom: "25px", zIndex:50 ,left:"51%" }}
-
-            {...getAnimationProps()}
-          >
-            <HeartEyesImoji
-              dataId={mockProfiles[index]}
-              openModal={openModal}
-              NextSlide={NextSlide}
-            />
-          </motion.div>
-      </div>
 
       <MatchModal
         isOpen={isModalOpen}
