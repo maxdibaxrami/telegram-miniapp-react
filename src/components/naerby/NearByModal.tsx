@@ -185,7 +185,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               >
                 <div className="relative h-full w-full">
                   <CardFooter
-                    style={{ height: "100%", maxHeight:"100%" , overflow:"scroll"}}
+                    style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
                     className="items-start flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150"
                   >
                     <div className="flex flex-grow gap-2 w-full">
@@ -224,7 +224,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
       <div>
           <motion.div
-            className="card background-drop--whitebase p-1 footerswipcard border-1 fixed backdrop-blur-sm	"
+            className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard border-1 border-default fixed"
             animate={{ bottom: "20px", zIndex:50, right:"51%",scale:1 }}
             initial={{right:"51%",scale:0.7}}
             exit={{right:"51%",scale:0.7,bottom:"-50px",opacity:0}}
@@ -235,7 +235,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
           </motion.div>
 
           <motion.div
-            className="card background-drop--whitebase p-1 footerswipcard border-1 fixed backdrop-blur-sm	"
+            className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed	"
             transition={{ type: "tween" }}
             initial={{left:"51%",scale:0.7}}
             exit={{left:"51%",scale:0.7,bottom:"-50px",opacity:0}}

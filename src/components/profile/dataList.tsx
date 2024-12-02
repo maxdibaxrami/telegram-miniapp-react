@@ -29,7 +29,7 @@ const DataList = () => {
               value={55}
             />
           }
-          startContent={<ProfileIcon />}
+          startContent={<ProfileIcon className="size-7"/>}
         >
           Profile
         </ListboxItem>
@@ -46,7 +46,7 @@ const DataList = () => {
               value={100}
             />
           }
-          startContent={<FlashIcon />}
+          startContent={<FlashIcon className="size-7"/>}
         >
           Activity
         </ListboxItem>
@@ -55,7 +55,7 @@ const DataList = () => {
           showDivider
           description="You can see who like your profile"
           endContent={<Chip>22</Chip>}
-          startContent={<LikeIcon />}
+          startContent={<LikeIcon className="size-7"/>}
         >
           Who like you
         </ListboxItem>

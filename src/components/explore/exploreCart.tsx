@@ -39,20 +39,7 @@ const ExploreCard = (props) => {
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 
   const x = useMotionValue(0);
-  const xInput = [-150, 0, 150]; // Input range for dragging
-  const rotate = useTransform(x, [-150, 0, 150], [-10, 0, 10], { clamp: false });
-
-  // Color transformation based on drag distance
-  const backgroundGreen = useTransform(x, xInput, [
-    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
-    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
-    "linear-gradient(180deg, rgba(230, 255, 0) 0%, rgb(3, 209, 0) 100%)"
-  ]);
-  const backgroundRed = useTransform(x, xInput, [
-    "linear-gradient(180deg, #F31260 0%, #F54180 100%",
-    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
-    "linear-gradient(180deg, #ffffff57 0%, #ffffff57 100%",
-  ]);
+  const rotate = useTransform(x, [-180, 0, 180], [-7, 0, 7], { clamp: false });
 
   // Detecting when the drag motion reaches max left or right
   const handleDragEnd = (_, info) => {
@@ -198,8 +185,8 @@ const ExploreCard = (props) => {
             >
               <div className="relative h-full w-full">
                 <CardFooter
-                  style={{ height: "100%", maxHeight:"100%" , overflow:"scroll"}}
-                  className="items-start flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150"
+                    style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
+                    className="items-start flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150"
                 >
                   <div className="flex flex-grow gap-2 w-full">
                     <div className="flex flex-col w-full">
@@ -235,9 +222,9 @@ const ExploreCard = (props) => {
       {props.frontCard && (
         <>
           <motion.div
-                  className="card backdrop-blur-sm p-1 footerswipcard fixed"
+                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   animate={{ bottom: "25px", zIndex:50, right:"51%" }}
-                  style={{right:"51%", background:backgroundRed}}
+                  style={{right:"51%"}}
                   transition={{ type: "tween" }}
                   {...getAnimationProps2()}
                 >
@@ -245,9 +232,9 @@ const ExploreCard = (props) => {
                 </motion.div>
 
                 <motion.div
-                  className="card backdrop-blur-sm p-1 footerswipcard fixed"
+                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
-                  style={{left:"51%", background:backgroundGreen}}
+                  style={{left:"51%"}}
                   animate={{ bottom: "25px", zIndex:50 ,left:"51%" }}
 
                   {...getAnimationProps()}

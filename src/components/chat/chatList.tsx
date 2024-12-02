@@ -71,7 +71,7 @@ const ChatList = () => {
                 <span
                   className={
                     item.id % 2 !== 0
-                      ? "text-small text-handller-chat text-default-700"
+                      ? "text-small text-handller-chat text-primery-700"
                       : "text-small text-handller-chat font-bold text-default-700"
                   }
                 >
@@ -82,7 +82,7 @@ const ChatList = () => {
                         ? "hidden"
                         : "visible ml-1"
                     }
-                    color="default"
+                    color="primary"
                     size="sm"
                   >
                     +1 New
