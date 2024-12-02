@@ -4,6 +4,14 @@ import { useRef } from "react";
 
 import NearByCard from "@/components/naerby/nearByCard";
 import NearByUserModal from "@/components/naerby/NearByModal";
+import { motion } from "framer-motion";
+
+const animations = {
+  initial: { scale: 0, opacity: 0 },
+  animate: { scale: 1, opacity: 1, originY: 0 },
+  exit: { scale: 0, opacity: 0 },
+  transition: { type: "spring", stiffness: 350, damping: 40 },
+};
 
 export default function NearByPage() {
   const [SelectedCard, setSelectedCard] = useState({});
@@ -15,14 +23,16 @@ export default function NearByPage() {
       childRef.current.callChildFunction(); // Call the function in the child
     }
   };
-  
+
   const onCardClick = (data) => {
     setSelectedCard(data);
     handleClick();
   };
 
   return (
-    <div
+    <motion.div 
+      {...animations} 
+      layout
       className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         overflow: "scroll",
@@ -34,17 +44,24 @@ export default function NearByPage() {
       }}
     >
       {mockProfiles.map((value, index) => (
-        <NearByCard
+        <motion.div
           key={index}
-          data={value}
-          num={index}
-          onCardClick={onCardClick}
-        />
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            delay: index * 0.1, // Adjust delay based on index for sequential load
+            duration: 0.5,
+          }}
+        >
+          <NearByCard
+            data={value}
+            num={index}
+            onCardClick={onCardClick}
+          />
+        </motion.div>
       ))}
       <NearByUserModal ref={childRef} profile={SelectedCard} />
-
-
-    </div>
+    </motion.div>
   );
 }
 

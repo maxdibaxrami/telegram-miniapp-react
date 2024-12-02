@@ -119,3 +119,7 @@ body {
 .parallax span {
   display: block;
 }
+
+.bg-transparent {
+  background-color: transparent !important;
+}

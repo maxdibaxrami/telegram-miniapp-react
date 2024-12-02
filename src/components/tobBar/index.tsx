@@ -14,6 +14,7 @@ import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
+import { SparklesText } from "../animate/sparkles";
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -47,7 +48,7 @@ const TopBar = () => {
       style={{ height: "4rem" }}
     >
       <NavbarBrand>
-          <RotateWords words={searchParams.get("page") !== "randomchat"?searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1) : "Random Chat"} />  
+          <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
       </NavbarBrand>
 
       <NavbarContent justify="end">

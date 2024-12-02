@@ -38,7 +38,7 @@ const heartConfetti = () => {
 };
 
 const MatchConfetti = () => {
-  const colors = ["#bb0000", "#ffffff"];
+  const colors = ["#016fee", "#ffffff"];
   const end = Date.now() + 3 * 1000;
 
   (function frame() {

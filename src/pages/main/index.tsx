@@ -43,7 +43,7 @@ const MainPage = () => {
 
                 
             <NavBar/>
-            <section className="flex flex-col light-background--color justify-center gap-4 ">
+            <section className="flex flex-col light-background--color items-center justify-center gap-4 ">
 
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">
