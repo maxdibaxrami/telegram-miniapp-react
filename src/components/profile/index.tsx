@@ -11,12 +11,10 @@ import {
 import DataList from "./dataList";
 import { Link } from "react-router-dom";
 import { Swiper ,SwiperSlide } from "swiper/react";
-import SwiperImages from "../explore/swiperImage";
 import { useState } from "react";
 
 const ProfilePage = () => {
 
-  const NextSlide = () => setSlideCounter(slideCountrt+1)
 
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 

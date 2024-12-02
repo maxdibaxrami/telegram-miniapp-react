@@ -1,5 +1,5 @@
 import { Card, CardFooter, Image } from "@nextui-org/react";
-import { VerifyIcon, VerifyIconFill } from "@/Icons/index";
+import { VerifyIconFill } from "@/Icons/index";
 import { CircleSvg } from "@/Icons/index";
 
 const NearByCard = ({ data, onCardClick, num }) => {
