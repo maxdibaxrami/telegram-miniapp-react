@@ -13,6 +13,11 @@ body {
   overflow: hidden;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden; /* Prevents scrolling when keyboard appears */
+}
+
 *{
     font-family: "Parkinsans", sans-serif;
     font-optical-sizing: auto; 
