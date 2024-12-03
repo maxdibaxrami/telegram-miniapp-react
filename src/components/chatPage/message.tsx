@@ -120,7 +120,7 @@ const MessageSection = () => {
       initial="hidden"
       animate="visible"
       className={`${Theme.theme === "light" ? "message-container-light" : "message-container-dark"} w-full flex flex-col border-small px-1 gradient--telegram rounded-small border-default-200 dark:border-default-100`}
-      style={{ maxHeight: "100%", height: "100vh", overflow: "scroll", flexDirection: "column-reverse" }}
+      style={{maxHeight:"50vh", overflow: "scroll", flexDirection: "column-reverse" }}
     >
       {messages.map((msg, index) => {
         if (msg.type === "time") {
