@@ -9,6 +9,7 @@ import {
   init as initSDK,
 } from '@telegram-apps/sdk-react';
 
+
 /**
  * Initializes the application and configures its dependencies.
  */
@@ -45,6 +46,7 @@ export function init(debug: boolean): void {
     .then(() => {
       // Bind the CSS variables for the viewport
       viewport.bindCssVars();
+      
     });
 
   // Bind the theme parameters to CSS variables (colors, etc.).

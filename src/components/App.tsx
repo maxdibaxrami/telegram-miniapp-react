@@ -4,11 +4,23 @@ import { Route, Routes, HashRouter } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { routes } from '@/navigation/routes.tsx';
+import { useEffect } from 'react';
+
 
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
+  useEffect(()=>{
+    const element = document.documentElement; // You can target a specific element
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if ((element as any).webkitRequestFullscreen) { /* Safari */
+        (element as any).webkitRequestFullscreen();
+      } else if ((element as any).msRequestFullscreen) { /* IE11 */
+        (element as any).msRequestFullscreen();
+      }
+  },[])
   return (
     <AppRoot
       appearance={isDark ? 'dark' : 'light'}
