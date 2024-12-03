@@ -1,17 +1,14 @@
-import React from "react";
 import { Textarea, Button } from "@nextui-org/react";
 
 import { SendIcon, PhotoIcon } from "@/Icons/index";
 
 const ChatInput = () => {
-  const [isVisible, setIsVisible] = React.useState(false);
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
-
+  
   return (
     <div
-      className="flex right-0 items-center justify-between w-full"
-      style={{ width: "100%", left: "50%", position:"absolute" ,bottom:"0"}}
+      className="flex right-0 items-center justify-between"
+      style={{ width: "100%", position:"absolute" ,bottom:"0"}}
     >
       <Textarea
         className="w-full outline-0"
@@ -23,7 +20,6 @@ const ChatInput = () => {
             color="primary"
             size="sm"
             type="button"
-            onClick={toggleVisibility}
           >
             <SendIcon />
           </Button>
