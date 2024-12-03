@@ -16,13 +16,13 @@ const ChatProfileSection = () => {
       childRef.current.callChildFunction(); // Call the function in the child
     }
   };
-  
+
   return (
     <>
-    <div>
       <Navbar
         disableAnimation
         className="fixed top-0"
+        style={{transition:"transform 0.3s ease-in-out"}}
         classNames={{ wrapper: "px-4" }}
       >
         <NavbarContent justify="start">
@@ -63,9 +63,8 @@ const ChatProfileSection = () => {
           </NavbarItem>
         </NavbarContent>
       </Navbar>
-    </div>
     <NearByUserModal profile={a} ref={childRef}/>
-</>
+    </>
   );
 };
 

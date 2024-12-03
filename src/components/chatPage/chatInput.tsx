@@ -1,14 +1,13 @@
 import { Textarea, Button } from "@nextui-org/react";
-
+import {motion} from 'framer-motion'
 import { SendIcon, PhotoIcon } from "@/Icons/index";
 
 const ChatInput = () => {
 
-  
   return (
-    <div
+    <motion.div
       className="flex items-center justify-between"
-      style={{ width: "100%", position:"fixed", bottom:0}}
+      style={{ width: "100%", position:"fixed", bottom:"1rem", padding:"0px 12px 0px 12px", transition:"transform 0.3s ease-in-out"}}
     >
       <Textarea
         className="w-full outline-0"
@@ -40,7 +39,7 @@ const ChatInput = () => {
         }
         variant="flat"
       />
-    </div>
+    </motion.div>
   );
 };
 
