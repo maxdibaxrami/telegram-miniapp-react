@@ -10,8 +10,8 @@ const ChatInput = () => {
 
   return (
     <div
-      className="flex right-0 items-center justify-between"
-      style={{ width: "100%", left: "50%"}}
+      className="flex right-0 items-center justify-between w-full"
+      style={{ width: "100%", left: "50%", position:"absolute" ,bottom:"0"}}
     >
       <Textarea
         className="w-full outline-0"

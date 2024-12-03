@@ -1,25 +1,21 @@
-//import { useViewportHeightContext } from '@/veiwPortContext';
-
-
 export default function ChatLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
 
-  //const viewportHeight = useViewportHeightContext();
   return (
     <section 
-        className='bg-background'
-        style={{
-          height: `100%`,
-          maxHeight:"100vh",
-          transition: 'height 0.3s ease',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-        >            
+      className='bg-background'
+      style={{
+        minHeight: '100%', // Ensures it takes full height of the parent
+        height: '100%',    // Sets height to 100% of parent
+        transition: 'height 0.3s ease',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >            
       {children}
     </section>
   );
