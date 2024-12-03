@@ -12,21 +12,11 @@ export default function ChatPage() {
   return (
 
     <ChatLayout>
-      <header className="flex">
-        <ChatProfileSection />
-      </header>
-
-
+      <ChatProfileSection />
       <main className="flex flex-grow overflow-y-auto">
         <MessageSection />
       </main>
-
-      <footer>
-        <form className="flex">
-          <ChatInput />
-        </form>
-      </footer>
-
+      <ChatInput />
   </ChatLayout>
 
   );
