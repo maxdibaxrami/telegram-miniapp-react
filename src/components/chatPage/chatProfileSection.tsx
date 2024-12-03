@@ -16,13 +16,13 @@ const ChatProfileSection = () => {
       childRef.current.callChildFunction(); // Call the function in the child
     }
   };
-
+  
   return (
     <>
+    <div>
       <Navbar
         disableAnimation
-        className="fixed top-0"
-        style={{transition:"transform 0.3s ease-in-out"}}
+        className="absolute top-0"
         classNames={{ wrapper: "px-4" }}
       >
         <NavbarContent justify="start">
@@ -49,7 +49,7 @@ const ChatProfileSection = () => {
                 src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
               />
               <div className="flex flex-col ml-2 text-left">
-                <span className="text-xl text-foreground font-bold">{"Mahdi Bahrmai"}</span>
+                <span className="text-l text-foreground font-bold">{"Mahdi Bahrmai"}</span>
                 <span className="text-small bold" style={{ color: "#22c55e" }}>
                   {"Online"}
                 </span>
@@ -63,8 +63,9 @@ const ChatProfileSection = () => {
           </NavbarItem>
         </NavbarContent>
       </Navbar>
+    </div>
     <NearByUserModal profile={a} ref={childRef}/>
-    </>
+</>
   );
 };
 

@@ -1,13 +1,17 @@
+import React from "react";
 import { Textarea, Button } from "@nextui-org/react";
-import {motion} from 'framer-motion'
+
 import { SendIcon, PhotoIcon } from "@/Icons/index";
 
 const ChatInput = () => {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
-    <motion.div
-      className="flex items-center justify-between"
-      style={{ width: "100%", padding:"0px 12px 0px 12px", transition:"transform 0.3s ease-in-out"}}
+    <div
+      className="flex right-0 items-center justify-between"
+      style={{ width: "100%", left: "50%"}}
     >
       <Textarea
         className="w-full outline-0"
@@ -19,6 +23,7 @@ const ChatInput = () => {
             color="primary"
             size="sm"
             type="button"
+            onClick={toggleVisibility}
           >
             <SendIcon />
           </Button>
@@ -39,7 +44,7 @@ const ChatInput = () => {
         }
         variant="flat"
       />
-    </motion.div>
+    </div>
   );
 };
 
