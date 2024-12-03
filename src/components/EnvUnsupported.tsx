@@ -3,6 +3,7 @@ import { retrieveLaunchParams, isColorDark, isRGB } from '@telegram-apps/sdk-rea
 import { useMemo } from 'react';
 
 export function EnvUnsupported() {
+  
   const [platform, isDark] = useMemo(() => {
     let platform = 'base';
     let isDark = false;
