@@ -18,7 +18,7 @@ export default function ChatPage() {
 
 
       <main className="flex-grow overflow-y-auto">
-      <MessageSection />
+        <MessageSection />
       </main>
 
       <footer>
