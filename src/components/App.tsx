@@ -13,6 +13,7 @@ export function App() {
   return (
     <AppRoot
       appearance={isDark ? 'dark' : 'light'}
+      style={{overflow:"hidden"}}
       platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
     >
       <HashRouter>
