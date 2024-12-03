@@ -22,7 +22,7 @@ const ChatProfileSection = () => {
     <div>
       <Navbar
         disableAnimation
-        className="absolute top-0"
+        className="fixed top-0"
         classNames={{ wrapper: "px-4" }}
       >
         <NavbarContent justify="start">
