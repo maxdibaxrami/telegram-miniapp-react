@@ -1,11 +1,9 @@
-import { useViewportHeightContext } from "@/veiwPortContext";
 
 export default function ChatLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const vp = useViewportHeightContext()  
 
   return (
     <section 
