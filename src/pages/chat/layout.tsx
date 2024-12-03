@@ -11,8 +11,6 @@ export default function ChatLayout({
     <section 
       className='bg-background'
       style={{
-        height: '100%',    // Sets height to 100% of parent
-        maxHeight :`${vp}px`,
         transition: 'height 0.3s ease',
         overflow: 'hidden',
         display: 'flex',
