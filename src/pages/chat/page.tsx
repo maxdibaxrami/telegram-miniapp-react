@@ -12,7 +12,7 @@ export default function ChatPage() {
   return (
 
     <ChatLayout>
-      <header>
+      <header className="flex">
         <ChatProfileSection />
       </header>
 
