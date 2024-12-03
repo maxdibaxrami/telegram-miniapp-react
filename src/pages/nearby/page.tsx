@@ -7,7 +7,7 @@ import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
 
 const animations = {
-  initial: { scale: 0, opacity: 0 },
+  initial: {opacity: 0 },
   animate: { scale: 1, opacity: 1, originY: 0 },
   exit: { scale: 0, opacity: 0 },
   transition: { type: "spring", stiffness: 350, damping: 40 },

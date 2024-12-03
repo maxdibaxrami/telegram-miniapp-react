@@ -3,6 +3,14 @@ import { useRef, useState } from "react";
 import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
 
+
+const animations = {
+  initial: { scale: 0, opacity: 0 },
+  animate: { scale: 1, opacity: 1, originY: 0 },
+  exit: { scale: 0, opacity: 0 },
+  transition: { type: "spring", stiffness: 350, damping: 40 },
+};
+
 export default function LikesPage() {
   const childRef = useRef();
   const [SelectedCard, setSelectedCard] = useState({});
@@ -20,7 +28,9 @@ export default function LikesPage() {
   };
 
   return (
-    <div
+    <motion.div 
+      {...animations} 
+      layout
       className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         overflow: "scroll",
@@ -37,15 +47,15 @@ export default function LikesPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            delay: index * 0.1, // Sequential loading effect
-            duration: 0.5, // Duration of fade-in
+            delay: index * 0.1, // Adjust delay based on index for sequential load
+            duration: 0.5,
           }}
         >
           <LikeCard onPressData={onCardClick} data={value} />
         </motion.div>
       ))}
       <NearByUserModal ref={childRef} profile={SelectedCard} />
-    </div>
+    </motion.div >
   );
 }
 
