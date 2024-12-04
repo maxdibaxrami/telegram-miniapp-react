@@ -1,12 +1,10 @@
-import { useEffect } from "react";
 import ChatFiltermenu from "./chatFilterMenu";
 import ChatList from "./chatList";
 import MatchList from "./matchList";
-import { viewport } from '@telegram-apps/sdk';
 
 const ChatPage = () => {
-  useEffect(()=>{alert(viewport.safeAreaInsetTop)},[])
 
+  
   return (
     <div
       className="w-full h-full px-6"
@@ -20,7 +18,7 @@ const ChatPage = () => {
       id="chatScrollcontainer"
     >
       <div style={{paddingBottom:"0.5rem"}} className="flex justify-between items-center">
-        <span style={{fontWeight:"500"}}  className="text-large text-default-600">Matches {viewport.safeAreaInsetTop.toString()}</span>
+        <span style={{fontWeight:"500"}}  className="text-large text-default-600">Matches </span>
       </div>
       <MatchList />
       <div className="flex justify-between py-2 items-center">
