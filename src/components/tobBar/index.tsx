@@ -15,6 +15,7 @@ import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
 
+
 interface ExploreFilterRef {
   openModal: () => void;
   closeModal: () => void;
@@ -26,12 +27,15 @@ const TopBar = () => {
   const childRef = useRef<ExploreFilterRef>(null);
   const childRefExplore = useRef<ExploreFilterRef>(null);
 
+  const safeAreaTop1 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tg-viewport-height')) || 0;
+  const safeAreaTop2 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tg-viewport-stable-height')) || 0;
+
   const handleOpenModal = () => {
     if (childRef.current) {
         childRef.current?.openModal();
     }
   };
-
+  
   const handleOpenModalExplore = () => {
     if (childRefExplore.current) {
       childRefExplore.current.openModal();
@@ -44,10 +48,11 @@ const TopBar = () => {
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: "4rem" }}
+      style={{ height: `calc(4rem + ${safeAreaTop1 - safeAreaTop2}px)` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
+
       </NavbarBrand>
 
       <NavbarContent justify="end">

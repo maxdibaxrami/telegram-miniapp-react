@@ -15,14 +15,12 @@ body {
 
 html {
   height: 100vh;
-  background-color: red;
 
 }
 
 .mobile-body {
   overflow: hidden;
   height: 100vh;
-  background-color: purple;
 }
 
 .mobile-wrap {
