@@ -48,14 +48,15 @@ const TopBar = () => {
   <>
     <Navbar
       className="top-0 fixed text-default-600"
-      
       style={{paddingTop:`${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'}` }}
     >
-      <NavbarBrand>
-          <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
-      </NavbarBrand>
 
       <NavbarContent justify="end">
+        <NavbarItem className="flex items-center">
+          <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="start">
         {searchParams.get("page")==="nearby" && (
           <NavbarItem className="flex items-center">
             <Button variant="solid" className="color-white" onPress={handleOpenModal} isIconOnly color="primary" style={{borderRadius:"20%"}} size="sm" aria-label="Like">
