@@ -7,6 +7,25 @@ import { useState } from "react";
 import ExploreCard from "./exploreCart";
 
 import MatchModal from "./matchModal";
+import { HeartEyesImoji, NotLikeImoji } from "@/components/explore/exploreBottomIcons";
+
+
+const getAnimationProps = () => {
+  return {
+    whileTap: {
+      scale: 0.85,
+    },
+  };
+};
+
+const getAnimationProps2 = () => {
+  return {
+    whileTap: {
+      rotate: -18, // Rotate to 348 degrees
+    },
+  };
+};
+
 
 const ExplorePage = () => {
 
@@ -38,6 +57,31 @@ const ExplorePage = () => {
                 />
             </AnimatePresence>
         </motion.div>
+
+        <motion.div
+                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
+                  animate={{ bottom: "25px", zIndex:50, right:"51%" }}
+                  style={{right:"51%"}}
+                  transition={{ type: "tween" }}
+                  {...getAnimationProps2()}
+                >
+                  <NotLikeImoji NextSlide={NextSlide} />
+                </motion.div>
+
+                <motion.div
+                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
+                  transition={{ type: "tween" }}
+                  style={{left:"51%"}}
+                  animate={{ bottom: "25px", zIndex:50 ,left:"51%" }}
+
+                  {...getAnimationProps()}
+                >
+                  <HeartEyesImoji
+                    dataId={mockProfiles[index]}
+                    openModal={openModal}
+                    NextSlide={NextSlide}
+                  />
+                </motion.div>
 
       <MatchModal
         isOpen={isModalOpen}

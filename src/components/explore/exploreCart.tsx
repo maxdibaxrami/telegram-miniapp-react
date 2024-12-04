@@ -1,35 +1,20 @@
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import './style.css';
+
 import { useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Button, Card, CardFooter, Chip } from "@nextui-org/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import './style.css';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
 import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
-import { HeartEyesImoji, NotLikeImoji } from "@/components/explore/exploreBottomIcons";
 
 
 
-const getAnimationProps = () => {
-  return {
-    whileTap: {
-      scale: 0.85,
-    },
-  };
-};
-
-const getAnimationProps2 = () => {
-  return {
-    whileTap: {
-      rotate: -18, // Rotate to 348 degrees
-    },
-  };
-};
 
 
 
@@ -218,36 +203,6 @@ const ExploreCard = (props) => {
         </div>
       </motion.div>
 
-      {props.frontCard && (
-        <>
-          <motion.div
-                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  animate={{ bottom: "25px", zIndex:50, right:"51%" }}
-                  style={{right:"51%"}}
-                  transition={{ type: "tween" }}
-                  {...getAnimationProps2()}
-                >
-                  <NotLikeImoji NextSlide={props.NextSlide} />
-                </motion.div>
-
-                <motion.div
-                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  transition={{ type: "tween" }}
-                  style={{left:"51%"}}
-                  animate={{ bottom: "25px", zIndex:50 ,left:"51%" }}
-
-                  {...getAnimationProps()}
-                >
-                  <HeartEyesImoji
-                    dataId={props.profile}
-                    openModal={props.openModal}
-                    NextSlide={props.NextSlide}
-                  />
-                </motion.div>
-        </>
-      )}
-                
-          
     </>
   );
 };

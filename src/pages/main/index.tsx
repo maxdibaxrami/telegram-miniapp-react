@@ -161,7 +161,7 @@ const MainPage = () => {
         </AnimatePresence>
 
 
-      </section>
+            </section>
       
     </Page>
     
