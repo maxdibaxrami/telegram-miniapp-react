@@ -14,6 +14,7 @@ import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
+import { viewport } from '@telegram-apps/sdk';
 
 
 interface ExploreFilterRef {
@@ -45,17 +46,13 @@ const TopBar = () => {
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: `calc(4rem + env(safe-area-inset-top))` }}
+      style={{ height: `calc(4rem + ${viewport.safeAreaInsetTop})` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
-
       </NavbarBrand>
 
       <NavbarContent justify="end">
-
-    
-
         {searchParams.get("page")==="nearby" && (
           <NavbarItem className="flex items-center">
             <Button variant="solid" className="color-white" onPress={handleOpenModal} isIconOnly color="primary" style={{borderRadius:"20%"}} size="sm" aria-label="Like">
