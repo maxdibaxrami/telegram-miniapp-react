@@ -27,7 +27,7 @@ const SwiperImages = () => {
             style={{
                 objectFit: "cover",
                 padding: "0px 0px 5px 0px",
-                height:`${['macos', 'ios'].includes(lp.platform) ? 'calc(100vh - 200px)' : 'calc(100vh - 240px)'}`
+                height:`${['macos', 'ios'].includes(lp.platform) ? 'calc(100vh - 240px)' : 'calc(100vh - 200px)'}`
             }}
         />
     </>
