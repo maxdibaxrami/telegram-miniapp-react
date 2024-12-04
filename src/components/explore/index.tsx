@@ -41,7 +41,7 @@ const ExplorePage = () => {
   
 
   return (
-    <div style={{height:"100vh"}} >
+    <div style={{height:"100vh", position:"relative"}} >
         <motion.div style={{ width: "100vw", height: "100vh", position: "relative"}}>
             <AnimatePresence initial={false}>
                 <ExploreCard profile={mockProfiles[index+1]} key={index + 1} frontCard={false} />
@@ -66,9 +66,9 @@ const ExplorePage = () => {
                   {...getAnimationProps2()}
                 >
                   <NotLikeImoji NextSlide={NextSlide} />
-                </motion.div>
+        </motion.div>
 
-                <motion.div
+        <motion.div
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
                   style={{left:"51%"}}
@@ -81,13 +81,13 @@ const ExplorePage = () => {
                     openModal={openModal}
                     NextSlide={NextSlide}
                   />
-                </motion.div>
+        </motion.div>
 
-      <MatchModal
-        isOpen={isModalOpen}
-        modalData={mockProfiles[index]}
-        onClose={closeModal}
-      />
+          <MatchModal
+            isOpen={isModalOpen}
+            modalData={mockProfiles[index]}
+            onClose={closeModal}
+          />
     </div>
   );
 };
