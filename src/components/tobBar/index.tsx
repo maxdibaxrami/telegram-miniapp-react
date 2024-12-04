@@ -10,11 +10,12 @@ import { ThemeSwitch } from "./SwitchTheme";
 
 import { useSearchParams } from "react-router-dom";
 import {RotateWords} from '@/components/animate/rotate-words'
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
 
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -39,15 +40,16 @@ const TopBar = () => {
     }
   };
 
+  const lp = useLaunchParams()
 
   
-
+  
   return (
   <>
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: ` calc(4rem + 44px )` }}
+      style={{ height: ` calc(4rem + ${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'} )` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
