@@ -14,7 +14,7 @@ import {
 } from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/topBarPages";
-import { Link } from "react-router-dom";
+
 export default function Setting() {
   return (
     <div className="container mx-auto max-w-7xl flex-grow light-background--color">
@@ -68,8 +68,7 @@ export default function Setting() {
                   key="logout"
                   description="Logout from account"
                   startContent={<LogOutIcon />}
-                  as={Link}
-                  href="/sign-up"
+                  href="/#/sign-up"
                 >
                   Logout
                 </ListboxItem>
