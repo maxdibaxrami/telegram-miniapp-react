@@ -46,7 +46,7 @@ const TopBar = () => {
   return (
   <>
     <Navbar
-      className="top-0 fixed text-default-600"
+      className="top-0 fixed text-default-600 z-50"
       style={{paddingTop:`${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'}` }}
     >
 
@@ -56,6 +56,10 @@ const TopBar = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="start">
+        <NavbarItem className="flex items-center">
+          <ThemeSwitch />
+        </NavbarItem>
+
         {searchParams.get("page")==="nearby" && (
           <NavbarItem className="flex items-center">
             <Button variant="solid" className="color-white" onPress={handleOpenModal} isIconOnly color="primary" style={{borderRadius:"20%"}} size="sm" aria-label="Like">
@@ -72,9 +76,7 @@ const TopBar = () => {
           </NavbarItem>
         )}
         
-        <NavbarItem className="flex items-center">
-          <ThemeSwitch />
-        </NavbarItem>
+    
 
       </NavbarContent>
     </Navbar>
