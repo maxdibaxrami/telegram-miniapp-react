@@ -1,7 +1,6 @@
 import {
   Button,
   Navbar,
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from "@nextui-org/react";
