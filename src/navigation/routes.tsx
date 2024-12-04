@@ -9,6 +9,7 @@ import MainPage from '@/pages/main/index';
 import EditProfile from '@/pages/editprofile/page';
 import Setting from '@/pages/setting/page';
 import ChatPage from '@/pages/chat/page';
+import SignupPage from '@/pages/signup/page';
 
 interface Route {
   path: string;
@@ -26,6 +27,8 @@ export const routes: Route[] = [
   { path: '/profile-edit', Component: EditProfile, title: 'Main Page' },
   { path: '/setting', Component: Setting, title: 'Main Page' },
   { path: '/chat-detail', Component: ChatPage, title: 'Main Page' },
+  { path: '/sign-up', Component: SignupPage, title: 'signup' },
+
 
   {
     path: '/ton-connect',
