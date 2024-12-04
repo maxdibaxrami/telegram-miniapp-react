@@ -37,6 +37,17 @@
         document.body.classList.add('mobile-body');
         document.getElementById('wrap').classList.add('mobile-wrap');
         document.getElementById('content').classList.add('mobile-content');
+
+        let initialHeight = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+          if (window.innerHeight >= initialHeight) {
+            console.log('Keyboard closed');
+            // Add your logic for when the keyboard closes
+          }
+          initialHeight = window.innerHeight;
+        });
+
       })();
     </script>
 
