@@ -1,10 +1,14 @@
 import { Image } from "@nextui-org/react";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useSwiper } from "swiper/react";
 
 const SwiperImages = () => {
 
-    const swiper = useSwiper();
+    const lp = useLaunchParams()
 
+    
+    const swiper = useSwiper();
+    
     const NextSlide = ()=> {
         swiper.slideNext()
         console.log(swiper.activeIndex)
@@ -23,6 +27,7 @@ const SwiperImages = () => {
             style={{
                 objectFit: "cover",
                 padding: "0px 0px 5px 0px",
+                height:`${['macos', 'ios'].includes(lp.platform) ? 'calc(100vh - 200px)' : 'calc(100vh - 240px)'}`
             }}
         />
     </>
