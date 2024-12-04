@@ -93,7 +93,6 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               justifyContent: "center",
               marginTop: "4.5rem"
             }}
-            { }
             whileTap={{ cursor: "grabbing" }}
             variants={ variantsFrontCard }
             initial="initial"
