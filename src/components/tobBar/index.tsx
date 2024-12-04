@@ -46,7 +46,7 @@ const TopBar = () => {
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: `calc(4rem + ${viewport.contentSafeAreaInsetTop()})` }}
+      style={{ height: ` ${viewport.contentSafeAreaInsetTop}` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
