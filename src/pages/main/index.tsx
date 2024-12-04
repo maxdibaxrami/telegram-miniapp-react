@@ -11,11 +11,12 @@ import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
 import NearByPage from '@/pages/nearby/page';
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 
 
 const MainPage = () => {
-
+    const lp = useLaunchParams();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -42,7 +43,7 @@ const MainPage = () => {
 
                 
             <NavBar/>
-            <section style={{marginTop:"44px"}} className="flex flex-col light-background--color items-center justify-center gap-4 ">
+            <section style={['macos', 'ios'].includes(lp.platform) ?{marginTop:"44px"}:{marginTop:"0px"}} className="flex flex-col light-background--color items-center justify-center gap-4 ">
 
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">
