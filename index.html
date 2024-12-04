@@ -22,12 +22,11 @@
     <script src="https://unpkg.com/@telegram-apps/sdk@1.0.0/dist/index.iife.js"></script>
 
     <script>
-      
+
       (function() {
-        window.onload = () => {
-          const safeAreaTop = window.Telegram.WebApp.viewport.safeArea.top;
-          alert( safeAreaTop);
-        };
+        
+          
+        
         var { retrieveLaunchParams, postEvent } = window.telegramApps.sdk;
         var lp = retrieveLaunchParams();
   
@@ -42,6 +41,8 @@
         document.body.classList.add('mobile-body');
         document.getElementById('wrap').classList.add('mobile-wrap');
         document.getElementById('content').classList.add('mobile-content');
+
+        
 
         let initialHeight = window.innerHeight;
 
