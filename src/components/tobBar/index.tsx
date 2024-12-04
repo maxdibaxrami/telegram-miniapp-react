@@ -10,7 +10,7 @@ import { ThemeSwitch } from "./SwitchTheme";
 
 import { useSearchParams } from "react-router-dom";
 import {RotateWords} from '@/components/animate/rotate-words'
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
@@ -40,6 +40,7 @@ const TopBar = () => {
     }
   };
 
+  useEffect(()=>{alert(viewport.safeAreaInsetTop)},[])
 
   return (
   <>
