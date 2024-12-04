@@ -1,3 +1,5 @@
+import { useLaunchParams, miniApp, useSignal } from '@telegram-apps/sdk-react';
+import { AppRoot } from '@telegram-apps/telegram-ui';
 import { Route, Routes, HashRouter } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -5,8 +7,15 @@ import { routes } from '@/navigation/routes.tsx';
 
 
 export function App() {
+  const lp = useLaunchParams();
+  const isDark = useSignal(miniApp.isDark);
 
   return (
+    <AppRoot
+      appearance={isDark ? 'dark' : 'light'}
+      platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
+      
+    >
       <HashRouter>
         <AnimatePresence>
           <Routes>
@@ -29,5 +38,6 @@ export function App() {
           </Routes>
         </AnimatePresence>
       </HashRouter>
+    </AppRoot>
   );
 }

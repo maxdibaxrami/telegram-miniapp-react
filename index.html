@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
     <meta name="theme-color" content="#000000"/>
     <title>Telegram Mini App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,9 +14,31 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="controls">
-      <div id="root"></div>
+    <div id="wrap">
+      <div id="content">
+        My application goes here.
+      </div>
     </div>
+    <script src="https://unpkg.com/@telegram-apps/sdk@1.0.0/dist/index.iife.js"></script>
+
+    <script>
+      (function() {
+        var { retrieveLaunchParams, postEvent } = window.telegramApps.sdk;
+        var lp = retrieveLaunchParams();
+  
+        // Some versions of Telegram don't need the classes above.
+        if (['macos', 'tdesktop', 'weba', 'web', 'webk'].includes(lp.platform)) {
+          return;
+        }
+  
+        // Expand the application.
+        postEvent('web_app_expand');
+  
+        document.body.classList.add('mobile-body');
+        document.getElementById('wrap').classList.add('mobile-wrap');
+        document.getElementById('content').classList.add('mobile-content');
+      })();
+    </script>
 
     <script src="/src/index.tsx" type="module"></script>
 
