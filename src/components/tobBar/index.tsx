@@ -49,7 +49,7 @@ const TopBar = () => {
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: ` calc(4rem)`, paddingTop:`${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'}` }}
+      style={{paddingTop:`${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'}` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
