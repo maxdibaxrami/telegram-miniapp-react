@@ -13,8 +13,10 @@ body {
   position: relative;
 }
 
-html, body {
+html {
   height: 100vh;
+  background-color: red;
+
 }
 
 .mobile-body {
