@@ -22,9 +22,8 @@ const MainPage = () => {
     return <Page back={false}>
 
             
-            <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
             {true && (
-
               <motion.div
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
@@ -43,7 +42,7 @@ const MainPage = () => {
 
                 
             <NavBar/>
-            <section className="flex flex-col light-background--color items-center justify-center gap-4 ">
+            <section style={{marginTop:"44px"}} className="flex flex-col light-background--color items-center justify-center gap-4 ">
 
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">

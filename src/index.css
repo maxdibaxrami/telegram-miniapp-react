@@ -63,10 +63,6 @@ html {
 
 }
 
-.light-background--color{
-  background-color: transparent;
-}
-
 .background-drop--bluebase{
   background: rgba(255, 255, 255, 0.34);
   border-radius: 16px;
