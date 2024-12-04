@@ -3,9 +3,6 @@ import ChatList from "./chatList";
 import MatchList from "./matchList";
 
 const ChatPage = () => {
-  const safeAreaTop1 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tg-viewport-height')) || 10;
-  const safeAreaTop2 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tg-viewport-stable-height')) || 10;
-  const finalSafeArea = safeAreaTop1 - safeAreaTop2
 
   return (
     <div
@@ -20,7 +17,7 @@ const ChatPage = () => {
       id="chatScrollcontainer"
     >
       <div style={{paddingBottom:"0.5rem"}} className="flex justify-between items-center">
-        <span style={{fontWeight:"500"}}  className="text-large text-default-600">Matches {safeAreaTop1} , {safeAreaTop2}, {finalSafeArea}</span>
+        <span style={{fontWeight:"500"}}  className="text-large text-default-600">Matches</span>
       </div>
       <MatchList />
       <div className="flex justify-between py-2 items-center">

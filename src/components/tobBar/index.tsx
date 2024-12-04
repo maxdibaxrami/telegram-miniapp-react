@@ -27,13 +27,6 @@ const TopBar = () => {
   const childRef = useRef<ExploreFilterRef>(null);
   const childRefExplore = useRef<ExploreFilterRef>(null);
 
-  const safeAreaTop1 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tg-viewport-height')) || 0;
-  const safeAreaTop2 = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tg-viewport-stable-height')) || 0;
-  const finalSafeArea = safeAreaTop1 - safeAreaTop2
-
-  console.log(finalSafeArea);
-  console.log(safeAreaTop2);
-
   const handleOpenModal = () => {
     if (childRef.current) {
         childRef.current?.openModal();
@@ -52,7 +45,7 @@ const TopBar = () => {
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: `calc(4rem + ${finalSafeArea}px)` }}
+      style={{ height: `calc(4rem + env(safe-area-inset-top))` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
