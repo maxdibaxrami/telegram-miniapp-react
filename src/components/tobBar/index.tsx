@@ -10,7 +10,7 @@ import { ThemeSwitch } from "./SwitchTheme";
 
 import { useSearchParams } from "react-router-dom";
 import {RotateWords} from '@/components/animate/rotate-words'
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
@@ -40,13 +40,31 @@ const TopBar = () => {
     }
   };
 
+  const [menuHeight, setMenuHeight] = useState(0);
+
+  useEffect(() => {
+    const updateMenuHeight = async () => {
+      const topInset = await viewport.safeAreaInsetTop();
+      const bottomInset = await viewport.safeAreaInsetBottom();
+      const screenHeight = window.innerHeight;
+      setMenuHeight(screenHeight - topInset - bottomInset);
+    };
+
+    updateMenuHeight();
+    window.addEventListener('resize', updateMenuHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateMenuHeight);
+    };
+  }, []);
+  
 
   return (
   <>
     <Navbar
       className="top-0 fixed text-default-600"
       
-      style={{ height: ` ${viewport.contentSafeAreaInsetTop}` }}
+      style={{ height: ` calc(4rem + ${menuHeight} )` }}
     >
       <NavbarBrand>
           <RotateWords words={searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)} />  
