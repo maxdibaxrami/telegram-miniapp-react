@@ -43,7 +43,7 @@ const MainPage = () => {
 
                 
             <NavBar/>
-            <section style={['macos', 'ios'].includes(lp.platform) ?{marginTop:"44px"}:{marginTop:"0px"}} className="flex flex-col light-background--color items-center justify-center gap-4 ">
+            <section style={{marginTop:"50px"}} className="flex flex-col items-center justify-center gap-4 ">
 
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">
@@ -57,8 +57,6 @@ const MainPage = () => {
                     }}
                   >
                     <ExplorePage/>
-
-
                   </motion.div>
                 </AnimatePresence>
               )}
