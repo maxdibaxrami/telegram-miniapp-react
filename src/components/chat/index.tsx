@@ -2,14 +2,9 @@ import ChatFiltermenu from "./chatFilterMenu";
 import ChatList from "./chatList";
 import MatchList from "./matchList";
 
-import {
-  viewportSafeAreaInsetTop,
-  viewportContentSafeAreaInsetTop,
-} from '@telegram-apps/sdk';
 
 const ChatPage = () => {
 
-  
   return (
     <div
       className="w-full h-full px-6"
@@ -27,7 +22,7 @@ const ChatPage = () => {
       </div>
       <MatchList />
       <div className="flex justify-between py-2 items-center">
-        <span style={{fontWeight:"500"}} className="text-large text-default-600">Chat {viewportSafeAreaInsetTop()} | {viewportContentSafeAreaInsetTop()}</span>
+        <span style={{fontWeight:"500"}} className="text-large text-default-600">Chat</span>
         <ChatFiltermenu/>
 
       </div>

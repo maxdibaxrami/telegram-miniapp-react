@@ -14,6 +14,8 @@ import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
 
+import { useLaunchParams } from '@telegram-apps/sdk-react';
+
 import {
   viewportSafeAreaInsetTop,
   viewportContentSafeAreaInsetTop,
@@ -42,12 +44,15 @@ const TopBar = () => {
     }
   };
 
+  const lp = useLaunchParams()
+
+  
   
   return (
   <>
     <Navbar
       className="top-0 fixed text-default-600 z-50"
-      style={{paddingTop:`${viewportSafeAreaInsetTop() | viewportContentSafeAreaInsetTop()}` }}
+      style={{paddingTop:`${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'}` }}
     >
 
       <NavbarContent justify="end">
