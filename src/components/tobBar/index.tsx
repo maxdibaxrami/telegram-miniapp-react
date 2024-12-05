@@ -16,10 +16,7 @@ import ExploreFilter from "../explore/exploreFilter";
 
 import { useLaunchParams } from '@telegram-apps/sdk-react';
 
-import {
-  viewportSafeAreaInsetTop,
-  viewportContentSafeAreaInsetTop,
-} from '@telegram-apps/sdk';
+
 
 interface ExploreFilterRef {
   openModal: () => void;
