@@ -14,10 +14,6 @@ import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
 
-import { useLaunchParams } from '@telegram-apps/sdk-react';
-
-
-
 interface ExploreFilterRef {
   openModal: () => void;
   closeModal: () => void;
@@ -41,11 +37,6 @@ const TopBar = () => {
     }
   };
 
-  const lp = useLaunchParams()
-
-
-  
-  
   return (
   <>
     <Navbar
