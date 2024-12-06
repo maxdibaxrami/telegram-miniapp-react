@@ -4,7 +4,7 @@ export default function EditProfileLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section style={{paddingTop:"50px"}} className="flex flex-col items-center justify-center gap-4 light-background--color">
+    <section className="flex flex-col items-center justify-center gap-4 light-background--color">
       {children}
     </section>
   );
