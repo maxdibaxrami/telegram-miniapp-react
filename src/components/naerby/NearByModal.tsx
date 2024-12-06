@@ -24,7 +24,6 @@ import {NotLikeImoji, HeartEyesImoji} from './NearByMotionIcons'
 import ParallaxText from "../animate/text-slider";
 import ExploreCartData from "../explore/exploreCartData";
 import SwiperImages from "../explore/swiperImage";
-import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 const getAnimationProps = () => {
   return {
@@ -53,7 +52,6 @@ const variantsFrontCard = {
 };
 
 const NearByUserModal = forwardRef((props:any, ref) => {
-  const lp = useLaunchParams()
 
   const [openFooter, setOpenFooter] = useState(false);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -83,7 +81,6 @@ const NearByUserModal = forwardRef((props:any, ref) => {
           <motion.div
             style={{
               width: "calc(100%)",
-              height: ['macos', 'ios'].includes(lp.platform) ? 'calc(100vh - 100px)' : 'calc(100vh - 70px)',
               maxHeight: "100%",
               overflow: "scroll",
               position: "absolute",
@@ -91,7 +88,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               cursor: "grab",
               display: "flex",
               justifyContent: "center",
-              marginTop: "4.5rem"
+              marginTop: "calc(4.5rem + 50px)"
             }}
             whileTap={{ cursor: "grabbing" }}
             variants={ variantsFrontCard }
@@ -178,8 +175,8 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               </div>
 
               <motion.div
-                initial={{ height: "100px" }}
-                animate={{ height: openFooter ? "100%" : "100px" }}
+                initial={{ height: "110px" }}
+                animate={{ height: openFooter ? "100%" : "110px" }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 style={{ overflow: "hidden" }}
                 className="absolute bottom-0 z-10 w-full"

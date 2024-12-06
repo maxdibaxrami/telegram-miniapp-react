@@ -91,8 +91,8 @@ const ChatList = () => {
                 <span
                   className={
                     item.id % 2 !== 0
-                      ? "text-tiny text-handller-chat text-default-700 mt-1"
-                      : "text-tiny text-handller-chat font-bold text-default-700 mt-1"
+                      ? "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                      : "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
                   }
                 >
                   {item.email}

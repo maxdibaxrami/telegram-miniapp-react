@@ -161,8 +161,8 @@ const ExploreCard = (props) => {
             </div>
 
             <motion.div
-              initial={{ height: "100px" }}
-              animate={{ height: openFooter ? "100%" : "100px" }}
+              initial={{ height: "110px" }}
+              animate={{ height: openFooter ? "100%" : "110px" }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
               style={{ overflow: "hidden" }}
               className="absolute bottom-0 z-10 w-full"
