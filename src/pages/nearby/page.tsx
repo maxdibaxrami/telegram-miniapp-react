@@ -35,8 +35,6 @@ export default function NearByPage() {
       layout
       className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
-        overflow: "scroll",
-        maxHeight: "100vh",
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
         paddingLeft:"30px",

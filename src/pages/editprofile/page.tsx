@@ -22,7 +22,7 @@ export default function EditProfilePage() {
     <Page>
         <div
         className="container mx-auto max-w-7xl flex-grow"
-        style={{ overflow: "scroll", maxHeight: "calc(100vh)" }}
+        style={{ maxHeight: "calc(100vh)" }}
       >
         <TopBarPages />
         <section

@@ -11,12 +11,8 @@ import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
 import NearByPage from '@/pages/nearby/page';
-import { useLaunchParams } from '@telegram-apps/sdk-react';
-
-
 
 const MainPage = () => {
-    const lp = useLaunchParams();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
