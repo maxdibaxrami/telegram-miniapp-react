@@ -19,10 +19,11 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   const ProfileCard = ({ color, gradient, icon, label, text }) => (
     <motion.div
       className="flex gap-3 mt-1 mb-3"
-      initial={{ opacity: 0 }}
+      initial={openFooter? { opacity: 1 } : { opacity: 0 } }
       style={{marginLeft:"4px"}}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      
       transition={{
         ease: "linear",
         duration: 0.25,
@@ -176,7 +177,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
                               key={index}
                               className="m-1"
                               color="success"
-                              startContent={<HashtagIcon/>}
+                              startContent={<HashtagIcon className="size-4"/>}
                               variant="solid"
                             >
                               {value}

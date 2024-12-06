@@ -5,6 +5,7 @@ import { useRef } from "react";
 import NearByCard from "@/components/naerby/nearByCard";
 import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
+import BlurFade from "@/components/animate/BlurFade";
 
 const animations = {
   initial: {opacity: 0 },
@@ -12,7 +13,7 @@ const animations = {
   exit: { scale: 0, opacity: 0 },
   transition: { type: "spring", stiffness: 350, damping: 40 },
 };
-
+ 
 export default function NearByPage() {
   const [SelectedCard, setSelectedCard] = useState({});
   const childRef = useRef();
@@ -42,21 +43,14 @@ export default function NearByPage() {
       }}
     >
       {mockProfiles.map((value, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            delay: index * 0.1, // Adjust delay based on index for sequential load
-            duration: 0.5,
-          }}
-        >
+        <BlurFade key={index} delay={0.25 + index * 0.05} inView>
           <NearByCard
-            data={value}
-            num={index}
-            onCardClick={onCardClick}
-          />
-        </motion.div>
+              data={value}
+              num={index}
+              onCardClick={onCardClick}
+            />
+        </BlurFade>
+          
       ))}
       <NearByUserModal ref={childRef} profile={SelectedCard} />
     </motion.div>

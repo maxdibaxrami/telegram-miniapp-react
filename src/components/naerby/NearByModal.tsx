@@ -120,7 +120,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                 ))}
               </Swiper>
 
-              <div className="absolute" style={{ bottom: "105px", zIndex: 10 }}>
+              <div className="absolute" style={{ bottom: "120px", zIndex: 10 }}>
                 <ParallaxText baseVelocity={2}>
                   <Chip
                     variant="solid"

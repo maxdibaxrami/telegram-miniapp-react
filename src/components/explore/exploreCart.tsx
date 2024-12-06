@@ -10,13 +10,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon, VerifyIconFill } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
-
-
-
-
-
 
 const ExploreCard = (props) => {
   const [openFooter, setOpenFooter] = useState(false);
@@ -29,11 +24,11 @@ const ExploreCard = (props) => {
   // Detecting when the drag motion reaches max left or right
   const handleDragEnd = (_, info) => {
     if (!openFooter) { // Disable swapping when footer is open
-      if (info.offset.x < -100) {
-        setExitX(-250);
+      if (info.offset.x < -300) {
+        setExitX(-490);
         props.setIndex(props.index + 1); // Move to next slide
-      } else if (info.offset.x > 100) {
-        setExitX(250);
+      } else if (info.offset.x > 300) {
+        setExitX(490);
         props.setIndex(props.index + 1); // Move to next slide
       }
     }
@@ -95,6 +90,10 @@ const ExploreCard = (props) => {
               loop={true}
               pagination={{ clickable: false }}
               navigation={false}
+              autoplay={{
+                delay: 3000, // 3 seconds
+                disableOnInteraction: false, // Keep auto-play after user interaction
+              }}
               modules={[Pagination, Autoplay]}
               className="mySwiper"
               onSlideChange={() => setSlideCounter(slideCountrt + 1)}
@@ -106,7 +105,24 @@ const ExploreCard = (props) => {
               ))}
             </Swiper>
 
-            <div className="absolute" style={{ bottom: "105px", zIndex: 10 }}>
+            <div className="absolute" style={{ bottom: "154px", zIndex: 10 }}>
+              <ParallaxText baseVelocity={-2}>
+              {props.profile.interests.map((value)=>{
+                return <Chip
+                          variant="solid"
+                          color="success"
+                          size="md"
+                          style={{ marginRight: "10px" }}
+                          startContent={<HashtagIcon className="size-4" />}
+                        >
+                        {value}
+                    </Chip>
+              })}
+                
+              </ParallaxText>
+            </div>
+
+            <div className="absolute" style={{ bottom: "120px", zIndex: 10 }}>
               <ParallaxText baseVelocity={2}>
                 <Chip
                   variant="solid"
