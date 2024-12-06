@@ -35,8 +35,8 @@ export default function LikesPage() {
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft: "30px",
-        paddingRight: "30px",
+        paddingLeft: "1.5rem",
+        paddingRight: "1.5rem",
       }}
     >
       {mockProfiles.map((value, index) => (

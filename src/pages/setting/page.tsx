@@ -19,7 +19,7 @@ export default function Setting() {
   return (
     <Page>
       <div  className="container mx-auto max-w-7xl flex-grow light-background--color">
-        <section style={{paddingTop:"98px"}} className="flex flex-col items-center justify-center gap-4 text-default-600">
+        <section style={{paddingTop:"120px"}} className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
           <div className="w-full h-full px-6 pb-4">
             <Switch
