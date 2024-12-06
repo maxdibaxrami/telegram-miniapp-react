@@ -1,13 +1,9 @@
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
-import { Button, Avatar } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import {useRef} from 'react'
-import { BackMenu } from "@/Icons/index";
 import NearByUserModal from "../naerby/NearByModal";
-import { useNavigate } from "react-router-dom";
-import ChatDetailMenu from "./chatDetailMenu";
 
 const ChatProfileSection = () => {
-  const navigate = useNavigate()
   const childRef = useRef();
 
   const handleClick = () => {

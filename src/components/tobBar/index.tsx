@@ -5,7 +5,6 @@ import {
 } from "@nextui-org/react";
 
 import { useSearchParams } from "react-router-dom";
-import {RotateWords} from '@/components/animate/rotate-words'
 import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import ExploreFilter from "../explore/exploreFilter";
