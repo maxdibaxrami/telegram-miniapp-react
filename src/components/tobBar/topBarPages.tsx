@@ -8,17 +8,14 @@ import { ThemeSwitch } from "./SwitchTheme";
 
 import {RotateWords} from '@/components/animate/rotate-words'
 
-import { useLaunchParams } from '@telegram-apps/sdk-react';
-
 
 const TopBar = () => {
-  const lp = useLaunchParams()
 
   return (
   <>
     <Navbar
       className="top-0 fixed text-default-600 z-50"
-      style={{paddingTop:`${['macos', 'ios'].includes(lp.platform) ? '44px' : '0px'}` }}
+      style={{paddingTop:'47px' }}
     >
 
       <NavbarContent style={{gap:0}} justify="end">

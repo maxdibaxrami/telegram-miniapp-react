@@ -21,7 +21,7 @@ export default function Setting() {
       <div  className="container mx-auto max-w-7xl flex-grow light-background--color">
         <section className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
-          <div style={{marginTop:"50px"}} className="w-full h-full px-6 pb-4">
+          <div style={{paddingTop:"50px"}} className="w-full h-full px-6 pb-4">
             <Switch
               classNames={{
                 base: cn(
