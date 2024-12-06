@@ -29,19 +29,12 @@ const ChatProfileSection = () => {
       >
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex">
-              <Button
-                isIconOnly
-                aria-label="Like"
-                className="mr-2 text-white"
-                color="primary"
-                onPress={()=> { navigate("/main?page=chat")}}
-              >
-                <BackMenu />
-              </Button>
+           
           </NavbarItem>
 
-          <NavbarItem className="">
-            <button className="lg:flex flex items-center" onClick={handleClick}>
+        </NavbarContent>
+        <NavbarContent justify="center">
+        <button className="lg:flex flex items-center" onClick={handleClick}>
               <Avatar
                 isBordered
                 className="mr-2"
@@ -57,12 +50,9 @@ const ChatProfileSection = () => {
                 </span>
               </div>
             </button>
-          </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
-          <NavbarItem className="lg:flex">
-            <ChatDetailMenu  />
-          </NavbarItem>
+         
         </NavbarContent>
       </Navbar>
     </div>

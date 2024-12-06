@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { forwardRef, useImperativeHandle } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ArowDownIcon, ArowUpIcon, BabyIcon, HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, VerifyIconFill } from "@/Icons/index";
+import { ArowDownIcon, ArowUpIcon, BabyIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, SexualityIcon, VerifyIconFill } from "@/Icons/index";
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import { ArrowRight } from "@/Icons/index";
@@ -109,6 +109,10 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                 loop={true}
                 pagination={{ clickable: false }}
                 navigation={false}
+                autoplay={{
+                  delay: 3000, // 3 seconds
+                  disableOnInteraction: false, // Keep auto-play after user interaction
+                }}
                 modules={[Pagination, Autoplay]}
                 className="mySwiper"
                 onSlideChange={() => setSlideCounter(slideCountrt + 1)}
@@ -119,7 +123,18 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-
+              
+              <div className="absolute" style={{ bottom: "155px", zIndex: 10 }}>
+                  <Chip
+                    variant="solid"
+                    color="secondary"
+                    size="md"
+                    style={{ marginLeft: "10px" }}
+                    startContent={<LocationIcon fill="#FFF" className="size-4" />}
+                  >
+                    {props.profile.location}
+                  </Chip>
+              </div>
               <div className="absolute" style={{ bottom: "120px", zIndex: 10 }}>
                 <ParallaxText baseVelocity={2}>
                   <Chip
