@@ -44,7 +44,7 @@ const BottomMenu = () => {
               aria-label="Options"
               classNames={{
                 tab: " h-auto p-0 color-white",
-                tabList: "backdrop-blur	bg-background/80 backdrop-saturate-150"
+                tabList: "backdrop-blur	bg-background/80 backdrop-saturate-150 border-white/20 border-1 shadow-small"
               }}
               color="primary"
               size="lg"

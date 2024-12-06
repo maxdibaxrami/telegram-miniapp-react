@@ -14,7 +14,7 @@ const ChatInput = () => {
       style={{ width: "100%", left: "50%"}}
     >
       <Textarea
-        className="w-full outline-0"
+        className="w-full"
         endContent={
           <Button
             isIconOnly
