@@ -1,10 +1,8 @@
 import { Image } from "@nextui-org/react";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useSwiper } from "swiper/react";
 
 const SwiperImages = () => {
 
-    const lp = useLaunchParams()
 
     
     const swiper = useSwiper();
