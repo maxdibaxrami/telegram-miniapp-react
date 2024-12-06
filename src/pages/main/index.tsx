@@ -88,8 +88,7 @@ const MainPage = () => {
                     style={{width:"100%"}}
 
                   >
-                      <LikesPage/>
-
+                    <LikesPage/>
                   </motion.div>
                 </AnimatePresence>
               )}
@@ -107,8 +106,7 @@ const MainPage = () => {
                     style={{width:"100%"}}
 
                   >
-                      <NearByPage/>
-
+                    <NearByPage/>
                   </motion.div>
                 </AnimatePresence>
               )}
@@ -127,7 +125,7 @@ const MainPage = () => {
                     
                   >
 
-                  <ProfilePage/>
+                    <ProfilePage/>
                   </motion.div>
                 </AnimatePresence>
               )}

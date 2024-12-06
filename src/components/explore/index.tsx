@@ -42,7 +42,7 @@ const ExplorePage = () => {
 
   return (
     <div style={{position:"relative"}} >
-        <motion.div style={{ width: "100vw", height: "100vh", position: "relative"}}>
+        <motion.div style={{ width: "100vw", height: "calc(100vh - 50px)", position: "relative"}}>
             <AnimatePresence initial={false}>
                 <ExploreCard profile={mockProfiles[index+1]} key={index + 1} frontCard={false} />
                 <ExploreCard
