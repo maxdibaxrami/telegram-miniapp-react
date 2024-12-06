@@ -24,6 +24,8 @@ const ChatProfileSection = () => {
         disableAnimation
         className="absolute top-0"
         classNames={{ wrapper: "px-4" }}
+        style={{paddingTop:'47px' }}
+
       >
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex">
