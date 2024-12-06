@@ -37,12 +37,11 @@ export default function EditProfilePage() {
     <Page>
         <div
         className="container mx-auto max-w-7xl flex-grow"
-        style={{paddingTop:`${getPaddingForPlatform}`}} 
       >
         <TopBarPages />
         <section
           className="flex flex-col items-center justify-center gap-4"
-          
+          style={{paddingTop:`${getPaddingForPlatform}`}} 
           
         >
         <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem" }} className="flex mb-4 w-full justify-between items-center">
