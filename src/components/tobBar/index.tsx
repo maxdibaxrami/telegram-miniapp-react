@@ -41,7 +41,7 @@ const TopBar = () => {
   <>
     <Navbar
       className="top-0 fixed text-default-600 z-50"
-      style={{paddingTop:'47px' }}
+      style={{paddingTop:'5vh' }}
     >
 
       <NavbarContent justify="end">
