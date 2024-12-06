@@ -56,9 +56,8 @@ const ExplorePage = () => {
                     drag="x"
                 />
             </AnimatePresence>
-        </motion.div>
 
-        <motion.div
+            <motion.div
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   animate={{ bottom: "45px", zIndex:50, right:"51%" }}
                   style={{right:"51%"}}
@@ -66,9 +65,9 @@ const ExplorePage = () => {
                   {...getAnimationProps2()}
                 >
                   <NotLikeImoji NextSlide={NextSlide} />
-        </motion.div>
+            </motion.div>
 
-        <motion.div
+            <motion.div
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
                   style={{left:"51%"}}
@@ -81,6 +80,8 @@ const ExplorePage = () => {
                     openModal={openModal}
                     NextSlide={NextSlide}
                   />
+              </motion.div>
+
         </motion.div>
 
           <MatchModal

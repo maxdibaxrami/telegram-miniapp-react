@@ -39,7 +39,7 @@ const MainPage = () => {
 
                 
             <NavBar/>
-            <section style={{marginTop:"50px"}} className="flex flex-col items-center justify-center gap-4 ">
+            <section style={{paddingTop:"50px"}} className="flex flex-col items-center justify-center gap-4 ">
 
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">

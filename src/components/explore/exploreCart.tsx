@@ -24,7 +24,7 @@ const ExploreCard = (props) => {
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 
   const x = useMotionValue(0);
-  const rotate = useTransform(x, [-180, 0, 180], [-7, 0, 7], { clamp: false });
+  const rotate = useTransform(x, [-400, 0, 400], [-3, 0, 3], { clamp: false });
 
   // Detecting when the drag motion reaches max left or right
   const handleDragEnd = (_, info) => {
