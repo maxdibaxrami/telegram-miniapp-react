@@ -21,10 +21,10 @@ const MainPage = () => {
     const getPaddingForPlatform = () => {
       if (['ios'].includes(lp.platform)) {
         // iOS/macOS specific padding (e.g., accounting for notches)
-        return '25px'  // Adjust as needed for iOS notch
+        return '50px'  // Adjust as needed for iOS notch
       } else {
         // Android/base padding
-        return'50px'  // Default padding
+        return'25px'  // Default padding
       }
     };
 
