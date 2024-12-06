@@ -11,12 +11,24 @@ import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import { useNavigate } from 'react-router-dom';
 import NearByPage from '@/pages/nearby/page';
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 const MainPage = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const lp = useLaunchParams();
 
-    return <Page back={false}>
+    const getPaddingForPlatform = () => {
+      if (['ios'].includes(lp.platform)) {
+        // iOS/macOS specific padding (e.g., accounting for notches)
+        return '25px'  // Adjust as needed for iOS notch
+      } else {
+        // Android/base padding
+        return'50px'  // Default padding
+      }
+    };
+
+    return <Page back={searchParams.get('page') === "explore"? true : false}>
 
             
           <AnimatePresence mode="wait">
@@ -39,7 +51,7 @@ const MainPage = () => {
 
                 
             <NavBar/>
-            <section style={{paddingTop:"50px"}} className="flex flex-col items-center justify-center gap-4 ">
+            <section style={{paddingTop:`${getPaddingForPlatform()}`}} className="flex flex-col items-center justify-center gap-4 ">
 
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">

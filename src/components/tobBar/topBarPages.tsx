@@ -7,15 +7,28 @@ import {
 import { ThemeSwitch } from "./SwitchTheme";
 
 import {RotateWords} from '@/components/animate/rotate-words'
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 
 const TopBar = () => {
+  const lp = useLaunchParams();
+
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '120px' // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return '90px' // Default padding
+    }
+  };
+
 
   return (
   <>
     <Navbar
       className="top-0 fixed text-default-600 z-50"
-      style={{paddingTop:'5vh' }}
+      style={{paddingTop: `${getPaddingForPlatform()}` }}
     >
 
       <NavbarContent style={{gap:0}} justify="end">

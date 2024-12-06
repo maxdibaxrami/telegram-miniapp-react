@@ -15,11 +15,26 @@ import {
 
 import TopBarPages from "@/components/tobBar/topBarPages";
 import { Page } from "@/components/Page";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 export default function Setting() {
+
+  const lp = useLaunchParams();
+
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '120px' // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return '90px' // Default padding
+    }
+  };
+
+  
   return (
     <Page>
       <div  className="container mx-auto max-w-7xl flex-grow light-background--color">
-        <section style={{paddingTop:"120px"}} className="flex flex-col items-center justify-center gap-4 text-default-600">
+        <section style={{paddingTop:`${getPaddingForPlatform()}`}} className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
           <div className="w-full h-full px-6 pb-4">
             <Switch

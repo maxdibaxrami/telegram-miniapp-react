@@ -16,17 +16,33 @@ import EditProfile from "@/components/profile/editProfile";
 import EditMoreAboutMe from "@/components/profile/editMoreAboutMe";
 import EditIntersting from "@/components/profile/editIntersting";
 import { Page } from '@/components/Page.tsx';
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 export default function EditProfilePage() {
+
+  const lp = useLaunchParams();
+
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '120px'  // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return '90px' // Default padding
+    }
+  };
+
+  
   return (
     <Page>
         <div
         className="container mx-auto max-w-7xl flex-grow"
+        style={{paddingTop:`${getPaddingForPlatform}`}} 
       >
         <TopBarPages />
         <section
           className="flex flex-col items-center justify-center gap-4"
-          style={{paddingTop:"120px"}} 
+          
           
         >
         <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem" }} className="flex mb-4 w-full justify-between items-center">

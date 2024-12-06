@@ -13,6 +13,7 @@ import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import { FitlerIcon } from "@/Icons";
 import ExploreFilter from "../explore/exploreFilter";
+import { useLaunchParams} from '@telegram-apps/sdk-react';
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -22,6 +23,7 @@ interface ExploreFilterRef {
 
 const TopBar = () => {
   const [searchParams] = useSearchParams();
+  const lp = useLaunchParams();
   const childRef = useRef<ExploreFilterRef>(null);
   const childRefExplore = useRef<ExploreFilterRef>(null);
 
@@ -37,11 +39,21 @@ const TopBar = () => {
     }
   };
 
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '25px' // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return '50px'// Default padding
+    }
+  };
+
   return (
   <>
     <Navbar
       className="top-0 fixed text-default-600 z-50"
-      style={{paddingTop:'5vh' }}
+      style={{paddingTop: `${getPaddingForPlatform()}` }}
     >
 
       <NavbarContent justify="end">
