@@ -20,7 +20,6 @@ import { ArrowRight } from "@/Icons/index";
 import { ExploreChat } from "@/Icons/index";
 
 import NearByMatchModal from "./NearByMatchModal";
-import {NotLikeImoji, HeartEyesImoji} from './NearByMotionIcons'
 import ParallaxText from "../animate/text-slider";
 import ExploreCartData from "../explore/exploreCartData";
 import SwiperImages from "../explore/swiperImage";
@@ -34,13 +33,6 @@ const getAnimationProps = () => {
   };
 };
 
-const getAnimationProps2 = () => {
-  return {
-    whileTap: {
-      rotate: -18, // Rotate to 348 degrees
-    },
-  };
-};
 
 const variantsFrontCard = {
   animate: { scale: 1, y: 0, opacity: 1 },
@@ -73,6 +65,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
     if (dataId.id === 4 || dataId.id === 8) {
       openModal();
+      heartConfetti();
 
     } else {
       heartConfetti();
@@ -85,6 +78,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
     <Modal 
       placement={"center"} 
       size={"full"}  
+      style={{position:"relative"}}
       classNames={{"wrapper":"bg-transparent p-0","base":"bg-transparent p-0","body":"p-0"}} 
       backdrop="blur" 
       isOpen={isOpen} 
@@ -248,25 +242,32 @@ const NearByUserModal = forwardRef((props:any, ref) => {
           </motion.div>
         </ModalBody>
       </ModalContent>
+    </Modal>
+          <NearByMatchModal
+            isOpen={isModalOpen}
+            modalData={props.profile}
+            onClose={closeModal}
+          />
 
-      <div>
-            <motion.div
-                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  animate={{ bottom: "20px", zIndex:50, right:"50%" }}
-                  style={{right:"51%"}}
+      <AnimatePresence>
+          {isOpen && (<>
+              <motion.div
+                  className="card z-50 p-2 footerswipcard fixed"
+                  animate={{ bottom: "20px", right:"51%" }}
+                  style={{right:"51%", zIndex:999}}
                   transition={{ type: "tween" }}
                   {...getAnimationProps()}
                 >
-                  <Button onClick={openModal} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
+                  <Button onClick={closeModal} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
                     <CloseCircleIcon className="size-9"/>
                   </Button>
             </motion.div>
 
               <motion.div
-                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
+                  className="card p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
-                  style={{left:"51%"}}
-                  animate={{ bottom: "20px", zIndex:50 ,left:"50%" }}
+                  style={{left:"51%", zIndex:999}}
+                  animate={{ bottom: "20px",left:"51%" }}
 
                   {...getAnimationProps()}
                 >
@@ -274,15 +275,8 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     <LikeIcon className="size-9"/>
                   </Button>
               </motion.div>
-
-      </div>
-    
-    </Modal>
-          <NearByMatchModal
-            isOpen={isModalOpen}
-            modalData={props.profile}
-            onClose={closeModal}
-          />
+            </>)}
+      </AnimatePresence>
 
         <AnimatePresence>
           {isOpen && (
