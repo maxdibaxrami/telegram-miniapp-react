@@ -3,18 +3,14 @@ import NavBar from '@/components/NavBar/index'
 import TopBar from '@/components/tobBar'
 import { Page } from '@/components/Page.tsx';
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@nextui-org/button";
-import { ArrowRight } from "@/Icons/index";
 import { useSearchParams } from "react-router-dom";
 import ProfilePage from '@/components/profile';
 import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
-import { useNavigate } from 'react-router-dom';
 import NearByPage from '@/pages/nearby/page';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 const MainPage = () => {
-    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const lp = useLaunchParams();
 
@@ -140,29 +136,6 @@ const MainPage = () => {
                   </motion.div>
                 </AnimatePresence>
               )}
-
-
-
-            <AnimatePresence>
-              {searchParams.get('page') === "explore"  && (
-                  <motion.div
-                    style={{zIndex:30}}
-                    className="fixed background-drop--whitebase backdrop-blur-sm p-2"
-                    initial={{ opacity: 0 , right:"-80px", bottom:"-80px", scale: 0.5 }}
-                    animate={{ opacity: 1 , right:"20px" , bottom:"20px", scale: 1.1 }}
-                    exit={{ opacity: 0 , right:"-80px", bottom:"-80px", scale: 0.5 }}
-                    transition={{
-                      ease: "linear",
-                      duration: 0.25,
-                    }}
-                  >
-                    <Button className="color-white" onPress={()=> navigate(-1)} isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
-                      <ArrowRight stroke="#FFF"/>
-                    </Button>  
-                  </motion.div>
-              )}
-            </AnimatePresence>
-
 
             </section>
       

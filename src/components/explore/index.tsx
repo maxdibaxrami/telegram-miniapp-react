@@ -5,26 +5,20 @@ import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import ExploreCard from "./exploreCart";
-
+import { heartConfetti } from "../explore/buttonEffect";
 import MatchModal from "./matchModal";
-import { HeartEyesImoji, NotLikeImoji } from "@/components/explore/exploreBottomIcons";
+import { Button } from "@nextui-org/button";
+import { LikeIcon, CloseCircleIcon } from "@/Icons";
 
 
 const getAnimationProps = () => {
   return {
     whileTap: {
-      scale: 0.85,
+      scale: 0.9,
     },
   };
 };
 
-const getAnimationProps2 = () => {
-  return {
-    whileTap: {
-      rotate: -18, // Rotate to 348 degrees
-    },
-  };
-};
 
 
 const ExplorePage = () => {
@@ -38,6 +32,18 @@ const ExplorePage = () => {
 
   const NextSlide = () => setIndex(index+1)
 
+  const OnLikeButtonClick = (dataId) => {
+
+    if (dataId.id === 4 || dataId.id === 8) {
+      openModal();
+      NextSlide()
+
+    } else {
+      NextSlide()
+      heartConfetti();
+    }
+
+  }
   
 
   return (
@@ -59,27 +65,27 @@ const ExplorePage = () => {
 
             <motion.div
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  animate={{ bottom: "10px", zIndex:50, right:"51%" }}
+                  animate={{ bottom: "20px", zIndex:50, right:"50%" }}
                   style={{right:"51%"}}
                   transition={{ type: "tween" }}
-                  {...getAnimationProps2()}
+                  {...getAnimationProps()}
                 >
-                  <NotLikeImoji NextSlide={NextSlide} />
+                  <Button onClick={NextSlide} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
+                    <CloseCircleIcon className="size-9"/>
+                  </Button>
             </motion.div>
 
-            <motion.div
+              <motion.div
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
                   style={{left:"51%"}}
-                  animate={{ bottom: "10px", zIndex:50 ,left:"51%" }}
+                  animate={{ bottom: "20px", zIndex:50 ,left:"50%" }}
 
                   {...getAnimationProps()}
                 >
-                  <HeartEyesImoji
-                    dataId={mockProfiles[index]}
-                    openModal={openModal}
-                    NextSlide={NextSlide}
-                  />
+                  <Button radius="lg" style={{width:"72px", height:"72px"}} size="lg" isIconOnly onPress={()=> OnLikeButtonClick(mockProfiles[index])} color="primary" variant="shadow">
+                    <LikeIcon className="size-9"/>
+                  </Button>
               </motion.div>
 
         </motion.div>
