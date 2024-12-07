@@ -1,4 +1,3 @@
-"use client";
 import { Chip, Avatar, Checkbox } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -33,9 +32,9 @@ const IntroPage = ({ setLanguage }) => {
   }, [isSelected]);
 
   return (
-    <div className="flex items-center justify-between px-6 flex-col pt-8 pb-4">
-      <div>
-        <p className="text-base mb-2">Select language for continue: </p>
+    <div className="flex items-center justify-between h-full px-6 flex-col pt-8 pb-4">
+      <div className="pt-16 flex flex-col">
+        <p className="text-base mb-2 text-center">Select language for continue: </p>
         <motion.ul
           animate="visible"
           className="container flex gap-2 items-center justify-center flex-wrap"
@@ -131,6 +130,7 @@ const IntroPage = ({ setLanguage }) => {
           </motion.li>
         </motion.ul>
       </div>
+
     </div>
   );
 };

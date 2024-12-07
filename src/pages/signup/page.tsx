@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,6 +9,7 @@ import AboutMeAuth from "@/components/auth/aboutMeAuth";
 import InterestingAuth from "@/components/auth/interstingAuth";
 import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
+import { SparklesText } from "@/components/animate/sparkles";
 
 export default function SignupPage() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -24,15 +24,11 @@ export default function SignupPage() {
 
   return (
     <div className="flex flex-col items-center h-screen justify-between">
-      <motion.div
-        className="flex items-baseline mb-2"
-        style={{ marginTop: "4rem" }}
-      >
-        <motion.p className="text-6xl">🔥</motion.p>
-        <motion.p  className="text-5xl"> "Glow meet!" </motion.p >
-      </motion.div>
+      <div className="w-full h-screen">
+        <div className="text-center mt-8">
+          <SparklesText text="Moll Moll" />
+        </div>
 
-      <div className="w-full">
         {selectedTab === 0 && (
           <AnimatePresence mode="wait">
             <motion.div
