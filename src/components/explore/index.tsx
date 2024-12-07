@@ -81,6 +81,8 @@ const ExplorePage = () => {
                   animate={{ bottom: "20px", zIndex:50, right:"51%" }}
                   style={{right:"51%"}}
                   transition={{ type: "tween" }}
+                  initial={{bottom: "-100px",right:"51%"}}
+                  exit={{bottom: "-100px"}}
                   {...getAnimationProps()}
                 >
                   <Button onClick={NextSlide} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
@@ -93,6 +95,8 @@ const ExplorePage = () => {
                   transition={{ type: "tween" }}
                   style={{left:"51%"}}
                   animate={{ bottom: "20px", zIndex:50 ,left:"51%" }}
+                  initial={{bottom: "-100px",left:"51%"}}
+                  exit={{bottom: "-100px"}}
 
                   {...getAnimationProps()}
                 >
