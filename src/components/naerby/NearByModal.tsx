@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { forwardRef, useImperativeHandle } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ArowDownIcon, ArowUpIcon, BabyIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, SexualityIcon, VerifyIconFill } from "@/Icons/index";
+import { ArowDownIcon, ArowUpIcon, BabyIcon, CloseCircleIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LikeIcon, LocationIcon, SexualityIcon, VerifyIconFill } from "@/Icons/index";
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import { ArrowRight } from "@/Icons/index";
@@ -24,6 +24,7 @@ import {NotLikeImoji, HeartEyesImoji} from './NearByMotionIcons'
 import ParallaxText from "../animate/text-slider";
 import ExploreCartData from "../explore/exploreCartData";
 import SwiperImages from "../explore/swiperImage";
+import { heartConfetti } from "../explore/buttonEffect";
 
 const getAnimationProps = () => {
   return {
@@ -67,6 +68,17 @@ const NearByUserModal = forwardRef((props:any, ref) => {
   useImperativeHandle(ref, () => ({
     callChildFunction: onOpen,
   }));
+
+  const OnLikeButtonClick = (dataId) => {
+
+    if (dataId.id === 4 || dataId.id === 8) {
+      openModal();
+
+    } else {
+      heartConfetti();
+    }
+
+  }
 
   return (
     <>
@@ -238,33 +250,33 @@ const NearByUserModal = forwardRef((props:any, ref) => {
       </ModalContent>
 
       <div>
-          <motion.div
-            className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard border-1 border-default fixed"
-            animate={{ bottom: "20px", zIndex:50, right:"51%",scale:1 }}
-            initial={{right:"51%",scale:0.7}}
-            exit={{right:"51%",scale:0.7,bottom:"-50px",opacity:0}}
-            transition={{ type: "tween" }}
-            {...getAnimationProps2()}
-          >
-            <NotLikeImoji />
-          </motion.div>
+            <motion.div
+                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
+                  animate={{ bottom: "20px", zIndex:50, right:"50%" }}
+                  style={{right:"51%"}}
+                  transition={{ type: "tween" }}
+                  {...getAnimationProps()}
+                >
+                  <Button onClick={openModal} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
+                    <CloseCircleIcon className="size-9"/>
+                  </Button>
+            </motion.div>
 
-          <motion.div
-            className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed	"
-            transition={{ type: "tween" }}
-            initial={{left:"51%",scale:0.7}}
-            exit={{left:"51%",scale:0.7,bottom:"-50px",opacity:0}}
-            animate={{ bottom: "20px", zIndex:50 ,left:"51%",scale:1 }}
+              <motion.div
+                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
+                  transition={{ type: "tween" }}
+                  style={{left:"51%"}}
+                  animate={{ bottom: "20px", zIndex:50 ,left:"50%" }}
 
-            {...getAnimationProps()}
-          >
-            <HeartEyesImoji
-              dataId={props.profile}
-              openModal={openModal}
-            />
-          </motion.div>
+                  {...getAnimationProps()}
+                >
+                  <Button radius="lg" style={{width:"72px", height:"72px"}} size="lg" isIconOnly onPress={()=> OnLikeButtonClick(props.profile)} color="primary" variant="shadow">
+                    <LikeIcon className="size-9"/>
+                  </Button>
+              </motion.div>
 
       </div>
+    
     </Modal>
           <NearByMatchModal
             isOpen={isModalOpen}

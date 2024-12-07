@@ -28,7 +28,6 @@ const MainPage = () => {
 
             
           <AnimatePresence mode="wait">
-            {true && (
               <motion.div
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
@@ -41,7 +40,7 @@ const MainPage = () => {
                   <TopBar/>
 
               </motion.div>
-                     )}
+                
 
           </AnimatePresence>
 
