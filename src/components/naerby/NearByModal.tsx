@@ -242,22 +242,18 @@ const NearByUserModal = forwardRef((props:any, ref) => {
           </motion.div>
         </ModalBody>
       </ModalContent>
+
     </Modal>
 
-          <NearByMatchModal
-            isOpen={isModalOpen}
-            modalData={props.profile}
-            onClose={closeModal}
-          />
-
-      <AnimatePresence>
+    <AnimatePresence>
           {isOpen && (<>
               <motion.div
                   className="card z-50 p-2 footerswipcard fixed"
-                  animate={{ bottom: "20px", right:"51%" }}
-                  style={{right:"51%", zIndex:999}}
+                  animate={{ bottom: "20px" }}
+                  initial={{bottom: "-100px",right:"51%"}}
+                  exit={{bottom: "-100px"}}
+                  style={{ zIndex:999}}
                   transition={{ type: "tween" }}
-                  {...getAnimationProps()}
                 >
                   <Button onClick={closeModal} style={{width:"72px", height:"72px", zIndex:999}} size="lg" isIconOnly color="primary" variant="shadow">
                     <CloseCircleIcon className="size-9"/>
@@ -267,10 +263,10 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               <motion.div
                   className="card p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
-                  style={{left:"51%", zIndex:999}}
+                  initial={{bottom: "-100px",left:"51%"}}
+                  style={{ zIndex:999}}
+                  exit={{bottom: "-100px"}}
                   animate={{ bottom: "20px",left:"51%" }}
-
-                  {...getAnimationProps()}
                 >
                   <Button radius="lg" style={{width:"72px", height:"72px", zIndex:999}} size="lg" isIconOnly onPress={()=> OnLikeButtonClick(props.profile)} color="primary" variant="shadow">
                     <LikeIcon className="size-9"/>
@@ -278,48 +274,14 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               </motion.div>
             </>)}
       </AnimatePresence>
+      
+          <NearByMatchModal
+            isOpen={isModalOpen}
+            modalData={props.profile}
+            onClose={closeModal}
+          />
 
-        <AnimatePresence>
-          {isOpen && (
-              <motion.div
-                style={{zIndex:999}}
-                className="fixed background-drop--whitebase backdrop-blur-sm	 p-2"
-                initial={{ opacity: 0 , right:"-80px", bottom:"-80px", scale: 0.5 }}
-                animate={{ opacity: 1 , right:"20px" , bottom:"20px", scale: 1.1 }}
-                exit={{ opacity: 0 , right:"-80px", bottom:"-80px", scale: 0.5 }}
-                transition={{
-                  ease: "linear",
-                  duration: 0.25,
-                }}
-              >
-                <Button className="color-white" onPress={onClose} isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
-                  <ArrowRight stroke="#FFF"/>
-                </Button>  
-              </motion.div>
-          )}
-        </AnimatePresence>
-
-
-        <AnimatePresence>
-          {isOpen && (
-              <motion.div
-                style={{zIndex:999}}
-                className="fixed background-drop--whitebase p-2 backdrop-blur-sm	"
-                initial={{ opacity: 0 , left:"-80px", bottom:"-80px", scale: 0.5 }}
-                animate={{ opacity: 1 , left:"20px" , bottom:"20px", scale: 1.1 }}
-                exit={{ opacity: 0 , left:"-80px", bottom:"-80px", scale: 0.5 }}
-                transition={{
-                  ease: "linear",
-                  duration: 0.25,
-                }}
-              >
-                <Button className="color-white" onPress={onClose} isIconOnly color="primary" style={{borderRadius:"20%"}} size="md" aria-label="Like">
-                  <ExploreChat fill="#FFF"/>
-                </Button>  
-              </motion.div>
-          )}
-        </AnimatePresence>
-
+     
 
       </>  
   );
