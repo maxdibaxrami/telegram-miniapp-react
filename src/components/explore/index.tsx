@@ -9,6 +9,7 @@ import { heartConfetti } from "../explore/buttonEffect";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
 import { LikeIcon, CloseCircleIcon } from "@/Icons";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 
 const getAnimationProps = () => {
@@ -46,9 +47,21 @@ const ExplorePage = () => {
   }
   
 
+  const lp = useLaunchParams();
+
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '50px'  // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return'25px'  // Default padding
+    }
+  };
+  
   return (
     <div style={{position:"relative"}} >
-        <motion.div style={{ width: "100vw", height: "calc(100vh - 40px)", position: "relative"}}>
+        <motion.div style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative"}}>
             <AnimatePresence initial={false}>
                 <ExploreCard profile={mockProfiles[index+1]} key={index + 1} frontCard={false} />
                 <ExploreCard
@@ -65,7 +78,7 @@ const ExplorePage = () => {
 
             <motion.div
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  animate={{ bottom: "20px", zIndex:50, right:"50%" }}
+                  animate={{ bottom: "20px", zIndex:50, right:"51%" }}
                   style={{right:"51%"}}
                   transition={{ type: "tween" }}
                   {...getAnimationProps()}
@@ -79,7 +92,7 @@ const ExplorePage = () => {
                   className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
                   transition={{ type: "tween" }}
                   style={{left:"51%"}}
-                  animate={{ bottom: "20px", zIndex:50 ,left:"50%" }}
+                  animate={{ bottom: "20px", zIndex:50 ,left:"51%" }}
 
                   {...getAnimationProps()}
                 >
