@@ -34,9 +34,9 @@ export default function Setting() {
   return (
     <Page>
       <div  className="container mx-auto max-w-7xl flex-grow light-background--color">
-        <section style={{paddingTop:`${getPaddingForPlatform()}`}} className="flex flex-col items-center justify-center gap-4 text-default-600">
+        <section className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
-          <div className="w-full h-full px-6 pb-4">
+          <div style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`}} className="w-full h-full px-6 pb-4">
             <Switch
               classNames={{
                 base: cn(
