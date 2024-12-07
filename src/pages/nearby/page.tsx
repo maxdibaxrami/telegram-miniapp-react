@@ -42,16 +42,15 @@ export default function NearByPage() {
         paddingRight:"1.5rem",
       }}
     >
-      {mockProfiles.map((value, index) => (
-        <BlurFade key={index} delay={0.25 + index * 0.05} inView>
-          <NearByCard
-              data={value}
-              num={index}
-              onCardClick={onCardClick}
-            />
-        </BlurFade>
-          
-      ))}
+        {mockProfiles.map((value, index) => (
+          <BlurFade key={index} delay={0.25 + index * 0.05} inView>
+            <NearByCard
+                data={value}
+                num={index}
+                onCardClick={onCardClick}
+              />
+          </BlurFade>
+        ))}
       <NearByUserModal ref={childRef} profile={SelectedCard} />
     </motion.div>
   );

@@ -243,6 +243,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
         </ModalBody>
       </ModalContent>
     </Modal>
+
           <NearByMatchModal
             isOpen={isModalOpen}
             modalData={props.profile}
@@ -258,7 +259,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                   transition={{ type: "tween" }}
                   {...getAnimationProps()}
                 >
-                  <Button onClick={closeModal} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
+                  <Button onClick={closeModal} style={{width:"72px", height:"72px", zIndex:999}} size="lg" isIconOnly color="primary" variant="shadow">
                     <CloseCircleIcon className="size-9"/>
                   </Button>
             </motion.div>
@@ -271,7 +272,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
                   {...getAnimationProps()}
                 >
-                  <Button radius="lg" style={{width:"72px", height:"72px"}} size="lg" isIconOnly onPress={()=> OnLikeButtonClick(props.profile)} color="primary" variant="shadow">
+                  <Button radius="lg" style={{width:"72px", height:"72px", zIndex:999}} size="lg" isIconOnly onPress={()=> OnLikeButtonClick(props.profile)} color="primary" variant="shadow">
                     <LikeIcon className="size-9"/>
                   </Button>
               </motion.div>
