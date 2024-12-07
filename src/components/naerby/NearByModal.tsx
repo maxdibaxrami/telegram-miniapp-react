@@ -37,7 +37,7 @@ const variantsFrontCard = {
 const NearByUserModal = forwardRef((props:any, ref) => {
 
   const [openFooter, setOpenFooter] = useState(false);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 
@@ -55,10 +55,10 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
     if (dataId.id === 4 || dataId.id === 8) {
       openModal();
-      heartConfetti();
-
+      onClose()
     } else {
       heartConfetti();
+      onClose()
     }
 
   }
@@ -231,11 +231,9 @@ const NearByUserModal = forwardRef((props:any, ref) => {
           </div>
           </motion.div>
         </ModalBody>
-      </ModalContent>
 
-    </Modal>
 
-    <AnimatePresence>
+        <AnimatePresence>
           {isOpen && (<>
               <motion.div
                   className="card z-50 p-2 footerswipcard fixed"
@@ -245,10 +243,10 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                   style={{ zIndex:999}}
                   transition={{ type: "tween" }}
                 >
-                  <Button onClick={closeModal} style={{width:"72px", height:"72px", zIndex:999}} size="lg" isIconOnly color="primary" variant="shadow">
+                  <Button onPress={()=> onClose()} style={{width:"72px", height:"72px", zIndex:999}} size="lg" isIconOnly color="primary" variant="shadow">
                     <CloseCircleIcon className="size-9"/>
                   </Button>
-            </motion.div>
+              </motion.div>
 
               <motion.div
                   className="card p-2 footerswipcard fixed"
@@ -263,7 +261,10 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                   </Button>
               </motion.div>
             </>)}
-      </AnimatePresence>
+        </AnimatePresence>
+
+      </ModalContent>
+    </Modal>
       
           <NearByMatchModal
             isOpen={isModalOpen}
