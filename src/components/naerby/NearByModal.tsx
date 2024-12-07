@@ -16,22 +16,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArowDownIcon, ArowUpIcon, BabyIcon, CloseCircleIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LikeIcon, LocationIcon, SexualityIcon, VerifyIconFill } from "@/Icons/index";
 import { Pagination, Autoplay } from 'swiper/modules';
 
-import { ArrowRight } from "@/Icons/index";
-import { ExploreChat } from "@/Icons/index";
-
 import NearByMatchModal from "./NearByMatchModal";
 import ParallaxText from "../animate/text-slider";
 import ExploreCartData from "../explore/exploreCartData";
 import SwiperImages from "../explore/swiperImage";
 import { heartConfetti } from "../explore/buttonEffect";
 
-const getAnimationProps = () => {
-  return {
-    whileTap: {
-      scale: 0.85,
-    },
-  };
-};
 
 
 const variantsFrontCard = {
@@ -47,7 +37,7 @@ const variantsFrontCard = {
 const NearByUserModal = forwardRef((props:any, ref) => {
 
   const [openFooter, setOpenFooter] = useState(false);
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 
