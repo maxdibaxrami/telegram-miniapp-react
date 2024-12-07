@@ -16,9 +16,16 @@ import {
 import TopBarPages from "@/components/tobBar/topBarPages";
 import { Page } from "@/components/Page";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { useTheme } from "next-themes";
+
 export default function Setting() {
 
+  const { theme, setTheme } = useTheme();
   const lp = useLaunchParams();
+
+  const onChange = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  };
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -41,7 +48,7 @@ export default function Setting() {
               classNames={{
                 base: cn(
                   "inline-flex flex-row-reverse w-full max-w-md items-center",
-                  "justify-between cursor-pointer rounded-lg gap-2 py-4 border-2 border-transparent",
+                  "justify-between cursor-pointer rounded-lg px-2 gap-2 py-4 border-2 border-transparent",
                   "data-[selected=true]:border-primary",
                 ),
                 wrapper: "p-0 h-4 overflow-visible",
@@ -61,6 +68,35 @@ export default function Setting() {
                 <p className="text-medium">Profile visibility</p>
                 <p className="text-tiny text-default-400">
                   Show profile on explore status
+                </p>
+              </div>
+            </Switch>
+
+            <Switch
+              onChange={onChange}
+              classNames={{
+                base: cn(
+                  "inline-flex flex-row-reverse w-full max-w-md items-center",
+                  "justify-between cursor-pointer rounded-lg gap-2 py-4 px-2 border-2 border-transparent",
+                  "data-[selected=true]:border-primary",
+                ),
+                wrapper: "p-0 h-4 overflow-visible",
+                thumb: cn(
+                  "w-6 h-6 border-2 shadow-lg",
+                  "group-data-[hover=true]:border-primary",
+                  //selected
+                  "group-data-[selected=true]:ml-6",
+                  // pressed
+                  "group-data-[pressed=true]:w-7",
+                  "group-data-[selected]:group-data-[pressed]:ml-4",
+                ),
+              }}
+              isSelected={theme === "light" ? true : false}
+            >
+              <div className="flex flex-col gap-1">
+                <p className="text-medium capitalize">{theme} mode</p>
+                <p className="text-tiny text-default-400">
+                  Change application color to light and dark mode
                 </p>
               </div>
             </Switch>
