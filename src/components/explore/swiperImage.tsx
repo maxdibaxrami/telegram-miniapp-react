@@ -1,7 +1,7 @@
 import { Image } from "@nextui-org/react";
 import { useSwiper } from "swiper/react";
 
-const SwiperImages = () => {
+const SwiperImages = (props) => {
 
 
     
@@ -21,7 +21,7 @@ const SwiperImages = () => {
             }}
             onClick={NextSlide}
             loading="lazy"
-            src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+            src={props.value} // dynamic image URL
             style={{
                 objectFit: "cover",
                 padding: "0px 0px 5px 0px",

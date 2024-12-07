@@ -18,6 +18,8 @@ const ExploreCard = (props) => {
   const [exitX, setExitX] = useState(1);
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 
+  const imageData = [props.profile.mainImage, props.profile.secondImage, props.profile.thirdImage,]
+
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-400, 0, 400], [-3, 0, 3], { clamp: false });
 
@@ -98,12 +100,13 @@ const ExploreCard = (props) => {
               className="mySwiper"
               onSlideChange={() => setSlideCounter(slideCountrt + 1)}
             >
-              {[...Array(5)].map((_, index) => (
+              {imageData.map((value, index) => (
                 <SwiperSlide key={index}>
-                  <SwiperImages />
+                  <SwiperImages value={value} />
                 </SwiperSlide>
               ))}
             </Swiper>
+
 
             <div className="absolute" style={{ bottom: "154px", zIndex: 10 }}>
               <ParallaxText baseVelocity={-2}>

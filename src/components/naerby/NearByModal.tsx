@@ -58,6 +58,8 @@ const NearByUserModal = forwardRef((props:any, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [slideCountrt, setSlideCounter] = useState<number>(1);
 
+  const imageData = [props.profile.mainImage, props.profile.secondImage, props.profile.thirdImage,]
+
   const toggleFooter = () => setOpenFooter(!openFooter);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -88,7 +90,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
               cursor: "grab",
               display: "flex",
               justifyContent: "center",
-              marginTop: "calc(4.5rem + 50px)"
+              marginTop: "calc(5.5rem)"
             }}
             whileTap={{ cursor: "grabbing" }}
             variants={ variantsFrontCard }
@@ -117,10 +119,10 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                 className="mySwiper"
                 onSlideChange={() => setSlideCounter(slideCountrt + 1)}
               >
-                {[...Array(5)].map((_, index) => (
+                {imageData.map((value, index) => (
                   <SwiperSlide key={index}>
-                    <SwiperImages />
-                  </SwiperSlide>
+                   <SwiperImages value={value} />
+                 </SwiperSlide>
                 ))}
               </Swiper>
               
