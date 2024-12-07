@@ -24,7 +24,7 @@ export default function SignupPage() {
 
   return (
     <div className="flex flex-col items-center h-screen justify-between">
-      <div className="w-full h-screen">
+      <div style={{paddingTop:"6rem"}} className="w-full h-screen">
         <div className="text-center mt-8">
           <SparklesText text="Moll Moll" />
         </div>
