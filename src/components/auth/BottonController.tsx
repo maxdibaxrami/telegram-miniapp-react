@@ -4,7 +4,7 @@ import { ArrowRight, ArrowLeft } from "@/Icons/index";
 const BottomController = ({ nextPage, prevPage, selectedTab }) => {
 
   return (
-      <Navbar className="w-full pb-4">
+      <Navbar className="w-full bg-transparent">
         <NavbarContent justify="start">
           <Button
             isIconOnly

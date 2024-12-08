@@ -38,15 +38,16 @@ export default function SignupPage() {
   return (
     <Page back={false}>
       <motion.div className="flex flex-col items-center justify-between">
-        <div ref={contentRef} style={{ paddingTop: "6rem" }} className="w-full">
+        <div ref={contentRef} style={{ paddingTop: "2rem",paddingBottom:"1rem", zIndex:999 }} className="fixed top-0 w-full backdrop-blur	bg-background/80 backdrop-saturate-150 ">
           <div className="text-center mt-8">
             <SparklesText text="Moll Moll" />
           </div>
+        </div>
 
-          <AnimatePresence mode="popLayout">
+        <div style={{ paddingTop: "7rem", paddingBottom:"90px" }} className="w-full">
+        <AnimatePresence>
             {selectedTab === 0 && (
               <motion.div
-                layout
                 animate={{  opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{   opacity: 0 }}
@@ -57,7 +58,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 1 && (
               <motion.div
-                layout
                 animate={{  opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -68,7 +68,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 2 && (
               <motion.div
-                layout
                 animate={{   opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{  opacity: 0 }}
@@ -79,7 +78,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 3 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -90,7 +88,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 4 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -101,7 +98,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 5 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -112,7 +108,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 6 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -123,7 +118,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 7 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -134,7 +128,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 8 && (
               <motion.div
-                layout
                 animate={{opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -145,7 +138,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 9 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -157,7 +149,6 @@ export default function SignupPage() {
 
             {selectedTab === 10 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{  opacity: 0 }}
@@ -170,7 +161,6 @@ export default function SignupPage() {
 
             {selectedTab === 11 && (
               <motion.div
-                layout
                 animate={{  opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{  opacity: 0 }}
@@ -181,7 +171,6 @@ export default function SignupPage() {
             )}
             {selectedTab === 12 && (
               <motion.div
-                layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{opacity: 0 }}
@@ -194,18 +183,16 @@ export default function SignupPage() {
         </div>
 
         {/* Wrapping BottomController in motion.div for smooth position changes */}
-        <motion.div
-          layout
-          className="bg-background"
+        <div
+          className="backdrop-blur fixed pb-6 bottom-0 bg-background/80 backdrop-saturate-150 "
           style={{width:"100%",zIndex:999}}
-          transition={{ ease: "easeInOut", duration: 0.5 }}
         >
           <BottomController
             nextPage={NextPage}
             prevPage={prevPage}
             selectedTab={selectedTab}
           />
-        </motion.div>
+        </div>
       </motion.div>
     </Page>
   );
