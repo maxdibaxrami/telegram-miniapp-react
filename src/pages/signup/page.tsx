@@ -42,7 +42,7 @@ export default function SignupPage() {
             <SparklesText text="Moll Moll" />
           </div>
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             {selectedTab === 0 && (
               <motion.div
                 animate={{ y: 0, opacity: 1 }}
@@ -169,12 +169,14 @@ export default function SignupPage() {
         {/* Wrapping BottomController in motion.div for smooth position changes */}
         <motion.div
           layout
-          style={{width:"100%",backgroundColor:"transparent"}}
+          className="bg-background"
+          style={{width:"100%",zIndex:999}}
           transition={{ ease: "easeInOut", duration: 0.5 }}
         >
           <BottomController
             nextPage={NextPage}
             prevPage={prevPage}
+            selectedTab={selectedTab}
           />
         </motion.div>
       </motion.div>

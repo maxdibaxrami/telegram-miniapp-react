@@ -10,6 +10,7 @@ import {
   
     return (
       <Radio
+      
         {...otherProps}
         classNames={{
           base: cn(
@@ -31,7 +32,7 @@ const GenderStuffAuth = () => {
         <form className="flex w-full flex-col gap-4">
             <RadioGroup description="Selected plan can be changed at any time." label="I am :">
                 {Gender.map((value)=> {
-                    return <CustomRadio  value={value.key}>
+                    return <CustomRadio value={value.key}>
                     {value.label}
                 </CustomRadio>
                 })}
