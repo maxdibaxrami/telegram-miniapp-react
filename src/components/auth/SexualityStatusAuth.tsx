@@ -25,15 +25,15 @@ import { useState, useEffect } from "react";
     );
   };
   
-const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(user.sexuality);
   
   useEffect(()=>{
     if(selected !== ""){
-      setSlideAvailable()
+      setSlideAvailable("sexuality",selected)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("sexuality",selected)
     }
 
   },[selected])

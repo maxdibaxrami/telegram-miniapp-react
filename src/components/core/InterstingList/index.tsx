@@ -12,8 +12,8 @@ export const ListboxWrapper = ({children}: {children: React.ReactNode}) => (
   </div>
 );
 
-export default function InterestingList({onChangeValue}) {
-  const [values, setValues] = React.useState<Selection>(new Set(["1"]));
+export default function InterestingList({onChangeValue, user}) {
+  const [values, setValues] = React.useState<Selection>(new Set(user.interests));
   useEffect(()=> onChangeValue(values) ,[values])
   const arrayValues = Array.from(values);
 
@@ -42,7 +42,7 @@ export default function InterestingList({onChangeValue}) {
           base: "w-full",
           list: "max-h-[350px] overflow-scroll",
         }}
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={user.interests}
         items={hobbies}
         label="Assigned to"
         selectionMode="multiple"

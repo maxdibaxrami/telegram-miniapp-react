@@ -60,15 +60,15 @@ export const CustomRadio = (props: any) => {
 };
 
 // Main component rendering the RadioGroup
-const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(user.lookingFor);
   
   useEffect(()=>{
     if(selected !== ""){
-      setSlideAvailable()
+      setSlideAvailable("lookingFor",selected)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("lookingFor",selected)
     }
 
   },[selected])

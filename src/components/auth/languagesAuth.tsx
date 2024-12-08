@@ -25,14 +25,14 @@ import { useEffect, useState } from "react";
     );
   };
   
-const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
-  const [selected, setSelected] = useState([]);
+const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+  const [selected, setSelected] = useState(user.languages);
   
   useEffect(()=>{
     if(selected.length !== 0){
-      setSlideAvailable()
+      setSlideAvailable("languages", selected)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("languages", selected)
     }
 
   },[selected])

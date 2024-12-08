@@ -1,12 +1,13 @@
 import InterestingList from "../core/InterstingList";
 
-const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
   const onChangeValue = (value) => {
-    if(value.length !== 0 ){
-      setSlideAvailable()
+
+    if(value.size !== 0 ){
+      setSlideAvailable("interests", value)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("interests", value)
     }
   }
   
@@ -14,7 +15,7 @@ const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
         <p className="mb-1 text-left">Interesting : </p>
-        <InterestingList onChangeValue={onChangeValue}/>
+        <InterestingList user={user} onChangeValue={onChangeValue}/>
       </form>
     </div>
   );

@@ -10,7 +10,6 @@ import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
 import { SparklesText } from "@/components/animate/sparkles";
 import { Page } from "@/components/Page";
-import KidsAuth from "@/components/auth/kidsAuth";
 import HeightAuth from '@/components/auth/HeightAuth';
 import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
 import LanguageAuth from "@/components/auth/languagesAuth";
@@ -26,31 +25,30 @@ export default function SignupPage() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [languageSelected, setLanguageSelected] = useState(false);
   const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
+
   const [user, setUser] = useState({
     "telegramId": 123456789,
-    "username": "johndoe",
-    "firstName": "John",
-    "photoUrl": "https://example.com/johndoe.jpg",
-    "city": "New York",
-    "country": "USA",
-    "languages": ["English", "Spanish"],
-    "interests": ["Music", "Sports"],
-    "height": "180",
+    "username": "",
+    "firstName": "",
+    "photoUrl": "",
+    "city": "",
+    "country": "",
+    "languages": [],
+    "interests": [],
+    "height": "",
     "activityScore": 0,
-    "gender": "Male",
-    "lookingFor": ["Relationship"],
-    "relationStatus": "Single",
-    "sexuality": "Heterosexual",
-    "education": "College Graduate",
-    "work": "Software Developer",
-    "bio": "I love coding and exploring the world!",
+    "gender": "",
+    "lookingFor": "",
+    "relationStatus": "",
+    "sexuality": "",
+    "education": "",
+    "work": "",
+    "bio": "",
     "photos": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
     "verifiedAccount": true,
     "language":"en",
     "age":"2000-01-14"
   })
-
-
 
   const setSlideAvailable = (key, value) => {
     setNextSlideAvalable(true)
@@ -77,8 +75,10 @@ export default function SignupPage() {
   const setLanguage = () => setLanguageSelected(true);
 
   useEffect(() => {
-    console.log("Language Selected:", languageSelected);
-  }, [languageSelected]);
+    console.log(user);
+    console.log(languageSelected);
+
+  }, [user]);
 
 
   return (
@@ -159,7 +159,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <LanguageAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                <LanguageAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
               </motion.div>
             )}
             {selectedTab === 7 && (
@@ -169,53 +169,44 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <SexualityStatusAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <SexualityStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
+
             {selectedTab === 8 && (
-              <motion.div
-                animate={{opacity: 1 }}
-                exit={{ opacity: 0 }}
-                initial={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <KidsAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-              </motion.div>
-            )}
-            {selectedTab === 9 && (
               <motion.div
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <LookingforList setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <LookingforList user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
 
-            {selectedTab === 10 && (
+            {selectedTab === 9 && (
               <motion.div
                 animate={{ opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <InterestingAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
 
 
-            {selectedTab === 11 && (
+            {selectedTab === 10 && (
               <motion.div
                 animate={{  opacity: 1 }}
                 exit={{  opacity: 0 }}
                 initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ImageDataAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <ImageDataAuth setSlideAvailable={setSlideAvailable}/>
               </motion.div>
             )}
-            {selectedTab === 12 && (
+            {selectedTab === 11 && (
               <motion.div
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

@@ -19,7 +19,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable }
           
         </NavbarContent>
         <NavbarContent className="flex w-full gap-4" justify="center">
-         <Progress isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 7.70} />
+         <Progress isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 9} />
         </NavbarContent>
         <NavbarContent justify="end">
           <Button
@@ -27,7 +27,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable }
             aria-label="Like"
             color="primary"
             size="lg"
-            isDisabled={!nextSlideAvalable}
+            isDisabled={!nextSlideAvalable || selectedTab === 11}
             onClick={nextPage}
           >
             <ArrowRight />

@@ -3,12 +3,11 @@ import { Image, Button } from "@nextui-org/react";
 import { PenIcon } from "@/Icons/index";
 import { useEffect } from "react";
 
-const ImageDataAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+const ImageDataAuth = ({setSlideAvailable}) => {
 
   useEffect(()=>{
  
-      setSlideUnAvailable()
-      setSlideAvailable()
+      setSlideAvailable("photoUrl" , "https://example.com/johndoe.jpg" )
 
   },[])
 
