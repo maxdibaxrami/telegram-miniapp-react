@@ -38,7 +38,7 @@ export default function SignupPage() {
   return (
     <Page back={false}>
       <motion.div className="flex flex-col items-center justify-between">
-        <div ref={contentRef} style={{ paddingTop: "2rem",paddingBottom:"1rem", zIndex:999 }} className="fixed top-0 w-full backdrop-blur	bg-background/80 backdrop-saturate-150 ">
+        <div ref={contentRef} style={{ paddingTop: "4rem",paddingBottom:"1rem", zIndex:999 }} className="fixed top-0 w-full backdrop-blur	bg-background/80 backdrop-saturate-150 ">
           <div className="text-center mt-8">
             <SparklesText text="Moll Moll" />
           </div>
