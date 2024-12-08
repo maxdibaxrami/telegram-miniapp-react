@@ -1,12 +1,9 @@
 import {
-  SelectItem,
-  Select,
   Input,
-  Autocomplete,
-  AutocompleteItem,
-  Avatar,
+  Select,
+  SelectItem,
+  Textarea,
 } from "@nextui-org/react";
-import Wheel from "../core/While";
 
 const ProfileDataAuth = () => {
 
@@ -16,149 +13,21 @@ const ProfileDataAuth = () => {
       <form className="flex w-full flex-col gap-4">
         <p className="mb-1 text-left">Fill profile data : </p>
 
-        <Input label="Name" type="text" />
-        <div
-          style={{
-            height: "240px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            background: "#000",
-          }}
-        >
-          <div style={{ height: 180 }}>
-            <Wheel label="Year" initIdx={2000} length={2024} width={50} />
-          </div>
-
-          <div style={{ height: 180 }}>
-            <Wheel label="Month" initIdx={1} length={12} width={50} />
-          </div>
-
-          <div style={{ height: 180 }}>
-            <Wheel label="Day" initIdx={1} length={31} width={50} />
-          </div>
-        </div>
-        <Autocomplete className="w-full" label="Select country">
-          <AutocompleteItem
-            key="argentina"
-            startContent={
-              <Avatar
-                alt="Argentina"
-                className="w-6 h-6"
-                src="https://flagcdn.com/ar.svg"
-              />
-            }
-          >
-            Argentina
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="venezuela"
-            startContent={
-              <Avatar
-                alt="Venezuela"
-                className="w-6 h-6"
-                src="https://flagcdn.com/ve.svg"
-              />
-            }
-          >
-            Venezuela
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="brazil"
-            startContent={
-              <Avatar
-                alt="Brazil"
-                className="w-6 h-6"
-                src="https://flagcdn.com/br.svg"
-              />
-            }
-          >
-            Brazil
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="switzerland"
-            startContent={
-              <Avatar
-                alt="Switzerland"
-                className="w-6 h-6"
-                src="https://flagcdn.com/ch.svg"
-              />
-            }
-          >
-            Switzerland
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="germany"
-            startContent={
-              <Avatar
-                alt="Germany"
-                className="w-6 h-6"
-                src="https://flagcdn.com/de.svg"
-              />
-            }
-          >
-            Germany
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="spain"
-            startContent={
-              <Avatar
-                alt="Spain"
-                className="w-6 h-6"
-                src="https://flagcdn.com/es.svg"
-              />
-            }
-          >
-            Spain
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="france"
-            startContent={
-              <Avatar
-                alt="France"
-                className="w-6 h-6"
-                src="https://flagcdn.com/fr.svg"
-              />
-            }
-          >
-            France
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="italy"
-            startContent={
-              <Avatar
-                alt="Italy"
-                className="w-6 h-6"
-                src="https://flagcdn.com/it.svg"
-              />
-            }
-          >
-            Italy
-          </AutocompleteItem>
-          <AutocompleteItem
-            key="mexico"
-            startContent={
-              <Avatar
-                alt="Mexico"
-                className="w-6 h-6"
-                src="https://flagcdn.com/mx.svg"
-              />
-            }
-          >
-            Mexico
-          </AutocompleteItem>
-        </Autocomplete>
-
-        <Select
+        <Input isRequired label="Name" type="text" />
+        
+        <Textarea
           className="w-full"
-          items={LookingForItems}
-          label="Looking for"
-          placeholder="Looking for"
-        >
-          {(LookingForItems) => (
-            <SelectItem key={LookingForItems.key}>{LookingForItems.label}</SelectItem>
-          )}
-        </Select>
+          label="About me"
+          isRequired
+          placeholder="Enter your description"
+        />
+
+      <Select isOpen={true} isRequired label="Select gender">
+        {gender.map((animal) => (
+          <SelectItem key={animal.key}>{animal.label}</SelectItem>
+        ))}
+      </Select>
+        
       </form>
     </div>
   );
@@ -166,8 +35,8 @@ const ProfileDataAuth = () => {
 
 export default ProfileDataAuth;
 
-const LookingForItems = [
-  { key: "b", label: "Boys" },
-  { key: "G", label: "Girls" },
-  { key: "b2", label: "Both" },
+export const gender = [
+  {key: "Male", label: "Male"},
+  {key: "Female", label: "Female"},
 ];
+

@@ -7,33 +7,38 @@ const AboutMeAuth = () => {
         <p className="mb-1 text-left">More about you : </p>
         <Select
           className="w-full"
-          items={RealationStatus}
+          items={KidStatus}
           label="Kids"
           placeholder="Kids"
         >
-          {(RealationStatus) => (
-            <SelectItem key={RealationStatus.label}>
-              {RealationStatus.label}
+          {(KidStatus) => (
+            <SelectItem key={KidStatus.label}>
+              {KidStatus.label}
             </SelectItem>
           )}
         </Select>
 
-        <Input
-          endContent={"CM"}
-          label="height"
-          max={240}
-          min={100}
-          type="number"
-        />
+        <Select
+          className="w-full"
+          items={HeightOptions}
+          label="Height"
+          placeholder="Height"
+        >
+          {(HeightOptions) => (
+            <SelectItem key={HeightOptions.label}>
+              {HeightOptions.label}
+            </SelectItem>
+          )}
+        </Select>
 
         <Select
           className="w-full"
-          items={KidStatus}
+          items={RealationStatus}
           label="Realation status"
           placeholder="Realation status"
         >
-          {(KidStatus) => (
-            <SelectItem key={KidStatus.label}>{KidStatus.label}</SelectItem>
+          {(RealationStatus) => (
+            <SelectItem key={RealationStatus.label}>{RealationStatus.label}</SelectItem>
           )}
         </Select>
 
@@ -68,18 +73,38 @@ const AboutMeAuth = () => {
 export default AboutMeAuth;
 
 export const RealationStatus = [
-  { key: "cat", label: "Single" },
-  { key: "dog", label: "Taken" },
-  { key: "elephant", label: "open" },
-  { key: "lion", label: "I’d rather not say" },
+  { key: "Single", label: "Single" },
+  { key: "Taken", label: "Taken" },
+  { key: "open", label: "open" },
+  { key: "ratthernotsay", label: "I’d rather not say" },
 ];
 
 export const KidStatus = [
-  { key: "cat", label: "Some day" },
-  { key: "dog", label: "i have already" },
-  { key: "elephant", label: "I don’t want kids" },
-  { key: "lion", label: "I’d rather not say" },
+  { key: "some day", label: "Some day" },
+  { key: "i have already", label: "i have already" },
+  { key: "I don’t want kids", label: "I don’t want kids" },
+  { key: "I’d rather not say", label: "I’d rather not say" },
 ];
+
+const HeightOptions = [
+  { key: "145", label: "4'9\" (145 cm)" },
+  { key: "150", label: "4'11\" (150 cm)" },
+  { key: "155", label: "5'1\" (155 cm)" },
+  { key: "160", label: "5'3\" (160 cm)" },
+  { key: "165", label: "5'5\" (165 cm)" },
+  { key: "170", label: "5'7\" (170 cm)" },
+  { key: "175", label: "5'9\" (175 cm)" },
+  { key: "180", label: "5'11\" (180 cm)" },
+  { key: "185", label: "6'1\" (185 cm)" },
+  { key: "190", label: "6'3\" (190 cm)" },
+  { key: "195", label: "6'5\" (195 cm)" },
+  { key: "200", label: "6'7\" (200 cm)" },
+  { key: "205", label: "6'9\" (205 cm)" },
+  { key: "210", label: "6'11\" (210 cm)" },
+  { key: "215", label: "7'1\" (215 cm)" }
+];
+
+
 
 const SexualityStatus = [
   { key: "straight", label: "Straight" },
@@ -93,43 +118,24 @@ const SexualityStatus = [
 ];
 const languages = [
   { key: "en", label: "English" },
-  { key: "es", label: "Spanish" },
-  { key: "fr", label: "French" },
-  { key: "de", label: "German" },
-  { key: "it", label: "Italian" },
   { key: "zh", label: "Chinese" },
-  { key: "ja", label: "Japanese" },
-  { key: "ko", label: "Korean" },
-  { key: "ru", label: "Russian" },
-  { key: "ar", label: "Arabic" },
-  { key: "pt", label: "Portuguese" },
+  { key: "es", label: "Spanish" },
   { key: "hi", label: "Hindi" },
+  { key: "ar", label: "Arabic" },
   { key: "bn", label: "Bengali" },
+  { key: "fr", label: "French" },
+  { key: "ru", label: "Russian" },
+  { key: "pt", label: "Portuguese" },
+  { key: "id", label: "Indonesian" },
+  { key: "ja", label: "Japanese" },
+  { key: "de", label: "German" },
   { key: "pa", label: "Punjabi" },
-  { key: "vi", label: "Vietnamese" },
   { key: "ur", label: "Urdu" },
+  { key: "ko", label: "Korean" },
+  { key: "vi", label: "Vietnamese" },
   { key: "fa", label: "Persian" },
   { key: "tr", label: "Turkish" },
-  { key: "id", label: "Indonesian" },
-  { key: "th", label: "Thai" },
-  { key: "ms", label: "Malay" },
-  { key: "pl", label: "Polish" },
-  { key: "nl", label: "Dutch" },
-  { key: "sv", label: "Swedish" },
-  { key: "no", label: "Norwegian" },
-  { key: "fi", label: "Finnish" },
-  { key: "da", label: "Danish" },
-  { key: "he", label: "Hebrew" },
-  { key: "el", label: "Greek" },
-  { key: "hu", label: "Hungarian" },
-  { key: "cs", label: "Czech" },
-  { key: "ro", label: "Romanian" },
-  { key: "bg", label: "Bulgarian" },
-  { key: "uk", label: "Ukrainian" },
-  { key: "sr", label: "Serbian" },
-  { key: "sk", label: "Slovak" },
-  { key: "hr", label: "Croatian" },
-  { key: "lt", label: "Lithuanian" },
-  { key: "lv", label: "Latvian" },
-  { key: "et", label: "Estonian" },
+  { key: "ta", label: "Tamil" },
+  { key: "it", label: "Italian" },
 ];
+
