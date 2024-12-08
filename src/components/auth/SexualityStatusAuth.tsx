@@ -29,7 +29,8 @@ const SexualityStatusAuth = () => {
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup style={{maxHeight:"400px" , overflow:"scroll"}} description="Selected plan can be changed at any time." label="Sexuality Status:">
+            <RadioGroup  description="Selected plan can be changed at any time." label="Sexuality Status:">
+                
                 {SexualityStatus.map((value)=> {
                     return <CustomRadio  value={value.key}>
                     {value.label}

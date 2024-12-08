@@ -29,7 +29,7 @@ const LanguageAuth = () => {
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <CheckboxGroup style={{maxHeight:"400px" , overflow:"scroll"}} description="Selected plan can be changed at any time." label="Language:">
+            <CheckboxGroup description="Selected plan can be changed at any time." label="Language:">
                 {languages.map((value)=> {
                     return <CustomCheckBox value={value.key}>
                     {value.label}
