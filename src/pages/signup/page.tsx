@@ -22,7 +22,6 @@ export default function SignupPage() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [languageSelected, setLanguageSelected] = useState(false);
   const contentRef = useRef(null); // Ref to track content height
-
   const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
 
   const setSlideAvailable = () => setNextSlideAvalable(true)
@@ -42,14 +41,14 @@ export default function SignupPage() {
 
   return (
     <Page back={false}>
-      <motion.div className="flex flex-col items-center justify-between">
-        <div ref={contentRef} style={{ paddingTop: "4rem",paddingBottom:"1rem", zIndex:999 }} className="fixed top-0 w-full backdrop-blur	bg-background/80 backdrop-saturate-150 ">
+      <motion.div style={{paddingTop:"6rem"}} className="flex flex-col items-center justify-between">
+        <div ref={contentRef} style={{paddingTop:"5rem", zIndex:999 }} className="fixed top-0 w-full backdrop-blur	bg-background/80 backdrop-saturate-150 ">
           <div className="text-center mt-8">
             <SparklesText text="Moll Moll" />
           </div>
         </div>
 
-        <div style={{ paddingTop: "9rem", paddingBottom:"90px" }} className="w-full h-screen">
+        <div style={{ paddingTop: "9rem", paddingBottom:"90px" }} className="w-full">
         <AnimatePresence>
             {selectedTab === 0 && (
               <motion.div
