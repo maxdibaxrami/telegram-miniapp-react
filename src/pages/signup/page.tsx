@@ -19,13 +19,54 @@ import LookingforList from "@/components/core/WhyIamHereAuthList";
 import InterestingAuth from "@/components/auth/interstingAuth";
 
 export default function SignupPage() {
+
+  const contentRef = useRef(null); // Ref to track content height
+
+
   const [selectedTab, setSelectedTab] = useState(0);
   const [languageSelected, setLanguageSelected] = useState(false);
-  const contentRef = useRef(null); // Ref to track content height
   const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
+  const [user, setUser] = useState({
+    "telegramId": 123456789,
+    "username": "johndoe",
+    "firstName": "John",
+    "photoUrl": "https://example.com/johndoe.jpg",
+    "city": "New York",
+    "country": "USA",
+    "languages": ["English", "Spanish"],
+    "interests": ["Music", "Sports"],
+    "height": "180",
+    "activityScore": 0,
+    "gender": "Male",
+    "lookingFor": ["Relationship"],
+    "relationStatus": "Single",
+    "sexuality": "Heterosexual",
+    "education": "College Graduate",
+    "work": "Software Developer",
+    "bio": "I love coding and exploring the world!",
+    "photos": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
+    "verifiedAccount": true,
+    "language":"en",
+    "age":"2000-01-14"
+  })
 
-  const setSlideAvailable = () => setNextSlideAvalable(true)
-  const setSlideUnAvailable = () => setNextSlideAvalable(false)
+
+
+  const setSlideAvailable = (key, value) => {
+    setNextSlideAvalable(true)
+    setUser((prevUser) => ({
+      ...prevUser,  // Spread the previous state to keep other fields unchanged
+      [key]: value, // Dynamically update the specific key with the new value
+    }));
+  }
+
+  const setSlideUnAvailable = (key, value) => {
+    setNextSlideAvalable(false)
+    setUser((prevUser) => ({
+      ...prevUser,  // Spread the previous state to keep other fields unchanged
+      [key]: value, // Dynamically update the specific key with the new value
+    }));
+  }
 
   const NextPage = () => setSelectedTab(selectedTab + 1);
   const prevPage = () => {
@@ -38,6 +79,7 @@ export default function SignupPage() {
   useEffect(() => {
     console.log("Language Selected:", languageSelected);
   }, [languageSelected]);
+
 
   return (
     <Page back={false}>
@@ -57,7 +99,7 @@ export default function SignupPage() {
                 initial={{   opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <IntroPage setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} setLanguage={setLanguage} />
+                <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} setLanguage={setLanguage} />
               </motion.div>
             )}
             {selectedTab === 1 && (
@@ -67,7 +109,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ProfileDataAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <ProfileDataAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 2 && (
@@ -77,7 +119,7 @@ export default function SignupPage() {
                 initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ProfileDataAuth2 setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <ProfileDataAuth2 user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 3 && (
@@ -87,7 +129,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <GenderStuffAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <GenderStuffAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 4 && (
@@ -97,7 +139,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <HeightAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                <HeightAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 5 && (
@@ -107,7 +149,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <RealationStatusAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
               </motion.div>
             )}
             {selectedTab === 6 && (

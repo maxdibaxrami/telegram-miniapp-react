@@ -25,14 +25,15 @@ import { useEffect, useState } from "react";
     );
   };
   
-const HeightAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
-    const [selected, setSelected] = useState("");
+const HeightAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+  
+    const [selected, setSelected] = useState(user.height);
 
     useEffect(()=>{
       if(selected !==""){
-        setSlideAvailable()
+        setSlideAvailable("height",selected)
       }else{
-        setSlideUnAvailable()
+        setSlideUnAvailable("height",selected)
       }
   
     },[selected])

@@ -38,7 +38,6 @@ const MainPage = () => {
                 }}
               >
                   <TopBar/>
-
               </motion.div>
                 
 

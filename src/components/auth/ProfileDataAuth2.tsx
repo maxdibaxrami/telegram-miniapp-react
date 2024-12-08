@@ -2,16 +2,34 @@ import { Calendar, DateValue } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
 
-const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable }) => {
-  const [value, setValue] = useState<DateValue | null>(parseDate("2000-01-14"));
+const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
+  // Set the initial value to "2000-01-14"
+  const [value, setValue] = useState<DateValue | null>(parseDate(user.age));
 
   useEffect(() => {
+    const formattedDate = formatDate(value);
+
     if (value !== null) {
-      setSlideAvailable();
+      setSlideAvailable("age" , formattedDate);
     } else {
-      setSlideUnAvailable();
+      setSlideUnAvailable("age" , formattedDate);
     }
+    
   }, [value]);
+
+  // Helper function to format date to "YYYY-MM-DD"
+  const formatDate = (dateValue: DateValue) => {
+    return `${dateValue.year}-${String(dateValue.month).padStart(2, "0")}-${String(dateValue.day).padStart(2, "0")}`;
+  };
+
+  // Handle date change and format it to "YYYY-MM-DD"
+  const handleDateChange = (newValue: DateValue | null) => {
+    if (newValue) {
+      const formattedDate = formatDate(newValue);
+      setValue(parseDate(formattedDate))
+    }
+    ; // Set the selected date
+  };
 
   // Set the minimum date to 1900-01-01
   const minDate = parseDate("1900-01-01");
@@ -26,7 +44,7 @@ const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable }) => {
         <p className="mb-1 text-left">Select date of birth: </p>
         <Calendar
           value={value}
-          onChange={setValue}
+          onChange={handleDateChange}  // Use the custom handler
           style={{ width: "100%" }}
           showMonthAndYearPickers
           aria-label="Date (Show Month and Year Picker)"

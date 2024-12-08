@@ -22,15 +22,15 @@ const item = {
   },
 };
 
-const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable }) => {
-  const [isSelected, setIsSelected] = useState("");
+const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }) => {
+  const [isSelected, setIsSelected] = useState(user.language);
 
   useEffect(() => {
     if (isSelected != "") {
       setLanguage();
-      setSlideAvailable()
+      setSlideAvailable("language",isSelected)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("language",isSelected)
     }
   }, [isSelected]);
 
@@ -52,15 +52,15 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable }) => {
               endContent={
                 <Checkbox
                   classNames={{ wrapper: "m-0" }}
-                  isSelected={isSelected === "gb"}
+                  isSelected={isSelected === "en"}
                   radius="full"
                   size="md"
-                  onClick={() => setIsSelected("gb")}
+                  onClick={() => setIsSelected("en")}
                 />
               }
               size="lg"
               variant="flat"
-              onClick={() => setIsSelected("gb")}
+              onClick={() => setIsSelected("en")}
             >
               English
             </Chip>

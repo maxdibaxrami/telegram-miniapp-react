@@ -26,18 +26,18 @@ export const CustomRadio = (props) => {
     );
   };
   
-const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
-  const [selected, setSelected] = useState("");
-  const [selected1, setSelected1] = useState("");
+const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+
+  const [selected, setSelected] = useState(user.gender);
   
   useEffect(()=>{
-    if(selected !=="" && selected1 !==""){
-      setSlideAvailable()
+    if(selected !=="" ){
+      setSlideAvailable("gender", selected)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("gender", selected)
     }
 
-  },[selected, selected1])
+  },[selected])
 
   return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
@@ -49,18 +49,6 @@ const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
                 </CustomRadio>
                 })}
                 
-
-            </RadioGroup>
-
-
-            <RadioGroup value={selected1} onValueChange={setSelected1} description="Selected plan can be changed at any time." label="Looking for :">
-                {Gender.map((value)=> {
-                    return <CustomRadio  value={value.key}>
-                    {value.label}
-                </CustomRadio>
-                })}
-                
-
             </RadioGroup>
 
         </form>

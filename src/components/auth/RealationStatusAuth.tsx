@@ -25,14 +25,14 @@ import { useEffect, useState } from "react";
     );
   };
   
-const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
-  const [selected, setSelected] = useState("");
+const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+  const [selected, setSelected] = useState(user.relationStatus);
 
   useEffect(()=>{
     if(selected !==""){
-      setSlideAvailable()
+      setSlideAvailable("relationStatus",selected)
     }else{
-      setSlideUnAvailable()
+      setSlideUnAvailable("relationStatus",selected)
     }
 
   },[selected])

@@ -4,19 +4,25 @@ import {
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
-const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
-  const [name , setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [workAndEducation, setWorkAndEducation] = useState('')
+  const [name , setName] = useState(user.firstName)
+  const [bio, setBio] = useState(user.bio)
+  const [workAndEducation, setWorkAndEducation] = useState(user.education)
 
   useEffect(()=>{
-    if(name.length> 3 && description.length>3 , workAndEducation.length>3){
-      setSlideAvailable()
+    if(name.length> 3 && bio.length>3 , workAndEducation.length>3){
+      setSlideAvailable("firstName",name)
+      setSlideAvailable("bio", bio)
+      setSlideAvailable("education", workAndEducation)
+
       return
     }
     setSlideUnAvailable()
-  },[name, description, workAndEducation])
+    setSlideUnAvailable()
+    setSlideUnAvailable()
+
+  },[name, bio, workAndEducation])
 
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
@@ -27,11 +33,11 @@ const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
         
         <Textarea
           className="w-full"
-          label="About me"
+          label="Bio"
           isRequired
-          value={description}
-          onChange={(e)=> setDescription(e.target.value)}
-          placeholder="Enter your description"
+          value={bio}
+          onChange={(e)=> setBio(e.target.value)}
+          placeholder="Enter your Bio"
         />
 
         <Textarea
