@@ -1,25 +1,43 @@
 import {
   SelectItem,
   Select,
-  DatePicker,
   Input,
   Autocomplete,
   AutocompleteItem,
   Avatar,
 } from "@nextui-org/react";
+import Wheel from "../core/While";
 
 const ProfileDataAuth = () => {
+
+
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
         <p className="mb-1 text-left">Fill profile data : </p>
 
         <Input label="Name" type="text" />
-        <DatePicker
-          showMonthAndYearPickers
-          className="text-left"
-          label="Birth Date"
-        />
+        <div
+          style={{
+            height: "240px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "#000",
+          }}
+        >
+          <div style={{ height: 180 }}>
+            <Wheel label="Year" initIdx={2000} length={2024} width={50} />
+          </div>
+
+          <div style={{ height: 180 }}>
+            <Wheel label="Month" initIdx={1} length={12} width={50} />
+          </div>
+
+          <div style={{ height: 180 }}>
+            <Wheel label="Day" initIdx={1} length={31} width={50} />
+          </div>
+        </div>
         <Autocomplete className="w-full" label="Select country">
           <AutocompleteItem
             key="argentina"
