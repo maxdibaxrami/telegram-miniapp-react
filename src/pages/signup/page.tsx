@@ -23,6 +23,11 @@ export default function SignupPage() {
   const [languageSelected, setLanguageSelected] = useState(false);
   const contentRef = useRef(null); // Ref to track content height
 
+  const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
+
+  const setSlideAvailable = () => setNextSlideAvalable(true)
+  const setSlideUnAvailable = () => setNextSlideAvalable(false)
+
   const NextPage = () => setSelectedTab(selectedTab + 1);
   const prevPage = () => {
     if(selectedTab === 0 ) 
@@ -44,7 +49,7 @@ export default function SignupPage() {
           </div>
         </div>
 
-        <div style={{ paddingTop: "7rem", paddingBottom:"90px" }} className="w-full">
+        <div style={{ paddingTop: "9rem", paddingBottom:"90px" }} className="w-full h-screen">
         <AnimatePresence>
             {selectedTab === 0 && (
               <motion.div
@@ -53,7 +58,7 @@ export default function SignupPage() {
                 initial={{   opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <IntroPage setLanguage={setLanguage} />
+                <IntroPage setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} setLanguage={setLanguage} />
               </motion.div>
             )}
             {selectedTab === 1 && (
@@ -63,7 +68,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ProfileDataAuth />
+                <ProfileDataAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 2 && (
@@ -73,7 +78,7 @@ export default function SignupPage() {
                 initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ProfileDataAuth2 />
+                <ProfileDataAuth2 setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 3 && (
@@ -83,7 +88,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <GenderStuffAuth />
+                <GenderStuffAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 4 && (
@@ -93,7 +98,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <HeightAuth />
+                <HeightAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 5 && (
@@ -103,7 +108,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <RealationStatusAuth />
+                <RealationStatusAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
               </motion.div>
             )}
             {selectedTab === 6 && (
@@ -113,7 +118,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <LanguageAuth />
+                <LanguageAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
               </motion.div>
             )}
             {selectedTab === 7 && (
@@ -123,7 +128,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <SexualityStatusAuth />
+                <SexualityStatusAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 8 && (
@@ -133,7 +138,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <KidsAuth />
+                <KidsAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 9 && (
@@ -143,7 +148,7 @@ export default function SignupPage() {
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <LookingforList />
+                <LookingforList setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
 
@@ -154,7 +159,7 @@ export default function SignupPage() {
                 initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <InterestingAuth />
+                <InterestingAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
 
@@ -166,7 +171,7 @@ export default function SignupPage() {
                 initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ImageDataAuth />
+                <ImageDataAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
             {selectedTab === 12 && (
@@ -176,7 +181,7 @@ export default function SignupPage() {
                 initial={{opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <FinalStepAuth />
+                <FinalStepAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
               </motion.div>
             )}
           </AnimatePresence>
@@ -191,6 +196,7 @@ export default function SignupPage() {
             nextPage={NextPage}
             prevPage={prevPage}
             selectedTab={selectedTab}
+            nextSlideAvalable={nextSlideAvalable}
           />
         </div>
       </motion.div>

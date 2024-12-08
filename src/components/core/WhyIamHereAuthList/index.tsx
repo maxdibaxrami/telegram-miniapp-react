@@ -1,5 +1,6 @@
 import { ChatIcon, FireIcon, HeartIcon } from "@/Icons";
 import { Avatar, cn, Radio, RadioGroup } from "@nextui-org/react";
+import { useState, useEffect } from "react";
 
 // Define the allowed color types
 type AvatarColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
@@ -59,11 +60,22 @@ export const CustomRadio = (props: any) => {
 };
 
 // Main component rendering the RadioGroup
-const WhyIamHereAuth = () => {
+const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+
+  const [selected, setSelected] = useState("");
+  
+  useEffect(()=>{
+    if(selected !== ""){
+      setSlideAvailable()
+    }else{
+      setSlideUnAvailable()
+    }
+
+  },[selected])
   return (
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <RadioGroup description="Selected plan can be changed at any time." label="Why I am here:">
+        <RadioGroup value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="Why I am here:">
           {Items.map((item) => (
             <CustomRadio key={item.id} value={item.id.toString()}>
               <div className="flex items-center">

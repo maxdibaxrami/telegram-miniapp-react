@@ -1,7 +1,7 @@
 import { Navbar, NavbarContent, Button, Progress } from "@nextui-org/react";
 import { ArrowRight, ArrowLeft } from "@/Icons/index";
 
-const BottomController = ({ nextPage, prevPage, selectedTab }) => {
+const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable }) => {
 
   return (
       <Navbar className="w-full bg-transparent">
@@ -27,6 +27,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab }) => {
             aria-label="Like"
             color="primary"
             size="lg"
+            isDisabled={!nextSlideAvalable}
             onClick={nextPage}
           >
             <ArrowRight />

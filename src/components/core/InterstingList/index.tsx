@@ -1,6 +1,6 @@
 import type {Selection} from "@react-types/shared";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {Listbox, ListboxItem, Chip, ScrollShadow, Avatar} from "@nextui-org/react";
 import { HashtagIcon } from "@/Icons";
 
@@ -12,9 +12,9 @@ export const ListboxWrapper = ({children}: {children: React.ReactNode}) => (
   </div>
 );
 
-export default function InterestingList() {
+export default function InterestingList({onChangeValue}) {
   const [values, setValues] = React.useState<Selection>(new Set(["1"]));
-
+  useEffect(()=> onChangeValue(values) ,[values])
   const arrayValues = Array.from(values);
 
   const topContent = React.useMemo(() => {
@@ -40,7 +40,7 @@ export default function InterestingList() {
       <Listbox
         classNames={{
           base: "w-full",
-          list: "max-h-[300px] overflow-scroll",
+          list: "max-h-[350px] overflow-scroll",
         }}
         defaultSelectedKeys={["1"]}
         items={hobbies}

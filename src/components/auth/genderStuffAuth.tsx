@@ -3,9 +3,10 @@ import {
     Radio,
     RadioGroup,
   } from "@nextui-org/react";
+import { useEffect, useState } from "react";
   
 
-  export const CustomRadio = (props) => {
+export const CustomRadio = (props) => {
     const {children, ...otherProps} = props;
   
     return (
@@ -25,12 +26,23 @@ import {
     );
   };
   
-const GenderStuffAuth = () => {
+const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+  const [selected, setSelected] = useState("");
+  const [selected1, setSelected1] = useState("");
   
-    return (
+  useEffect(()=>{
+    if(selected !=="" && selected1 !==""){
+      setSlideAvailable()
+    }else{
+      setSlideUnAvailable()
+    }
+
+  },[selected, selected1])
+
+  return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup description="Selected plan can be changed at any time." label="I am :">
+            <RadioGroup value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="I am :">
                 {Gender.map((value)=> {
                     return <CustomRadio value={value.key}>
                     {value.label}
@@ -41,7 +53,7 @@ const GenderStuffAuth = () => {
             </RadioGroup>
 
 
-            <RadioGroup description="Selected plan can be changed at any time." label="Looking for :">
+            <RadioGroup value={selected1} onValueChange={setSelected1} description="Selected plan can be changed at any time." label="Looking for :">
                 {Gender.map((value)=> {
                     return <CustomRadio  value={value.key}>
                     {value.label}

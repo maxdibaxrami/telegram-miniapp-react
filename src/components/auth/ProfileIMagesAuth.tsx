@@ -1,8 +1,17 @@
 import { Image, Button } from "@nextui-org/react";
 
 import { PenIcon } from "@/Icons/index";
+import { useEffect } from "react";
 
-const ImageDataAuth = () => {
+const ImageDataAuth = ({setSlideAvailable, setSlideUnAvailable}) => {
+
+  useEffect(()=>{
+ 
+      setSlideUnAvailable()
+      setSlideAvailable()
+
+  },[])
+
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">

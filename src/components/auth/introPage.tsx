@@ -22,12 +22,15 @@ const item = {
   },
 };
 
-const IntroPage = ({ setLanguage }) => {
+const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable }) => {
   const [isSelected, setIsSelected] = useState("");
 
   useEffect(() => {
     if (isSelected != "") {
       setLanguage();
+      setSlideAvailable()
+    }else{
+      setSlideUnAvailable()
     }
   }, [isSelected]);
 

@@ -7,7 +7,7 @@ import WhyIamHereList from "../core/WhyIamHereAuthList";
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
         
-          <WhyIamHereList/>
+          <WhyIamHereList setSlideAvailable={undefined} setSlideUnAvailable={undefined}/>
   
         </form>
       </div>
