@@ -16,6 +16,7 @@ import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
 import LanguageAuth from "@/components/auth/languagesAuth";
 import SexualityStatusAuth from "@/components/auth/SexualityStatusAuth";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
+import InterestingAuth from "@/components/auth/interstingAuth";
 
 export default function SignupPage() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -45,9 +46,10 @@ export default function SignupPage() {
           <AnimatePresence mode="popLayout">
             {selectedTab === 0 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{  opacity: 1 }}
+                exit={{  opacity: 0 }}
+                initial={{   opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <IntroPage setLanguage={setLanguage} />
@@ -55,9 +57,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 1 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{  opacity: 1 }}
+                exit={{  opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <ProfileDataAuth />
@@ -65,9 +68,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 2 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{   opacity: 1 }}
+                exit={{  opacity: 0 }}
+                initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <ProfileDataAuth2 />
@@ -75,9 +79,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 3 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <GenderStuffAuth />
@@ -85,9 +90,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 4 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <HeightAuth />
@@ -95,9 +101,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 5 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <RealationStatusAuth />
@@ -105,9 +112,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 6 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <LanguageAuth />
@@ -115,9 +123,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 7 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <SexualityStatusAuth />
@@ -125,9 +134,10 @@ export default function SignupPage() {
             )}
             {selectedTab === 8 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <KidsAuth />
@@ -135,29 +145,46 @@ export default function SignupPage() {
             )}
             {selectedTab === 9 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <LookingforList />
               </motion.div>
             )}
+
             {selectedTab === 10 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{  opacity: 0 }}
+                initial={{  opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <InterestingAuth />
+              </motion.div>
+            )}
+
+
+            {selectedTab === 11 && (
+              <motion.div
+                layout
+                animate={{  opacity: 1 }}
+                exit={{  opacity: 0 }}
+                initial={{  opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <ImageDataAuth />
               </motion.div>
             )}
-            {selectedTab === 11 && (
+            {selectedTab === 12 && (
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                initial={{ y: 10, opacity: 0 }}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <FinalStepAuth />

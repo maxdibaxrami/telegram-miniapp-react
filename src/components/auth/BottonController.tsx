@@ -19,7 +19,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab }) => {
           
         </NavbarContent>
         <NavbarContent className="flex w-full gap-4" justify="center">
-         <Progress isDisabled={selectedTab === 0 } aria-label="Loading..." className="w-full" color="primary" value={selectedTab * 9} />
+         <Progress isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 7.70} />
         </NavbarContent>
         <NavbarContent justify="end">
           <Button
