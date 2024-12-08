@@ -5,14 +5,19 @@ import IntroPage from "@/components/auth/introPage";
 import BottomController from "@/components/auth/BottonController";
 import ProfileDataAuth from "@/components/auth/ProfileDataAuth";
 import ProfileDataAuth2 from "@/components/auth/ProfileDataAuth2";
-import AboutMeAuth from "@/components/auth/aboutMeAuth";
-import InterestingAuth from "@/components/auth/interstingAuth";
+import GenderStuffAuth from "@/components/auth/genderStuffAuth";
 import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
 import { SparklesText } from "@/components/animate/sparkles";
 import { Page } from "@/components/Page";
-
+import KidsAuth from "@/components/auth/kidsAuth";
+import HeightAuth from '@/components/auth/HeightAuth'
+import RealationStatusAuth from '@/components/auth/RealationStatusAuth'
+import LanguageAuth from "@/components/auth/languagesAuth";
+import SexualityStatusAuth from "@/components/auth/SexualityStatusAuth";
+import LookingforList from "@/components/core/WhyIamHereAuthList";
 export default function SignupPage() {
+
   const [selectedTab, setSelectedTab] = useState(0);
   const [languageSelected, setLanguageSelected] = useState(false);
 
@@ -25,8 +30,8 @@ export default function SignupPage() {
 
   return (
     <Page back={false}>
-      <div className="flex flex-col items-center h-screen justify-between">
-        <div style={{paddingTop:"6rem"}} className="w-full h-screen">
+      <div className="flex flex-col items-center justify-between">
+        <div style={{paddingTop:"6rem"}} className="w-full">
           <div className="text-center mt-8">
             <SparklesText text="Moll Moll" />
           </div>
@@ -78,7 +83,7 @@ export default function SignupPage() {
                 initial={{ y: 10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <AboutMeAuth />
+                <GenderStuffAuth />
               </motion.div>
             </AnimatePresence>
           )}
@@ -91,7 +96,7 @@ export default function SignupPage() {
                 initial={{ y: 10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <InterestingAuth />
+                <HeightAuth />
               </motion.div>
             </AnimatePresence>
           )}
@@ -104,7 +109,7 @@ export default function SignupPage() {
                 initial={{ y: 10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ImageDataAuth />
+                <RealationStatusAuth />
               </motion.div>
             </AnimatePresence>
           )}
@@ -117,18 +122,87 @@ export default function SignupPage() {
                 initial={{ y: 10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
+                <LanguageAuth />
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+          {selectedTab === 7 && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <SexualityStatusAuth />
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+        {selectedTab === 8 && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <KidsAuth />
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+
+        {selectedTab === 9 && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <LookingforList />
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+        {selectedTab === 10 && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ImageDataAuth />
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+
+        {selectedTab === 11 && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
                 <FinalStepAuth />
               </motion.div>
             </AnimatePresence>
           )}
+
+
+
         </div>
-        {selectedTab !== 6 && (
+
             <BottomController
               nextPage={NextPage}
               prevPage={prevPage}
               selectedTab={selectedTab}
             />
-        )}
       </div>
     </Page>
   );

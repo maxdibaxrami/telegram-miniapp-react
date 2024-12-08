@@ -1,7 +1,5 @@
 import {
   Input,
-  Select,
-  SelectItem,
   Textarea,
 } from "@nextui-org/react";
 
@@ -22,21 +20,17 @@ const ProfileDataAuth = () => {
           placeholder="Enter your description"
         />
 
-      <Select isOpen={true} isRequired label="Select gender">
-        {gender.map((animal) => (
-          <SelectItem key={animal.key}>{animal.label}</SelectItem>
-        ))}
-      </Select>
-        
+        <Textarea
+          className="w-full"
+          label="Work and education"
+          isRequired
+          placeholder="Enter your Work and education status"
+        />
+
       </form>
     </div>
   );
 };
 
 export default ProfileDataAuth;
-
-export const gender = [
-  {key: "Male", label: "Male"},
-  {key: "Female", label: "Female"},
-];
 

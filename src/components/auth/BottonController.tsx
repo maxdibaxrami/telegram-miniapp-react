@@ -12,7 +12,6 @@ const BottomController = ({ nextPage, prevPage, selectedTab }) => {
           <Button
             isIconOnly
             aria-label="Like"
-            className={selectedTab === 0 ? "hidden" : ""}
             color="primary"
             size="lg"
             onClick={prevPage}
@@ -25,7 +24,6 @@ const BottomController = ({ nextPage, prevPage, selectedTab }) => {
           <Button
             isIconOnly
             aria-label="Like"
-            className={selectedTab === 6 ? "hidden" : ""}
             color="primary"
             size="lg"
             onClick={nextPage}
