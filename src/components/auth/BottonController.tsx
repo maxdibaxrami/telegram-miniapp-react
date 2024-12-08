@@ -1,9 +1,7 @@
 import { Navbar, NavbarContent, Button } from "@nextui-org/react";
-import { Progress } from "@nextui-org/progress";
-import {motion} from 'framer-motion'
 import { ArrowRight, ArrowLeft } from "@/Icons/index";
 
-const BottomController = ({ nextPage, prevPage, selectedTab }) => {
+const BottomController = ({ nextPage, prevPage }) => {
 
   return (
       <Navbar className="w-full">

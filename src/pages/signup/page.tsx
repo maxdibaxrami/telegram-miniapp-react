@@ -175,7 +175,6 @@ export default function SignupPage() {
           <BottomController
             nextPage={NextPage}
             prevPage={prevPage}
-            selectedTab={selectedTab}
           />
         </motion.div>
       </motion.div>
