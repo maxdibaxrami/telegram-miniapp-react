@@ -1,4 +1,4 @@
-import { SelectItem, Select, Input } from "@nextui-org/react";
+import { SelectItem, Select } from "@nextui-org/react";
 
 const AboutMeAuth = () => {
   return (

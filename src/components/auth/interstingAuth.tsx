@@ -1,4 +1,3 @@
-import React from "react";
 import InterestingList from "../core/InterstingList";
 
 const InterestingAuth = () => {
