@@ -29,7 +29,7 @@ const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 text-left font-medium">{t('Fillprofiledata')}</p>
+        <p className="mb-1 font-medium">{t('Fillprofiledata')}</p>
 
         <Input value={name} onChange={(e)=> setName(e.target.value)} isRequired label={t('name')} type="text" />
         

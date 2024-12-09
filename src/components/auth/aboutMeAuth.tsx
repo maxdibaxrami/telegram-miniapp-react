@@ -4,7 +4,7 @@ const AboutMeAuth = () => {
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 text-left">More about you : </p>
+        <p className="mb-1 ">More about you : </p>
         <Select
           className="w-full"
           items={KidStatus}
