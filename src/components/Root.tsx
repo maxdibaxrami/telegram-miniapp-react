@@ -8,7 +8,7 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import {ThemeProvider as NextThemesProvider} from "next-themes";
-
+import FontHandller from './FontHandller';
 import en from '../locales/en.json';
 import ru from '../locales/ru.json';
 import ar from '../locales/ar.json';
@@ -54,7 +54,9 @@ export function Root() {
 
   useEffect(() => {
     const currentLang = i18n.language;
+    document.documentElement.lang = currentLang;
     document.documentElement.dir = currentLang === 'ar' || currentLang === 'fa' ? 'rtl' : 'ltr';
+    FontHandller()
   }, [i18n.language]);
   
   return (
