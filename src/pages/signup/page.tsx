@@ -17,9 +17,11 @@ import SexualityStatusAuth from "@/components/auth/SexualityStatusAuth";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import InterestingAuth from "@/components/auth/interstingAuth";
 import "./style.css"
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 export default function SignupPage() {
 
   const contentRef = useRef(null); // Ref to track content height
+  const lp = useLaunchParams();
 
 
   const [selectedTab, setSelectedTab] = useState(0);
@@ -81,16 +83,27 @@ export default function SignupPage() {
   }, [user]);
 
 
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '5rem'  // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return'35px'  // Default padding
+    }
+  };
+  
+
   return (
     <Page back={false}>
         <motion.div className="flex h-screen flex-col items-center justify-between">
-          <div ref={contentRef} style={{paddingTop:"5rem", zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
-            <div className="text-center mt-8">
+          <div ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
+            <div className="text-center">
               <SparklesText text="Moll Moll" />
             </div>
           </div>
 
-          <div style={{ paddingTop: "172px", overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
+          <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "6rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
           <AnimatePresence>
               {selectedTab === 0 && (
                 <motion.div
