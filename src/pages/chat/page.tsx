@@ -12,7 +12,7 @@ export default function ChatPage() {
     <Page>
       <ChatLayout>
         <ChatProfileSection />
-        <main className="flex flex-grow overflow-y-auto">
+        <main style={{flex:1, overflow:"auto"}}>
           <MessageSection />
         </main>
         <ChatInput />

@@ -14,7 +14,6 @@ export default function ChatLayout({
         style={{
           height: `calc(100vh)`,
           transition: 'height 0.3s ease',
-          overflow: 'hidden',
           display: 'flex',
           paddingBottom:"2rem",
           position:"relative",
