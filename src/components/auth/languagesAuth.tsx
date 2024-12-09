@@ -4,6 +4,7 @@ import {
     Checkbox,
   } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
   
 
   export const CustomCheckBox = (props) => {
@@ -27,7 +28,8 @@ import { useEffect, useState } from "react";
   
 const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   const [selected, setSelected] = useState(user.languages);
-  
+  const { t } = useTranslation();
+
   useEffect(()=>{
     if(selected.length !== 0){
       setSlideAvailable("languages", selected)
@@ -37,10 +39,33 @@ const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
   },[selected])
   
+  const languages = [
+    { key: "en", label: t("en") },
+    { key: "zh", label: t("zh") },
+    { key: "es", label: t("es") },
+    { key: "hi", label: t("hi") },
+    { key: "ar", label: t("ar") },
+    { key: "bn", label: t("bn") },
+    { key: "fr", label: t("fr") },
+    { key: "ru", label: t("ru") },
+    { key: "pt", label: t("pt") },
+    { key: "id", label: t("id") },
+    { key: "ja", label: t("ja") },
+    { key: "de", label: t("de") },
+    { key: "pa", label: t("pa") },
+    { key: "ur", label: t("ur") },
+    { key: "ko", label: t("ko") },
+    { key: "vi", label: t("vi") },
+    { key: "fa", label: t("fa") },
+    { key: "tr", label: t("tr") },
+    { key: "ta", label: t("ta") },
+    { key: "it", label: t("it") },
+  ];
+  
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <CheckboxGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onChange={setSelected} description="Selected plan can be changed at any time." label="Language:">
+            <CheckboxGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("Language")}>
                 {languages.map((value)=> {
                     return <CustomCheckBox value={value.key}>
                     {value.label}
@@ -58,27 +83,6 @@ const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   export default LanguageAuth;
   
 
-  const languages = [
-    { key: "en", label: "English" },
-    { key: "zh", label: "Chinese" },
-    { key: "es", label: "Spanish" },
-    { key: "hi", label: "Hindi" },
-    { key: "ar", label: "Arabic" },
-    { key: "bn", label: "Bengali" },
-    { key: "fr", label: "French" },
-    { key: "ru", label: "Russian" },
-    { key: "pt", label: "Portuguese" },
-    { key: "id", label: "Indonesian" },
-    { key: "ja", label: "Japanese" },
-    { key: "de", label: "German" },
-    { key: "pa", label: "Punjabi" },
-    { key: "ur", label: "Urdu" },
-    { key: "ko", label: "Korean" },
-    { key: "vi", label: "Vietnamese" },
-    { key: "fa", label: "Persian" },
-    { key: "tr", label: "Turkish" },
-    { key: "ta", label: "Tamil" },
-    { key: "it", label: "Italian" },
-  ];
+  
   
   

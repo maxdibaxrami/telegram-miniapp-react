@@ -1,6 +1,7 @@
 import { Chip, Avatar, Checkbox } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -24,12 +25,19 @@ const item = {
 
 const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }) => {
   const [isSelected, setIsSelected] = useState(user.language);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     if (isSelected != "") {
       setLanguage();
+      changeLanguage(isSelected)
       setSlideAvailable("language",isSelected)
     }else{
+      changeLanguage(isSelected)
       setSlideUnAvailable("language",isSelected)
     }
   }, [isSelected]);
@@ -37,7 +45,9 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
   return (
     <div className="flex items-center justify-between h-full px-6 flex-col pt-8 pb-4">
       <div className="pt-16 flex flex-col">
-        <p className="text-base font-medium mb-2 text-center">Select language for continue: </p>
+        <p className="text-base font-medium mb-2 text-center">
+          {t('Selectlanguageforcontinue')}
+        </p>
         <motion.ul
           animate="visible"
           className="container flex gap-2 items-center justify-center flex-wrap"
@@ -113,20 +123,20 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="en" size="md" src="https://flagcdn.com/sa.svg" />
+                <Avatar name="ar" size="md" src="https://flagcdn.com/sa.svg" />
               }
               endContent={
                 <Checkbox
                   classNames={{ wrapper: "m-0" }}
-                  isSelected={isSelected === "sa"}
+                  isSelected={isSelected === "ar"}
                   radius="full"
                   size="md"
-                  onClick={() => setIsSelected("sa")}
+                  onClick={() => setIsSelected("ar")}
                 />
               }
               size="lg"
               variant="flat"
-              onClick={() => setIsSelected("sa")}
+              onClick={() => setIsSelected("ar")}
             >
               Arabic
             </Chip>

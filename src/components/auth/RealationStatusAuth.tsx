@@ -4,6 +4,7 @@ import {
     RadioGroup,
   } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
   
 
   export const CustomRadio = (props) => {
@@ -27,6 +28,15 @@ import { useEffect, useState } from "react";
   
 const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   const [selected, setSelected] = useState(user.relationStatus);
+  const { t } = useTranslation();
+
+  const RealationStatus = [
+    { key: "Single", label: t("Single") },
+    { key: "Taken", label: t("Taken") },
+    { key: "open", label: t("open") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+  ];
+  
 
   useEffect(()=>{
     if(selected !==""){
@@ -39,7 +49,7 @@ const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="Realation Status:">
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t('Selectedplancanbechangedatanytime')} label={t('RealationStatus')}>
                 {RealationStatus.map((value)=> {
                     return <CustomRadio value={value.key}>
                     {value.label}
@@ -58,10 +68,4 @@ const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   export default RealationStatusAuth;
   
 
-  export const RealationStatus = [
-    { key: "Single", label: "Single" },
-    { key: "Taken", label: "Taken" },
-    { key: "open", label: "open" },
-    { key: "ratthernotsay", label: "I’d rather not say" },
-  ];
   

@@ -4,6 +4,7 @@ import {
     RadioGroup,
   } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
   
 
 export const CustomRadio = (props) => {
@@ -27,9 +28,14 @@ export const CustomRadio = (props) => {
   };
   
 const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
-
+  const { t } = useTranslation();
   const [selected, setSelected] = useState(user.gender);
   
+  const Gender = [
+    { key: "Male", label: t('Male') },
+    { key: "Female", label: t('Female') },
+  ];
+
   useEffect(()=>{
     if(selected !=="" ){
       setSlideAvailable("gender", selected)
@@ -42,7 +48,7 @@ const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}} value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="I am :">
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}} value={selected} onValueChange={setSelected} description={t('Selectedplancanbechangedatanytime')} label={t('Iam')}>
                 {Gender.map((value)=> {
                     return <CustomRadio value={value.key}>
                     {value.label}
@@ -61,7 +67,3 @@ const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   export default GenderStuffAuth;
   
 
-  export const Gender = [
-    { key: "Male", label: "Male" },
-    { key: "Female", label: "Female" },
-  ];

@@ -3,8 +3,10 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+  const { t } = useTranslation();
 
   const [name , setName] = useState(user.firstName)
   const [bio, setBio] = useState(user.bio)
@@ -27,26 +29,26 @@ const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 text-left font-medium">Fill profile data : </p>
+        <p className="mb-1 text-left font-medium">{t('Fillprofiledata')}</p>
 
-        <Input value={name} onChange={(e)=> setName(e.target.value)} isRequired label="Name" type="text" />
+        <Input value={name} onChange={(e)=> setName(e.target.value)} isRequired label={t('name')} type="text" />
         
         <Textarea
           className="w-full"
-          label="Bio"
+          label={t('Bio')}
           isRequired
           value={bio}
           onChange={(e)=> setBio(e.target.value)}
-          placeholder="Enter your Bio"
+          placeholder={t('EnteryourBio')}
         />
 
         <Textarea
           className="w-full"
-          label="Work and education"
+          label={t('Workandeducation')}
           isRequired
           value={workAndEducation}
           onChange={(e)=> setWorkAndEducation(e.target.value)}
-          placeholder="Enter your Work and education status"
+          placeholder={t('EnteryourWorkandeducationstatus')}
         />
 
       </form>

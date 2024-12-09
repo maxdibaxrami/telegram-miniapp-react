@@ -1,5 +1,7 @@
 {
     "welcome": "Добро пожаловать",
-    "description": "Это многоязычное приложение"
+    "description": "Это многоязычное приложение",
+    "Selectlanguageforcontinue":"Select language for continue: ru"
+
   }
   

@@ -1,10 +1,12 @@
 import { Calendar, DateValue } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
+import { useTranslation } from "react-i18next";
 
 const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
   // Set the initial value to "2000-01-14"
   const [value, setValue] = useState<DateValue | null>(parseDate(user.age));
+  const { t } = useTranslation();
 
   useEffect(() => {
     const formattedDate = formatDate(value);
@@ -41,7 +43,7 @@ const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
   return (
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 text-left font-medium">Select date of birth: </p>
+        <p className="mb-1 text-left font-medium">{t("Selectdateofbirth")} </p>
         <Calendar
           value={value}
           onChange={handleDateChange}  // Use the custom handler
