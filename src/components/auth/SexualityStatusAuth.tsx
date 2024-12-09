@@ -4,6 +4,7 @@ import {
     RadioGroup,
   } from "@nextui-org/react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
   
 
   export const CustomRadio = (props) => {
@@ -28,7 +29,8 @@ import { useState, useEffect } from "react";
 const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
   const [selected, setSelected] = useState(user.sexuality);
-  
+  const { t } = useTranslation();
+
   useEffect(()=>{
     if(selected !== ""){
       setSlideAvailable("sexuality",selected)
@@ -38,18 +40,26 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
 
   },[selected])
   
+  const SexualityStatus = [
+    { key: "straight", label: t("straight") },
+    { key: "gay", label: t("gay") },
+    { key: "lesbian", label: t("lesbian") },
+    { key: "bisexual", label: t("bisexual") },
+    { key: "asexual", label: t("asexual") },
+    { key: "pansexual", label: t("pansexual") },
+    { key: "queer", label: t("queer") },
+    { key: "questioning", label: t("questioning") },
+  ];
+
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="Sexuality Status:">
-                
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("SexualityStatus")}>
                 {SexualityStatus.map((value)=> {
                     return <CustomRadio  value={value.key}>
                     {value.label}
                 </CustomRadio>
                 })}
-                
-
             </RadioGroup>
         </form>
       </div>
@@ -61,13 +71,3 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   export default SexualityStatusAuth;
   
 
-  const SexualityStatus = [
-    { key: "straight", label: "Straight" },
-    { key: "gay", label: "Gay" },
-    { key: "lesbian", label: "Lesbian" },
-    { key: "bisexual", label: "Bisexual" },
-    { key: "asexual", label: "Asexual" },
-    { key: "pansexual", label: "Pansexual" },
-    { key: "queer", label: "Queer" },
-    { key: "questioning", label: "Questioning" },
-  ];

@@ -2,8 +2,10 @@ import { Image, Button } from "@nextui-org/react";
 
 import { PenIcon } from "@/Icons/index";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const ImageDataAuth = ({setSlideAvailable}) => {
+  const { t } = useTranslation();
 
   useEffect(()=>{
  
@@ -14,7 +16,7 @@ const ImageDataAuth = ({setSlideAvailable}) => {
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 text-left">Upload profile Image : </p>
+        <p className="mb-1 text-left">{t("UploadprofileImage")} </p>
         <div className="w-full h-full px-2 pb-4">
           <div className="flex justify-between items-center">
             <div className="flex">

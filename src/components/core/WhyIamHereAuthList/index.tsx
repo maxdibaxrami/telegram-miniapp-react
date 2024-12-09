@@ -1,6 +1,7 @@
 import { ChatIcon, FireIcon, HeartIcon } from "@/Icons";
 import { Avatar, cn, Radio, RadioGroup } from "@nextui-org/react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 // Define the allowed color types
 type AvatarColor = "default" | "primary" | "secondary" | "success" | "warning" | "danger";
@@ -15,29 +16,6 @@ interface Item {
 }
 
 // List of items with proper type for 'color'
-export const Items: Item[] = [
-  {
-    id: 1,
-    title: "Here to date",
-    description: "I want to go on dates and have a good time. No labels.",
-    icon: <FireIcon />,
-    color: "success" // Valid color
-  },
-  {
-    id: 2,
-    title: "Open to chat",
-    description: "I’m here to chat and see where it goes. No pressure.",
-    icon: <ChatIcon />,
-    color: "warning" // Valid color
-  },
-  {
-    id: 3,
-    title: "Ready for a relationship",
-    description: "I’m looking for something that lasts. No games.",
-    icon: <HeartIcon fill="#FFF" />,
-    color: "danger" // Valid color
-  },
-];
 
 // Custom Radio component
 export const CustomRadio = (props: any) => {
@@ -61,7 +39,7 @@ export const CustomRadio = (props: any) => {
 
 // Main component rendering the RadioGroup
 const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
-
+  const { t } = useTranslation();
   const [selected, setSelected] = useState(user.lookingFor);
   
   useEffect(()=>{
@@ -72,10 +50,35 @@ const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
     }
 
   },[selected])
+
+  const Items: Item[] = [
+    {
+      id: 1,
+      title: t("Heretodate"),
+      description: t("IwanttogoondatesandhaveagoodtimeNolabels"),
+      icon: <FireIcon />,
+      color: "success" // Valid color
+    },
+    {
+      id: 2,
+      title: t("Opentochat"),
+      description: t("ImheretochatandseewhereitgoesNopressure"),
+      icon: <ChatIcon />,
+      color: "warning" // Valid color
+    },
+    {
+      id: 3,
+      title: t("Readyforarelationship"),
+      description: t("ImlookingforsomethingthatlastsNogames"),
+      icon: <HeartIcon fill="#FFF" />,
+      color: "danger" // Valid color
+    },
+  ];
+  
   return (
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="Why I am here:">
+        <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("WhyIamhere")}>
           {Items.map((item) => (
             <CustomRadio key={item.id} value={item.id.toString()}>
               <div className="flex items-center">
