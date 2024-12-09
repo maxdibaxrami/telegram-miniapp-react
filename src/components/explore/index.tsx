@@ -5,7 +5,6 @@ import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import ExploreCard from "./exploreCart";
-import { heartConfetti } from "../explore/buttonEffect";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
 import { LikeIcon, CloseCircleIcon } from "@/Icons";

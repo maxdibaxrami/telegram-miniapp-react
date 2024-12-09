@@ -20,7 +20,6 @@ import NearByMatchModal from "./NearByMatchModal";
 import ParallaxText from "../animate/text-slider";
 import ExploreCartData from "../explore/exploreCartData";
 import SwiperImages from "../explore/swiperImage";
-import { heartConfetti } from "../explore/buttonEffect";
 
 
 
