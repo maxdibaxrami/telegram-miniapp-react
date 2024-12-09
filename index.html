@@ -25,9 +25,7 @@
     <script>
 
       (function() {
-        document.querySelector('input').addEventListener('focus', function () {
-            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+
         var { retrieveLaunchParams, postEvent } = window.telegramApps.sdk;
         var lp = retrieveLaunchParams();
   
