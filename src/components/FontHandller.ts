@@ -1,7 +1,6 @@
 // Function to load font based on the current language or direction
 export default () => {
     const lang = document.documentElement.lang || 'en'; // Get language, default to English
-    const dir = document.documentElement.getAttribute('dir') || 'ltr'; // Get direction (ltr or rtl)
   
     // Preconnect to Google Fonts and Google Static Content for faster font loading
     const preconnectGoogle = document.createElement('link');
