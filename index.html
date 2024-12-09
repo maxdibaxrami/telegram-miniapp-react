@@ -35,8 +35,6 @@
         }
   
         postEvent('web_app_request_fullscreen');
-        postEvent('web_app_request_content_safe_area');
-        postEvent('web_app_request_safe_area');
 
         document.body.classList.add('mobile-body');
         document.getElementById('wrap').classList.add('mobile-wrap');
@@ -52,6 +50,10 @@
             // Add your logic for when the keyboard closes
           }
           initialHeight = window.innerHeight;
+        });
+
+        window.querySelector('input').addEventListener('focus', function () {
+            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
       })();
