@@ -76,6 +76,12 @@ export default function SignupPage() {
   };
   const setLanguage = () => setLanguageSelected(true);
 
+  useEffect(() => {
+    console.log(user);
+    console.log(languageSelected);
+
+  }, [user]);
+
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
