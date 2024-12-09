@@ -96,7 +96,7 @@ export default function SignupPage() {
 
   return (
     <Page back={false}>
-        <motion.div className="flex h-screen flex-col items-center justify-between">
+        <motion.div className="flex flex-col items-center justify-between">
           <div ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
             <div className="text-center">
               <SparklesText text="Moll Moll" />
