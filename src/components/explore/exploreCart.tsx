@@ -21,16 +21,16 @@ const ExploreCard = (props) => {
   const imageData = [props.profile.mainImage, props.profile.secondImage, props.profile.thirdImage,]
 
   const x = useMotionValue(0);
-  const rotate = useTransform(x, [-400, 0, 400], [-3, 0, 3], { clamp: false });
+  const rotate = useTransform(x, [-400, 0, 400], [-5, 0, 5], { clamp: false });
 
   // Detecting when the drag motion reaches max left or right
   const handleDragEnd = (_, info) => {
     if (!openFooter) { // Disable swapping when footer is open
-      if (info.offset.x < -300) {
-        setExitX(-490);
+      if (info.offset.x < -130) {
+        setExitX(-130);
         props.setIndex(props.index + 1); // Move to next slide
-      } else if (info.offset.x > 300) {
-        setExitX(490);
+      } else if (info.offset.x > 130) {
+        setExitX(130);
         props.setIndex(props.index + 1); // Move to next slide
       }
     }

@@ -57,7 +57,6 @@ const NearByUserModal = forwardRef((props:any, ref) => {
       openModal();
       onClose()
     } else {
-      heartConfetti();
       onClose()
     }
 

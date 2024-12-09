@@ -41,7 +41,6 @@ const ExplorePage = () => {
 
     } else {
       NextSlide()
-      heartConfetti();
     }
 
   }
