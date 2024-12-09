@@ -103,7 +103,7 @@ export default function SignupPage() {
             </div>
           </div>
 
-          <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "8.2rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
+          <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "9rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
           <AnimatePresence>
               {selectedTab === 0 && (
                 <motion.div
