@@ -86,7 +86,7 @@ export default function SignupPage() {
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
       // iOS/macOS specific padding (e.g., accounting for notches)
-      return '6rem'  // Adjust as needed for iOS notch
+      return '6.5rem'  // Adjust as needed for iOS notch
     } else {
       // Android/base padding
       return'35px'  // Default padding
@@ -103,7 +103,7 @@ export default function SignupPage() {
             </div>
           </div>
 
-          <div style={{ paddingTop: `7.5rem`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
+          <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "8.2rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
           <AnimatePresence>
               {selectedTab === 0 && (
                 <motion.div
