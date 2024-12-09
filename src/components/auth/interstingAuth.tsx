@@ -14,7 +14,7 @@ const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   return (
     <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 text-left">Interesting : </p>
+        <p className="mb-1 text-left font-medium">Interesting : </p>
         <InterestingList user={user} onChangeValue={onChangeValue}/>
       </form>
     </div>

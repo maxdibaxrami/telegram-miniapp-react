@@ -4,7 +4,7 @@ import { ArrowRight, ArrowLeft } from "@/Icons/index";
 const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable }) => {
 
   return (
-      <Navbar className="w-full bg-transparent">
+      <Navbar isBlurred={false} className="w-full bg-transparent">
         <NavbarContent justify="start">
           <Button
             isIconOnly

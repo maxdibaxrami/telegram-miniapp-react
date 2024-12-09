@@ -75,7 +75,7 @@ const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   return (
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <RadioGroup value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="Why I am here:">
+        <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description="Selected plan can be changed at any time." label="Why I am here:">
           {Items.map((item) => (
             <CustomRadio key={item.id} value={item.id.toString()}>
               <div className="flex items-center">
