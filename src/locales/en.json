@@ -158,7 +158,27 @@
     "Kite Surfing": "Kite Surfing",
     "Astronaut Training": "Astronaut Training",
     "Selectinterested":"Select interested",
-    "UploadprofileImage":"Upload profile Image :"
+    "UploadprofileImage":"Upload profile Image :",
+    "profile_visibility": "Profile visibility",
+    "profile_visibility_desc": "Show profile on explore status",
+    "mode": "Mode",
+    "mode_desc": "Change application color to light and dark mode",
+    "delete_account": "Delete account",
+    "delete_account_desc": "Delete account for every. All data will be removed",
+    "logout": "Logout",
+    "logout_desc": "Logout from account",
+    "listbox_aria_label": "Listbox menu with descriptions",
+    "edit_profile": "Edit profile",
+    "loading": "Loading...",
+    "profile": "Profile",
+    "boost_profile": "Boost profile",
+    "activity": "Activity",
+    "see_likes": "You can see who like your profile",
+    "who_like_you": "Who like you",
+    "see_views": "You can see who see your profile",
+    "who_viewed_profile": "Who see your profile",
+    "interested":"interested",
+    "more_about_me":"More about me!"
     
   }
   

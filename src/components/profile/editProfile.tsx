@@ -16,10 +16,36 @@ import {
   Textarea,
 } from "@nextui-org/react";
 
-import { PenIcon } from "@/Icons/index";
+import { ChatIcon, FireIcon, HeartIcon, PenIcon } from "@/Icons/index";
+import { useTranslation } from "react-i18next";
 
 const EditProfile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { t } = useTranslation();
+
+  const LookingforItems = [
+    {
+      id: 1,
+      title: t("Heretodate"),
+      description: t("IwanttogoondatesandhaveagoodtimeNolabels"),
+      icon: <FireIcon />,
+      color: "success" // Valid color
+    },
+    {
+      id: 2,
+      title: t("Opentochat"),
+      description: t("ImheretochatandseewhereitgoesNopressure"),
+      icon: <ChatIcon />,
+      color: "warning" // Valid color
+    },
+    {
+      id: 3,
+      title: t("Readyforarelationship"),
+      description: t("ImlookingforsomethingthatlastsNogames"),
+      icon: <HeartIcon fill="#FFF" />,
+      color: "danger" // Valid color
+    },
+  ];
 
   const handleOpen = () => {
     onOpen();
@@ -172,12 +198,12 @@ const EditProfile = () => {
 
               <Select
                 className="w-full"
-                items={LookingForItems}
+                items={LookingforItems}
                 label="Looking for"
                 placeholder="Looking for"
               >
-                {(LookingForItems) => (
-                  <SelectItem key={LookingForItems.label}>{LookingForItems.label}</SelectItem>
+                {(LookingforItems) => (
+                  <SelectItem key={LookingforItems.title}>{LookingforItems.title}</SelectItem>
                 )}
               </Select>
             </form>
@@ -198,12 +224,6 @@ const EditProfile = () => {
 };
 
 export default EditProfile;
-
-const LookingForItems = [
-  { key: "b", label: "Boys" },
-  { key: "G", label: "Girls" },
-  { key: "b2", label: "Both" },
-];
 
 const whyYouAreHere = [
   { key: "cat", label: "Cat" },

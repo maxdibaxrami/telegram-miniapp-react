@@ -158,5 +158,27 @@
   "Kite Surfing": "ركوب الأمواج بالطائرات الورقية",
   "Astronaut Training": "تدريب رواد الفضاء",
   "Selectinterested": "اختر اهتماماتك",
-  "UploadprofileImage": "ارفع صورة الملف الشخصي:"
+  "UploadprofileImage": "ارفع صورة الملف الشخصي:",
+  "profile_visibility": "رؤية الملف الشخصي",
+  "profile_visibility_desc": "عرض الملف الشخصي في حالة الاستكشاف",
+  "mode": "الوضع",
+  "mode_desc": "تغيير لون التطبيق إلى الوضعين الفاتح والداكن",
+  "delete_account": "حذف الحساب",
+  "delete_account_desc": "حذف الحساب نهائيًا. سيتم إزالة جميع البيانات",
+  "logout": "تسجيل الخروج",
+  "logout_desc": "تسجيل الخروج من الحساب",
+  "listbox_aria_label": "قائمة منسدلة مع أوصاف",
+  "edit_profile": "تحرير الملف الشخصي",
+  "loading": "جارٍ التحميل...",
+  "profile": "الملف الشخصي",
+  "boost_profile": "تعزيز الملف الشخصي",
+  "activity": "النشاط",
+  "see_likes": "يمكنك رؤية من أعجب بملفك الشخصي",
+  "who_like_you": "من أعجب بك",
+  "see_views": "يمكنك رؤية من شاهد ملفك الشخصي",
+  "who_viewed_profile": "من شاهد ملفك الشخصي",
+  "interested":"مهتم",
+  "more_about_me":"المزيد عني!"
+
+
 }

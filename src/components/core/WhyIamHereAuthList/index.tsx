@@ -52,29 +52,28 @@ const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   },[selected])
 
   const Items: Item[] = [
-    {
-      id: 1,
-      title: t("Heretodate"),
-      description: t("IwanttogoondatesandhaveagoodtimeNolabels"),
-      icon: <FireIcon />,
-      color: "success" // Valid color
-    },
-    {
-      id: 2,
-      title: t("Opentochat"),
-      description: t("ImheretochatandseewhereitgoesNopressure"),
-      icon: <ChatIcon />,
-      color: "warning" // Valid color
-    },
-    {
-      id: 3,
-      title: t("Readyforarelationship"),
-      description: t("ImlookingforsomethingthatlastsNogames"),
-      icon: <HeartIcon fill="#FFF" />,
-      color: "danger" // Valid color
-    },
-  ];
-  
+  {
+    id: 1,
+    title: t("Heretodate"),
+    description: t("IwanttogoondatesandhaveagoodtimeNolabels"),
+    icon: <FireIcon />,
+    color: "success" // Valid color
+  },
+  {
+    id: 2,
+    title: t("Opentochat"),
+    description: t("ImheretochatandseewhereitgoesNopressure"),
+    icon: <ChatIcon />,
+    color: "warning" // Valid color
+  },
+  {
+    id: 3,
+    title: t("Readyforarelationship"),
+    description: t("ImlookingforsomethingthatlastsNogames"),
+    icon: <HeartIcon fill="#FFF" />,
+    color: "danger" // Valid color
+  },
+];
   return (
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">

@@ -17,9 +17,10 @@ import EditMoreAboutMe from "@/components/profile/editMoreAboutMe";
 import EditIntersting from "@/components/profile/editIntersting";
 import { Page } from '@/components/Page.tsx';
 import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { useTranslation } from "react-i18next";
 
 export default function EditProfilePage() {
-
+  const { t } = useTranslation();  // Initialize translation hook
   const lp = useLaunchParams();
 
   const getPaddingForPlatform = () => {
@@ -107,7 +108,7 @@ export default function EditProfilePage() {
           <div className="px-6 w-full mb-4">
             <div className="text-default-600 w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
               <Listbox aria-label="Listbox menu with sections" variant="solid">
-                <ListboxSection showDivider className="relative" title="Profile">
+                <ListboxSection showDivider className="relative" title={t("profile")}>
                   <ListboxItem
                     key="1"
                     description="Moscow, Russia"
@@ -121,7 +122,7 @@ export default function EditProfilePage() {
                     description="sechinov university , programmer"
                     startContent={<WorkAndStudyIcon />}
                   >
-                    Work and education
+                    {t("Workandeducation")}
                   </ListboxItem>
 
                   <ListboxItem
@@ -129,7 +130,7 @@ export default function EditProfilePage() {
                     description="just chat"
                     startContent={<WhyYouAreHereIcon />}
                   >
-                    Why you are here?
+                    {t("WhyIamhere")}
                   </ListboxItem>
 
                   <ListboxItem
@@ -137,7 +138,8 @@ export default function EditProfilePage() {
                     description="jfkksd ojjfnsdjf j fjiwe in fwj jfwe jfiwef wef "
                     startContent={<AboutMeIcon />}
                   >
-                    About me
+                     {t("Bio")}
+                    
                   </ListboxItem>
 
                   <ListboxItem
@@ -146,6 +148,7 @@ export default function EditProfilePage() {
                     startContent={<SearchIcon />}
                   >
                     Looking for ?
+                    
                   </ListboxItem>
 
                   <ListboxItem
@@ -161,24 +164,25 @@ export default function EditProfilePage() {
                     <EditProfile />
                   </ListboxItem>
                 </ListboxSection>
-                <ListboxSection className="relative" title="More about me!">
+                <ListboxSection className="relative" title={t("more_about_me")}>
                   <ListboxItem key="7" description="Single ">
-                    Relation status
+                    {t("RealationStatus")}
+
                   </ListboxItem>
 
                   <ListboxItem key="8" description="183cm ">
-                    Height
-                  </ListboxItem>
-
-                  <ListboxItem key="9" description="183cm ">
-                    Kids
+                    
+                    {t("Height")}
                   </ListboxItem>
 
                   <ListboxItem key="10" description="183cm ">
-                    Language
+                    
+                    {t("Language")}
                   </ListboxItem>
                   <ListboxItem key="11" description="183cm ">
-                    Sexuality
+                    
+                    {t("SexualityStatus")}
+
                   </ListboxItem>
 
                   <ListboxItem
@@ -194,7 +198,7 @@ export default function EditProfilePage() {
                     <EditMoreAboutMe />
                   </ListboxItem>
                 </ListboxSection>
-                <ListboxSection className="relative" title="Intersting">
+                <ListboxSection className="relative" title={t("interested")}>
                   <ListboxItem key={111}>
                     <div className="flex flex-wrap">
                       {humanInterests.map((value, index) => {

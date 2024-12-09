@@ -17,9 +17,11 @@ import TopBarPages from "@/components/tobBar/topBarPages";
 import { Page } from "@/components/Page";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next";  // Importing useTranslation hook
+import LanguageSection from "@/components/setting/LanguageSection";
 
 export default function Setting() {
-
+  const { t } = useTranslation();  // Initialize translation hook
   const { theme, setTheme } = useTheme();
   const lp = useLaunchParams();
 
@@ -29,21 +31,19 @@ export default function Setting() {
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
-      // iOS/macOS specific padding (e.g., accounting for notches)
-      return '50px' // Adjust as needed for iOS notch
+      return '50px'; // iOS/macOS specific padding
     } else {
-      // Android/base padding
-      return '25px' // Default padding
+      return '25px'; // Android/base padding
     }
   };
 
-  
   return (
     <Page>
-      <div  className="container mx-auto max-w-7xl flex-grow light-background--color">
+      <div className="container mx-auto max-w-7xl flex-grow light-background--color">
         <section className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
-          <div style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`}} className="w-full h-full px-6 pb-4">
+          <div style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`}} className="w-full h-full px-6 pb-4">            
+           <LanguageSection/>
             <Switch
               classNames={{
                 base: cn(
@@ -55,9 +55,7 @@ export default function Setting() {
                 thumb: cn(
                   "w-6 h-6 border-2 shadow-lg",
                   "group-data-[hover=true]:border-primary",
-                  //selected
                   "group-data-[selected=true]:ml-6",
-                  // pressed
                   "group-data-[pressed=true]:w-7",
                   "group-data-[selected]:group-data-[pressed]:ml-4",
                 ),
@@ -65,10 +63,8 @@ export default function Setting() {
               defaultChecked={true}
             >
               <div className="flex flex-col gap-1">
-                <p className="text-medium">Profile visibility</p>
-                <p className="text-tiny text-default-400">
-                  Show profile on explore status
-                </p>
+                <p className="text-medium">{t('profile_visibility')}</p>
+                <p className="text-tiny text-default-400">{t('profile_visibility_desc')}</p>
               </div>
             </Switch>
 
@@ -84,9 +80,7 @@ export default function Setting() {
                 thumb: cn(
                   "w-6 h-6 border-2 shadow-lg",
                   "group-data-[hover=true]:border-primary",
-                  //selected
                   "group-data-[selected=true]:ml-6",
-                  // pressed
                   "group-data-[pressed=true]:w-7",
                   "group-data-[selected]:group-data-[pressed]:ml-4",
                 ),
@@ -94,35 +88,30 @@ export default function Setting() {
               isSelected={theme === "light" ? true : false}
             >
               <div className="flex flex-col gap-1">
-                <p className="text-medium capitalize">{theme} mode</p>
-                <p className="text-tiny text-default-400">
-                  Change application color to light and dark mode
-                </p>
+                <p className="text-medium capitalize">{t('mode')}</p>
+                <p className="text-tiny text-default-400">{t('mode_desc')}</p>
               </div>
             </Switch>
 
             <div className="w-full mt-2 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
-              <Listbox
-                aria-label="Listbox menu with descriptions"
-                variant="solid"
-              >
-                <ListboxSection title="Setting">
+              <Listbox aria-label={t('setting_menu')} variant="solid">
+                <ListboxSection title={t('setting')}>
                   <ListboxItem
                     key="delete"
                     className="text-danger"
-                    description="Delete accont for evey. all data will be remove"
+                    description={t('delete_account_desc')}
                     startContent={<DeleteAcoontIcon />}
                   >
-                    Delete account
+                    {t('delete_account')}
                   </ListboxItem>
 
                   <ListboxItem
                     key="logout"
-                    description="Logout from account"
+                    description={t('logout_desc')}
                     startContent={<LogOutIcon />}
                     href="/#/sign-up"
                   >
-                    Logout
+                    {t('logout')}
                   </ListboxItem>
                 </ListboxSection>
               </Listbox>
