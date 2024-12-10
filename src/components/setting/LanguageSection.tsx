@@ -29,19 +29,25 @@ export default function LanguageSection() {
   const { t, i18n } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // default to English
 
-  // Function to get the stored language from cloud storage
+  // Function to get the stored language from cloud storage or localStorage
   const GetStoreLanguage = async () => {
     if (cloudStorage.isSupported()) {
       const lang = await cloudStorage.getItem('lang');
       return lang;
+    } else {
+      // Fallback to localStorage if cloudStorage is not available
+      const lang = localStorage.getItem('lang');
+      return lang;
     }
-    return null; // fallback if cloud storage is not available
   };
 
-  // Function to store the selected language in cloud storage
+  // Function to store the selected language in cloud storage or localStorage
   const StoreLanguage = async (lang) => {
     if (cloudStorage.isSupported()) {
       await cloudStorage.setItem('lang', lang);
+    } else {
+      // Fallback to localStorage if cloudStorage is not available
+      localStorage.setItem('lang', lang);
     }
   };
 
