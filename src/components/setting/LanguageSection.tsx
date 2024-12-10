@@ -1,7 +1,7 @@
 import { RadioGroup, Radio, cn, Avatar } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { cloudStorage } from '@telegram-apps/sdk';
+import { cloudStorage } from '@telegram-apps/sdk-react';
 
 export const CustomRadio = (props) => {
   const { children, ...otherProps } = props;

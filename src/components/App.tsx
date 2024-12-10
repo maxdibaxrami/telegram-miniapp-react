@@ -15,6 +15,7 @@ export function App() {
       appearance={isDark ? 'dark' : 'light'}
       platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
       
+      
     >
       <HashRouter>
         <AnimatePresence>

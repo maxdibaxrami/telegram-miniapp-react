@@ -10,6 +10,7 @@ import {
 } from '@telegram-apps/sdk-react';
 
 
+
 /**
  * Initializes the application and configures its dependencies.
  */
@@ -36,7 +37,6 @@ export function init(debug: boolean): void {
   miniApp.mount();
   themeParams.mount();
   initData.restore();
-
   // Mount and configure the viewport
   void viewport
     .mount()
