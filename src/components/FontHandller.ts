@@ -1,7 +1,7 @@
 // Function to load font based on the current language or direction
 export default () => {
     const lang = document.documentElement.lang || 'en'; // Get language, default to English
-  
+    console.log("change aaaaa")
     // Preconnect to Google Fonts and Google Static Content for faster font loading
     const preconnectGoogle = document.createElement('link');
     preconnectGoogle.rel = 'preconnect';

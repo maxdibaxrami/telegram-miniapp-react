@@ -1,7 +1,7 @@
 import { RadioGroup, Radio, cn, Avatar } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { cloudStorage } from '@telegram-apps/sdk-react';
+import { cloudStorage } from '@telegram-apps/sdk';
 
 export const CustomRadio = (props) => {
   const { children, ...otherProps } = props;
@@ -20,7 +20,6 @@ export const CustomRadio = (props) => {
       <div className="flex items-center">
         {children}
       </div>
-      
     </Radio>
   );
 };
@@ -30,14 +29,13 @@ export default function LanguageSection() {
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language); 
 
   // Function to get the stored language from cloud storage or localStorage
-  const GetStoreLanguage = async () => {
+  const GetStoredLanguage = async () => {
     if (cloudStorage.isSupported()) {
-      const lang = await cloudStorage.getItem('lang');
-      return lang;
+      const storedLang = await cloudStorage.getItem('lang');
+      return storedLang || ''; // Return empty string if no language is stored
     } else {
-      // Fallback to localStorage if cloudStorage is not available
-      const lang = localStorage.getItem('lang');
-      return lang;
+      // Fallback to localStorage
+      return localStorage.getItem('lang') || ''; // Return empty string if nothing in localStorage
     }
   };
 
@@ -46,29 +44,33 @@ export default function LanguageSection() {
     if (cloudStorage.isSupported()) {
       await cloudStorage.setItem('lang', lang);
     } else {
-      // Fallback to localStorage if cloudStorage is not available
       localStorage.setItem('lang', lang);
     }
   };
-
-  // Use effect to load the language from storage and set it in the state
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+  // Use effect to load the language from storage and set it in the state on component mount
   useEffect(() => {
     const loadLanguage = async () => {
-      const storedLang = await GetStoreLanguage();
+      const storedLang = await GetStoredLanguage();
       if (storedLang) {
-        setSelectedLanguage(storedLang);  // Set the stored language as default
-        i18n.changeLanguage(storedLang);  // Apply the stored language
+        changeLanguage(storedLang); // Apply the language in i18n
+      }  else {
+        changeLanguage(localStorage.getItem("lang"));
       }
     };
 
     loadLanguage();
-  }, []);
+  }, []); // Empty dependency array to run only once on mount
 
   // Use effect to change language and store the new language whenever it changes
   useEffect(() => {
-    i18n.changeLanguage(selectedLanguage); // Change the language in i18n
-    StoreLanguage(selectedLanguage);       // Store the selected language
-  }, [selectedLanguage]);
+    if (selectedLanguage) {
+      i18n.changeLanguage(selectedLanguage); // Change the language in i18n
+      StoreLanguage(selectedLanguage);       // Store the selected language
+    }
+  }, [selectedLanguage]); // Only run when selectedLanguage changes
 
   return (
     <>

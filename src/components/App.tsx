@@ -4,11 +4,22 @@ import { Route, Routes, HashRouter } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { routes } from '@/navigation/routes.tsx';
+import { useEffect } from 'react';
+import FontHandller from './FontHandller';
+import { useTranslation } from 'react-i18next';
 
 
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+      const currentLang = i18n.language;
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' || currentLang === 'fa' ? 'rtl' : 'ltr';
+      FontHandller();
+  }, [i18n.language]); // Include both isLoading and language change as dependencies
 
   return (
     <AppRoot
