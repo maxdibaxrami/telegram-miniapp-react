@@ -205,7 +205,33 @@
   "select_interesting": "Выберите что-то интересное",
   "like": "Нравится",
   "close": "Закрыть",
-  "save": "Сохранить"
+  "save": "Сохранить",
+  "location": "Местоположение",
+  "relationStatus": "Статус отношений",
+  "height": "Рост",
+  "kids": "Дети",
+  "language": "Язык",
+  "sexuality": "Сексуальность",
+  "likeButton": "Нравится",
+  "closeButton": "Закрыть",
+  "age": "Возраст",
+  "verify": "Проверено",
+  "toggleFooter": "Переключить футер",
+  "workAndEducation": "Работа и образование:",
+  "aboutMe": "Обо мне:",
+  "lookingFor": "В поиске:",
+  "whyHere": "Почему я здесь:",
+  "moreAboutMe": "Подробнее обо мне!",
+  "interests": "Интересное",
+  "matches": "Матчи",
+  "chat": "Чат",
+  "others": "Другие",
+        "new": "Новый",
+      "favorite": "Избранное",
+      "addToFavorite": "Добавить в избранное",
+      "deleteChat": "Удалить чат",
+      "blockAndReport": "Заблокировать и сообщить"
+
 
 
 }

@@ -205,7 +205,34 @@
     "select_interesting": "Select something interesting",
     "like": "Like",
     "close": "Close",
-    "save": "Save"
+    "save": "Save",
+    "location": "Location",
+    "relationStatus": "Relationship Status",
+    "height": "Height",
+    "kids": "Kids",
+    "language": "Language",
+    "sexuality": "Sexuality",
+    "likeButton": "Like",
+    "closeButton": "Close",
+    "age": "Age",
+    "verify": "Verified",
+    "toggleFooter": "Toggle Footer",
+    "workAndEducation": "Work and education:",
+    "aboutMe": "About Me:",
+    "lookingFor": "Looking for:",
+    "whyHere": "Why I am here:",
+
+    "moreAboutMe": "More about me!",
+    "interests": "Interesting",
+    "matches": "Matches",
+    "chat": "Chat",
+    "others": "Others",
+          "new": "New",
+      "favorite": "Favorite",
+      "addToFavorite": "Add to favorite",
+      "deleteChat": "Delete chat",
+      "blockAndReport": "Block and report"
+
   
   }
   

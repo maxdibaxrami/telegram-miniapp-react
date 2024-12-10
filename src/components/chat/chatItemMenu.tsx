@@ -7,15 +7,17 @@ import {
 } from "@nextui-org/react";
 
 import { DeleteChatIcon, Favorite, MoreIcon, BlockAndReport } from "@/Icons/index";
+import { useTranslation } from "react-i18next";
 
 const ChatItemMenu = () => {
+  const { t } = useTranslation();
 
   return (
     <Dropdown backdrop="blur">
       <DropdownTrigger>
         <Button
           isIconOnly
-          aria-label="Like"
+          aria-label="More options"
           color="default"
           size="sm"
           variant="light"
@@ -25,7 +27,7 @@ const ChatItemMenu = () => {
       </DropdownTrigger>
       <DropdownMenu aria-label="Dropdown menu with icons" variant="faded">
         <DropdownItem key="favorite" startContent={<Favorite status={false} />}>
-          Add to favorite
+          {t("addToFavorite")}
         </DropdownItem>
         <DropdownItem
           key="deletechat"
@@ -33,7 +35,7 @@ const ChatItemMenu = () => {
           color="danger"
           startContent={<DeleteChatIcon />}
         >
-          Delete chat
+          {t("deleteChat")}
         </DropdownItem>
         <DropdownItem
           key="blockandreport"
@@ -41,7 +43,7 @@ const ChatItemMenu = () => {
           color="danger"
           startContent={<BlockAndReport />}
         >
-          Block and report
+          {t("blockAndReport")}
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

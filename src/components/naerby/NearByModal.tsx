@@ -21,8 +21,6 @@ import ParallaxText from "../animate/text-slider";
 import ExploreCartData from "../explore/exploreCartData";
 import SwiperImages from "../explore/swiperImage";
 
-
-
 const variantsFrontCard = {
   animate: { scale: 1, y: 0, opacity: 1 },
   exit: (custom) => ({
@@ -51,14 +49,12 @@ const NearByUserModal = forwardRef((props:any, ref) => {
   }));
 
   const OnLikeButtonClick = (dataId) => {
-
     if (dataId.id === 4 || dataId.id === 8) {
       openModal();
       onClose()
     } else {
       onClose()
     }
-
   }
 
   return (
@@ -125,19 +121,19 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     variant="solid"
                     color="secondary"
                     size="md"
-                    style={{ marginLeft: "10px" }}
+                    className="mx-2"
                     startContent={<LocationIcon fill="#FFF" className="size-4" />}
                   >
                     {props.profile.location}
                   </Chip>
               </div>
-              <div className="absolute" style={{ bottom: "120px", zIndex: 10 }}>
+              <div className="absolute" style={{ bottom: "120px", zIndex: 10, direction:"ltr" }}>
                 <ParallaxText baseVelocity={2}>
                   <Chip
                     variant="solid"
                     color="primary"
                     size="md"
-                    style={{ marginRight: "10px" }}
+                    className="mx-2"
                     startContent={<HeartIconOutLine fill="#FFF" className="size-4" />}
                   >
                     {props.profile.relationStatus}
@@ -147,7 +143,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     variant="solid"
                     color="primary"
                     size="md"
-                    style={{ marginRight: "10px" }}
+                    className="mx-2"
                     startContent={<HeightIcon fill="#FFF" className="size-4" />}
                   >
                     {props.profile.height}
@@ -157,7 +153,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     variant="solid"
                     color="primary"
                     size="md"
-                    style={{ marginRight: "10px" }}
+                    className="mx-2"
                     startContent={<BabyIcon fill="#FFF" className="size-4" />}
                   >
                     {props.profile.kids}
@@ -168,7 +164,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     color="primary"
                     size="md"
                     startContent={<LanguageIcon className="size-4" />}
-                    style={{ marginRight: "10px" }}
+                    className="mx-2"
                   >
                     {props.profile.language}
                   </Chip>
@@ -177,7 +173,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                     variant="solid"
                     color="primary"
                     size="md"
-                    style={{ marginRight: "10px" }}
+                    className="mx-2"
                     startContent={<SexualityIcon className="size-4" />}
                   >
                     {props.profile.sexuality}

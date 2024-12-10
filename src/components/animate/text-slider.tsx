@@ -9,6 +9,7 @@ import {
   useAnimationFrame,
   wrap
 } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface ParallaxProps {
   children: any;
@@ -16,6 +17,8 @@ interface ParallaxProps {
 }
 
 const ParallaxText = ({ children, baseVelocity = 100 }: ParallaxProps) => {
+    const { i18n } = useTranslation();
+
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
@@ -32,7 +35,7 @@ const ParallaxText = ({ children, baseVelocity = 100 }: ParallaxProps) => {
      * have to replace for wrapping that works for you or dynamically
      * calculate
      */
-    const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+    const x = i18n.language==="ar" || i18n.language==="fa"? useTransform(baseX, (v) => `${wrap(20, 45, v)}%`) : useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`)
   
     const directionFactor = useRef<number>(1);
     useAnimationFrame((_t, delta) => {

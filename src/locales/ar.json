@@ -205,7 +205,32 @@
   "select_interesting": "اختر شيئًا مثيرًا",
   "like": "أعجبني",
   "close": "إغلاق",
-  "save": "حفظ"
+  "save": "حفظ",
+  "location": "الموقع",
+  "likeButton": "أعجبني",
+  "closeButton": "إغلاق",
+  "age": "العمر",
+  "verify": "تم التحقق",
+  "toggleFooter": "تبديل التذييل",
+  "workAndEducation": "العمل والتعليم:",
+  "aboutMe": "عني:",
+  "lookingFor": "أبحث عن:",
+  "whyHere": "لماذا أنا هنا:",
+  "relationStatus": "حالة العلاقة:",
+  "height": "الطول:",
+  "kids": "الأطفال:",
+  "language": "اللغة:",
+  "sexuality": "الجنس:",
+  "moreAboutMe": "المزيد عني!",
+  "interests": "الاهتمامات",
+    "matches": "مطابقات",
+    "chat": "دردشة",
+    "others": "آخرون",
+          "new": "جديد",
+      "favorite": "مفضل",
+      "addToFavorite": "أضف إلى المفضلة",
+      "deleteChat": "حذف الدردشة",
+      "blockAndReport": "حظر وإبلاغ"
 
 
 }

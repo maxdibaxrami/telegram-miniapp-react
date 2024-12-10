@@ -129,7 +129,6 @@ html {
 .parallax .scroller {
   display: flex;
   white-space: nowrap;
-  display: flex;
   flex-wrap: nowrap;
 }
 

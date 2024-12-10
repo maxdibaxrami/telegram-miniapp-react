@@ -1,13 +1,16 @@
 import { Avatar, AvatarGroup } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 
 const MatchList = () => {
+  const { t } = useTranslation();
+
   return (
     <AvatarGroup
       isBordered
       max={4}
       renderCount={(count) => (
         <p className="text-small text-foreground font-medium ms-2">
-          +{count} others
+          +{count} {t("others")}
         </p>
       )}
       total={10}

@@ -10,20 +10,21 @@ import {
   HashtagIcon
 } from "@/Icons";
 import { Listbox, ListboxSection, ListboxItem, Chip } from "@nextui-org/react"; // Imported components
+import { useTranslation } from "react-i18next";
 
 const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   // Memoize the current slide type based on the slide count
   const currentSlide = useMemo(() => slideCount % 4, [slideCount]);
+  const { t } = useTranslation();
 
   // Reusable ProfileCard component for profile details
   const ProfileCard = ({ color, gradient, icon, label, text }) => (
     <motion.div
       className="flex gap-3 mt-1 mb-3"
-      initial={openFooter? { opacity: 1 } : { opacity: 0 } }
-      style={{marginLeft:"4px"}}
+      initial={openFooter ? { opacity: 1 } : { opacity: 0 }}
+      style={{ marginLeft: "4px" }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      
       transition={{
         ease: "linear",
         duration: 0.25,
@@ -56,7 +57,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       color: "danger",
       gradient: "bg-gradient-to-br from-[#C20E4D] to-[#F54180]",
       icon: <WorkAndStudyIconSolid className="size-5" />,
-      label: "Work and education:",
+      label: t("workAndEducation"),
       text: profile.workAndEducation,
     },
     {
@@ -64,7 +65,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       color: "primary",
       gradient: "bg-gradient-to-br from-[#338EF7] to-[#004493]",
       icon: <AboutMeSolid className="size-5" />,
-      label: "About Me:",
+      label: t("aboutMe"),
       text: profile.aboutMe,
     },
     {
@@ -72,7 +73,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       color: "success",
       gradient: "bg-gradient-to-br from-[#0E793C] to-[#17C964]",
       icon: <SearchIcon className="size-5" />,
-      label: "Looking for:",
+      label: t("lookingFor"),
       text: profile.lookingFor,
     },
     {
@@ -80,7 +81,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       color: "warning",
       gradient: "bg-gradient-to-br from-[#C4841D] to-[#F7B750]",
       icon: <WhyYouAreHereIcon className="size-5" />,
-      label: "Why I am here:",
+      label: t("whyHere"),
       text: profile.whyHere,
     }
   ];
@@ -119,77 +120,77 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
                 duration: 0.25,
               }}
             >
-                <Listbox
-                  className="py-2"
-                  classNames={{
-                    base:"p-0",
-                    list:"px-0"
-                  }}
-                  style={{ borderRadius: "8px" }}
-                  aria-label="Listbox menu with sections"
-                  variant="solid"
-                >
+              <Listbox
+                className="py-2"
+                classNames={{
+                  base: "p-0",
+                  list: "px-0"
+                }}
+                style={{ borderRadius: "8px" }}
+                aria-label={t("moreAboutMe")}
+                variant="solid"
+              >
 
-                  <ListboxSection classNames={{base:"px-0"}} className="relative" title="More about me!">
-                    <ListboxItem
-                      key="7"
-                      isReadOnly
-                      description={profile.relationStatus}
-                    >
-                      Relation status:
-                    </ListboxItem>
-                    <ListboxItem
-                      key="8"
-                      isReadOnly
-                      description={profile.height}
-                    >
-                      Height:
-                    </ListboxItem>
-                    <ListboxItem
-                      key="9"
-                      isReadOnly
-                      description={profile.kids}
-                    >
-                      Kids:
-                    </ListboxItem>
-                    <ListboxItem
-                      key="10"
-                      isReadOnly
-                      description={profile.language}
-                    >
-                      Language:
-                    </ListboxItem>
-                    <ListboxItem
-                      key="11"
-                      isReadOnly
-                      description={profile.sexuality}
-                    >
-                      Sexuality:
-                    </ListboxItem>
-                  </ListboxSection>
+                <ListboxSection classNames={{ base: "px-0" }} className="relative" title={t("moreAboutMe")}>
+                  <ListboxItem
+                    key="7"
+                    isReadOnly
+                    description={profile.relationStatus}
+                  >
+                    {t("relationStatus")}
+                  </ListboxItem>
+                  <ListboxItem
+                    key="8"
+                    isReadOnly
+                    description={profile.height}
+                  >
+                    {t("height")}
+                  </ListboxItem>
+                  <ListboxItem
+                    key="9"
+                    isReadOnly
+                    description={profile.kids}
+                  >
+                    {t("kids")}
+                  </ListboxItem>
+                  <ListboxItem
+                    key="10"
+                    isReadOnly
+                    description={profile.language}
+                  >
+                    {t("language")}
+                  </ListboxItem>
+                  <ListboxItem
+                    key="11"
+                    isReadOnly
+                    description={profile.sexuality}
+                  >
+                    {t("sexuality")}
+                  </ListboxItem>
+                </ListboxSection>
 
-                  <ListboxSection className="relative" title="Interesting">
-                    <ListboxItem key={"1"} isReadOnly>
-                      <div className="flex flex-wrap">
-                        {Array.isArray(profile.interests) && profile.interests.length > 0
-                          ? profile.interests.map((value, index) => (
+                <ListboxSection className="relative" title={t("interests")}>
+                  <ListboxItem key={"1"} isReadOnly>
+                    <div className="flex flex-wrap">
+                      {Array.isArray(profile.interests) && profile.interests.length > 0
+                        ? profile.interests.map((value, index) => (
                             <Chip
                               key={index}
                               className="m-1"
                               color="success"
-                              startContent={<HashtagIcon className="size-4"/>}
+                              startContent={<HashtagIcon className="size-4" />}
                               variant="solid"
                             >
                               {value}
                             </Chip>
                           ))
-                          : null}
-                      </div>
-                    </ListboxItem>
-                  </ListboxSection>
-                </Listbox>
-                </motion.div>
+                        : null}
+                    </div>
+                  </ListboxItem>
+                </ListboxSection>
+              </Listbox>
             </motion.div>
+          </motion.div>
         ) : (
           <ProfileCard
             color={profileItems[currentSlide].color}
@@ -220,6 +221,7 @@ ExploreCartData.propTypes = {
     interests: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   openFooter: PropTypes.bool.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default ExploreCartData;

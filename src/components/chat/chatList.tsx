@@ -5,8 +5,10 @@ import { FavoriteSmall } from "@/Icons/index";
 import { ListboxWrapper } from "./listWapper";
 import ChatItemMenu from "./chatItemMenu";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ChatList = () => {
+  const { t } = useTranslation();
 
 
   const truncateText = (value, maxLength) => {
@@ -85,7 +87,7 @@ const ChatList = () => {
                     color="primary"
                     size="sm"
                   >
-                    +1 New
+                    +1 {t("new")}
                   </Chip>
                 </span>
                 <span
