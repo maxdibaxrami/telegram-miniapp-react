@@ -7,10 +7,10 @@ import { cloudStorage } from '@telegram-apps/sdk';
 const container = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
-    opacity: 1,
+    opacity: 1, 
     scale: 1,
     transition: {
-      delayChildren: 0.3,
+      delayChildren: 0.3, 
       staggerChildren: 0.2,
     },
   },
@@ -18,34 +18,37 @@ const container = {
 
 const item = {
   hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
+  visible: { y: 0, opacity: 1 },
 };
 
 const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }) => {
-  const [isSelected, setIsSelected] = useState(''); // Initialize empty, we'll set this in useEffect
   const { t, i18n } = useTranslation();
+
+  const [isSelected, setIsSelected] = useState(i18n.language); // Initialize empty, we'll set this in useEffect
 
   // Function to change language in i18n
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
 
-  // Function to retrieve language from cloud storage
+  // Function to retrieve language from cloud storage or local storage
   const GetStoredLanguage = async () => {
     if (cloudStorage.isSupported()) {
       const storedLang = await cloudStorage.getItem('lang');
       return storedLang || ''; // Return empty string if no language is stored
+    } else {
+      // Fallback to localStorage
+      return localStorage.getItem('lang') || ''; // Return empty string if nothing in localStorage
     }
-    return '';
   };
 
-  // Function to store selected language in cloud storage
+  // Function to store selected language in cloud storage or localStorage
   const StoreLanguage = async (lang) => {
     if (cloudStorage.isSupported()) {
       await cloudStorage.setItem('lang', lang);
+    } else {
+      // Fallback to localStorage
+      localStorage.setItem('lang', lang);
     }
   };
 
@@ -68,10 +71,10 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
   // Effect to handle changes in the selected language
   useEffect(() => {
     if (isSelected) {
-      setLanguage();
+      setLanguage(); // Call the setLanguage function (if needed)
       changeLanguage(isSelected); // Change the language in i18n
       setSlideAvailable("language", isSelected); // Notify that language is selected
-      StoreLanguage(isSelected); // Store selected language in cloud storage
+      StoreLanguage(isSelected); // Store selected language in cloud storage or localStorage
     } else {
       setSlideUnAvailable("language", isSelected); // Handle case when no language is selected
     }

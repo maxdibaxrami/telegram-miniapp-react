@@ -27,7 +27,7 @@ export const CustomRadio = (props) => {
 
 export default function LanguageSection() {
   const { t, i18n } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // default to English
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language); 
 
   // Function to get the stored language from cloud storage or localStorage
   const GetStoreLanguage = async () => {
