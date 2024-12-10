@@ -13,7 +13,7 @@ import {
   DeleteAcoontIcon,
 } from "@/Icons/index";
 
-import TopBarPages from "@/components/tobBar/topBarPages";
+import TopBarPages from "@/components/tobBar/index";
 import { Page } from "@/components/Page";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTheme } from "next-themes";

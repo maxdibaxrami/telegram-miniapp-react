@@ -4,7 +4,7 @@ import {
   NavbarItem,
 } from "@nextui-org/react";
 
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import ExploreFilter from "../explore/exploreFilter";
@@ -15,7 +15,9 @@ import {
   ChatIcon,
   ProfileIcon,
   LikeIcon,
-  LocationIcon
+  LocationIcon,
+  SettingIcon,
+  EditProfileIcon
 } from '@/Icons/index'
 import BlurFade from "../animate/BlurFade";
 
@@ -27,10 +29,13 @@ interface ExploreFilterRef {
 
 const TopBar = () => {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const lp = useLaunchParams();
+
   const childRef = useRef<ExploreFilterRef>(null);
   const childRefExplore = useRef<ExploreFilterRef>(null);
 
+  console.log(location)
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -98,6 +103,25 @@ const TopBar = () => {
             </p>
           </BlurFade>
           }
+
+        {location.pathname==="/setting" && 
+          <BlurFade className="flex items-center">
+            <SettingIcon className="size-6 text-primary"/>
+            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+              Setting
+            </p>
+          </BlurFade>
+          }
+
+        {location.pathname==="/profile-edit" && 
+          <BlurFade className="flex items-center">
+            <EditProfileIcon className="size-6 text-primary"/>
+            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+              Edit profile
+            </p>
+          </BlurFade>
+        }
+
 
         </NavbarItem>
       </NavbarContent>

@@ -1,6 +1,7 @@
 import { RadioGroup, Radio, cn, Avatar } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { setCloudStorageItem, getCloudStorageItem } from '@telegram-apps/sdk';
 
 export const CustomRadio = (props) => {
   const { children, ...otherProps } = props;
@@ -26,30 +27,62 @@ export const CustomRadio = (props) => {
 
 export default function LanguageSection() {
   const { t, i18n } = useTranslation();
-  const [selectedLanguage,setSelectedLanguage] = useState(i18n.language);
+  const [selectedLanguage, setSelectedLanguage] = useState('en'); // default to English
 
-  useEffect(()=>{
-    i18n.changeLanguage(selectedLanguage); // Change the language based on user selection
-  },[selectedLanguage])
+  // Function to get the stored language from cloud storage
+  const GetStoreLanguage = async () => {
+    if (getCloudStorageItem.isAvailable()) {
+      const lang = await getCloudStorageItem('lang');
+      return lang;
+    }
+    return null; // fallback if cloud storage is not available
+  };
+
+  // Function to store the selected language in cloud storage
+  const StoreLanguage = async (lang) => {
+    if (setCloudStorageItem.isAvailable()) {
+      await setCloudStorageItem('lang', lang);
+    }
+  };
+
+  // Use effect to load the language from storage and set it in the state
+  useEffect(() => {
+    const loadLanguage = async () => {
+      const storedLang = await GetStoreLanguage();
+      if (storedLang) {
+        setSelectedLanguage(storedLang);  // Set the stored language as default
+        i18n.changeLanguage(storedLang);  // Apply the stored language
+      }
+    };
+
+    loadLanguage();
+  }, []);
+
+  // Use effect to change language and store the new language whenever it changes
+  useEffect(() => {
+    i18n.changeLanguage(selectedLanguage); // Change the language in i18n
+    StoreLanguage(selectedLanguage);       // Store the selected language
+  }, [selectedLanguage]);
+
   return (
     <>
-      {/* Radio Group Example if needed */}
+      {/* Radio Group to select language */}
       <RadioGroup value={selectedLanguage} onValueChange={setSelectedLanguage} label={t('language')}>
         <CustomRadio value="en">
           <Avatar name="en" size="md" src="https://flagcdn.com/gb.svg" />
           <p className="text-bold mx-2">English</p>
         </CustomRadio>
         <CustomRadio value="ru">
-        <Avatar name="en" size="md" src="https://flagcdn.com/ru.svg" />
+          <Avatar name="ru" size="md" src="https://flagcdn.com/ru.svg" />
           <p className="text-bold mx-2">Russian</p>
         </CustomRadio>
         <CustomRadio value="fa">
-        <Avatar name="en" size="md" src="https://flagcdn.com/ir.svg" />
+          <Avatar name="fa" size="md" src="https://flagcdn.com/ir.svg" />
           <p className="text-bold mx-2">Farsi</p>
         </CustomRadio>
         <CustomRadio value="ar">
-        <Avatar name="en" size="md" src="https://flagcdn.com/sa.svg" />
-           <p className="text-bold mx-2">Arabic</p>
+          <Avatar name="ar" size="md" src="https://flagcdn.com/sa.svg" />
+          <p className="text-bold mx-2">Arabic</p>
         </CustomRadio>
       </RadioGroup>
     </>

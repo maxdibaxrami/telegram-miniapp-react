@@ -2,6 +2,7 @@ import { Chip, Avatar, Checkbox } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
+import { setCloudStorageItem, getCloudStorageItem } from '@telegram-apps/sdk'; // Import cloud storage functions
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -24,21 +25,55 @@ const item = {
 };
 
 const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }) => {
-  const [isSelected, setIsSelected] = useState(user.language);
+  const [isSelected, setIsSelected] = useState(''); // Initialize empty, we'll set this in useEffect
   const { t, i18n } = useTranslation();
 
+  // Function to change language in i18n
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
 
+  // Function to retrieve language from cloud storage
+  const GetStoredLanguage = async () => {
+    if (getCloudStorageItem.isAvailable()) {
+      const storedLang = await getCloudStorageItem('lang');
+      return storedLang || ''; // Return empty string if no language is stored
+    }
+    return '';
+  };
+
+  // Function to store selected language in cloud storage
+  const StoreLanguage = async (lang) => {
+    if (setCloudStorageItem.isAvailable()) {
+      await setCloudStorageItem('lang', lang);
+    }
+  };
+
+  // Effect to load stored language on component mount
   useEffect(() => {
-    if (isSelected != "") {
+    const loadLanguage = async () => {
+      const storedLang = await GetStoredLanguage();
+      if (storedLang) {
+        setIsSelected(storedLang); // Set the stored language as default
+        changeLanguage(storedLang); // Apply the language in i18n
+      } else if (user.language) {
+        setIsSelected(user.language); // Fallback to user's language if no stored language
+        changeLanguage(user.language);
+      }
+    };
+
+    loadLanguage();
+  }, [user.language]); // Run once when the component mounts
+
+  // Effect to handle changes in the selected language
+  useEffect(() => {
+    if (isSelected) {
       setLanguage();
-      changeLanguage(isSelected)
-      setSlideAvailable("language",isSelected)
-    }else{
-      changeLanguage(isSelected)
-      setSlideUnAvailable("language",isSelected)
+      changeLanguage(isSelected); // Change the language in i18n
+      setSlideAvailable("language", isSelected); // Notify that language is selected
+      StoreLanguage(isSelected); // Store selected language in cloud storage
+    } else {
+      setSlideUnAvailable("language", isSelected); // Handle case when no language is selected
     }
   }, [isSelected]);
 
@@ -79,7 +114,7 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="en" size="md" src="https://flagcdn.com/ru.svg" />
+                <Avatar name="ru" size="md" src="https://flagcdn.com/ru.svg" />
               }
               endContent={
                 <Checkbox
@@ -101,7 +136,7 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="en" size="md" src="https://flagcdn.com/ir.svg" />
+                <Avatar name="fa" size="md" src="https://flagcdn.com/ir.svg" />
               }
               endContent={
                 <Checkbox
@@ -143,7 +178,6 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
           </motion.li>
         </motion.ul>
       </div>
-
     </div>
   );
 };

@@ -10,7 +10,7 @@ import {
   WhyYouAreHereIcon,
 } from "@/Icons/index";
 
-import TopBarPages from "@/components/tobBar/topBarPages";
+import TopBarPages from "@/components/tobBar/index";
 import EditProfile from "@/components/profile/editProfile";
 import EditMoreAboutMe from "@/components/profile/editMoreAboutMe";
 import EditIntersting from "@/components/profile/editIntersting";
@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 export default function EditProfilePage() {
   const { t, i18n } = useTranslation();  // Initialize translation hook
   const lp = useLaunchParams();
-
+  
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
       // iOS/macOS specific padding (e.g., accounting for notches)
