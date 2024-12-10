@@ -230,7 +230,20 @@
       "favorite": "Избранное",
       "addToFavorite": "Добавить в избранное",
       "deleteChat": "Удалить чат",
-      "blockAndReport": "Заблокировать и сообщить"
+      "blockAndReport": "Заблокировать и сообщить",
+      "online": "Онлайн",
+      "enterMessage": "Введите ваше сообщение",
+      "cityButton": "Мой город",
+      "countryButton": "Моя страна",
+      "globalButton": "Глобально",
+      "Setfilters":"Установить фильтры",
+      "Searchbydistance":"Поиск по расстоянию",
+      "Distance(km)":"Расстояние (км)"
+
+
+
+
+
 
 
 

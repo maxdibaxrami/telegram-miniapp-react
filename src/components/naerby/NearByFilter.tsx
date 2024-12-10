@@ -15,10 +15,12 @@ import {
 import { Select, SelectItem } from "@nextui-org/react";
 
 import { LocationIcon } from "@/Icons/index";
+import { useTranslation } from "react-i18next";
 
 const NearByFilter = forwardRef((props, ref) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSelected, setIsSelected] = useState(true);
+  const { t } = useTranslation();
 
   useImperativeHandle(ref, () => ({
     openModal: onOpen,
@@ -27,8 +29,36 @@ const NearByFilter = forwardRef((props, ref) => {
   
   if(false){
     console.log(props);
-    
   }
+
+  const languages = [
+    { key: "en", label: t("en") },
+    { key: "zh", label: t("zh") },
+    { key: "es", label: t("es") },
+    { key: "hi", label: t("hi") },
+    { key: "ar", label: t("ar") },
+    { key: "bn", label: t("bn") },
+    { key: "fr", label: t("fr") },
+    { key: "ru", label: t("ru") },
+    { key: "pt", label: t("pt") },
+    { key: "id", label: t("id") },
+    { key: "ja", label: t("ja") },
+    { key: "de", label: t("de") },
+    { key: "pa", label: t("pa") },
+    { key: "ur", label: t("ur") },
+    { key: "ko", label: t("ko") },
+    { key: "vi", label: t("vi") },
+    { key: "fa", label: t("fa") },
+    { key: "tr", label: t("tr") },
+    { key: "ta", label: t("ta") },
+    { key: "it", label: t("it") },
+  ];
+  
+
+  const Gender = [
+    { key: "Male", label: t('Male') },
+    { key: "Female", label: t('Female') },
+  ];
   return (
       <Modal
         backdrop="blur"
@@ -41,7 +71,7 @@ const NearByFilter = forwardRef((props, ref) => {
         onClose={onClose}
       >
         <ModalContent className="absolute">
-          <ModalHeader className="flex flex-col gap-1">Set filters</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">{t("Setfilters")}</ModalHeader>
 
           <ModalBody>
             <form className="flex flex-col gap-4">
@@ -53,16 +83,16 @@ const NearByFilter = forwardRef((props, ref) => {
                 thumbIcon={() => <LocationIcon />}
                 onValueChange={setIsSelected}
               >
-                Search by distance
+                {t("Searchbydistance")}
               </Switch>
               {!isSelected ? (
                 <ButtonGroup
                   className="w-full flex py-4"
                   style={{ height: "4rem" }}
                 >
-                  <Button className="grow">My city</Button>
-                  <Button className="grow">My country</Button>
-                  <Button className="grow">Globally</Button>
+                <Button className="grow">{t("cityButton")}</Button>
+                <Button className="grow">{t("countryButton")}</Button>
+                <Button className="grow">{t("globalButton")}</Button>
                 </ButtonGroup>
               ) : (
                 <Slider
@@ -83,16 +113,16 @@ const NearByFilter = forwardRef((props, ref) => {
                 className="w-full"
                 color="secondary"
                 defaultValue={[18, 28]}
-                label="Age"
+                label={t("age")}
                 maxValue={100}
                 minValue={18}
                 step={1}
               />
               <Select
                 className="w-full"
-                items={LookingForItems}
-                label="Looking for"
-                placeholder="Looking for"
+                items={Gender}
+                label={t("Lookingfor")}
+                placeholder={t("Lookingfor")}
               >
                 {(LookingForItems) => (
                   <SelectItem key={LookingForItems.label}>
@@ -103,8 +133,8 @@ const NearByFilter = forwardRef((props, ref) => {
 
               <Select
                 className="w-full"
-                label="Languages"
-                placeholder="Languages"
+                label={t("Languages")}
+                placeholder={t("Languages")}
                 selectionMode="multiple"
               >
                 {languages.map((languages) => (
@@ -116,10 +146,10 @@ const NearByFilter = forwardRef((props, ref) => {
 
           <ModalFooter>
             <Button color="default" variant="solid" onPress={onClose}>
-              Close
+            {t("Close")}
             </Button>
             <Button color="success" onPress={onClose}>
-              Save
+            {t("Save")}
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -131,65 +161,3 @@ NearByFilter.displayName = "NearByFilter";
 
 export default NearByFilter;
 
-export const RealationStatus = [
-  { key: "cat", label: "Single" },
-  { key: "dog", label: "Taken" },
-  { key: "elephant", label: "open" },
-  { key: "lion", label: "I’d rather not say" },
-];
-
-export const KidStatus = [
-  { key: "cat", label: "Some day" },
-  { key: "dog", label: "i have already" },
-  { key: "elephant", label: "I don’t want kids" },
-  { key: "lion", label: "I’d rather not say" },
-];
-
-const languages = [
-  { key: "en", label: "English" },
-  { key: "es", label: "Spanish" },
-  { key: "fr", label: "French" },
-  { key: "de", label: "German" },
-  { key: "it", label: "Italian" },
-  { key: "zh", label: "Chinese" },
-  { key: "ja", label: "Japanese" },
-  { key: "ko", label: "Korean" },
-  { key: "ru", label: "Russian" },
-  { key: "ar", label: "Arabic" },
-  { key: "pt", label: "Portuguese" },
-  { key: "hi", label: "Hindi" },
-  { key: "bn", label: "Bengali" },
-  { key: "pa", label: "Punjabi" },
-  { key: "vi", label: "Vietnamese" },
-  { key: "ur", label: "Urdu" },
-  { key: "fa", label: "Persian" },
-  { key: "tr", label: "Turkish" },
-  { key: "id", label: "Indonesian" },
-  { key: "th", label: "Thai" },
-  { key: "ms", label: "Malay" },
-  { key: "pl", label: "Polish" },
-  { key: "nl", label: "Dutch" },
-  { key: "sv", label: "Swedish" },
-  { key: "no", label: "Norwegian" },
-  { key: "fi", label: "Finnish" },
-  { key: "da", label: "Danish" },
-  { key: "he", label: "Hebrew" },
-  { key: "el", label: "Greek" },
-  { key: "hu", label: "Hungarian" },
-  { key: "cs", label: "Czech" },
-  { key: "ro", label: "Romanian" },
-  { key: "bg", label: "Bulgarian" },
-  { key: "uk", label: "Ukrainian" },
-  { key: "sr", label: "Serbian" },
-  { key: "sk", label: "Slovak" },
-  { key: "hr", label: "Croatian" },
-  { key: "lt", label: "Lithuanian" },
-  { key: "lv", label: "Latvian" },
-  { key: "et", label: "Estonian" },
-];
-
-const LookingForItems = [
-  { key: "b", label: "Boys" },
-  { key: "G", label: "Girls" },
-  { key: "b2", label: "Both" },
-];

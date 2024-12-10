@@ -231,7 +231,17 @@
       "favorite": "Favorite",
       "addToFavorite": "Add to favorite",
       "deleteChat": "Delete chat",
-      "blockAndReport": "Block and report"
+      "blockAndReport": "Block and report",
+      "online": "Online",
+      "enterMessage": "Enter your message",
+      "cityButton": "My city",
+      "countryButton": "My country",
+      "globalButton": "Globally",
+    "Setfilters":"Set filters",
+    "Searchbydistance":"Search by distance",
+    "Distance(km)":"Distance (km)"
+
+
 
   
   }

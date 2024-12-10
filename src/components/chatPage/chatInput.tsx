@@ -2,9 +2,11 @@ import React from "react";
 import { Textarea, Button } from "@nextui-org/react";
 
 import { SendIcon, PhotoIcon } from "@/Icons/index";
+import { useTranslation } from "react-i18next";
 
 const ChatInput = () => {
   const [isVisible, setIsVisible] = React.useState(false);
+  const { t, i18n } = useTranslation();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -23,13 +25,14 @@ const ChatInput = () => {
             color="primary"
             size="sm"
             type="button"
+            style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}
             onClick={toggleVisibility}
           >
             <SendIcon />
           </Button>
         }
         minRows={1}
-        placeholder="Enter your message"
+        placeholder={t("enterMessage")}
         size="lg"
         startContent={
           <Button

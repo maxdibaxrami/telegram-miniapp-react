@@ -230,7 +230,18 @@
       "favorite": "مفضل",
       "addToFavorite": "أضف إلى المفضلة",
       "deleteChat": "حذف الدردشة",
-      "blockAndReport": "حظر وإبلاغ"
+      "blockAndReport": "حظر وإبلاغ",
+      "online": "متصل",
+      "enterMessage": "أدخل رسالتك",
+      "cityButton": "مدينتي",
+      "countryButton": "بلدي",
+      "globalButton": "عالميًا",
+      "Setfilters":"تعيين الفلاتر",
+      "Searchbydistance":"البحث حسب المسافة",
+      "Distance(km)":"المسافة (كم)"
+
+
+
 
 
 }

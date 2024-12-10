@@ -231,6 +231,19 @@
       "favorite": "مورد علاقه",
       "addToFavorite": "اضافه به علاقه مندی",
       "deleteChat": "حذف چت",
-      "blockAndReport": "مسدود و گزارش"
+      "blockAndReport": "مسدود و گزارش",
+      "online": "آنلاین",
+      "enterMessage": "پیام خود را وارد کنید",
+      "cityButton": "شهر من",
+      "countryButton": "کشور من",
+      "globalButton": "جهان",
+      "Setfilters":"تنظیم فیلترها",
+      "Searchbydistance":"جستجو بر اساس فاصله",
+      "Distance(km)":"فاصله (کیلومتر)"
+
+
+
+
+
 
 }

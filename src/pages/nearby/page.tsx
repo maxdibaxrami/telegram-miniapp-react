@@ -6,6 +6,9 @@ import NearByCard from "@/components/naerby/nearByCard";
 import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
 import BlurFade from "@/components/animate/BlurFade";
+import NearByFilter from '@/components/naerby/NearByFilter'
+import { FitlerIcon } from "@/Icons";
+import { Button } from "@nextui-org/button";
 
 const animations = {
   initial: {opacity: 0 },
@@ -17,11 +20,20 @@ const animations = {
 export default function NearByPage() {
   const [SelectedCard, setSelectedCard] = useState({});
   const childRef = useRef();
+  const FilterRef = useRef();
 
   const handleClick = () => {
     if (childRef.current) {
       /* @ts-ignore */
       childRef.current.callChildFunction(); // Call the function in the child
+    }
+  };
+
+
+  const handleFilterClick = () => {
+    if (FilterRef.current) {
+      /* @ts-ignore */
+      FilterRef.current.openModal(); // Call the function in the child
     }
   };
 
@@ -51,7 +63,26 @@ export default function NearByPage() {
               />
           </BlurFade>
         ))}
+
+      <Button
+        variant="shadow"
+        size="lg"
+        onClick={handleFilterClick}
+        style={{
+          position: "fixed",
+          bottom: "100px",
+          left: "50%",
+          transform: "translateX(-50%)"
+        }}
+        isIconOnly
+        aria-label="Like"
+        color="primary"
+      >
+        <FitlerIcon />
+      </Button>
+
       <NearByUserModal ref={childRef} profile={SelectedCard} />
+      <NearByFilter ref={FilterRef}/>
     </motion.div>
   );
 }

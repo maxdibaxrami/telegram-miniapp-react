@@ -3,14 +3,14 @@ import "swiper/css/effect-creative";
 import "./style.css";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
-import { LikeIcon, CloseCircleIcon } from "@/Icons";
+import { LikeIcon, CloseCircleIcon, FitlerIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 
-
+import ExploreFilter from '@/components/explore/exploreFilter'
 const getAnimationProps = () => {
   return {
     whileTap: {
@@ -26,6 +26,16 @@ const ExplorePage = () => {
   const [index, setIndex] = useState(0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const FilterRef = useRef();
+
+
+  const handleFilterClick = () => {
+    if (FilterRef.current) {
+      /* @ts-ignore */
+      FilterRef.current.openModal(); // Call the function in the child
+    }
+  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -103,8 +113,22 @@ const ExplorePage = () => {
                   </Button>
               </motion.div>
 
-        </motion.div>
+              <Button
+                variant="shadow"
+                size="lg"
+                onClick={handleFilterClick}
 
+                isIconOnly
+                className="left-4 fixed bottom-4"
+                aria-label="Like"
+                color="primary"
+              >
+                <FitlerIcon />
+              </Button>
+
+
+        </motion.div>
+          <ExploreFilter ref={FilterRef}/>
           <MatchModal
             isOpen={isModalOpen}
             modalData={mockProfiles[index]}
