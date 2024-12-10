@@ -2,7 +2,7 @@ import { Chip, Avatar, Checkbox } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
-import { setCloudStorageItem, getCloudStorageItem, cloudStorage } from '@telegram-apps/sdk'; // Import cloud storage functions
+import { cloudStorage } from '@telegram-apps/sdk';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -36,7 +36,7 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
   // Function to retrieve language from cloud storage
   const GetStoredLanguage = async () => {
     if (cloudStorage.isSupported()) {
-      const storedLang = await getCloudStorageItem('lang');
+      const storedLang = await cloudStorage.getItem('lang');
       return storedLang || 'en'; // Return empty string if no language is stored
     }
     return 'en';
@@ -45,7 +45,7 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
   // Function to store selected language in cloud storage
   const StoreLanguage = async (lang) => {
     if (cloudStorage.isSupported()) {
-      await setCloudStorageItem('lang', lang);
+      await cloudStorage.setItem('lang', lang);
     }
   };
 
