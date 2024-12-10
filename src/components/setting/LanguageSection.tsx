@@ -1,7 +1,7 @@
 import { RadioGroup, Radio, cn, Avatar } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { setCloudStorageItem, getCloudStorageItem } from '@telegram-apps/sdk';
+import { setCloudStorageItem, getCloudStorageItem, cloudStorage } from '@telegram-apps/sdk'; // Import cloud storage functions
 
 export const CustomRadio = (props) => {
   const { children, ...otherProps } = props;
@@ -31,7 +31,7 @@ export default function LanguageSection() {
 
   // Function to get the stored language from cloud storage
   const GetStoreLanguage = async () => {
-    if (getCloudStorageItem.isAvailable()) {
+    if (cloudStorage.isSupported()) {
       const lang = await getCloudStorageItem('lang');
       return lang;
     }
@@ -40,7 +40,7 @@ export default function LanguageSection() {
 
   // Function to store the selected language in cloud storage
   const StoreLanguage = async (lang) => {
-    if (setCloudStorageItem.isAvailable()) {
+    if (cloudStorage.isSupported()) {
       await setCloudStorageItem('lang', lang);
     }
   };
@@ -66,7 +66,6 @@ export default function LanguageSection() {
 
   return (
     <>
-      {setCloudStorageItem.isAvailable()}
       <RadioGroup value={selectedLanguage} onValueChange={setSelectedLanguage} label={t('language')}>
         <CustomRadio value="en">
           <Avatar name="en" size="md" src="https://flagcdn.com/gb.svg" />

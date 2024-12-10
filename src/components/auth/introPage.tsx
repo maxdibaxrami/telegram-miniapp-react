@@ -2,7 +2,7 @@ import { Chip, Avatar, Checkbox } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
-import { setCloudStorageItem, getCloudStorageItem } from '@telegram-apps/sdk'; // Import cloud storage functions
+import { setCloudStorageItem, getCloudStorageItem, cloudStorage } from '@telegram-apps/sdk'; // Import cloud storage functions
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -35,7 +35,7 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
 
   // Function to retrieve language from cloud storage
   const GetStoredLanguage = async () => {
-    if (getCloudStorageItem.isAvailable()) {
+    if (cloudStorage.isSupported()) {
       const storedLang = await getCloudStorageItem('lang');
       return storedLang || 'en'; // Return empty string if no language is stored
     }
@@ -44,7 +44,7 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
 
   // Function to store selected language in cloud storage
   const StoreLanguage = async (lang) => {
-    if (setCloudStorageItem.isAvailable()) {
+    if (cloudStorage.isSupported()) {
       await setCloudStorageItem('lang', lang);
     }
   };
@@ -83,6 +83,8 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
         <p className="text-base font-medium mb-2 text-center">
           {t('Selectlanguageforcontinue')}
         </p>
+        {"fdsfdsafasd" + cloudStorage.isSupported()}
+
         <motion.ul
           animate="visible"
           className="container flex gap-2 items-center justify-center flex-wrap"
