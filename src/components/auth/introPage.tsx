@@ -37,9 +37,9 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
   const GetStoredLanguage = async () => {
     if (getCloudStorageItem.isAvailable()) {
       const storedLang = await getCloudStorageItem('lang');
-      return storedLang || ''; // Return empty string if no language is stored
+      return storedLang || 'en'; // Return empty string if no language is stored
     }
-    return '';
+    return 'en';
   };
 
   // Function to store selected language in cloud storage

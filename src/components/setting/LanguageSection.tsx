@@ -66,7 +66,7 @@ export default function LanguageSection() {
 
   return (
     <>
-      {/* Radio Group to select language */}
+      {setCloudStorageItem.isAvailable()}
       <RadioGroup value={selectedLanguage} onValueChange={setSelectedLanguage} label={t('language')}>
         <CustomRadio value="en">
           <Avatar name="en" size="md" src="https://flagcdn.com/gb.svg" />
