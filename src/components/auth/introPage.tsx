@@ -83,7 +83,6 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
         <p className="text-base font-medium mb-2 text-center">
           {t('Selectlanguageforcontinue')}
         </p>
-        {"fdsfdsafasd" + cloudStorage.isSupported()}
 
         <motion.ul
           animate="visible"
