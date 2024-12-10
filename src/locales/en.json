@@ -20,6 +20,7 @@
     "open":"open",
     "Irathernotsay":"I’d rather not say",
     "Language":"Language:",
+    "Languages": "Languages",
     "SexualityStatus":"Sexuality Status:",
     "en": "English" ,
     "zh": "Chinese" ,
@@ -178,7 +179,33 @@
     "see_views": "You can see who see your profile",
     "who_viewed_profile": "Who see your profile",
     "interested":"interested",
-    "more_about_me":"More about me!"
-    
+    "more_about_me":"More about me!",
+    "Editprofile": "Edit profile",
+    "Name": "Name",
+    "Birthdate": "Birth date",
+    "Aboutme": "About me",
+    "Enteryourdescription": "Enter your description",
+    "Whyyouarehere": "Why you are here",
+    "Selectcountry": "Select country",
+    "Argentina": "Argentina",
+    "Venezuela": "Venezuela",
+    "Brazil": "Brazil",
+    "Switzerland": "Switzerland",
+    "Germany": "Germany",
+    "Spain": "Spain",
+    "France": "France",
+    "Italy": "Italy",
+    "Mexico": "Mexico",
+    "Lookingfor": "Looking for",
+    "Close": "Close",
+    "Save": "Save",
+    "Editmoreaboutme":"Edit more about me",
+    "edit_interesting": "Edit Interesting",
+    "interesting": "Interesting",
+    "select_interesting": "Select something interesting",
+    "like": "Like",
+    "close": "Close",
+    "save": "Save"
+  
   }
   

@@ -13,8 +13,11 @@ import {
 } from "@nextui-org/react";
 
 import { PenIcon } from "@/Icons/index";
+import { useTranslation } from "react-i18next";
 
 const EditIntersting = () => {
+  const { t, i18n } = useTranslation();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [values, setValues] = React.useState<any>(
     new Set(["cat", "dog"]),
@@ -28,8 +31,8 @@ const EditIntersting = () => {
     <>
       <Button
         isIconOnly
-        aria-label="Like"
-        className="absolute bottom-1 right-2 z-10"
+        aria-label={t("like")}
+        className={`absolute bottom-1 ${i18n.language==="ar" || i18n.language === 'fa'?"left-2":"right-2"} z-10`}
         color="default"
         size="sm"
         onPress={() => handleOpen()}
@@ -39,21 +42,21 @@ const EditIntersting = () => {
       <Modal backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">
-            Edit Intersting
+            {t("edit_interesting")}
           </ModalHeader>
 
           <ModalBody>
             <form className="flex flex-col gap-4">
               <Select
                 className="w-full"
-                label="Favorite Animal"
-                placeholder="Select an animal"
+                label={t("interesting")}
+                placeholder={t("select_interesting")}
                 selectedKeys={values}
                 selectionMode="multiple"
                 onSelectionChange={setValues}
               >
-                {animals.map((animal) => (
-                  <SelectItem key={animal.key}>{animal.label}</SelectItem>
+                {Intersting.map((item) => (
+                  <SelectItem key={item.key}>{t(item.label)}</SelectItem>
                 ))}
               </Select>
             </form>
@@ -61,10 +64,10 @@ const EditIntersting = () => {
 
           <ModalFooter>
             <Button color="default" variant="solid" onPress={onClose}>
-              Close
+              {t("close")}
             </Button>
             <Button color="success" onPress={onClose}>
-              Save
+              {t("save")}
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -75,18 +78,18 @@ const EditIntersting = () => {
 
 export default EditIntersting;
 
-export const animals = [
-  { key: "cat", label: "Cat" },
-  { key: "dog", label: "Dog" },
-  { key: "elephant", label: "Elephant" },
-  { key: "lion", label: "Lion" },
-  { key: "tiger", label: "Tiger" },
-  { key: "giraffe", label: "Giraffe" },
-  { key: "dolphin", label: "Dolphin" },
-  { key: "penguin", label: "Penguin" },
-  { key: "zebra", label: "Zebra" },
-  { key: "shark", label: "Shark" },
-  { key: "whale", label: "Whale" },
-  { key: "otter", label: "Otter" },
-  { key: "crocodile", label: "Crocodile" },
+export const Intersting = [
+  { key: "cat", label: "cat" },
+  { key: "dog", label: "dog" },
+  { key: "elephant", label: "elephant" },
+  { key: "lion", label: "lion" },
+  { key: "tiger", label: "tiger" },
+  { key: "giraffe", label: "giraffe" },
+  { key: "dolphin", label: "dolphin" },
+  { key: "penguin", label: "penguin" },
+  { key: "zebra", label: "zebra" },
+  { key: "shark", label: "shark" },
+  { key: "whale", label: "whale" },
+  { key: "otter", label: "otter" },
+  { key: "crocodile", label: "crocodile" },
 ];

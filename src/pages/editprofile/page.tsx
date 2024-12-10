@@ -3,7 +3,6 @@ import { Image } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
 
 import {
-  SearchIcon,
   HashtagIcon,
   AboutMeIcon,
   UserIcon,
@@ -20,7 +19,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTranslation } from "react-i18next";
 
 export default function EditProfilePage() {
-  const { t } = useTranslation();  // Initialize translation hook
+  const { t, i18n } = useTranslation();  // Initialize translation hook
   const lp = useLaunchParams();
 
   const getPaddingForPlatform = () => {
@@ -142,21 +141,12 @@ export default function EditProfilePage() {
                     
                   </ListboxItem>
 
-                  <ListboxItem
-                    key="5"
-                    description="Girl "
-                    startContent={<SearchIcon />}
-                  >
-                    Looking for ?
-                    
-                  </ListboxItem>
 
                   <ListboxItem
                     key="6"
-                    className="absolute"
+                    className={`absolute ${i18n.language==="ar" || i18n.language === 'fa'?"left-2":"right-2"}`}
                     style={{
                       top: "-8px",
-                      right: "0px",
                       width: "45px",
                       height: "45px",
                     }}
@@ -187,10 +177,9 @@ export default function EditProfilePage() {
 
                   <ListboxItem
                     key="12"
-                    className="absolute"
+                    className={`absolute ${i18n.language==="ar" || i18n.language === 'fa'?"left-2":"right-2"}`}
                     style={{
                       top: "-8px",
-                      right: "0px",
                       width: "45px",
                       height: "45px",
                     }}
@@ -218,10 +207,10 @@ export default function EditProfilePage() {
                   </ListboxItem>
                   <ListboxItem
                     key="13"
-                    className="absolute"
+                    className={`absolute ${i18n.language==="ar" || i18n.language === 'fa'?"left-2":"right-2"}`}
+                    
                     style={{
                       top: "-8px",
-                      right: "0px",
                       width: "45px",
                       height: "45px",
                     }}
