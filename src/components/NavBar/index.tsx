@@ -9,10 +9,12 @@ import {
 } from '@/Icons/index'
 
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 const BottomMenu = () => {
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   return (
       <AnimatePresence >
@@ -65,7 +67,7 @@ const BottomMenu = () => {
                 title={
                   <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
                     <FireIcon/>
-                    <p style={{fontSize:"11px"}}>Explore</p>
+                    <p style={{fontSize:"11px"}}>{t('Explore')}</p>
 
                   </div>
                 }
@@ -77,7 +79,7 @@ const BottomMenu = () => {
                 title={
                   <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
                     <LocationIcon/>
-                    <p style={{fontSize:"11px"}}>Nearby</p>
+                    <p style={{fontSize:"11px"}}>{t('Nearby')}</p>
 
                   </div>
                 }
@@ -89,7 +91,7 @@ const BottomMenu = () => {
                 title={
                   <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
                     <ChatIcon/>
-                    <p style={{fontSize:"11px"}}>Chat</p>
+                    <p style={{fontSize:"11px"}}>{t('Chat')}</p>
 
                   </div>
                 }
@@ -102,7 +104,7 @@ const BottomMenu = () => {
                 title={
                   <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
                     <LikeIcon/>
-                    <p style={{fontSize:"11px"}}>Likes</p>
+                    <p style={{fontSize:"11px"}}>{t('Likes')}</p>
 
                   </div>
                 }
@@ -114,7 +116,7 @@ const BottomMenu = () => {
                 title={
                   <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
                     <ProfileIcon/>
-                    <p style={{fontSize:"11px"}}>Profile</p>
+                    <p style={{fontSize:"11px"}}>{t('Profile')}</p>
                   </div>
                 }
               />

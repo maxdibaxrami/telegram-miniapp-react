@@ -238,7 +238,14 @@
       "globalButton": "Глобально",
       "Setfilters":"Установить фильтры",
       "Searchbydistance":"Поиск по расстоянию",
-      "Distance(km)":"Расстояние (км)"
+      "Distance(km)":"Расстояние (км)",
+      "Profile": "Профиль",
+      "Explore": "Исследовать",
+      "Nearby": "Рядом",
+      "Likes": "Лайки",
+      "Chat": "Чат",
+      "Setting": "Настройки",
+      "EditProfile": "Редактировать профиль"
 
 
 

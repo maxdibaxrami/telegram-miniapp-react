@@ -238,7 +238,15 @@
       "globalButton": "عالميًا",
       "Setfilters":"تعيين الفلاتر",
       "Searchbydistance":"البحث حسب المسافة",
-      "Distance(km)":"المسافة (كم)"
+      "Distance(km)":"المسافة (كم)",
+
+      "Profile": "الملف الشخصي",
+      "Explore": "استكشاف",
+      "Nearby": "قريب",
+      "Likes": "الإعجابات",
+      "Chat": "الدردشة",
+      "Setting": "الإعدادات",
+      "EditProfile": "تعديل الملف الشخصي"
 
 
 

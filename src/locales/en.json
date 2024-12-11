@@ -239,7 +239,14 @@
       "globalButton": "Globally",
     "Setfilters":"Set filters",
     "Searchbydistance":"Search by distance",
-    "Distance(km)":"Distance (km)"
+    "Distance(km)":"Distance (km)",
+    "Profile": "Profile",
+    "Explore": "Explore",
+    "Nearby": "Nearby",
+    "Likes": "Likes",
+    "Chat": "Chat",
+    "Setting": "Setting",
+    "EditProfile": "Edit Profile"
 
 
 

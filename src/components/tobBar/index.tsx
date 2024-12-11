@@ -8,7 +8,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useRef } from "react";
 import NearByFilter from "../naerby/NearByFilter";
 import ExploreFilter from "../explore/exploreFilter";
-import { useLaunchParams} from '@telegram-apps/sdk-react';
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 import {
   FireIcon,
@@ -20,14 +20,15 @@ import {
   EditProfileIcon
 } from '@/Icons/index'
 import BlurFade from "../animate/BlurFade";
+import { useTranslation } from 'react-i18next';
 
 interface ExploreFilterRef {
   openModal: () => void;
   closeModal: () => void;
 }
 
-
 const TopBar = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const lp = useLaunchParams();
@@ -39,101 +40,94 @@ const TopBar = () => {
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
-      // iOS/macOS specific padding (e.g., accounting for notches)
-      return '50px' // Adjust as needed for iOS notch
+      return '50px';
     } else {
-      // Android/base padding
-      return '25px'// Default padding
+      return '25px';
     }
   };
 
   return (
-  <>
-    <Navbar
-      className="top-0 fixed text-default-600 z-50"
-      style={{paddingTop: `${getPaddingForPlatform()}` }}
-    >
-     <NavbarContent justify="start">
-    </NavbarContent>
+    <>
+      <Navbar
+        className="top-0 fixed text-default-600 z-50"
+        style={{ paddingTop: `${getPaddingForPlatform()}` }}
+      >
+        <NavbarContent justify="start">
+        </NavbarContent>
 
+        <NavbarContent justify="center">
+          <NavbarItem className="flex items-center">
+            {searchParams.get("page") === "profile" && 
+              <BlurFade className="flex items-center">
+                <ProfileIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('Profile')}
+                </p>
+              </BlurFade>
+            }
 
-      <NavbarContent justify="center">
-        <NavbarItem className="flex items-center">
-        {searchParams.get("page")==="profile" && 
-          <BlurFade className="flex items-center">
-            <ProfileIcon className="size-6 text-primary"/>
-            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-              {searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)}
-            </p>
-          </BlurFade>
-          }
+            {searchParams.get("page") === "explore" && 
+              <BlurFade className="flex items-center">
+                <FireIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('Explore')}
+                </p>
+              </BlurFade>
+            }
 
-        {searchParams.get("page")==="explore" && 
-          <BlurFade className="flex items-center">
-            <FireIcon className="size-6 text-primary"/>
-            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-              {searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)}
-            </p>
-          </BlurFade>
-          }
+            {searchParams.get("page") === "nearby" && 
+              <BlurFade className="flex items-center">
+                <LocationIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('Nearby')}
+                </p>
+              </BlurFade>
+            }
 
-          {searchParams.get("page")==="nearby" && 
-          <BlurFade className="flex items-center">
-              <LocationIcon className="size-6 text-primary"/>
-              <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-                {searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)}
-              </p>
-            </BlurFade>
-          }
+            {searchParams.get("page") === "likes" && 
+              <BlurFade className="flex items-center">
+                <LikeIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('Likes')}
+                </p>
+              </BlurFade>
+            }
 
-        {searchParams.get("page")==="likes" && 
-          <BlurFade className="flex items-center">
-            <LikeIcon className="size-6 text-primary"/>
-            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-              {searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)}
-            </p>
-          </BlurFade>
-          }
+            {searchParams.get("page") === "chat" && 
+              <BlurFade className="flex items-center">
+                <ChatIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('Chat')}
+                </p>
+              </BlurFade>
+            }
 
-        {searchParams.get("page")==="chat" && 
-          <BlurFade className="flex items-center">
-            <ChatIcon className="size-6 text-primary"/>
-            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-              {searchParams.get("page").charAt(0).toUpperCase() + searchParams.get("page").slice(1)}
-            </p>
-          </BlurFade>
-          }
+            {location.pathname === "/setting" && 
+              <BlurFade className="flex items-center">
+                <SettingIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('Setting')}
+                </p>
+              </BlurFade>
+            }
 
-        {location.pathname==="/setting" && 
-          <BlurFade className="flex items-center">
-            <SettingIcon className="size-6 text-primary"/>
-            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-              Setting
-            </p>
-          </BlurFade>
-          }
+            {location.pathname === "/profile-edit" && 
+              <BlurFade className="flex items-center">
+                <EditProfileIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('EditProfile')}
+                </p>
+              </BlurFade>
+            }
+          </NavbarItem>
+        </NavbarContent>
 
-        {location.pathname==="/profile-edit" && 
-          <BlurFade className="flex items-center">
-            <EditProfileIcon className="size-6 text-primary"/>
-            <p className="font-bold ml-1 text-inherit text-center font-bold tracking-tighter  md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-              Edit profile
-            </p>
-          </BlurFade>
-        }
+        <NavbarContent justify="end">
+        </NavbarContent>
+      </Navbar>
 
-
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-      </NavbarContent>
-
-    </Navbar>
-
-    <NearByFilter ref={childRef} />
-    <ExploreFilter ref={childRefExplore}/>
-
+      <NearByFilter ref={childRef} />
+      <ExploreFilter ref={childRefExplore} />
     </>
   );
 };

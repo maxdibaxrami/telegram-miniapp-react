@@ -239,7 +239,14 @@
       "globalButton": "جهان",
       "Setfilters":"تنظیم فیلترها",
       "Searchbydistance":"جستجو بر اساس فاصله",
-      "Distance(km)":"فاصله (کیلومتر)"
+      "Distance(km)":"فاصله (کیلومتر)",
+      "Profile": "پروفایل",
+      "Explore": "کاوش",
+      "Nearby": "نزدیک",
+      "Likes": "پسندیده‌ها",
+      "Chat": "گفتگو",
+      "Setting": "تنظیمات",
+      "EditProfile": "ویرایش پروفایل"
 
 
 
