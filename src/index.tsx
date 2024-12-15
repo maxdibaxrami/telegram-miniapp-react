@@ -10,6 +10,8 @@ import './index.css';
 
 // Mock the environment in case, we are outside Telegram.
 import './mockEnv.ts';
+import { Provider } from 'react-redux';
+import { store } from './store.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('content')!);
 
@@ -19,7 +21,9 @@ try {
 
   root.render(
     <StrictMode>
-      <Root/>
+      <Provider store={store}>
+        <Root/>
+      </Provider>
     </StrictMode>,
   );
 } catch (e) {

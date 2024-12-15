@@ -246,7 +246,10 @@
     "Likes": "Likes",
     "Chat": "Chat",
     "Setting": "Setting",
-    "EditProfile": "Edit Profile"
+    "EditProfile": "Edit Profile",
+    "Delete": "Delete",
+    "youshoulduploadminimum3photoandmaximum6photo":"you should upload minimum 3 photo and maximum 6 photo",
+    "addPhoto":"Add Photo"
 
 
 

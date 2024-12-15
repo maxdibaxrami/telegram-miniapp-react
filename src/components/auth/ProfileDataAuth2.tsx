@@ -3,18 +3,39 @@ import { useEffect, useState } from "react";
 import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
 import { useTranslation } from "react-i18next";
 
+
+function calculateAge(birthDateString) {
+  const birthDate = new Date(birthDateString);
+  const today = new Date();
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+  const dayDifference = today.getDate() - birthDate.getDate();
+
+  // Adjust age if the current month/day is before the birth month/day
+  if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+      age--;
+  }
+
+  return age;
+}
+
 const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
   // Set the initial value to "2000-01-14"
-  const [value, setValue] = useState<DateValue | null>(parseDate(user.age));
+  const [value, setValue] = useState<DateValue | null>(parseDate(user.dateBirth));
   const { t } = useTranslation();
 
   useEffect(() => {
     const formattedDate = formatDate(value);
 
     if (value !== null) {
-      setSlideAvailable("age" , formattedDate);
+      setSlideAvailable("dateBirth" , formattedDate);
+      setSlideAvailable("age" , calculateAge(formattedDate));
+
     } else {
-      setSlideUnAvailable("age" , formattedDate);
+      setSlideUnAvailable("dateBirth" , formattedDate);
+      setSlideUnAvailable("age" , calculateAge(formattedDate));
+
     }
     
   }, [value]);

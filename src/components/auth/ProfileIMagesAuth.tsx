@@ -1,95 +1,78 @@
-import { Image, Button } from "@nextui-org/react";
-
-import { PenIcon } from "@/Icons/index";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "@nextui-org/react";
+import { PhotoIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
+import SelectedProfileImageCard from "./selectedProfileImageCard";
 
-const ImageDataAuth = ({setSlideAvailable}) => {
+const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, userPhoto }) => {
   const { t } = useTranslation();
+  const [selectedImages, setSelectedImages] = useState(userPhoto);
 
-  useEffect(()=>{
- 
-      setSlideAvailable("photoUrl" , "https://example.com/johndoe.jpg" )
+  // Handle file selection
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    if (files.length + selectedImages.length > 6) {
+      alert("You can only upload a maximum of 6 images.");
+      return;
+    }
+    const newImages = files.map((file:any) => URL.createObjectURL(file));
+    setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+  };
 
-  },[])
+  // Handle image deletion
+  const handleDeleteImage = (imageUrl) => {
+    setSelectedImages((prevImages) =>
+      prevImages.filter((img) => img !== imageUrl)
+    );
+  };
+
+  useEffect(()=> {
+    if(selectedImages.length >= 3){
+      setSlideAvailable() 
+      setUserPhoto(selectedImages)
+    }else{
+      setSlideUnAvailable()
+      setUserPhoto(selectedImages)
+
+    } 
+
+  },[selectedImages])
 
   return (
-    <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
+    <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1">{t("UploadprofileImage")} </p>
-        <div className="w-full h-full px-2 pb-4">
-          <div className="flex justify-between items-center">
-            <div className="flex">
-              <div className="w-1/2 relative">
-                <Image
-                  alt="NextUI hero Image"
-                  className="w-full h-full"
-                  height={312}
-                  src="https://conference.nbasbl.org/wp-content/uploads/2022/05/placeholder-image-1.png"
-                  style={{
-                    objectFit: "cover",
-                    borderRadius: "14px 0px 0px 14px",
-                  }}
-                />
+        <p className="mb-1">{t("UploadprofileImage")}</p>
+        <p className="mb-1 text-small">{t("youshoulduploadminimum3photoandmaximum6photo")}</p>
 
-                <Button
-                  isIconOnly
-                  aria-label="Like"
-                  className="absolute bottom-1 right-2 z-10"
-                  color="primary"
-                  size="sm"
-                >
-                  <PenIcon />
-                </Button>
-              </div>
+        <div>
+          <input
+            type="file"
+            id="file-upload"
+            accept="image/*"
+            multiple
+            hidden
+            onChange={handleFileChange}
+          />
+          <Button
+            size="lg"
+            className="w-full mb-2"
+            color="success"
+            isDisabled={selectedImages.length >= 6}
+            endContent={<PhotoIcon />}
+            onPress={() => document.getElementById("file-upload").click()}
+          >
+            
+            {t("addPhoto")}
+          </Button>
 
-              <div className="w-1/2 flex flex-col">
-                <div className="w-full relative">
-                  <Image
-                    alt="NextUI hero Image"
-                    className="w-full h-full twin-profile"
-                    height={156}
-                    src="https://conference.nbasbl.org/wp-content/uploads/2022/05/placeholder-image-1.png"
-                    style={{
-                      objectFit: "cover",
-                      borderRadius: "0px 14px 0px 0px",
-                    }}
-                  />
-
-                  <Button
-                    isIconOnly
-                    aria-label="Like"
-                    className="absolute bottom-1 right-2 z-10"
-                    color="primary"
-                    size="sm"
-                  >
-                    <PenIcon />
-                  </Button>
-                </div>
-                <div className="w-full relative">
-                  <Image
-                    alt="NextUI hero Image"
-                    className="w-full h-full twin-profile"
-                    height={156}
-                    src="https://conference.nbasbl.org/wp-content/uploads/2022/05/placeholder-image-1.png"
-                    style={{
-                      objectFit: "cover",
-                      borderRadius: "0px 0px 14px 0px",
-                    }}
-                  />
-
-                  <Button
-                    isIconOnly
-                    aria-label="Like"
-                    className="absolute bottom-1 right-2 z-10"
-                    color="primary"
-                    size="sm"
-                  >
-                    <PenIcon />
-                  </Button>
-                </div>
-              </div>
-            </div>
+          <div className="w-full h-full pb-4 gap-2 grid grid-cols-2 sm:grid-cols-3">
+            {selectedImages.map((imageUrl, index) => (
+              <SelectedProfileImageCard
+                key={index}
+                imageUrl={imageUrl}
+                onDelete={() => handleDeleteImage(imageUrl)}
+              />
+            ))}
           </div>
         </div>
       </form>

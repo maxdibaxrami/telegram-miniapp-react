@@ -44,4 +44,5 @@ export default () => {
     } else {
       document.documentElement.style.setProperty('font-family', 'Parkinsans, Signika Negative, sans-serif', 'important');
     }
+    
   }

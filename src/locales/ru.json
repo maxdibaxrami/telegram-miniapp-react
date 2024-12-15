@@ -245,7 +245,13 @@
       "Likes": "Лайки",
       "Chat": "Чат",
       "Setting": "Настройки",
-      "EditProfile": "Редактировать профиль"
+      "EditProfile": "Редактировать профиль",
+      "Delete": "Удалить",
+      "youshoulduploadminimum3photoandmaximum6photo":"вам следует загрузить минимум 3 фото и максимум 6 фото",
+      "addPhoto":"Добавить фото"
+
+
+
 
 
 

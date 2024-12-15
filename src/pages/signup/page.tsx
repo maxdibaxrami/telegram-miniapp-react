@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import IntroPage from "@/components/auth/introPage";
@@ -17,20 +17,31 @@ import SexualityStatusAuth from "@/components/auth/SexualityStatusAuth";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import InterestingAuth from "@/components/auth/interstingAuth";
 import "./style.css"
-import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { useLaunchParams, useSignal, initData } from "@telegram-apps/sdk-react";
+import { signupUser, uploadProfileImage } from "@/features/authSlice";
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { fetchUserData } from "@/features/userSlice";
+
+
+
+
 export default function SignupPage() {
 
   const contentRef = useRef(null); // Ref to track content height
   const lp = useLaunchParams();
-
+  const dispatch = useDispatch<AppDispatch>();
+  const initDataState = useSignal(initData.state);
+  const [uploadImageLoading, setUploadImageLoading] = useState(true)
 
   const [selectedTab, setSelectedTab] = useState(0);
-  const [languageSelected, setLanguageSelected] = useState(false);
   const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
 
+  const [userPhoto, setUserPhoto ] = useState([])
+
   const [user, setUser] = useState({
-    "telegramId": 123456789,
-    "username": "",
+    "telegramId": initDataState.hash,
+    "username": initDataState.hash,
     "firstName": "",
     "photoUrl": "",
     "city": "",
@@ -38,7 +49,6 @@ export default function SignupPage() {
     "languages": [],
     "interests": [],
     "height": "",
-    "activityScore": 0,
     "gender": "",
     "lookingFor": "",
     "relationStatus": "",
@@ -46,10 +56,10 @@ export default function SignupPage() {
     "education": "",
     "work": "",
     "bio": "",
-    "photos": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
     "verifiedAccount": true,
     "language":"en",
-    "age":"2000-01-14"
+    "age":24,
+    "dateBirth":"2000-01-14"
   })
 
   const setSlideAvailable = (key, value) => {
@@ -74,14 +84,6 @@ export default function SignupPage() {
       return 
     setSelectedTab(selectedTab - 1)
   };
-  const setLanguage = () => setLanguageSelected(true);
-
-  useEffect(() => {
-    console.log(user);
-    console.log(languageSelected);
-
-  }, [user]);
-
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -93,15 +95,51 @@ export default function SignupPage() {
     }
   };
   
+  const handleSignup = async () => {
+    // Set loading to true before starting the requests
+    setUploadImageLoading(true);
+  
+    try {
+      // Dispatch the signup user action
+      const result = await dispatch(signupUser(user));
+  
+      // Check if the signup was successful and if we have images to upload
+      if (signupUser.fulfilled.match(result) && result.payload?.id && userPhoto.length > 0) {
+
+        // Create an array of promises for uploading each image
+        const uploadPromises = userPhoto.map((photo) =>
+          dispatch(uploadProfileImage({ userId: result.payload.id, imageFile: photo }))
+        );
+        // Wait for all the uploads to complete
+        await Promise.all(uploadPromises);
+        
+        await dispatch(fetchUserData(initDataState.hash));
+
+        // Once all images are uploaded, set loading to false
+        setUploadImageLoading(false);
+      } 
+    } catch (error) {
+      // Handle error (optional)
+      console.error("Error during signup or image upload:", error);
+      // Set loading to false in case of error
+      setUploadImageLoading(false);
+    }
+  };
+
+  
+  
+
+  
 
   return (
     <Page back={false}>
         <motion.div className="flex flex-col items-center justify-between">
-          <div ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
+          <motion.div animate={selectedTab === 11? {top:"-100px", opacity:0} : "bottom-0"} ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
             <div className="text-center">
               <SparklesText text="Moll Moll" />
             </div>
-          </div>
+          </motion.div >            
+
 
           <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "9rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
           <AnimatePresence>
@@ -112,7 +150,7 @@ export default function SignupPage() {
                   initial={{   opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} setLanguage={setLanguage} />
+                  <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </motion.div>
               )}
               {selectedTab === 1 && (
@@ -216,7 +254,7 @@ export default function SignupPage() {
                   initial={{  opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <ImageDataAuth setSlideAvailable={setSlideAvailable}/>
+                  <ImageDataAuth userPhoto={userPhoto} setUserPhoto={setUserPhoto} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
                 </motion.div>
               )}
               {selectedTab === 11 && (
@@ -226,24 +264,26 @@ export default function SignupPage() {
                   initial={{opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FinalStepAuth setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                  <FinalStepAuth uploadImageLoading={uploadImageLoading} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
           {/* Wrapping BottomController in motion.div for smooth position changes */}
-          <div
+          <motion.div
             className="fixed pb-6 bottom-0 backdrop-blur backdrop-saturate-150 "
             style={{width:"100%",zIndex:999}}
+            animate={selectedTab === 11? {bottom:"-100px"} : "bottom-0"}
           >
             <BottomController
               nextPage={NextPage}
               prevPage={prevPage}
+              handleSignup={handleSignup}
               selectedTab={selectedTab}
               nextSlideAvalable={nextSlideAvalable}
             />
-          </div>
+          </motion.div>
         </motion.div>
     </Page>
   );

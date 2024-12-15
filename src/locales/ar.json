@@ -246,7 +246,13 @@
       "Likes": "الإعجابات",
       "Chat": "الدردشة",
       "Setting": "الإعدادات",
-      "EditProfile": "تعديل الملف الشخصي"
+      "EditProfile": "تعديل الملف الشخصي",
+      "Delete": "حذف",
+      "youshoulduploadminimum3photoandmaximum6photo":"يجب عليك تحميل 3 صور على الأقل و 6 صور كحد أقصى",
+      "addPhoto":"أضف صورة"
+
+
+
 
 
 

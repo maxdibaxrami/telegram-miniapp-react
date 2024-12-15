@@ -16,22 +16,24 @@ interface Route {
   Component: ComponentType;
   title?: string;
   icon?: JSX.Element;
+  auth:boolean;
 }
 
 export const routes: Route[] = [
-  { path: '/', Component: IndexPage },
-  { path: '/init-data', Component: InitDataPage, title: 'Init Data' },
-  { path: '/theme-params', Component: ThemeParamsPage, title: 'Theme Params' },
-  { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params' },
-  { path: '/main', Component: MainPage, title: 'Main Page' },
-  { path: '/profile-edit', Component: EditProfile, title: 'Main Page' },
-  { path: '/setting', Component: Setting, title: 'Main Page' },
-  { path: '/chat-detail', Component: ChatPage, title: 'Main Page' },
-  { path: '/sign-up', Component: SignupPage, title: 'signup' },
+  { path: '/', Component: IndexPage, auth:true },
+  { path: '/init-data', Component: InitDataPage, title: 'Init Data', auth:true },
+  { path: '/theme-params', Component: ThemeParamsPage, title: 'Theme Params', auth:true },
+  { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params', auth:true },
+  { path: '/main', Component: MainPage, title: 'Main Page', auth:true },
+  { path: '/profile-edit', Component: EditProfile, title: 'Main Page', auth:true },
+  { path: '/setting', Component: Setting, title: 'Main Page', auth:true },
+  { path: '/chat-detail', Component: ChatPage, title: 'Main Page', auth:true },
+  { path: '/sign-up', Component: SignupPage, title: 'signup', auth: false },
 
 
   {
     path: '/ton-connect',
+    auth:true,
     Component: TONConnectPage,
     title: 'TON Connect',
     icon: (

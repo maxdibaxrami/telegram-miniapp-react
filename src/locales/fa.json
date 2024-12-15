@@ -246,7 +246,13 @@
       "Likes": "پسندیده‌ها",
       "Chat": "گفتگو",
       "Setting": "تنظیمات",
-      "EditProfile": "ویرایش پروفایل"
+      "EditProfile": "ویرایش پروفایل",
+      "Delete": "حذف",
+      "youshoulduploadminimum3photoandmaximum6photo":"شما باید حداقل 3 عکس و حداکثر 6 عکس آپلود کنید",
+      "addPhoto":"اضافه کردن عکس"
+
+
+
 
 
 

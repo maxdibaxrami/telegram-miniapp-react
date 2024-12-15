@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 import { cloudStorage } from '@telegram-apps/sdk';
+import FontHandller from "../FontHandller";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -21,7 +22,7 @@ const item = {
   visible: { y: 0, opacity: 1 },
 };
 
-const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }) => {
+const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
   const { t, i18n } = useTranslation();
 
   const [isSelected, setIsSelected] = useState(i18n.language); // Initialize empty, we'll set this in useEffect
@@ -66,18 +67,28 @@ const IntroPage = ({ setLanguage, setSlideUnAvailable, setSlideAvailable, user }
     };
 
     loadLanguage();
+
+    document.documentElement.lang = isSelected;
+    document.documentElement.dir = ['ar', 'fa'].includes(isSelected) ? 'rtl' : 'ltr';
+    FontHandller();
+    
   }, [user.language]); // Run once when the component mounts
 
   // Effect to handle changes in the selected language
   useEffect(() => {
     if (isSelected) {
-      setLanguage(); // Call the setLanguage function (if needed)
+
       changeLanguage(isSelected); // Change the language in i18n
       setSlideAvailable("language", isSelected); // Notify that language is selected
       StoreLanguage(isSelected); // Store selected language in cloud storage or localStorage
+ 
     } else {
       setSlideUnAvailable("language", isSelected); // Handle case when no language is selected
     }
+
+    document.documentElement.lang = isSelected;
+    document.documentElement.dir = ['ar', 'fa'].includes(isSelected) ? 'rtl' : 'ltr';
+    FontHandller();
   }, [isSelected]);
 
   return (

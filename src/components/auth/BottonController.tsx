@@ -2,7 +2,7 @@ import { Navbar, NavbarContent, Button, Progress } from "@nextui-org/react";
 import { ArrowRight, ArrowLeft } from "@/Icons/index";
 import { useTranslation } from 'react-i18next';
 
-const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable }) => {
+const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, handleSignup }) => {
   const { i18n } = useTranslation();
   return (
       <Navbar isBlurred={false} className="w-full bg-transparent">
@@ -32,7 +32,14 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable }
             size="lg"
             style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}
             isDisabled={!nextSlideAvalable || selectedTab === 11}
-            onClick={nextPage}
+            onClick={()=>{
+              if(selectedTab===10){
+                nextPage() 
+                handleSignup()
+              }else{
+                 nextPage() 
+              }  
+            }}
           >
             <ArrowRight />
           </Button>
