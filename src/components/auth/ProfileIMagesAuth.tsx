@@ -42,7 +42,6 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
         <p className="mb-1">{t("UploadprofileImage")}</p>
-        <p className="mb-1 text-small">{t("youshoulduploadminimum3photoandmaximum6photo")}</p>
 
         <div>
           <input
@@ -55,7 +54,7 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
           />
           <Button
             size="lg"
-            className="w-full mb-2"
+            className="w-full mb-2 font-bold"
             color="success"
             isDisabled={selectedImages.length >= 6}
             endContent={<PhotoIcon />}
@@ -74,6 +73,9 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
               />
             ))}
           </div>
+
+          <p className="mb-1 text-small">{t("youshoulduploadminimum3photoandmaximum6photo")}</p>
+
         </div>
       </form>
     </div>

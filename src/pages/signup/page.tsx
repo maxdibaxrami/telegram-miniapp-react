@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import IntroPage from "@/components/auth/introPage";
@@ -22,6 +22,7 @@ import { signupUser, uploadProfileImage } from "@/features/authSlice";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
 import { fetchUserData } from "@/features/userSlice";
+import { getLocation } from "@/Location";
 
 
 
@@ -39,29 +40,54 @@ export default function SignupPage() {
 
   const [userPhoto, setUserPhoto ] = useState([])
 
+  const [location, setLocation] = useState('');
+  const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
+  const [error, setError] = useState('');
+  
   const [user, setUser] = useState({
-    "telegramId": initDataState.hash,
-    "username": initDataState.hash,
-    "firstName": "",
-    "photoUrl": "",
-    "city": "",
-    "country": "",
-    "languages": [],
-    "interests": [],
-    "height": "",
-    "gender": "",
-    "lookingFor": "",
-    "relationStatus": "",
-    "sexuality": "",
-    "education": "",
-    "work": "",
-    "bio": "",
-    "verifiedAccount": true,
-    "language":"en",
-    "age":24,
-    "dateBirth":"2000-01-14"
-  })
+    telegramId: initDataState.hash,
+    username: initDataState.hash,
+    firstName: '',
+    photoUrl: '',
+    city: '',
+    country: '',
+    languages: [],
+    interests: [],
+    height: '',
+    gender: '',
+    lookingFor: '',
+    relationStatus: '',
+    sexuality: '',
+    education: '',
+    work: '',
+    bio: '',
+    verifiedAccount: true,
+    language: 'en',
+    age: 24,
+    dateBirth: '2000-01-14',
+    lat: null,
+    lon: null,
+  });
 
+  useEffect(() => {
+    // Call getLocation to fetch location and coordinates
+    getLocation(setError, setLocation, setCoordinates);
+  }, []);
+
+  useEffect(() => {
+    if (location && coordinates.lat && coordinates.lon) {
+      // Update user data when location and coordinates are available
+      setUser((prevUser) => ({
+        ...prevUser,
+        country: location.split(',')[1].trim(),
+        city: location.split(',')[0], // Extract city from the location string
+        lat: Number(coordinates.lat),
+        lon: Number(coordinates.lon),
+      }));
+    }
+  }, [location, coordinates]);
+
+  useEffect(()=>{ console.log(user) },[user])
   const setSlideAvailable = (key, value) => {
     setNextSlideAvalable(true)
     setUser((prevUser) => ({
@@ -98,7 +124,6 @@ export default function SignupPage() {
   const handleSignup = async () => {
     // Set loading to true before starting the requests
     setUploadImageLoading(true);
-  
     try {
       // Dispatch the signup user action
       const result = await dispatch(signupUser(user));

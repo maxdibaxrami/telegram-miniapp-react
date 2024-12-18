@@ -26,9 +26,11 @@ export const uploadProfileImage = createAsyncThunk(
     const blob = await image.blob();
 
     const formData = new FormData();
-    formData.append('image', blob);
-    
-    const response = await axios.post(`/users/upload/${userId}/`, formData);
+    formData.append('file', blob);
+    formData.append('userId', userId);
+    formData.append('order', "1");
+
+    const response = await axios.post(`/photo/upload/`, formData);
     return response.data;
   }
 );

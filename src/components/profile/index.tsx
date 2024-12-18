@@ -2,7 +2,7 @@ import { Image, User, Divider, Button } from "@nextui-org/react";
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import {
-  VerifyIcon,
+  VerifyIconFill,
   PerimumIcon,
   EditProfileIcon,
   SettingIcon,
@@ -12,11 +12,17 @@ import DataList from "./dataList";
 import { Link } from "react-router-dom";
 import { Swiper ,SwiperSlide } from "swiper/react";
 import { useState } from "react";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { BASEURL } from "@/constant";
 
 const ProfilePage = () => {
 
-
   const [slideCountrt, setSlideCounter] = useState<number>(1);
+  
+  const { data: user, loading, error } = useSelector((state: RootState) => state.user);
+
+  console.log(user)
 
   return (
     <div
@@ -47,7 +53,7 @@ const ProfilePage = () => {
               className="mySwiper"
               onSlideChange={() => setSlideCounter(slideCountrt + 1)}
             >
-              {[...Array(5)].map((_, index) => (
+              {[...user.photos].map((_photo, index) => (
                 <SwiperSlide key={index}>
                     <Image 
                         alt="Profile hero Image"
@@ -57,7 +63,7 @@ const ProfilePage = () => {
                         }}
                         
                         loading="lazy"
-                        src={"https://nextui.org/images/hero-card-complete.jpeg"} // dynamic image URL
+                        src={`${BASEURL}${_photo.path}`} // dynamic image URL
                         style={{
                             objectFit: "cover",
                             height:"55vh"
@@ -82,27 +88,23 @@ const ProfilePage = () => {
                 name:"text-foreground font-bold text-xl",
                 description:"text-foreground text-xs"
               }}
-              description="moscow, russia"
-              name={"Mahdi bahrami , 24"}
-            />
+              description={`${user.country} , ${user.city}`}
+              name={<div className="flex items-center">
+                {user.firstName}
+                {user.verifiedAccount &&< VerifyIconFill fill="#016fee" className="ml-2 size-6" />}
+                {user.premium && <PerimumIcon />}
 
-            <div className="flex" style={{ marginTop: "7px", marginLeft: "7px" }}>
-              <div>
-                <VerifyIcon />
-              </div>
-              <div style={{ marginLeft: "4px" }}>
-                <PerimumIcon />
-              </div>
-            </div>
+                </div>}
+            />
           </div>
 
           <div className="flex items-center">
 
-            <Button as={Link} to="/profile-edit" className="mx-2" isIconOnly color="primary" style={{borderRadius:"20%"}} size="sm">
+            <Button variant="shadow" as={Link} to={`/profile-edit`} className="mx-2" isIconOnly color="primary" style={{borderRadius:"20%"}} size="md">
                 <EditProfileIcon className="size-5"/>
             </Button> 
 
-            <Button as={Link} to="/setting" isIconOnly color="primary" style={{borderRadius:"20%"}} size="sm">
+            <Button variant="shadow" as={Link} to="/setting" isIconOnly color="primary" style={{borderRadius:"20%"}} size="md">
                 <SettingIcon className="size-5"/>
             </Button> 
 
@@ -111,7 +113,7 @@ const ProfilePage = () => {
       </div>
 
       <Divider className="my-2" />
-      <DataList />
+      <DataList user={user}/>
     </div>
   );
 };

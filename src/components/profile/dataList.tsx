@@ -1,9 +1,22 @@
 import { Listbox, ListboxItem, CircularProgress, Chip } from "@nextui-org/react";
 import { ProfileIcon, FlashIcon, LikeIcon, ViewIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
-const DataList = () => {
+const DataList = ({user}) => {
   const { t } = useTranslation();
+  const [persent, setPersent] = useState(0)
+  const CompiliteProfilePersent = () => {
+    let validDataCount = 0;
+    for (let key in user) {
+        if (user[key] !== null && user[key] !== false && user[key] !== "") {
+            validDataCount++;
+        }
+    }
+    setPersent(validDataCount)
+  }
+
+  useEffect(CompiliteProfilePersent ,[])
 
   return (
     <div className="w-full text-default-700 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
@@ -18,7 +31,7 @@ const DataList = () => {
               color="primary"
               showValueLabel={true}
               size="lg"
-              value={55}
+              value={persent}
             />
           }
           startContent={<ProfileIcon className="size-7" />}
@@ -35,7 +48,7 @@ const DataList = () => {
               color="success"
               showValueLabel={true}
               size="lg"
-              value={100}
+              value={user.activityScore}
             />
           }
           startContent={<FlashIcon className="size-7" />}

@@ -5,11 +5,10 @@ const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   const { t } = useTranslation();
 
   const onChangeValue = (value) => {
-
     if(value.size !== 0 ){
-      setSlideAvailable("interests", value)
+      setSlideAvailable("interests", Array.from(new Set(value)))
     }else{
-      setSlideUnAvailable("interests", value)
+      setSlideUnAvailable("interests", Array.from(new Set(value)))
     }
   }
   
