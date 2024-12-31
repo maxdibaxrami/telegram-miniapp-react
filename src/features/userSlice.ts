@@ -119,7 +119,6 @@ export const uploadProfileImage = createAsyncThunk(
   }
 );
 
-
 const userSlice = createSlice({
   name: 'user',
   initialState,

@@ -87,9 +87,9 @@ export default {
             color: "#333333",
           },
           shadows: {
-            xs: "0px 2px 4px rgba(0, 0, 0, 0.3)",
-            sm: "0px 4px 8px rgba(0, 0, 0, 0.3)",
-            md: "0px 8px 16px rgba(0, 0, 0, 0.3)",
+            xs: "0px 2px 4px rgb(255, 255, 255)",
+            sm: "0px 4px 8px rgb(255, 255, 255)",
+            md: "0px 8px 16px rgb(255, 255, 255)",
           },
         },
       },

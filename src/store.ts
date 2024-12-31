@@ -5,6 +5,7 @@ import authReducer from './features/authSlice';
 import likeReducer from './features/likeSlice';
 import matchReducer from './features/matchSlice';
 import exploreReducer from './features/exploreSlice'
+import conversationsReducer from './features/conversationsSlice'
 
 // Configure the store
 export const store = configureStore({
@@ -13,7 +14,9 @@ export const store = configureStore({
     auth: authReducer,
     like: likeReducer,
     match: matchReducer,
-    explore: exploreReducer
+    explore: exploreReducer,
+    conversation: conversationsReducer
+
   },
 });
 

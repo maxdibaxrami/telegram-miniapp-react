@@ -18,6 +18,7 @@ import fa from '../locales/fa.json';
 import { fetchLikes } from '@/features/likeSlice';
 import { fetchMatches } from '@/features/matchSlice';
 import { fetchFilteredExplore } from '@/features/exploreSlice';
+import { fetchConversations } from '@/features/conversationsSlice';
 
 const GetStoredLanguage = async () => {
   try {
@@ -67,6 +68,7 @@ export function App() {
       // If user data is loaded and userId exists, dispatch fetchLikes
       dispatch(fetchLikes(data.id.toString()));
       dispatch(fetchMatches(data.id.toString()));
+      dispatch(fetchConversations(data.id.toString()));
       dispatch(fetchFilteredExplore({
         userId:data.id.toString(),
         ageRange:null,

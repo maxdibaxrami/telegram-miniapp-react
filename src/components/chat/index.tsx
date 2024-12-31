@@ -23,12 +23,7 @@ const ChatPage = () => {
         </span>
       </div>
       <MatchList/>
-      <div className="flex justify-between py-2 items-center">
-        <span style={{ fontWeight: "500" }} className="text-large text-default-600">
-          {t("chat")}
-        </span>
-        <ChatFiltermenu />
-      </div>
+
 
       <ChatList />
       

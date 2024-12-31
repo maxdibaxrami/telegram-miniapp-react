@@ -255,7 +255,8 @@
     "keep_swiping": "keep swiping",
     "send_message": "Send Message",
     "nolikemessage":"There are no likes. Please go to the explore page, like, and engage in more activity.",
-    "exploreUserFilterNoUser":"There are no more users in your filter. Please adjust your filters."
+    "exploreUserFilterNoUser":"There are no more users in your filter. Please adjust your filters.",
+    "Remove_from_favorite":"Remove from favorite"
 
 
   

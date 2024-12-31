@@ -250,11 +250,10 @@ const ExploreCard = (props) => {
               className="mySwiper"
               onSlideChange={() => setSlideCounter(slideCountrt + 1)}
             >
-
-              {props?.profile?.photos?.map((value, index) => (
+                  {props?.profile?.photos?.map((value, index) => (
                       <SwiperSlide key={index}>
-                       <SwiperImages url={value.url} />
-                     </SwiperSlide>
+                        <SwiperImages url={value.url} />
+                      </SwiperSlide>
                     ))}
             </Swiper>
 

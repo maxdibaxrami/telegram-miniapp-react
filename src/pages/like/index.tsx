@@ -45,7 +45,7 @@ export default function LikesPage() {
   useEffect(()=>{console.log(isModalOpen)},[SelectedCard])
 
   if(!loading && data.length===0){
-    return <div className="h-screen w-screen flex flex-col items-center justify-center"> 
+    return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
         <NotFoundLike/>
         <div className="flex gap-4 flex-col px-6 text-center items-center">
           <p className="text-tiny">{t("nolikemessage")}</p>

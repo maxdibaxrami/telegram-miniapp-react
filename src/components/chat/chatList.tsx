@@ -1,315 +1,204 @@
-
-import { Listbox, ListboxItem, Avatar, Badge, Chip } from "@nextui-org/react";
-import { FavoriteSmall } from "@/Icons/index";
-
+import { Listbox, ListboxItem, Avatar, Badge, Chip, Spinner } from "@nextui-org/react";
 import { ListboxWrapper } from "./listWapper";
 import ChatItemMenu from "./chatItemMenu";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { BASEURL } from "@/constant";
+import { AppDispatch, RootState } from "@/store";
+import { updateUserData } from "@/features/userSlice";
+import { deleteConversation } from "@/features/conversationsSlice";
+import ChatFiltermenu from "./chatFilterMenu";
+import { useMemo, useState } from "react";
+import type {Selection} from "@nextui-org/react";
+import { NotFoundChatImage } from '@/Icons/notFoundChat'
 
 const ChatList = () => {
+
+  const dispatch: AppDispatch = useDispatch();
+
   const { t } = useTranslation();
+  const { data, loading, error } = useSelector((state: RootState) => state.conversation);
+  const { data: user, loading: selfuserLoading } = useSelector((state: RootState) => state.user);
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set(["new"]));
 
-
-  const truncateText = (value, maxLength) => {
-    if (value.length > maxLength) {
-      // If the text is longer than the maximum length, truncate it
-      return value.slice(0, maxLength) + "… "; // Concatenate the first 8 chars with {…}
-    }
-
-    return value;
+  const HandleAddToFavorite = async (value) => {
+    await dispatch(updateUserData({
+      userId: user.id.toString(),
+      updatedData: {
+        favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value] : [value]  // Ensure favoriteUsers is an array
+      }
+    }));
   };
 
+  const HandleRemoveFromFavorite = async (value) => {
+    await dispatch(updateUserData({
+      userId: user.id.toString(),
+      updatedData: {
+        favoriteUsers: Array.isArray(user.favoriteUsers)
+          ? user.favoriteUsers.filter(favorite => favorite != value)  // Remove the user with the matching id
+          : []  // If favoriteUsers is not an array, set it to an empty array
+      }
+    }));
+  };
 
+  const HandleBlockUser = async (value) => {
+    await dispatch(updateUserData({
+      userId: user.id.toString(),
+      updatedData: {
+        blockedUsers: Array.isArray(user.blockedUsers) ? [...user.blockedUsers, value] : [value]  // Ensure blockedUsers is an array
+      }
+    }));
+  };
+  
+  const HandleUnblockUser = async (value) => {
+    await dispatch(updateUserData({
+      userId: user.id.toString(),
+      updatedData: {
+        blockedUsers: Array.isArray(user.blockedUsers)
+          ? user.blockedUsers.filter(blocked => blocked !== value)  // Remove the user with the matching id
+          : []  // If blockedUsers is not an array, set it to an empty array
+      }
+    }));
+  };
 
+  const handleDelete = (userId1: number, userId2: number) => {
+    dispatch(deleteConversation({ userId1, userId2 }));
+  };
+  
+  const truncateText = (value: string, maxLength: number) => {
+    if (!value) return '';
+    if (value.length <= maxLength) return value;
+    return value.slice(0, maxLength) + "…";  // Truncate text with an ellipsis
+  };
+
+  if (loading && selfuserLoading) return <div className="flex items-center pt-2 pb-2"><Spinner size="lg" /></div>;
+  if (error) return <div>Error: {error}</div>;
+
+  const selectedValue = useMemo(
+    () => Array.from(selectedKeys).join(", ").replace(/_/g, ""),
+    [selectedKeys],
+  );
+
+  // Filter the conversations based on whether the user is in the favorites list if "Favorite" is selected
+  const filteredData = useMemo(() => {
+    return data?.filter(item => {
+      const isSender = item.senderId === user.id;
+      const targetUser = isSender ? item.recipientId : item.senderId;
+  
+      // Exclude conversations where the target user is blocked
+      if (user.blockedUsers.some(blockedUser => blockedUser == targetUser.toString())) {
+        return false;  // Exclude blocked users
+      }
+  
+      // If "Favorite" is selected, only show favorite users
+      if (selectedValue === "Favorite") {
+        return user.favoriteUsers.includes(targetUser.toString());
+      }
+  
+      // Otherwise, return all users except blocked ones
+      return true;
+    }) || [];
+  }, [data, user.favoriteUsers, user.blockedUsers, selectedValue, user.id]);
   
   return (
-    <ListboxWrapper>
+    <>
+      <div className="flex justify-between py-2 items-center">
+        <span style={{ fontWeight: "500" }} className="text-large text-default-600">
+          {t("chat")}
+        </span>
+        <ChatFiltermenu chatOrder={selectedKeys} setChatOrder={setSelectedKeys}/>
+      </div>
+      {filteredData.length===0? 
+        <div className="flex flex-col p-6 items-center justify-center"> 
+        <NotFoundChatImage/>
+          <div className="flex gap-4 flex-col px-6 text-center items-center">
+            <p className="text-tiny">{t("nolikemessage")}</p>
+          </div>
+        </div>
+        :
+        <ListboxWrapper>
       <Listbox
-        className="backdrop-blur-sm	"
+        className="backdrop-blur-sm"
         classNames={{
           base: "w-full",
           list: "overflow-scroll",
         }}
-        items={usersData}
+        items={filteredData}  // Use the filtered data
         label="Assigned to"
         variant="solid"
       >
-        {(item) => (
-          <ListboxItem
-            key={item.id}
-            endContent={<ChatItemMenu /> }
-            startContent={
-              <Badge
-                isOneChar
-                className={item.id % 3 !== 0 ? "hidden" : "visible"}
-                color="warning"
-                content={<FavoriteSmall />}
-                placement="top-right"
-                size="lg"
-              >
-                <Badge
-                  isOneChar
-                  className={item.id % 2 !== 0 ? "hidden" : "visible"}
-                  color="success"
-                  placement="bottom-right"
-                  size="sm"
-                >
-                  <Avatar
-                    isBordered
-                    color={item.id % 2 !== 0 ? "default" : "primary"}
-                    radius="md"
-                    size="lg"
-                    src={item.avatar}
-                  />
-                </Badge>
-              </Badge>
-            }
-            textValue={truncateText(item.name, 10)}
-          >
-            <Link to={"/chat-detail"}>
-            <div className="flex gap-2 items-center" style={{ width: "100%" }}>
-              <div className="flex pl-2 flex-col">
-                <span
-                  className={
-                    item.id % 2 !== 0
-                      ? "text-small text-handller-chat text-default-700"
-                      : "text-small text-handller-chat font-bold text-default-700"
-                  }
-                >
-                  {item.name}
-                  <Chip
-                    className={
-                      item.id % 2 !== 0
-                        ? "hidden"
-                        : "visible ml-1"
-                    }
-                    color="primary"
-                    size="sm"
-                  >
-                    +1 {t("new")}
-                  </Chip>
-                </span>
-                <span
-                  className={
-                    item.id % 2 !== 0
-                      ? "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
-                      : "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
-                  }
-                >
-                  {item.email}
-                </span>
-              </div>
-            </div>
-            </Link>
-          </ListboxItem>
-        )}
+        {(item) => {
+           const isSender = item.senderId === user.id;
+           const targetUser = isSender ? item.recipientId : item.senderId;
+           const targetFirstName = isSender ? item.firstName : item.senderFirstName;
+           const targetPhotoUrl = isSender ? item.photoUrl : item.senderPhotoUrl;
+           const targetUserId = isSender ? item.recipientId : item.senderId;
+           return (
+             <ListboxItem
+               key={item.userId}
+               endContent={
+                 <ChatItemMenu 
+                   data={item}
+                   targetUser={targetUser}
+                   favoriteUsers={user.favoriteUsers} 
+                   HandleAddToFavorite={HandleAddToFavorite}
+                   HandleRemoveFromFavorite={HandleRemoveFromFavorite}
+                   handleDelete={handleDelete}
+                   HandleBlockUser={HandleBlockUser}
+                 />
+               }
+               startContent={
+                 <Avatar
+                   isBordered
+                   color={item.readAt !== null ? "default" : "primary"}
+                   radius="full"
+                   size="md"
+                   src={`${BASEURL}${targetPhotoUrl}`}
+                 />
+               }
+               textValue={truncateText(targetFirstName, 10)}
+             >
+               <Link to={`/chat-detail?user1=${item.senderId}&user2=${item.recipientId}`}>
+                 <div className="flex gap-2 items-center" style={{ width: "100%" }}>
+                   <div className="flex pl-2 flex-col">
+                     <span
+                       className={
+                         item.readAt !== null
+                           ? "text-small text-handller-chat text-default-700"
+                           : "text-small text-handller-chat font-bold text-default-700"
+                       }
+                     >
+                       {targetFirstName}
+                       <Chip
+                         className={item.readAt !== null ? "hidden" : "visible ml-1"}
+                         color="primary"
+                         size="sm"
+                       >
+                         +1 {t("new")}
+                       </Chip>
+                     </span>
+                     <span
+                       className={
+                         item.readAt !== null 
+                           ? "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                           : "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                       }
+                     >
+                       {truncateText(item.lastMessage, 20)}
+                     </span>
+                   </div>
+                 </div>
+               </Link>
+             </ListboxItem>
+           );
+        }}
       </Listbox>
-    </ListboxWrapper>
+        </ListboxWrapper>
+      }
+
+    </>
   );
 };
 
 export default ChatList;
-
-export const usersData = [
-  {
-    id: 1,
-    name: "Tony",
-    role: "CEO",
-    team: "Management",
-    status: "active",
-    age: "29",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    email: "tony.reichert@example.com",
-  },
-  {
-    id: 2,
-    name: "Olivia",
-    role: "CFO",
-    team: "Finance",
-    status: "active",
-    age: "32",
-    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
-    email: "olivia.bennett@example.com",
-  },
-  {
-    id: 3,
-    name: "Liam",
-    role: "CTO",
-    team: "Technology",
-    status: "active",
-    age: "35",
-    avatar: "https://randomuser.me/api/portraits/men/2.jpg",
-    email: "liam.johnson@example.com",
-  },
-  {
-    id: 4,
-    name: "Sophia",
-    role: "CMO",
-    team: "Marketing",
-    status: "active",
-    age: "29",
-    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-    email: "sophia.garcia@example.com",
-  },
-  {
-    id: 5,
-    name: "Noah",
-    role: "Head of Sales",
-    team: "Sales",
-    status: "active",
-    age: "30",
-    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
-    email: "noah.wilson@example.com",
-  },
-  {
-    id: 6,
-    name: "Emma",
-    role: "HR Manager",
-    team: "Human Resources",
-    status: "active",
-    age: "28",
-    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
-    email: "emma.smith@example.com",
-  },
-  {
-    id: 7,
-    name: "James",
-    role: "Product Manager",
-    team: "Product",
-    status: "active",
-    age: "33",
-    avatar: "https://randomuser.me/api/portraits/men/4.jpg",
-    email: "james.brown@example.com",
-  },
-  {
-    id: 8,
-    name: "Mia",
-    role: "UX Designer",
-    team: "Design",
-    status: "active",
-    age: "26",
-    avatar: "https://randomuser.me/api/portraits/women/4.jpg",
-    email: "mia.davis@example.com",
-  },
-  {
-    id: 9,
-    name: "Ethan",
-    role: "Software Engineer",
-    team: "Engineering",
-    status: "active",
-    age: "27",
-    avatar: "https://randomuser.me/api/portraits/men/5.jpg",
-    email: "ethan.miller@example.com",
-  },
-  {
-    id: 10,
-    name: "Harper",
-    role: "Data Analyst",
-    team: "Analytics",
-    status: "active",
-    age: "24",
-    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
-    email: "harper.martinez@example.com",
-  },
-  {
-    id: 11,
-    name: "Logan",
-    role: "DevOps Engineer",
-    team: "Engineering",
-    status: "active",
-    age: "31",
-    avatar: "https://randomuser.me/api/portraits/men/6.jpg",
-    email: "logan.garcia@example.com",
-  },
-  {
-    id: 12,
-    name: "Ava",
-    role: "Content Strategist",
-    team: "Content",
-    status: "active",
-    age: "27",
-    avatar: "https://randomuser.me/api/portraits/women/6.jpg",
-    email: "ava.lopez@example.com",
-  },
-  {
-    id: 13,
-    name: "Jackson",
-    role: "Marketing Specialist",
-    team: "Marketing",
-    status: "active",
-    age: "29",
-    avatar: "https://randomuser.me/api/portraits/men/7.jpg",
-    email: "jackson.martinez@example.com",
-  },
-  {
-    id: 14,
-    name: "Isabella",
-    role: "Business Analyst",
-    team: "Analysis",
-    status: "active",
-    age: "30",
-    avatar: "https://randomuser.me/api/portraits/women/7.jpg",
-    email: "isabella.hernandez@example.com",
-  },
-  {
-    id: 15,
-    name: "Aiden",
-    role: "Web Developer",
-    team: "Development",
-    status: "active",
-    age: "26",
-    avatar: "https://randomuser.me/api/portraits/men/8.jpg",
-    email: "aiden.robinson@example.com",
-  },
-  {
-    id: 16,
-    name: "Ella",
-    role: "SEO Specialist",
-    team: "SEO",
-    status: "active",
-    age: "25",
-    avatar: "https://randomuser.me/api/portraits/women/8.jpg",
-    email: "ella.walker@example.com",
-  },
-  {
-    id: 17,
-    name: "Lucas",
-    role: "Sales Executive",
-    team: "Sales",
-    status: "active",
-    age: "34",
-    avatar: "https://randomuser.me/api/portraits/men/9.jpg",
-    email: "lucas.anderson@example.com",
-  },
-  {
-    id: 18,
-    name: "Zoe",
-    role: "Customer Support",
-    team: "Support",
-    status: "active",
-    age: "22",
-    avatar: "https://randomuser.me/api/portraits/women/9.jpg",
-    email: "zoe.thomas@example.com",
-  },
-  {
-    id: 19,
-    name: "Mason",
-    role: "Network Administrator",
-    team: "IT",
-    status: "active",
-    age: "31",
-    avatar: "https://randomuser.me/api/portraits/men/10.jpg",
-    email: "mason.white@example.com",
-  },
-  {
-    id: 20,
-    name: "Chloe",
-    role: "Graphic Designer",
-    team: "Design",
-    status: "active",
-    age: "28",
-    avatar: "https://randomuser.me/api/portraits/women/10.jpg",
-    email: "chloe.thompson@example.com",
-  },
-];

@@ -27,7 +27,7 @@ const MatchList = () => {
         return <Avatar
           isBordered
           color="primary"
-          radius="md"
+          radius="full"
           size="lg"
           src={`${BASEURL}${value.likedUser.photos[0].url}`}
         />
