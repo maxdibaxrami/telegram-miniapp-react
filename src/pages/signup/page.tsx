@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import IntroPage from "@/components/auth/introPage";
 import BottomController from "@/components/auth/BottonController";
 import ProfileDataAuth from "@/components/auth/ProfileDataAuth";
@@ -24,9 +23,6 @@ import { AppDispatch } from '../../store';
 import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
 
-
-
-
 export default function SignupPage() {
 
   const contentRef = useRef(null); // Ref to track content height
@@ -44,6 +40,8 @@ export default function SignupPage() {
   const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
   const [error, setError] = useState('');
   
+    
+
   const [user, setUser] = useState({
     telegramId: initDataState.hash,
     username: initDataState.hash,
@@ -124,6 +122,7 @@ export default function SignupPage() {
   const handleSignup = async () => {
     // Set loading to true before starting the requests
     setUploadImageLoading(true);
+
     try {
       // Dispatch the signup user action
       const result = await dispatch(signupUser(user));
@@ -131,9 +130,10 @@ export default function SignupPage() {
       // Check if the signup was successful and if we have images to upload
       if (signupUser.fulfilled.match(result) && result.payload?.id && userPhoto.length > 0) {
 
+        
         // Create an array of promises for uploading each image
-        const uploadPromises = userPhoto.map((photo) =>
-          dispatch(uploadProfileImage({ userId: result.payload.id, imageFile: photo }))
+        const uploadPromises = userPhoto.map((photo,index) =>
+          dispatch(uploadProfileImage({ userId: result.payload.id, imageFile: photo, order:index }))
         );
         // Wait for all the uploads to complete
         await Promise.all(uploadPromises);
@@ -150,11 +150,6 @@ export default function SignupPage() {
       setUploadImageLoading(false);
     }
   };
-
-  
-  
-
-  
 
   return (
     <Page back={false}>

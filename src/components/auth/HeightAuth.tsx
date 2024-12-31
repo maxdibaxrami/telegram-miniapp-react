@@ -28,7 +28,7 @@ import { useTranslation } from "react-i18next";
   
 const HeightAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
     const { t } = useTranslation();
-    const [selected, setSelected] = useState(user.height);
+    const [selected, setSelected] = useState(""+user.height);
 
     useEffect(()=>{
       if(selected !==""){
@@ -43,8 +43,8 @@ const HeightAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
             <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t('Selectedplancanbechangedatanytime')} label={t('Height')} >
-                {HeightOptions.map((value)=> {
-                    return <CustomRadio  value={value.key}>
+                {HeightOptions.map((value, index)=> {
+                    return <CustomRadio key={index} value={value.key}>
                     {value.label}
                 </CustomRadio>
                 })}

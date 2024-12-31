@@ -249,8 +249,13 @@
     "EditProfile": "Edit Profile",
     "Delete": "Delete",
     "youshoulduploadminimum3photoandmaximum6photo":"you should upload minimum 3 photo and maximum 6 photo",
-    "addPhoto":"Add Photo"
-
+    "addPhoto":"Add Photo",
+    "hero_image_alt": "NextUI hero Image",
+    "match_text": "It’s a match!",
+    "keep_swiping": "keep swiping",
+    "send_message": "Send Message",
+    "nolikemessage":"There are no likes. Please go to the explore page, like, and engage in more activity.",
+    "exploreUserFilterNoUser":"There are no more users in your filter. Please adjust your filters."
 
 
   

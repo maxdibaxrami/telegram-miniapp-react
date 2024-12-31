@@ -2,12 +2,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './features/userSlice';
 import authReducer from './features/authSlice';
+import likeReducer from './features/likeSlice';
+import matchReducer from './features/matchSlice';
+import exploreReducer from './features/exploreSlice'
 
 // Configure the store
 export const store = configureStore({
   reducer: {
     user: userReducer,
     auth: authReducer,
+    like: likeReducer,
+    match: matchReducer,
+    explore: exploreReducer
   },
 });
 

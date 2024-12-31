@@ -2,6 +2,7 @@ import { RadioGroup, Radio, cn, Avatar } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { cloudStorage } from '@telegram-apps/sdk';
+import FontHandller from "../FontHandller";
 
 export const CustomRadio = (props) => {
   const { children, ...otherProps } = props;
@@ -68,7 +69,10 @@ export default function LanguageSection() {
   useEffect(() => {
     if (selectedLanguage) {
       i18n.changeLanguage(selectedLanguage); // Change the language in i18n
-      StoreLanguage(selectedLanguage);       // Store the selected language
+      StoreLanguage(selectedLanguage);  
+      document.documentElement.lang = selectedLanguage;
+      document.documentElement.dir = ['ar', 'fa'].includes(selectedLanguage) ? 'rtl' : 'ltr';
+      FontHandller();
     }
   }, [selectedLanguage]); // Only run when selectedLanguage changes
 

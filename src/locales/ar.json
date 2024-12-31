@@ -249,7 +249,15 @@
       "EditProfile": "تعديل الملف الشخصي",
       "Delete": "حذف",
       "youshoulduploadminimum3photoandmaximum6photo":"يجب عليك تحميل 3 صور على الأقل و 6 صور كحد أقصى",
-      "addPhoto":"أضف صورة"
+      "addPhoto":"أضف صورة",
+      "hero_image_alt": "صورة بطل NextUI",
+      "match_text": "إنه تطابق!",
+      "keep_swiping": "استمر في السحب",
+      "send_message": "أرسل رسالة",
+      "nolikemessage":"لا توجد إعجابات. من فضلك، اذهب إلى صفحة الاستكشاف، واضغط إعجاب، وشارك في المزيد من الأنشطة.",
+      "exploreUserFilterNoUser":"لا يوجد المزيد من المستخدمين في الفلتر الخاص بك. من فضلك قم بتعديل الفلاتر الخاصة بك."
+
+
 
 
 

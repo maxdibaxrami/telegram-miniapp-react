@@ -1,13 +1,34 @@
 import LikeCard from "./likeCard";
-import { useRef, useState } from "react";
+import LikeCardSkelete from "./likeSkelete";
+
+import { useEffect, useRef, useState } from "react";
 import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
-import BlurFade from "@/components/animate/BlurFade";
+import { RootState } from "@/store";
+import { useSelector } from "react-redux";
+
+import { NotFoundLike } from "@/Icons/notFoundLike";
+import { Button } from "@nextui-org/button";
+import { FireIcon } from "@/Icons";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import NearByMatchModal from "@/components/naerby/NearByMatchModal";
+
 
 
 export default function LikesPage() {
   const childRef = useRef();
-  const [SelectedCard, setSelectedCard] = useState({});
+  const [SelectedCard, setSelectedCard] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { t } = useTranslation();  // Initialize translation hook
+
+  const { data: user } = useSelector((state: RootState) => state.user);
+  const { data, loading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
+
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleClick = () => {
     if (childRef.current) {
@@ -21,6 +42,29 @@ export default function LikesPage() {
     handleClick();
   };
 
+  useEffect(()=>{console.log(isModalOpen)},[SelectedCard])
+
+  if(!loading && data.length===0){
+    return <div className="h-screen w-screen flex flex-col items-center justify-center"> 
+        <NotFoundLike/>
+        <div className="flex gap-4 flex-col px-6 text-center items-center">
+          <p className="text-tiny">{t("nolikemessage")}</p>
+          <Button as={Link} to={"/main?page=explore"} color="primary" endContent={<FireIcon />}>
+            {t('Explore')}
+          </Button>
+        </div>
+
+        <NearByMatchModal
+            isOpen={isModalOpen}
+            modalData={SelectedCard}
+            onClose={closeModal}
+          />
+
+      <NearByUserModal openModal={openModal} closeModal={closeModal} userId={user.id} ref={childRef} profile={SelectedCard} /> 
+
+          
+    </div>
+  }
   return (
     <motion.div 
       className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
@@ -31,215 +75,27 @@ export default function LikesPage() {
         paddingRight: "1.5rem",
       }}
     >
-      {mockProfiles.map((value, index) => (
-          <BlurFade key={index} delay={0.25 + index * 0.05} inView>
-            <LikeCard onPressData={onCardClick} data={value} />
-          </BlurFade>
-      ))}
-      <NearByUserModal ref={childRef} profile={SelectedCard} />
+
+      {loading?(
+        Array.from({ length: 10 }).map((_,index)=>{
+          return <LikeCardSkelete key={index}/>
+        })      
+      ):(
+        data.map((value) => (
+          <LikeCard onPressData={onCardClick} data={value} />
+        ))
+      )}
+
+        <NearByMatchModal
+            isOpen={isModalOpen}
+            modalData={SelectedCard}
+            onClose={closeModal}
+          />
+
+      <NearByUserModal openModal={openModal} closeModal={closeModal} userId={user.id} ref={childRef} profile={SelectedCard} /> 
+
+          
+
     </motion.div >
   );
 }
-
-const mockProfiles = [
-  {
-    id: 1,
-    name: "Mahdi Bahrami",
-    age: 24,
-    location: "Moscow, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258114e29026702d",
-    workAndEducation: "Sechinov University, Programmer",
-    whyHere: "Just chat",
-    aboutMe: "Aspiring programmer and coffee enthusiast.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "183 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Coding", "Photography", "Hiking", "Gaming"],
-    mainImage: "https://i.pravatar.cc/?u=1",
-    secondImage: "https://i.pravatar.cc/?u=2",
-    thirdImage: "https://i.pravatar.cc/?u=3",
-  },
-  {
-    id: 2,
-    name: "Olga Ivanova",
-    age: 22,
-    location: "St. Petersburg, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258115e29026702d",
-    workAndEducation: "SPbU, Graphic Designer",
-    whyHere: "To meet new friends",
-    aboutMe: "Passionate about design and travel.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "170 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Bi",
-    interests: ["Design", "Travel", "Art"],
-    mainImage: "https://i.pravatar.cc/?u=4",
-    secondImage: "https://i.pravatar.cc/?u=5",
-    thirdImage: "https://i.pravatar.cc/?u=6",
-  },
-  {
-    id: 3,
-    name: "Alexey Petrov",
-    age: 27,
-    location: "Novosibirsk, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258116e29026702d",
-    workAndEducation: "Novosibirsk State University, Software Engineer",
-    whyHere: "Looking for cool people",
-    aboutMe: "Tech enthusiast and music lover.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "178 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Music", "Technology", "Sports"],
-    mainImage: "https://i.pravatar.cc/?u=7",
-    secondImage: "https://i.pravatar.cc/?u=8",
-    thirdImage: "https://i.pravatar.cc/?u=9",
-  },
-  {
-    id: 4,
-    name: "Diana Smirnova",
-    age: 23,
-    location: "Moscow, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258117e29026702d",
-    workAndEducation: "MSU, Marketing Student",
-    whyHere: "Just looking to chat",
-    aboutMe: "Love marketing and fun conversations.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "165 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Marketing", "Cooking", "Yoga"],
-    mainImage: "https://i.pravatar.cc/?u=10",
-    secondImage: "https://i.pravatar.cc/?u=11",
-    thirdImage: "https://i.pravatar.cc/?u=12",
-  },
-  {
-    id: 5,
-    name: "Igor Ivanov",
-    age: 25,
-    location: "Kazan, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258118e29026702d",
-    workAndEducation: "Kazan Federal University, Data Analyst",
-    whyHere: "For fun chats",
-    aboutMe: "Data lover and soccer fan.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "180 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Data Science", "Soccer", "Traveling"],
-    mainImage: "https://i.pravatar.cc/?u=13",
-    secondImage: "https://i.pravatar.cc/?u=14",
-    thirdImage: "https://i.pravatar.cc/?u=15",
-  },
-  {
-    id: 6,
-    name: "Yulia Petrova",
-    age: 21,
-    location: "Yekaterinburg, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258119e29026702d",
-    workAndEducation: "UrFU, Biologist",
-    whyHere: "Looking for new friends",
-    aboutMe: "Nature enthusiast and curious mind.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "160 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Biology", "Hiking", "Gardening"],
-    mainImage: "https://i.pravatar.cc/?u=16",
-    secondImage: "https://i.pravatar.cc/?u=17",
-    thirdImage: "https://i.pravatar.cc/?u=18",
-  },
-  {
-    id: 7,
-    name: "Sergey Sokolov",
-    age: 26,
-    location: "Nizhny Novgorod, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258120e29026702d",
-    workAndEducation: "NNGU, Network Engineer",
-    whyHere: "To connect with others",
-    aboutMe: "Techie and gaming aficionado.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "175 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Networking", "Gaming", "Traveling"],
-    mainImage: "https://i.pravatar.cc/?u=19",
-    secondImage: "https://i.pravatar.cc/?u=20",
-    thirdImage: "https://i.pravatar.cc/?u=21",
-  },
-  {
-    id: 8,
-    name: "Elena Fedorova",
-    age: 24,
-    location: "Chelyabinsk, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258121e29026702d",
-    workAndEducation: "ChSPU, Teacher",
-    whyHere: "Just for conversations",
-    aboutMe: "Love books and teaching.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "172 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Education", "Reading", "Cooking"],
-    mainImage: "https://i.pravatar.cc/?u=22",
-    secondImage: "https://i.pravatar.cc/?u=23",
-    thirdImage: "https://i.pravatar.cc/?u=24",
-  },
-  {
-    id: 9,
-    name: "Viktor Volkov",
-    age: 28,
-    location: "Samara, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258122e29026702d",
-    workAndEducation: "SSU, Civil Engineer",
-    whyHere: "Looking for interesting people",
-    aboutMe: "Engineering geek and sports lover.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "185 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Engineering", "Sports", "Photography"],
-    mainImage: "https://i.pravatar.cc/?u=25",
-    secondImage: "https://i.pravatar.cc/?u=26",
-    thirdImage: "https://i.pravatar.cc/?u=27",
-  },
-  {
-    id: 10,
-    name: "Anna Vasilyeva",
-    age: 25,
-    location: "Voronezh, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258123e29026702d",
-    workAndEducation: "Voronezh State University, Journalist",
-    whyHere: "To meet new people",
-    aboutMe: "Love writing and exploring.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "168 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Journalism", "Travel", "Writing"],
-    mainImage: "https://i.pravatar.cc/?u=28",
-    secondImage: "https://i.pravatar.cc/?u=29",
-    thirdImage: "https://i.pravatar.cc/?u=30",
-  },
-];

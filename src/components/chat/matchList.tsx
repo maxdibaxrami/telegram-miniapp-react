@@ -1,62 +1,39 @@
-import { Avatar, AvatarGroup } from "@nextui-org/react";
+import { BASEURL } from "@/constant";
+import { RootState } from "@/store";
+import { Avatar, AvatarGroup, Skeleton } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 const MatchList = () => {
   const { t } = useTranslation();
+  const { data : match, loading } = useSelector((state: RootState) => state.match);  // Assuming the like slice is in state.like
 
   return (
     <AvatarGroup
       isBordered
-      max={4}
       renderCount={(count) => (
         <p className="text-small text-foreground font-medium ms-2">
           +{count} {t("others")}
         </p>
       )}
-      total={10}
     >
-      <Avatar
-        isBordered
-        color="primary"
-        radius="md"
-        size="lg"
-        src="https://i.pravatar.cc/?u=a042581f4e29026024d"
-      />
-      <Avatar
-        isBordered
-        color="primary"
-        radius="md"
-        size="lg"
-        src="https://i.pravatar.cc/?u=a04258a2462d826712d"
-      />
-      <Avatar
-        isBordered
-        color="primary"
-        radius="md"
-        size="lg"
-        src="https://i.pravatar.cc/?u=a042581f4e29026704d"
-      />
-      <Avatar
-        isBordered
-        color="primary"
-        radius="md"
-        size="lg"
-        src="https://i.pravatar.cc/?u=a04258114e29026302d"
-      />
-      <Avatar
-        isBordered
-        color="primary"
-        radius="md"
-        size="lg"
-        src="https://i.pravatar.cc/?u=a04258114e29026702d"
-      />
-      <Avatar
-        isBordered
-        color="primary"
-        radius="md"
-        size="lg"
-        src="https://i.pravatar.cc/?u=a04258114e29026708c"
-      />
+      {loading && Array.from({ length: 10 }).map(()=>{
+        return <div>
+          <Skeleton className="flex rounded-full w-12 h-12" />
+        </div>
+      })}
+      {!loading && 
+            match.map((value,index)=>{
+        return <Avatar
+          isBordered
+          color="primary"
+          radius="md"
+          size="lg"
+          src={`${BASEURL}${value.likedUser.photos[0].url}`}
+        />
+      })}
+
+      
     </AvatarGroup>
   );
 };

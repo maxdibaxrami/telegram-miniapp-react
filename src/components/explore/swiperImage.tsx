@@ -1,7 +1,8 @@
+import { BASEURL } from "@/constant";
 import { Image } from "@nextui-org/react";
 import { useSwiper } from "swiper/react";
 
-const SwiperImages = (props) => {
+const SwiperImages = ({url}) => {
 
 
     
@@ -21,11 +22,12 @@ const SwiperImages = (props) => {
             }}
             onClick={NextSlide}
             loading="lazy"
-            src={props.value} // dynamic image URL
+            src={`${BASEURL}${url}`}
+            
             style={{
                 objectFit: "cover",
                 padding: "0px 0px 5px 0px",
-                height:'calc(100vh - 227px)'
+                height:'calc(100vh - 170px)'
             }}
         />
     </>

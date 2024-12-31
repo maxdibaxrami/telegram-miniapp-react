@@ -21,14 +21,14 @@ export const signupUser = createAsyncThunk(
 // Upload Profile Image Request
 export const uploadProfileImage = createAsyncThunk(
   'auth/uploadProfileImage',
-  async ({ userId, imageFile }: any) => {
+  async ({ userId, imageFile, order }: any) => {
     const image = await fetch(imageFile);
     const blob = await image.blob();
 
     const formData = new FormData();
     formData.append('file', blob);
     formData.append('userId', userId);
-    formData.append('order', "1");
+    formData.append('order', order);
 
     const response = await axios.post(`/photo/upload/`, formData);
     return response.data;

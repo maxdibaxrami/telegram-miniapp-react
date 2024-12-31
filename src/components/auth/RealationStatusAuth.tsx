@@ -55,8 +55,6 @@ const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
                     {value.label}
                 </CustomRadio>
                 })}
-                
-
             </RadioGroup>
         </form>
       </div>

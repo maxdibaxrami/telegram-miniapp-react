@@ -15,6 +15,9 @@ import en from '../locales/en.json';
 import ru from '../locales/ru.json';
 import ar from '../locales/ar.json';
 import fa from '../locales/fa.json';
+import { fetchLikes } from '@/features/likeSlice';
+import { fetchMatches } from '@/features/matchSlice';
+import { fetchFilteredExplore } from '@/features/exploreSlice';
 
 const GetStoredLanguage = async () => {
   try {
@@ -60,15 +63,33 @@ export function App() {
   }, [dispatch, initDataState.hash]);
 
   useEffect(() => {
+    if (data && data.id) {
+      // If user data is loaded and userId exists, dispatch fetchLikes
+      dispatch(fetchLikes(data.id.toString()));
+      dispatch(fetchMatches(data.id.toString()));
+      dispatch(fetchFilteredExplore({
+        userId:data.id.toString(),
+        ageRange:null,
+        city:null,
+        country:null,
+        languages:null
+      }));
+
+    }
+  }, [dispatch, data]);
+
+  useEffect(() => {
     const loadI18n = async () => {
       await initializeI18n();
       const currentLang = i18next.language;
       document.documentElement.lang = currentLang;
       document.documentElement.dir = ['ar', 'fa'].includes(currentLang) ? 'rtl' : 'ltr';
+      FontHandller();
+
     };
+    loadI18n();
     FontHandller();
 
-    loadI18n();
     setIsLoading(false)
     
   }, [i18next]);

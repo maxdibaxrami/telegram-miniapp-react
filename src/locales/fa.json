@@ -249,14 +249,13 @@
       "EditProfile": "ویرایش پروفایل",
       "Delete": "حذف",
       "youshoulduploadminimum3photoandmaximum6photo":"شما باید حداقل 3 عکس و حداکثر 6 عکس آپلود کنید",
-      "addPhoto":"اضافه کردن عکس"
-
-
-
-
-
-
-
+      "addPhoto":"اضافه کردن عکس",
+      "hero_image_alt": "تصویر قهرمان NextUI",
+      "match_text": "این یک تطابق است!",
+      "keep_swiping": "ادامه دادن به سوایپ کردن",
+      "send_message": "ارسال پیام",
+      "nolikemessage":"لایکی وجود ندارد. لطفاً به صفحه اکسپلور بروید، لایک کنید و فعالیت بیشتری انجام دهید.",
+      "exploreUserFilterNoUser":"هیچ کاربر دیگری در فیلتر شما وجود ندارد. لطفاً فیلترهای خود را تغییر دهید."
 
 
 }

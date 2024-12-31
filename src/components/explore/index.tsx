@@ -3,32 +3,39 @@ import "swiper/css/effect-creative";
 import "./style.css";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
-import { LikeIcon, CloseCircleIcon, FitlerIcon } from "@/Icons";
+import { LikeIcon, CloseCircleIcon, FitlerIcon, HeartEyesImoji } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 
-import ExploreFilter from '@/components/explore/exploreFilter'
-const getAnimationProps = () => {
-  return {
-    whileTap: {
-      scale: 0.9,
-    },
-  };
-};
+import ExploreFilter from '@/components/explore/exploreFilter';
+import { useDispatch, useSelector } from "react-redux";
+import { likeUser } from "@/features/likeSlice";
+import { AppDispatch, RootState } from "@/store";
+import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
+import { removeUserFromState } from "@/features/exploreSlice";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 
 const ExplorePage = () => {
+  
+  const dispatch: AppDispatch = useDispatch();  // Use the correct AppDispatch type from your store
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<number | null>(null);  // Start with null to handle async loading
+  const { data: user } = useSelector((state: RootState) => state.user);
+  const { data: users , loading } = useSelector((state: RootState) => state.explore);
+  const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
+
+  const { t } = useTranslation();  // Initialize translation hook
+  
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const FilterRef = useRef();
-
 
   const handleFilterClick = () => {
     if (FilterRef.current) {
@@ -40,305 +47,143 @@ const ExplorePage = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const NextSlide = () => setIndex(index+1)
-
-  const OnLikeButtonClick = (dataId) => {
-
-    if (dataId.id === 4 || dataId.id === 8) {
-      openModal();
-      NextSlide()
-
-    } else {
-      NextSlide()
+  // Initialize the index to start from the last item when users array is loaded
+  useEffect(() => {
+    if (users && users.length > 0) {
+      setIndex(users.length - 1);  // Start from the last user
     }
+  }, [users]);
 
-  }
-  
+  const NextSlide = () => {
+    if (index !== null && index > 0) {
+      setIndex(index - 1);  // Decrement the index to move backwards
+    }
+  };
+
+  const handleLikeUser = async () => {
+    try {
+      // Dispatch the action and unwrap the result
+      if (index === null) return;
+      const resultAction = await dispatch(likeUser({ userId: user.id, likedUserId: users[index].id }));
+
+      if (resultAction.payload.isMatch === true) {
+        openModal();
+      }
+
+      NextSlide();  // Move to the previous user
+      dispatch(removeUserFromState(users[index].id));
+
+    } catch (error) {
+      console.error('Failed to like user:', error);
+    }
+  };
+    
+  const handleNotLike = () => {
+    if (index === null) return;
+    dispatch(removeUserFromState(users[index].id));
+    NextSlide();
+  };
 
   const lp = useLaunchParams();
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
       // iOS/macOS specific padding (e.g., accounting for notches)
-      return '50px'  // Adjust as needed for iOS notch
+      return '50px';  // Adjust as needed for iOS notch
     } else {
       // Android/base padding
-      return'25px'  // Default padding
+      return '25px';  // Default padding
     }
   };
-  
+
+  if (loading) {
+    return <div className="h-screen w-screen">loading...</div>;
+  }
+
+  if (users.length <= 2) {
+    return <div className="relative h-screen w-screen flex flex-col items-center justify-center">
+      <NotFoundUserExplore/>
+      <div className="flex gap-4 flex-col px-6 text-center items-center">
+          <p className="text-tiny">{t("nolikemessage")}</p>
+
+          <div className="flex">
+            <Button className="mx-1" onClick={handleFilterClick} color="primary" endContent={<FitlerIcon />}>
+              {t('Setfilters')}
+            </Button>
+          </div>
+
+        </div>
+        
+      <ExploreFilter ref={FilterRef} />
+      </div>;
+  }
+
   return (
-    <div style={{position:"relative"}} >
-        <motion.div style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative"}}>
-            <AnimatePresence initial={false}>
-                <ExploreCard profile={mockProfiles[index+1]} key={index + 1} frontCard={false} />
-                <ExploreCard
-                    key={index}
-                    NextSlide={NextSlide}
-                    openModal={openModal}
-                    frontCard={true}
-                    index={index}
-                    profile={mockProfiles[index]}
-                    setIndex={setIndex}
-                    drag="x"
-                />
-            </AnimatePresence>
+    <div style={{ position: "relative" }}>
+      <motion.div style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
 
-            <motion.div
-                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  animate={{ bottom: "20px", zIndex:50, right:"51%" }}
-                  style={{right:"51%"}}
-                  transition={{ type: "tween" }}
-                  initial={{bottom: "-100px",right:"51%"}}
-                  exit={{bottom: "-100px"}}
-                  {...getAnimationProps()}
-                >
-                  <Button onClick={NextSlide} style={{width:"72px", height:"72px"}} size="lg" isIconOnly color="primary" variant="shadow">
-                    <CloseCircleIcon className="size-9"/>
-                  </Button>
-            </motion.div>
+        <AnimatePresence initial={false}>
+          {users[index - 1] && (
+            <ExploreCard profile={users[index - 1]} key={index - 1} frontCard={false} />
+          )}
+          {users[index] && (
+            <ExploreCard
+              key={index}
+              NextSlide={NextSlide}
+              openModal={openModal}
+              frontCard={true}
+              index={index}
+              profile={users[index]}
+              setIndex={setIndex}
+              drag="x"
+            />
+          )}
+        </AnimatePresence>
 
-              <motion.div
-                  className="card backdrop-blur bg-background/80 backdrop-saturate-150 p-2 footerswipcard fixed"
-                  transition={{ type: "tween" }}
-                  style={{left:"51%"}}
-                  animate={{ bottom: "20px", zIndex:50 ,left:"51%" }}
-                  initial={{bottom: "-100px",left:"51%"}}
-                  exit={{bottom: "-100px"}}
-
-                  {...getAnimationProps()}
-                >
-                  <Button radius="lg" style={{width:"72px", height:"72px"}} size="lg" isIconOnly onPress={()=> OnLikeButtonClick(mockProfiles[index])} color="primary" variant="shadow">
-                    <LikeIcon className="size-9"/>
-                  </Button>
-              </motion.div>
-
-              <Button
-                variant="shadow"
-                size="lg"
-                onClick={handleFilterClick}
-
-                isIconOnly
-                className="left-4 fixed bottom-4"
-                aria-label="Like"
-                color="primary"
-              >
-                <FitlerIcon />
-              </Button>
-
-
+        <motion.div
+          className="card backdrop-blur bg-primary/10 backdrop-saturate-150 p-2 footerswipcard fixed"
+          style={{ right: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          transition={{ type: "tween" }}
+        >
+          <Button className="bg-primary/90 backdrop-saturate-150 backdrop-blur" onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+            <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9" />
+          </Button>
         </motion.div>
-          <ExploreFilter ref={FilterRef}/>
-          <MatchModal
-            isOpen={isModalOpen}
-            modalData={mockProfiles[index]}
-            onClose={closeModal}
-          />
+
+        <motion.div
+          className="card backdrop-blur bg-primary/10 backdrop-saturate-150 p-2 footerswipcard fixed"
+          transition={{ type: "tween" }}
+          style={{ left: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+        >
+          <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="success" variant="shadow" className="flex items-center justify-center">
+            <HeartEyesImoji className="w-full h-full"/>
+          </Button>
+        </motion.div>
+
+        <Button
+          variant="shadow"
+          size="lg"
+          onClick={handleFilterClick}
+          isIconOnly
+          className="left-4 fixed bottom-4"
+          aria-label="Like"
+          color="primary"
+        >
+          <FitlerIcon />
+        </Button>
+      </motion.div>
+
+      <ExploreFilter ref={FilterRef} />
+
+      {users[index] && (
+        <MatchModal
+          isOpen={isModalOpen}
+          modalData={users[index]}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };
 
 export default ExplorePage;
-
-const mockProfiles = [
-  {
-    id: 1,
-    name: "Mahdi Bahrami",
-    age: 24,
-    location: "Moscow, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258114e29026702d",
-    workAndEducation: "Sechinov University, Programmer",
-    whyHere: "Just chat",
-    aboutMe: "Aspiring programmer and coffee.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "183 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Coding", "Photography", "Hiking", "Gaming"],
-    mainImage: "https://i.pravatar.cc/?u=1",
-    secondImage: "https://i.pravatar.cc/?u=2",
-    thirdImage: "https://i.pravatar.cc/?u=3",
-  },
-  {
-    id: 2,
-    name: "Olga Ivanova",
-    age: 22,
-    location: "St. Petersburg, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258115e29026702d",
-    workAndEducation: "SPbU, Graphic Designer",
-    whyHere: "To meet new friends",
-    aboutMe: "Passionate about design and travel.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "170 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Bi",
-    interests: ["Design", "Travel", "Art"],
-    mainImage: "https://i.pravatar.cc/?u=4",
-    secondImage: "https://i.pravatar.cc/?u=5",
-    thirdImage: "https://i.pravatar.cc/?u=6",
-  },
-  {
-    id: 3,
-    name: "Alexey Petrov",
-    age: 27,
-    location: "Novosibirsk, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258116e29026702d",
-    workAndEducation: "Novosibirsk State University, Software Engineer",
-    whyHere: "Looking for cool people",
-    aboutMe: "Tech enthusiast and music lover.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "178 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Music", "Technology", "Sports"],
-    mainImage: "https://i.pravatar.cc/?u=7",
-    secondImage: "https://i.pravatar.cc/?u=8",
-    thirdImage: "https://i.pravatar.cc/?u=9",
-  },
-  {
-    id: 4,
-    name: "Diana Smirnova",
-    age: 23,
-    location: "Moscow, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258117e29026702d",
-    workAndEducation: "MSU, Marketing Student",
-    whyHere: "Just looking to chat",
-    aboutMe: "Love marketing and fun conversations.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "165 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Marketing", "Cooking", "Yoga"],
-    mainImage: "https://i.pravatar.cc/?u=10",
-    secondImage: "https://i.pravatar.cc/?u=11",
-    thirdImage: "https://i.pravatar.cc/?u=12",
-  },
-  {
-    id: 5,
-    name: "Igor Ivanov",
-    age: 25,
-    location: "Kazan, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258118e29026702d",
-    workAndEducation: "Kazan Federal University, Data Analyst",
-    whyHere: "For fun chats",
-    aboutMe: "Data lover and soccer fan.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "180 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Data Science", "Soccer", "Traveling"],
-    mainImage: "https://i.pravatar.cc/?u=13",
-    secondImage: "https://i.pravatar.cc/?u=14",
-    thirdImage: "https://i.pravatar.cc/?u=15",
-  },
-  {
-    id: 6,
-    name: "Yulia Petrova",
-    age: 21,
-    location: "Yekaterinburg, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258119e29026702d",
-    workAndEducation: "UrFU, Biologist",
-    whyHere: "Looking for new friends",
-    aboutMe: "Nature enthusiast and curious mind.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "160 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Biology", "Hiking", "Gardening"],
-    mainImage: "https://i.pravatar.cc/?u=16",
-    secondImage: "https://i.pravatar.cc/?u=17",
-    thirdImage: "https://i.pravatar.cc/?u=18",
-  },
-  {
-    id: 7,
-    name: "Sergey Sokolov",
-    age: 26,
-    location: "Nizhny Novgorod, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258120e29026702d",
-    workAndEducation: "NNGU, Network Engineer",
-    whyHere: "To connect with others",
-    aboutMe: "Techie and gaming aficionado.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "175 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Networking", "Gaming", "Traveling"],
-    mainImage: "https://i.pravatar.cc/?u=19",
-    secondImage: "https://i.pravatar.cc/?u=20",
-    thirdImage: "https://i.pravatar.cc/?u=21",
-  },
-  {
-    id: 8,
-    name: "Elena Fedorova",
-    age: 24,
-    location: "Chelyabinsk, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258121e29026702d",
-    workAndEducation: "ChSPU, Teacher",
-    whyHere: "Just for conversations",
-    aboutMe: "Love books and teaching.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "172 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Education", "Reading", "Cooking"],
-    mainImage: "https://i.pravatar.cc/?u=22",
-    secondImage: "https://i.pravatar.cc/?u=23",
-    thirdImage: "https://i.pravatar.cc/?u=24",
-  },
-  {
-    id: 9,
-    name: "Viktor Volkov",
-    age: 28,
-    location: "Samara, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258122e29026702d",
-    workAndEducation: "SSU, Civil Engineer",
-    whyHere: "Looking for interesting people",
-    aboutMe: "Engineering geek and sports lover.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "185 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Engineering", "Sports", "Photography"],
-    mainImage: "https://i.pravatar.cc/?u=25",
-    secondImage: "https://i.pravatar.cc/?u=26",
-    thirdImage: "https://i.pravatar.cc/?u=27",
-  },
-  {
-    id: 10,
-    name: "Anna Vasilyeva",
-    age: 25,
-    location: "Voronezh, Russia",
-    avatar: "https://i.pravatar.cc/?u=a04258123e29026702d",
-    workAndEducation: "Voronezh State University, Journalist",
-    whyHere: "To meet new people",
-    aboutMe: "Love writing and exploring.",
-    lookingFor: "Friendship",
-    relationStatus: "Single",
-    height: "168 cm",
-    kids: "None",
-    language: "Russian, English",
-    sexuality: "Straight",
-    interests: ["Journalism", "Travel", "Writing"],
-    mainImage: "https://i.pravatar.cc/?u=28",
-    secondImage: "https://i.pravatar.cc/?u=29",
-    thirdImage: "https://i.pravatar.cc/?u=30",
-  },
-];

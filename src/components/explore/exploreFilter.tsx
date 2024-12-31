@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle  } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState  } from "react";
 import {
   Modal,
   ModalContent,
@@ -12,9 +12,21 @@ import {
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { fetchFilteredExplore } from "@/features/exploreSlice";
 
-const ExploreFilter = forwardRef((props,ref) => { {
+import type {SliderValue} from "@nextui-org/react";
+import type {Selection} from "@nextui-org/react";
+
+const ExploreFilter = forwardRef((props,ref) => {{
   const { t } = useTranslation();
+  const [locationValue, setLocationValue] = useState("")
+  const dispatch = useDispatch<AppDispatch>();
+  const { data, loading } = useSelector((state: RootState) => state.user);
+
+  const [age, setAge] = useState<SliderValue>([20, 28]);
+  const [langauge, setLangauge] = useState<Selection>(new Set([]));
 
   const languages = [
     { key: "en", label: t("en") },
@@ -39,27 +51,35 @@ const ExploreFilter = forwardRef((props,ref) => { {
     { key: "it", label: t("it") },
   ];
   
-
-  const Gender = [
-    { key: "Male", label: t('Male') },
-    { key: "Female", label: t('Female') },
-  ];
-
-  
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useImperativeHandle(ref, () => ({
     openModal: onOpen,
     closeModal: onClose
   }));
+
   if(false){
     console.log(props);
   }
+
+  const onSetFilter = () => {
+
+          dispatch(fetchFilteredExplore({
+            userId:data.id.toString(),
+            ageRange: `${age[0]},${age[1]}`,
+            city:locationValue==="city"? data.city : null,
+            country:locationValue==="country"? data.country : null,
+            languages:Array.from(langauge).length!==0? Array.from(langauge).join(",") : null
+          }));
+
+          onClose()
+  }
+
   return (
       <Modal
         backdrop="blur"
         classNames={{
-          base: "absolute z-50	",
+          base: "absolute z-50 px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/70",
         }}
         isOpen={isOpen}
         size={"5xl"}
@@ -71,10 +91,9 @@ const ExploreFilter = forwardRef((props,ref) => { {
           <ModalBody>
             <form className="flex flex-col gap-4">
               <ButtonGroup className="w-full flex">
-                <Button className="grow">{t("cityButton")}</Button>
-                <Button className="grow">{t("countryButton")}</Button>
-                <Button className="grow">{t("globalButton")}</Button>
-            
+                <Button onPress={()=> setLocationValue("city")}  color={locationValue==="city"?"primary":"default"} className="grow">{t("cityButton")}</Button>
+                <Button onPress={()=> setLocationValue("country")} color={locationValue==="country"?"primary":"default"} className="grow">{t("countryButton")}</Button>
+                <Button onPress={()=> setLocationValue("")} color={locationValue===""?"primary":"default"} className="grow">{t("globalButton")}</Button>
               </ButtonGroup>
 
               <Slider
@@ -84,38 +103,32 @@ const ExploreFilter = forwardRef((props,ref) => { {
                 maxValue={100}
                 minValue={18}
                 step={1}
+                value={age}
+                onChange={setAge}
               />
-              <Select
-                className="w-full"
-                items={Gender}
-                label={t("Lookingfor")}
-                placeholder={t("Lookingfor")}
-              >
-                {(LookingForItems) => (
-                  <SelectItem key={LookingForItems.label}>{LookingForItems.label}</SelectItem>
-                )}
-              </Select>
 
               <Select
                 className="w-full"
                 label={t("Languages")}
                 placeholder={t("Languages")}
                 selectionMode="multiple"
+                selectedKeys={langauge}
+                onSelectionChange={setLangauge}
               >
+
                 {languages.map((languages) => (
                   <SelectItem key={languages.key}>{languages.label}</SelectItem>
                 ))}
+
               </Select>
             </form>
           </ModalBody>
 
           <ModalFooter>
             <Button color="default" variant="solid" onPress={onClose}>
-              
               {t("Close")}
             </Button>
-            <Button color="success" onPress={onClose}>
-              
+            <Button isLoading={loading} color="success" onPress={onSetFilter}>
               {t("Save")}
             </Button>
           </ModalFooter>
