@@ -7,6 +7,7 @@ import ProfileDataAuth2 from "@/components/auth/ProfileDataAuth2";
 import GenderStuffAuth from "@/components/auth/genderStuffAuth";
 import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
+import { SparklesText } from "@/components/animate/sparkles";
 import { Page } from "@/components/Page";
 import HeightAuth from '@/components/auth/HeightAuth';
 import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
@@ -21,7 +22,6 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
 import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
-import MorphingText from "@/components/animate/morfi-text";
 
 export default function SignupPage() {
 
@@ -154,25 +154,12 @@ export default function SignupPage() {
     }
   };
 
-  const texts = [
-    "Mull Mull",
-    "Friendship",
-    "Connect",
-    "Discover",
-    "Vibe",
-    "Chill",
-    "Meetup",
-    "Explore",
-    "Bond",
-    "Hangout",
-];
-
   return (
     <Page back={false}>
         <motion.div className="flex flex-col items-center justify-between">
           <motion.div animate={selectedTab === 11? {top:"-100px", opacity:0} : "bottom-0"} ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
             <div className="text-center">
-              <MorphingText texts={texts} />
+              <SparklesText text="Mull Mull" />
             </div>
           </motion.div >            
 
