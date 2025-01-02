@@ -17,7 +17,6 @@ export default function NearByPage() {
   const [loadingUser, setLoadingUser] = useState(false);
 
   const childRef = useRef();
-  const FilterRef = useRef();
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -35,12 +34,6 @@ export default function NearByPage() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleFilterClick = () => {
-    if (FilterRef.current) {
-      /* @ts-ignore */
-      FilterRef.current.openModal();
-    }
-  };
   const onCardClick = async (data) => {
     setSelectedCard(null); // Reset selected card state
     setLoadingUser(true); // Set loading state to true

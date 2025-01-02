@@ -349,7 +349,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                               <div className="flex items-center justify-between w-full mb-1">
                                 <div className="flex items-center">
                                   <p className="text-foreground font-bold  text-xl">
-                                    {props.profile.firstName}, {props.profile.age} , {props.profile.id} 
+                                    {props.profile.firstName}, {props.profile.age} 
                                   </p>
                                   <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>
       

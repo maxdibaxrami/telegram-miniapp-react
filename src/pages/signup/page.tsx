@@ -7,7 +7,6 @@ import ProfileDataAuth2 from "@/components/auth/ProfileDataAuth2";
 import GenderStuffAuth from "@/components/auth/genderStuffAuth";
 import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
-import { SparklesText } from "@/components/animate/sparkles";
 import { Page } from "@/components/Page";
 import HeightAuth from '@/components/auth/HeightAuth';
 import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
