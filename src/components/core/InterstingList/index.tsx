@@ -147,7 +147,7 @@ export default function InterestingList({onChangeValue, user}) {
       <Listbox
         classNames={{
           base: "w-full",
-          list: "max-h-[350px] overflow-scroll",
+          list: "max-h-[400px] overflow-scroll",
         }}
         defaultSelectedKeys={user.interests}
         items={hobbies}

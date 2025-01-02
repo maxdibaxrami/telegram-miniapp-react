@@ -12,7 +12,7 @@ import { Button } from "@nextui-org/button";
 import { FireIcon } from "@/Icons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import NearByMatchModal from "@/components/naerby/NearByMatchModal";
+import MatchModal from "@/components/explore/matchModal";
 
 
 
@@ -54,10 +54,11 @@ export default function LikesPage() {
           </Button>
         </div>
 
-        <NearByMatchModal
+          <MatchModal
             isOpen={isModalOpen}
             modalData={SelectedCard}
             onClose={closeModal}
+            thisUserId={user.id}
           />
 
       <NearByUserModal openModal={openModal} closeModal={closeModal} userId={user.id} ref={childRef} profile={SelectedCard} /> 
@@ -86,10 +87,11 @@ export default function LikesPage() {
         ))
       )}
 
-        <NearByMatchModal
+          <MatchModal
             isOpen={isModalOpen}
             modalData={SelectedCard}
             onClose={closeModal}
+            thisUserId={user.id}
           />
 
       <NearByUserModal openModal={openModal} closeModal={closeModal} userId={user.id} ref={childRef} profile={SelectedCard} /> 

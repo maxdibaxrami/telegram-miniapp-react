@@ -9,10 +9,15 @@ import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
 import NearByPage from '@/pages/nearby/page';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
+import { Button } from '@nextui-org/button';
+import { FitlerIcon } from '@/Icons';
+import NearByFilter from '@/components/naerby/NearByFilter';
+import { useRef } from 'react';
 
 const MainPage = () => {
-    const [searchParams] = useSearchParams();
-    const lp = useLaunchParams();
+  const [searchParams] = useSearchParams();
+  const lp = useLaunchParams();
+  const FilterRef = useRef();
 
     const getPaddingForPlatform = () => {
       if (['ios'].includes(lp.platform)) {
@@ -21,6 +26,13 @@ const MainPage = () => {
       } else {
         // Android/base padding
         return'25px'  // Default padding
+      }
+    };
+
+    const handleFilterClick = () => {
+      if (FilterRef.current) {
+        /* @ts-ignore */
+        FilterRef.current.openModal();
       }
     };
 
@@ -134,6 +146,35 @@ const MainPage = () => {
                   </motion.div>
                 </AnimatePresence>
               )}
+
+
+              {searchParams.get('page') === "nearby" && (
+                        <motion.div
+                            style={{
+                              position: "fixed",
+                              zIndex: 50,
+                              left: "50%",
+                              transform: "translateX(-50%)",
+                            }}
+                            initial={{ bottom: "-30px"}}
+                            animate={{ bottom: "100px" }}
+                            exit={{ bottom: "-30px"}}
+                          >
+                            <Button
+                              variant="shadow"
+                              size="lg"
+                              onClick={handleFilterClick}
+                              radius="full"
+                              isIconOnly
+                              aria-label="Like"
+                              color="primary"
+                            >
+                              <FitlerIcon />
+                            </Button>
+                          </motion.div>
+                      )}
+
+          <NearByFilter ref={FilterRef} />
 
             </section>
       

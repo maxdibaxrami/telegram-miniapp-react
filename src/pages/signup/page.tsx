@@ -65,11 +65,14 @@ export default function SignupPage() {
     dateBirth: '2000-01-14',
     lat: null,
     lon: null,
+    blockedUsers: [],
+    favoriteUsers: [],
   });
 
   useEffect(() => {
     // Call getLocation to fetch location and coordinates
     getLocation(setError, setLocation, setCoordinates);
+    console.log(error)
   }, []);
 
   useEffect(() => {

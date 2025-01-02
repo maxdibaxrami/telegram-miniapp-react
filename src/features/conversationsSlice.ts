@@ -25,7 +25,7 @@ interface ConversationState {
 // Initial state
 const initialState: ConversationState = {
   data: null,
-  loading: false,
+  loading: true,
   error: null,
 };
 

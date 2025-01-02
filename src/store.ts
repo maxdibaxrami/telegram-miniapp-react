@@ -6,6 +6,8 @@ import likeReducer from './features/likeSlice';
 import matchReducer from './features/matchSlice';
 import exploreReducer from './features/exploreSlice'
 import conversationsReducer from './features/conversationsSlice'
+import nearByReducer from './features/nearBySlice'
+
 
 // Configure the store
 export const store = configureStore({
@@ -15,7 +17,8 @@ export const store = configureStore({
     like: likeReducer,
     match: matchReducer,
     explore: exploreReducer,
-    conversation: conversationsReducer
+    conversation: conversationsReducer,
+    nearBy:nearByReducer
 
   },
 });

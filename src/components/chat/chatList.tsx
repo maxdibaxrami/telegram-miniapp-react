@@ -1,4 +1,4 @@
-import { Listbox, ListboxItem, Avatar, Badge, Chip, Spinner } from "@nextui-org/react";
+import { Listbox, ListboxItem, Avatar, Chip, Spinner } from "@nextui-org/react";
 import { ListboxWrapper } from "./listWapper";
 import ChatItemMenu from "./chatItemMenu";
 import { Link } from "react-router-dom";
@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASEURL } from "@/constant";
 import { AppDispatch, RootState } from "@/store";
 import { updateUserData } from "@/features/userSlice";
-import { deleteConversation } from "@/features/conversationsSlice";
+import { deleteConversation, fetchConversations } from "@/features/conversationsSlice";
 import ChatFiltermenu from "./chatFilterMenu";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type {Selection} from "@nextui-org/react";
 import { NotFoundChatImage } from '@/Icons/notFoundChat'
 
@@ -51,7 +51,7 @@ const ChatList = () => {
     }));
   };
   
-  const HandleUnblockUser = async (value) => {
+ {/**? const HandleUnblockUser = async (value) => {
     await dispatch(updateUserData({
       userId: user.id.toString(),
       updatedData: {
@@ -60,7 +60,7 @@ const ChatList = () => {
           : []  // If blockedUsers is not an array, set it to an empty array
       }
     }));
-  };
+  }; */}
 
   const handleDelete = (userId1: number, userId2: number) => {
     dispatch(deleteConversation({ userId1, userId2 }));
@@ -87,9 +87,9 @@ const ChatList = () => {
       const targetUser = isSender ? item.recipientId : item.senderId;
   
       // Exclude conversations where the target user is blocked
-      if (user.blockedUsers.some(blockedUser => blockedUser == targetUser.toString())) {
-        return false;  // Exclude blocked users
-      }
+      //if (user.blockedUsers.some(blockedUser => blockedUser == targetUser.toString())) {
+        //return false;  // Exclude blocked users
+      //}
   
       // If "Favorite" is selected, only show favorite users
       if (selectedValue === "Favorite") {
@@ -99,8 +99,11 @@ const ChatList = () => {
       // Otherwise, return all users except blocked ones
       return true;
     }) || [];
-  }, [data, user.favoriteUsers, user.blockedUsers, selectedValue, user.id]);
+  }, [data, user.favoriteUsers, selectedValue, user.id]);
   
+  useEffect(()=>{
+      dispatch(fetchConversations(user.id.toString()));
+  },[])
   return (
     <>
       <div className="flex justify-between py-2 items-center">
@@ -133,7 +136,11 @@ const ChatList = () => {
            const targetUser = isSender ? item.recipientId : item.senderId;
            const targetFirstName = isSender ? item.firstName : item.senderFirstName;
            const targetPhotoUrl = isSender ? item.photoUrl : item.senderPhotoUrl;
-           const targetUserId = isSender ? item.recipientId : item.senderId;
+           if(item.senderId == item.recipientId){
+            return null
+           }
+           // item.senderId != user.id &&
+           console.log("aaaaaaaaa", )
            return (
              <ListboxItem
                key={item.userId}
@@ -151,7 +158,7 @@ const ChatList = () => {
                startContent={
                  <Avatar
                    isBordered
-                   color={item.readAt !== null ? "default" : "primary"}
+                   color={item.readAt == null && item.senderId != user.id ? "primary" : "default"}
                    radius="full"
                    size="md"
                    src={`${BASEURL}${targetPhotoUrl}`}
@@ -164,14 +171,14 @@ const ChatList = () => {
                    <div className="flex pl-2 flex-col">
                      <span
                        className={
-                         item.readAt !== null
-                           ? "text-small text-handller-chat text-default-700"
-                           : "text-small text-handller-chat font-bold text-default-700"
+                          item.readAt == null && item.senderId != user.id 
+                           ? "text-small text-handller-chat font-bold text-default-700"
+                           : "text-small text-handller-chat text-default-700"
                        }
                      >
                        {targetFirstName}
                        <Chip
-                         className={item.readAt !== null ? "hidden" : "visible ml-1"}
+                         className={item.readAt == null && item.senderId != user.id  ?  "visible ml-1" : "hidden"}
                          color="primary"
                          size="sm"
                        >
@@ -180,9 +187,9 @@ const ChatList = () => {
                      </span>
                      <span
                        className={
-                         item.readAt !== null 
-                           ? "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
-                           : "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                        item.readAt == null && item.senderId != user.id 
+                            ? "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                            : "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
                        }
                      >
                        {truncateText(item.lastMessage, 20)}

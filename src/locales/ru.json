@@ -255,7 +255,19 @@
       "send_message": "Отправить сообщение",
       "nolikemessage":"Нет лайков. Пожалуйста, перейдите на страницу исследования, поставьте лайк и активнее участвуйте.",
       "exploreUserFilterNoUser":"Больше нет пользователей в вашем фильтре. Пожалуйста, измените ваши фильтры.",
-      "Remove_from_favorite":"Удалить из избранного"
+      "Remove_from_favorite":"Удалить из избранного",
+      "offline": "оффлайн",
+      "Youhavereachedyourdailylikelimitof50":" Вы достигли дневного лимита лайков в 50.",
+      "Youhavereachedyourdailylikelimitof5":"Вы достигли дневного лимита лайков в 5.",
+
+      "Reachedlimit":"Достигнут лимит",
+      "Tounlockallfeatures,youneedapremiumaccount.":"Для разблокировки всех функций вам необходим премиум-аккаунт.",
+      "Inviteyourfriendsandgetapremiumaccount":"Пригласите своих друзей и получите премиум-аккаунт!"
+
+
+
+
+
 
 
 

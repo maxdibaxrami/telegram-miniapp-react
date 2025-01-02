@@ -1,17 +1,8 @@
-"use client";
 
 import {
-  Listbox,
-  ListboxItem,
   Switch,
   cn,
-  ListboxSection,
 } from "@nextui-org/react";
-
-import {
-  LogOutIcon,
-  DeleteAcoontIcon,
-} from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/index";
 import { Page } from "@/components/Page";
@@ -43,31 +34,6 @@ export default function Setting() {
         <section className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
           <div style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`}} className="w-full h-full px-6 pb-4">            
-           <LanguageSection/>
-            <Switch
-              classNames={{
-                base: cn(
-                  "inline-flex flex-row-reverse w-full max-w-md items-center",
-                  "justify-between cursor-pointer rounded-lg px-2 gap-2 py-4 border-2 border-transparent",
-                  "data-[selected=true]:border-primary",
-                ),
-                wrapper: "p-0 h-4 overflow-visible",
-                thumb: cn(
-                  "w-6 h-6 border-2 shadow-lg",
-                  "group-data-[hover=true]:border-primary",
-                  "group-data-[selected=true]:ml-6",
-                  "group-data-[pressed=true]:w-7",
-                  "group-data-[selected]:group-data-[pressed]:ml-4",
-                ),
-              }}
-              defaultChecked={true}
-            >
-              <div className="flex flex-col gap-1">
-                <p className="text-medium">{t('profile_visibility')}</p>
-                <p className="text-tiny text-default-400">{t('profile_visibility_desc')}</p>
-              </div>
-            </Switch>
-
             <Switch
               onChange={onChange}
               classNames={{
@@ -92,30 +58,32 @@ export default function Setting() {
                 <p className="text-tiny text-default-400">{t('mode_desc')}</p>
               </div>
             </Switch>
+            <Switch
+              classNames={{
+                base: cn(
+                  "inline-flex flex-row-reverse w-full max-w-md items-center",
+                  "justify-between cursor-pointer rounded-lg px-2 gap-2 py-4 border-2 border-transparent",
+                  "data-[selected=true]:border-primary",
+                ),
+                wrapper: "p-0 h-4 overflow-visible",
+                thumb: cn(
+                  "w-6 h-6 border-2 shadow-lg",
+                  "group-data-[hover=true]:border-primary",
+                  "group-data-[selected=true]:ml-6",
+                  "group-data-[pressed=true]:w-7",
+                  "group-data-[selected]:group-data-[pressed]:ml-4",
+                ),
+              }}
+              defaultChecked={true}
+            >
+              <div className="flex flex-col gap-1">
+                <p className="text-medium">{t('profile_visibility')}</p>
+                <p className="text-tiny text-default-400">{t('profile_visibility_desc')}</p>
+              </div>
+            </Switch>
+           <LanguageSection/>
+  
 
-            <div className="w-full mt-2 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
-              <Listbox aria-label={t('setting_menu')} variant="solid">
-                <ListboxSection title={t('setting')}>
-                  <ListboxItem
-                    key="delete"
-                    className="text-danger"
-                    description={t('delete_account_desc')}
-                    startContent={<DeleteAcoontIcon />}
-                  >
-                    {t('delete_account')}
-                  </ListboxItem>
-
-                  <ListboxItem
-                    key="logout"
-                    description={t('logout_desc')}
-                    startContent={<LogOutIcon />}
-                    href="/#/sign-up"
-                  >
-                    {t('logout')}
-                  </ListboxItem>
-                </ListboxSection>
-              </Listbox>
-            </div>
           </div>
         </section>
       </div>

@@ -19,6 +19,8 @@ import { fetchLikes } from '@/features/likeSlice';
 import { fetchMatches } from '@/features/matchSlice';
 import { fetchFilteredExplore } from '@/features/exploreSlice';
 import { fetchConversations } from '@/features/conversationsSlice';
+import { Toaster } from 'react-hot-toast';
+import { fetchNearBySliceUsers } from '@/features/nearBySlice';
 
 const GetStoredLanguage = async () => {
   try {
@@ -57,28 +59,41 @@ export function App() {
   const dispatch = useDispatch<AppDispatch>();
   const { data, loading } = useSelector((state: RootState) => state.user);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasFetchedDetails, setHasFetchedDetails] = useState(false);
+  const filters = useSelector((state: RootState) => state.nearBy);
 
   useEffect(() => {
-    console.log(initDataState.hash)
+    // Dispatch fetchUserData only once with the initial hash
+    console.log(initDataState.hash);
     dispatch(fetchUserData(initDataState.hash));
   }, [dispatch, initDataState.hash]);
 
   useEffect(() => {
-    if (data && data.id) {
-      // If user data is loaded and userId exists, dispatch fetchLikes
-      dispatch(fetchLikes(data.id.toString()));
-      dispatch(fetchMatches(data.id.toString()));
-      dispatch(fetchConversations(data.id.toString()));
+    // Once user data is loaded, dispatch the secondary fetches only once
+    if (data && data.id && !hasFetchedDetails) {
+      setHasFetchedDetails(true);
+      const userId = data.id.toString();
+      console.log("123321")
+      dispatch(fetchLikes(userId));
+      dispatch(fetchMatches(userId));
+      dispatch(fetchConversations(userId));
       dispatch(fetchFilteredExplore({
-        userId:data.id.toString(),
-        ageRange:null,
-        city:null,
-        country:null,
-        languages:null
+        userId: userId,  // Replace with actual user ID
+        page: 1,
+        limit: 10,
       }));
 
+      dispatch(fetchNearBySliceUsers({
+        userId: userId,
+        page: 1,
+        limit: 20,
+        ...filters, // Current filters (including nearby)
+      }));
+
+
+
     }
-  }, [dispatch, data]);
+  }, [data]);
 
   useEffect(() => {
     const loadI18n = async () => {
@@ -131,6 +146,7 @@ export function App() {
             </Routes>
           </AnimatePresence>
         </HashRouter>
+        <Toaster />
       </AppRoot>
     </I18nextProvider>
   );

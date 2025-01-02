@@ -1,4 +1,4 @@
-import { Image, User, Divider, Button } from "@nextui-org/react";
+import { Image, User, Button } from "@nextui-org/react";
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import {
@@ -14,8 +14,8 @@ import { Swiper ,SwiperSlide } from "swiper/react";
 import { useState } from "react";
 import { BASEURL } from "@/constant";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const ProfilePage = () => {
 

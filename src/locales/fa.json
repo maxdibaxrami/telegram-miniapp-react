@@ -256,7 +256,19 @@
       "send_message": "ارسال پیام",
       "nolikemessage":"لایکی وجود ندارد. لطفاً به صفحه اکسپلور بروید، لایک کنید و فعالیت بیشتری انجام دهید.",
       "exploreUserFilterNoUser":"هیچ کاربر دیگری در فیلتر شما وجود ندارد. لطفاً فیلترهای خود را تغییر دهید.",
-      "Remove_from_favorite":"حذف از علاقه‌مندی‌ها"
+      "Remove_from_favorite":"حذف از علاقه‌مندی‌ها",
+        "offline": "آفلاین",
+        "Youhavereachedyourdailylikelimitof50":"شما به محدودیت روزانه ۵۰ لایک خود رسیده‌اید.",
+        "Youhavereachedyourdailylikelimitof5":"شما به محدودیت روزانه ۵ لایک خود رسیده‌اید.",
+
+        "Reachedlimit":"به محدودیت رسیده‌اید",
+        "Tounlockallfeatures,youneedapremiumaccount.":"برای دسترسی به تمام ویژگی‌ها، باید حساب کاربری ویژه داشته باشید.",
+        "Inviteyourfriendsandgetapremiumaccount":"دوستان خود را دعوت کنید و حساب پریمیوم دریافت کنید!"
+
+
+
+
+
 
 
 

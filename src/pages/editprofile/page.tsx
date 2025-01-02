@@ -227,7 +227,7 @@ export default function EditProfilePage() {
     { id: 100, name: t("Astronaut Training") }
   ];
 
-  const { data: user, updateUserData, uploadProfileLoading } = useSelector((state: RootState) => state.user);
+  const { data: user, updateUserData } = useSelector((state: RootState) => state.user);
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {

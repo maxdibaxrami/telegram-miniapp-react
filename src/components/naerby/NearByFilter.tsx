@@ -1,5 +1,4 @@
-import { useState, forwardRef, useImperativeHandle  } from "react";
-
+import { forwardRef, useImperativeHandle, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -10,27 +9,27 @@ import {
   ModalBody,
   Slider,
   ButtonGroup,
-  Switch,
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-
-import { LocationIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
-
-const NearByFilter = forwardRef((props, ref) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isSelected, setIsSelected] = useState(true);
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { fetchNearBySliceUsers, setFilters } from "@/features/nearBySlice";
+import type { SliderValue } from "@nextui-org/react";
+import type { Selection } from "@nextui-org/react";
+// @ts-ignore
+const ExploreFilter = forwardRef((props, ref) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, filters } = useSelector((state: RootState) => state.nearBy); // Get filters from the store
+  const { data } = useSelector((state: RootState) => state.user);
 
-  useImperativeHandle(ref, () => ({
-    openModal: onOpen,
-    closeModal: onClose
-  }));
-  
-  if(false){
-    console.log(props);
-  }
+  // Initialize state with default values from Redux (if available)
+  const [locationValue, setLocationValue] = useState(filters.city ? "city" : (filters.country ? "country" : ""));
+  const [age, setAge] = useState<SliderValue>(filters.ageRange ? filters.ageRange.split(',').map(Number) : [20, 28]);
+  const [language, setLanguage] = useState<Selection>(new Set(filters.languages ? filters.languages.split(',') : []));
 
+  // Languages options
   const languages = [
     { key: "en", label: t("en") },
     { key: "zh", label: t("zh") },
@@ -53,111 +52,124 @@ const NearByFilter = forwardRef((props, ref) => {
     { key: "ta", label: t("ta") },
     { key: "it", label: t("it") },
   ];
-  
 
-  const Gender = [
-    { key: "Male", label: t('Male') },
-    { key: "Female", label: t('Female') },
-  ];
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // Expose modal controls via ref
+  useImperativeHandle(ref, () => ({
+    openModal: onOpen,
+    closeModal: onClose,
+  }));
+
+  const onSetFilter = () => {
+    // Update filters in the Redux store
+    const updatedFilters = {
+      ageRange: `${age[0]},${age[1]}`,
+      city: locationValue === "city" ? data.city : null,
+      country: locationValue === "country" ? data.country : null,
+      languages: Array.from(language).length !== 0 ? Array.from(language).join(",") : null,
+    };
+
+    // Dispatch filters to Redux store
+    dispatch(setFilters(updatedFilters));
+
+    // Fetch users based on the updated filters
+    dispatch(
+      fetchNearBySliceUsers({
+        userId: data.id.toString(),
+        ageRange: `${age[0]},${age[1]}`,
+        city: locationValue === "city" ? data.city : null,
+        country: locationValue === "country" ? data.country : null,
+        languages: Array.from(language).length !== 0 ? Array.from(language).join(",") : null,
+        latitude: null, // Optional: you can update this later
+        longitude: null, // Optional: you can update this later
+        radius: null, // Optional: you can update this later
+        page: 1, // Reset to page 1 after applying new filters
+        limit: 20, // Number of users to fetch per page
+      })
+    );
+
+    // Close the modal after applying filters
+    onClose();
+  };
+
   return (
-      <Modal
-        backdrop="blur"
-        classNames={{
-          base: "absolute z-50	",
-        }}
-        isOpen={isOpen}
-        size={"5xl"}
-        style={{ zIndex: "1000" }}
-        onClose={onClose}
-      >
-        <ModalContent className="absolute">
-          <ModalHeader className="flex flex-col gap-1">{t("Setfilters")}</ModalHeader>
-
-          <ModalBody>
-            <form className="flex flex-col gap-4">
-              <Switch
-                defaultSelected
-                color="primary"
-                isSelected={isSelected}
-                size="md"
-                thumbIcon={() => <LocationIcon />}
-                onValueChange={setIsSelected}
+    <Modal
+      backdrop="blur"
+      classNames={{
+        base: "absolute z-50 px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/70",
+      }}
+      isOpen={isOpen}
+      size={"5xl"}
+      style={{ zIndex: "1000" }}
+      onClose={onClose}
+    >
+      <ModalContent>
+        <ModalHeader className="flex flex-col gap-1">{t("Setfilters")}</ModalHeader>
+        <ModalBody>
+          <form className="flex flex-col gap-4">
+            <ButtonGroup className="w-full flex">
+              <Button
+                onPress={() => setLocationValue("city")}
+                color={locationValue === "city" ? "primary" : "default"}
+                className="grow"
               >
-                {t("Searchbydistance")}
-              </Switch>
-              {!isSelected ? (
-                <ButtonGroup
-                  className="w-full flex py-4"
-                  style={{ height: "4rem" }}
-                >
-                <Button className="grow">{t("cityButton")}</Button>
-                <Button className="grow">{t("countryButton")}</Button>
-                <Button className="grow">{t("globalButton")}</Button>
-                </ButtonGroup>
-              ) : (
-                <Slider
-                  className="max-w-md"
-                  color="secondary"
-                  defaultValue={150}
-                  label="Distance (km)"
-                  maxValue={500}
-                  minValue={50}
-                  showSteps={true}
-                  size="md"
-                  step={50}
-                  style={{ height: "4rem" }}
-                />
-              )}
-
-              <Slider
-                className="w-full"
-                color="secondary"
-                defaultValue={[18, 28]}
-                label={t("age")}
-                maxValue={100}
-                minValue={18}
-                step={1}
-              />
-              <Select
-                className="w-full"
-                items={Gender}
-                label={t("Lookingfor")}
-                placeholder={t("Lookingfor")}
+                {t("cityButton")}
+              </Button>
+              <Button
+                onPress={() => setLocationValue("country")}
+                color={locationValue === "country" ? "primary" : "default"}
+                className="grow"
               >
-                {(LookingForItems) => (
-                  <SelectItem key={LookingForItems.label}>
-                    {LookingForItems.label}
-                  </SelectItem>
-                )}
-              </Select>
-
-              <Select
-                className="w-full"
-                label={t("Languages")}
-                placeholder={t("Languages")}
-                selectionMode="multiple"
+                {t("countryButton")}
+              </Button>
+              <Button
+                onPress={() => setLocationValue("")}
+                color={locationValue === "" ? "primary" : "default"}
+                className="grow"
               >
-                {languages.map((languages) => (
-                  <SelectItem key={languages.key}>{languages.label}</SelectItem>
-                ))}
-              </Select>
-            </form>
-          </ModalBody>
+                {t("globalButton")}
+              </Button>
+            </ButtonGroup>
 
-          <ModalFooter>
-            <Button color="default" variant="solid" onPress={onClose}>
+            <Slider
+              className="w-full"
+              label={t("age")}
+              maxValue={100}
+              minValue={18}
+              step={1}
+              value={age}
+              onChange={setAge}
+            />
+
+            <Select
+              className="w-full"
+              label={t("Languages")}
+              placeholder={t("Languages")}
+              selectionMode="multiple"
+              selectedKeys={language}
+              onSelectionChange={setLanguage}
+            >
+              {languages.map((languageItem) => (
+                <SelectItem key={languageItem.key}>{languageItem.label}</SelectItem>
+              ))}
+            </Select>
+          </form>
+        </ModalBody>
+
+        <ModalFooter>
+          <Button color="default" variant="solid" onPress={onClose}>
             {t("Close")}
-            </Button>
-            <Button color="success" onPress={onClose}>
+          </Button>
+          <Button isLoading={loading} color="success" onPress={onSetFilter}>
             {t("Save")}
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 });
 
-NearByFilter.displayName = "NearByFilter";
+ExploreFilter.displayName = "ExploreFilter";
 
-export default NearByFilter;
-
+export default ExploreFilter;

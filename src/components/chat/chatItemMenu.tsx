@@ -6,7 +6,7 @@ import {
   Button,
 } from "@nextui-org/react";
 
-import { DeleteChatIcon, Favorite, MoreIcon, BlockAndReport } from "@/Icons/index";
+import { DeleteChatIcon, Favorite, MoreIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 
 const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUsers, targetUser, HandleRemoveFromFavorite,handleDelete }) => {
@@ -74,14 +74,14 @@ const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUser
         >
           {t("deleteChat")}
         </DropdownItem>
-        <DropdownItem
+       {/*  <DropdownItem
           key="blockandreport"
           className="text-danger"
           color="danger"
           startContent={<BlockAndReport />}
         >
           {t("blockAndReport")}
-        </DropdownItem>
+        </DropdownItem>*/}
       </DropdownMenu>
     </Dropdown>
   );

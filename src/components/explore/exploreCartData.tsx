@@ -6,7 +6,6 @@ import {
   WorkAndStudyIconSolid,
   AboutMeSolid,
   SearchIcon,
-  WhyYouAreHereIcon,
   HashtagIcon,
   ChatIcon,
   FireIcon,
@@ -21,7 +20,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   const { t } = useTranslation();
 
   // Reusable ProfileCard component for profile details
-  const ProfileCard = ({ color, gradient, icon, label, text }) => (
+  const ProfileCard = ({ color, icon, label, text }) => (
     <motion.div
       className="flex gap-3 mt-1 mb-3"
       initial={openFooter ? { opacity: 1 } : { opacity: 0 }}
@@ -265,7 +264,6 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
               <ProfileCard
                 key={item.key}
                 color={item.color}
-                gradient={item.gradient}
                 icon={item.icon}
                 label={item.label}
                 text={item.text}
@@ -352,7 +350,6 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
         ) : (
           <ProfileCard
             color={profileItems[currentSlide].color}
-            gradient={profileItems[currentSlide].gradient}
             icon={profileItems[currentSlide].icon}
             label={profileItems[currentSlide].label}
             text={profileItems[currentSlide].text}

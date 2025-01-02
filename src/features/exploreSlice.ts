@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../api/base';
 
-// Define the structure of a user
+// Define the structure of a user (same as before)
 interface User {
   id: number;
   telegramId: string;
@@ -37,11 +37,13 @@ interface User {
   photos: { id: number; url: string; order: number }[]; // Photos array
 }
 
-// Define the state for explore users
 interface ExploreState {
   data: User[] | null;
   loading: boolean;
   error: string | null;
+  page: number;
+  limit: number;
+  total: number;
 }
 
 // Initial state
@@ -49,6 +51,9 @@ const initialState: ExploreState = {
   data: null,
   loading: true,
   error: null,
+  page: 1, // Start from the first page
+  limit: 10, // Number of users to fetch per page
+  total: 0,  // Total number of users available
 };
 
 // Utility function to build query params
@@ -65,7 +70,7 @@ const buildQueryParams = (params: { [key: string]: any }) => {
   return queryParams.toString();
 };
 
-// Thunk to fetch filtered users (explore feature)
+// Thunk to fetch filtered users (explore feature) with pagination
 export const fetchFilteredExplore = createAsyncThunk(
   'explore/fetchFilteredExplore',
   async (
@@ -75,12 +80,16 @@ export const fetchFilteredExplore = createAsyncThunk(
       city,
       country,
       languages,
+      page,
+      limit,
     }: {
       userId: string;
       ageRange?: string; // Optional parameters
       city?: string;
       country?: string;
       languages?: string;
+      page?: number; // Page for pagination
+      limit?: number; // Limit per page for pagination
     },
     { rejectWithValue }
   ) => {
@@ -91,18 +100,20 @@ export const fetchFilteredExplore = createAsyncThunk(
         city,
         country,
         languages,
+        page,
+        limit,
       });
 
-      // Make the API call to fetch filtered users
+      // Make the API call to fetch filtered users with pagination
       const response = await axios.get(`/users/filter/${userId}?${queryParams}`);
-      return response.data as User[]; // Returning an array of User objects
+      return response.data as { users: User[]; total: number }; // Return users and total count
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Failed to fetch filtered users');
     }
   }
 );
 
-// Create the explore slice
+// Create the explore slice with pagination and dynamic data fetching
 const exploreSlice = createSlice({
   name: 'explore',
   initialState,
@@ -114,7 +125,6 @@ const exploreSlice = createSlice({
         // Filter out the user based on the userId provided
         state.data = state.data.filter((user) => user.id !== action.payload);
         state.loading = false;
-
       }
     },
   },
@@ -125,9 +135,18 @@ const exploreSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchFilteredExplore.fulfilled, (state, action: PayloadAction<User[]>) => {
+      .addCase(fetchFilteredExplore.fulfilled, (state, action: PayloadAction<{ users: User[]; total: number }>) => {
         state.loading = false;
-        state.data = action.payload;
+        state.total = action.payload.total;
+        
+        // If there's already data, concatenate the new data (pagination)
+        if (state.data && state.data.length) {
+          state.data = [...state.data, ...action.payload.users];
+        } else {
+          state.data = action.payload.users;
+        }
+        state.page += 1; 
+
       })
       .addCase(fetchFilteredExplore.rejected, (state, action) => {
         state.loading = false;

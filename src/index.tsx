@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client';
-import { StrictMode } from 'react';
 import { retrieveLaunchParams } from '@telegram-apps/sdk-react';
 
 import { Root } from '@/components/Root.tsx';
@@ -20,11 +19,9 @@ try {
   init(retrieveLaunchParams().startParam === 'debug' || import.meta.env.DEV);
 
   root.render(
-    <StrictMode>
       <Provider store={store}>
         <Root/>
       </Provider>
-    </StrictMode>,
   );
 } catch (e) {
   root.render(<EnvUnsupported/>);

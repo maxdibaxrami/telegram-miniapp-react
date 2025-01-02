@@ -12,6 +12,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
             aria-label="Like"
             color="primary"
             size="lg"
+            radius="full"
             isDisabled={selectedTab === 0 }
             onClick={prevPage}
             style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}
@@ -30,6 +31,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
             aria-label="Like"
             color="primary"
             size="lg"
+            radius="full"
             style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}
             isDisabled={!nextSlideAvalable || selectedTab === 11}
             onClick={()=>{

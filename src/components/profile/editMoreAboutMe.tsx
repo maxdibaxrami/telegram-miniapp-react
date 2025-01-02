@@ -2,8 +2,6 @@ import {
   Modal,
   ModalContent,
   ModalFooter,
-  Input,
-  ModalHeader,
   Button,
   useDisclosure,
   ModalBody,
@@ -71,7 +69,7 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
   
       if (Object.keys(updatedData).length > 0) {
         // Dispatch the update action only if there are changes
-        const res = await dispatch(updateUserData({ userId: props.user.id, updatedData }));
+        await dispatch(updateUserData({ userId: props.user.id, updatedData }));
       }
   
       onClose(); // Close the modal after saving
@@ -96,7 +94,7 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
             <Button color="default" variant="solid" onPress={onClose}>
               {t("Close")}
             </Button>
-            <Button isLoading={props.loading} color="success" onPress={handleSaveData}>
+            <Button isDisabled={data.languages.length === 0} isLoading={props.loading} color="success" onPress={handleSaveData}>
               {t("Save")}
             </Button>
           </ModalFooter>
@@ -105,6 +103,7 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
     </>
   );
 });
+
 
 EditMoreAboutMeModal.displayName = "EditMoreAboutMeModal";
 

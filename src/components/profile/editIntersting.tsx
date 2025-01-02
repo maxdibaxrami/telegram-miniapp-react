@@ -58,7 +58,7 @@ const EditIntersting = ({user,children}) => {
             <Button color="default" variant="solid" onPress={onClose}>
               {t("close")}
             </Button>
-            <Button color="success" onPress={handleSaveData}>
+            <Button isDisabled={Array.from(selectedData).length === 0} color="success" onPress={handleSaveData}>
               {t("save")}
             </Button>
           </ModalFooter>

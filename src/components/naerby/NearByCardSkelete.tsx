@@ -2,18 +2,19 @@ import {Skeleton} from "@nextui-org/skeleton";
 
 const NearByCardSkelete = () => {
   return (
-    <div className={"relative aspect-square w-full"}>
-      <Skeleton
-        className="border-none w-full rounded-lg relative"
-        style={{backgroundColor: "transparent" }}
+    <div className={"relative bg-default/70 rounded-lg aspect-square w-full"}>
+      <div
+        className="border-none w-full"
       >
         <Skeleton
-          className="object-cover w-full aspect-square maxcontentimportant aspect-square h-full"
-          style={{ width: "100%", height: "100%",maxWidth:"unset" }}
+          style={{height:"30px"}}
+          className="border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-2 w-[calc(100%_-_8px)] shadow-small ml-1 z-10"
         />
-      </Skeleton>
+      </div>
     </div>
   );
 };
 
 export default NearByCardSkelete;
+
+

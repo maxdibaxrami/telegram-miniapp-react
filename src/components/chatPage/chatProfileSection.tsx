@@ -1,50 +1,15 @@
-import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
+import { Navbar, NavbarContent, NavbarItem, Skeleton } from "@nextui-org/react";
 import { Avatar } from "@nextui-org/react";
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import NearByUserModal from "../naerby/NearByModal";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
-import axios from '@/api/base';
+
 import { BASEURL } from "@/constant";
 
-const ChatProfileSection = () => {
+const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
   const childRef = useRef();
   const { t } = useTranslation();
-  const [profileDataState, setProfileDataState] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const dispatch: AppDispatch = useDispatch();
-
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const user1 = searchParams.get('user1');
-  const user2 = searchParams.get('user2');
-
-  const { data: user } = useSelector((state: RootState) => state.user);
-
-  const fetchProfileData = async () => {
-    try {
-      const userId = user.id.toString() === user1 ? user1 : user2;
-      const response = await axios.get(`/users/${userId}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching profile data:", error);
-      return null;
-    }
-  };
-
-  useEffect(() => {
-    const getProfileData = async () => {
-      setLoading(true);
-      const data = await fetchProfileData();
-      setProfileDataState(data);
-      setLoading(false);
-    };
-
-    getProfileData(); // Call the async function
-  }, []); // Only run once, when the component mounts
-
+ 
   const handleClick = () => {
     if (childRef.current) {
       /* @ts-ignore */
@@ -53,7 +18,27 @@ const ChatProfileSection = () => {
   };
 
   if (loading) {
-    return <div>loading....</div>;
+    return <Navbar>
+      <NavbarContent justify="start">
+            <NavbarItem className="lg:flex">
+              {/* Additional content if needed */}
+            </NavbarItem>
+          </NavbarContent>
+          <NavbarContent justify="center">
+            <div className="max-w-[300px] w-full flex items-center gap-3">
+              <div>
+                <Skeleton className="flex rounded-full w-12 h-12" />
+              </div>
+              <div className="w-full flex flex-col gap-2 w-24">
+                <Skeleton className="h-3 w-3/5 rounded-lg" />
+                <Skeleton className="h-3 w-4/5 rounded-lg" />
+              </div>
+            </div>
+          </NavbarContent>
+          <NavbarContent justify="end">
+            {/* Additional content if needed */}
+          </NavbarContent>
+    </Navbar>;
   }
 
   return (
@@ -75,16 +60,23 @@ const ChatProfileSection = () => {
               <Avatar
                 isBordered
                 className="mx-2"
-                color="default"
+                color={isUserOnline? "success" :"primary"}
                 radius="full"
                 size="md"
                 src={`${BASEURL}${profileDataState.photos[0].url}`}
               />
               <div className="flex flex-col ml-2 text-start">
                 <span className="text-l text-foreground font-bold">{profileDataState.firstName}</span>
-                <span className="text-small bold" style={{ color: "#22c55e" }}>
-                  {t("Online")}
-                </span>
+                {isUserOnline ? (
+                  <span className="text-small bold" style={{ color: "#22c55e" }}>
+                    {t("Online")}
+                  </span>
+                ) : (
+                  <span className="text-small bold text-foreground">
+                    {t("offline")}
+                  </span>
+                )}
+                
               </div>
             </button>
           </NavbarContent>

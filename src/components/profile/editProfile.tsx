@@ -8,8 +8,6 @@ import {
   ModalBody,
   Textarea,
   forwardRef,
-  Calendar,
-  DateValue
 } from "@nextui-org/react";
 
 import { useTranslation } from "react-i18next";
@@ -20,12 +18,10 @@ import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
 
-import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
-
 
 const EditProfile = forwardRef((props:any, ref)=> {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch: AppDispatch = useDispatch();
 
   // States to track editable fields
@@ -65,7 +61,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
     if (Object.keys(updatedData).length > 0) {
       // Dispatch the update action only if there are changes
-      const res = await dispatch(updateUserData({ userId: props.user.id, updatedData }));
+      await dispatch(updateUserData({ userId: props.user.id, updatedData }));
     }
 
     onClose(); // Close the modal after saving

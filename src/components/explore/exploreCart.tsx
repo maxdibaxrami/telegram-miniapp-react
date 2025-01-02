@@ -10,11 +10,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeartIconOutLine, HeightIcon, LanguageIcon, BabyIcon, SexualityIcon, ArowUpIcon, ArowDownIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, ArowUpIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import { useTranslation } from 'react-i18next';
 
 const ExploreCard = (props) => {
+
   const [openFooter, setOpenFooter] = useState(false);
   const [exitX, setExitX] = useState(1);
   const [slideCountrt, setSlideCounter] = useState<number>(1);
@@ -31,9 +32,12 @@ const ExploreCard = (props) => {
       if (info.offset.x < -130) {
         setExitX(-130);
         props.setIndex(props.index - 1); // Move to next slide
+        props.handleNotLike()
       } else if (info.offset.x > 130) {
         setExitX(130);
         props.setIndex(props.index - 1); // Move to next slide
+        props.handleNotLike()
+
       }
     }
   };
@@ -45,7 +49,6 @@ const ExploreCard = (props) => {
     exit: (custom) => ({
       x: custom,
       opacity: 0,
-      scale: 0.5,
       transition: { duration: 0.2 }
     })
   };
@@ -343,14 +346,14 @@ const ExploreCard = (props) => {
               <div className="relative h-full w-full">
                 <CardFooter
                     style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
-                    className="items-start flex-col py-3 backdrop-blur bg-default/80 backdrop-saturate-150"
+                    className="items-start flex-col py-3 backdrop-blur bg-background/70 backdrop-saturate-150"
                 >
                   <div className="flex flex-grow gap-2 w-full">
                     <div className="flex flex-col w-full">
                       <div className="flex items-center justify-between w-full mb-1">
                         <div className="flex items-center">
                           <p className="text-foreground capitalize font-bold  text-xl">
-                            {props.profile.firstName}, {props.profile.age} , {props.profile.id}
+                            {props.profile.firstName}, {props.profile.age}
                           </p>
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
                           

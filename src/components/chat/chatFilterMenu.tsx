@@ -8,7 +8,7 @@ import {
 
 import { FilterButton, NewIcon, Favorite } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 
 

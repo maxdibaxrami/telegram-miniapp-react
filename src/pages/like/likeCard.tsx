@@ -1,6 +1,6 @@
-import { Button, Card, CardFooter, Chip, Image } from "@nextui-org/react";
+import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import { BASEURL } from "@/constant";
-import { HeartIcon, VerifyIconFill } from "@/Icons";
+import { VerifyIconFill } from "@/Icons";
 import { useTranslation } from "react-i18next";
 
 const LikeCard = ({ data, onPressData }) => {
@@ -29,7 +29,7 @@ const LikeCard = ({ data, onPressData }) => {
         />
 
 
-      <CardFooter className="justify-between px-2 border-default/20 bg-default/30 border-1 overflow-hidden py-1 absolute rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
+      <CardFooter className="justify-between px-2 border-default/20 bg-background/70 border-1 overflow-hidden py-1 absolute rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
         <p className="text-tiny capitalize text-foreground/80 flex items-center">
         {data.firstName} 
         {data.verifiedAccount &&< VerifyIconFill className="mx-1 size-5 text-primary/80" />}

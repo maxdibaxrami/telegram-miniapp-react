@@ -9,8 +9,9 @@ import { ChatIcon } from "@/Icons/index";
 import { MatchConfetti } from "@/components/explore/buttonEffect";
 import { BASEURL } from "@/constant";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-const MatchModal = ({ isOpen, onClose, modalData }) => {
+const MatchModal = ({ isOpen, onClose, modalData, thisUserId }) => {
   const { t, i18n } = useTranslation();  // Initialize translation hook
 
   useEffect(() => {
@@ -76,6 +77,8 @@ const MatchModal = ({ isOpen, onClose, modalData }) => {
                 color="primary"
                 endContent={<ChatIcon />}
                 variant="solid"
+                as={Link}
+                to={`/chat-detail?user1=${thisUserId}&user2=${modalData.id}`}
               >                  
 
                 {t("send_message")} {/* Translated button text */}
