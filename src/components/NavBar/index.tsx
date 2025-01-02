@@ -31,12 +31,12 @@ const BottomMenu = () => {
           className={"flex w-full fixed items-center"}
           style={{
             zIndex: "50",
-            width: "315px",
+            width: "360px",
             borderRadius: "14px",
             overflow: "hidden",
             bottom:"-120px",
             justifyContent:"center",
-            height:"64px",
+            height:"69px",
             left:"50%",
             transform:"translateX(-50%)"
             
@@ -45,17 +45,18 @@ const BottomMenu = () => {
             <Tabs
               aria-label="Options"
               classNames={{
-                tab: " h-auto p-0 color-white",
-                tabList: "backdrop-blur	bg-background/80 backdrop-saturate-150 border-white/20 border-1 shadow-small"
+                tab: " h-auto p-0.5 color-white",
+                tabList: "backdrop-blur	bg-background/80 backdrop-saturate-150 border-foreground/20 border-1 shadow-small"
               }}
               color="primary"
               size="lg"
+              radius="full"
               selectedKey={searchParams.get("page")}
               style={{
                 zIndex: "10",
                 borderRadius: "14px",
                 overflow: "hidden",
-                height:"64px",
+                height:"69px",
                 bottom:"10px",
 
               }}
@@ -92,7 +93,6 @@ const BottomMenu = () => {
                   <div style={{width:"55px", height:"55px"}} className="flex flex-col justify-center items-center">
                     <ChatIcon/>
                     <p style={{fontSize:"11px"}}>{t('Chat')}</p>
-
                   </div>
                 }
               />

@@ -2,9 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import NearByCard from "@/components/naerby/nearByCard";
 import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
-import NearByFilter from "@/components/naerby/NearByFilter";
-import { FitlerIcon } from "@/Icons";
-import { Button } from "@nextui-org/button";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { NotFoundLike } from "@/Icons/notFoundLike";
@@ -86,15 +83,7 @@ export default function NearByPage() {
       <div className="h-screen w-screen flex flex-col items-center justify-center">
         <NotFoundLike />
         <div className="flex gap-4 flex-col px-6 text-center items-center">
-          <p className="text-tiny">{t("nolikemessage")}</p>
-          <Button
-            className="mx-1"
-            onClick={handleFilterClick}
-            color="primary"
-            endContent={<FitlerIcon />}
-          >
-            {t("Setfilters")}
-          </Button>
+          <p className="text-tiny">{t("exploreUserFilterNoUser")}</p>
         </div>
 
 
@@ -105,7 +94,6 @@ export default function NearByPage() {
           thisUserId={user.id}
 
         />
-      <NearByFilter ref={FilterRef} />
 
         <NearByUserModal
           openModal={openModal}

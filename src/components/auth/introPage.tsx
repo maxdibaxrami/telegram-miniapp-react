@@ -107,7 +107,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="en" size="md" src="https://flagcdn.com/gb.svg" />
+                <Avatar name="en" size="md" src="/assets/gb.svg" />
               }
               endContent={
                 <Checkbox
@@ -129,7 +129,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="ru" size="md" src="https://flagcdn.com/ru.svg" />
+                <Avatar name="ru" size="md" src="/assets/ru.svg" />
               }
               endContent={
                 <Checkbox
@@ -151,7 +151,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="fa" size="md" src="https://flagcdn.com/ir.svg" />
+                <Avatar name="fa" size="md" src="/assets/ir.svg" />
               }
               endContent={
                 <Checkbox
@@ -173,7 +173,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           <motion.li className="item" variants={item}>
             <Chip
               avatar={
-                <Avatar name="ar" size="md" src="https://flagcdn.com/sa.svg" />
+                <Avatar name="ar" size="md" src="/assets/sa.svg" />
               }
               endContent={
                 <Checkbox

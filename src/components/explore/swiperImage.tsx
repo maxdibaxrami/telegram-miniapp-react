@@ -21,7 +21,6 @@ const SwiperImages = ({url}) => {
                 wrapper: "w-full maxcontentimportant",
             }}
             onClick={NextSlide}
-            loading="lazy"
             src={`${BASEURL}${url}`}
             
             style={{

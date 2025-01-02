@@ -6,7 +6,7 @@ export function EnvUnsupported() {
   
   const [platform, isDark] = useMemo(() => {
     let platform = 'base';
-    let isDark = false;
+    let isDark = true;
     try {
       const lp = retrieveLaunchParams();
       const { bgColor } = lp.themeParams;

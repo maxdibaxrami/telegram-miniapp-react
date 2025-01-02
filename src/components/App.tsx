@@ -140,7 +140,7 @@ export function App() {
 
             <Route
               path="*"
-              element={data ? <Navigate to="/main?page=chat" replace /> : <Navigate to="/sign-up" replace />}
+              element={data ? <Navigate to="/main?page=profile" replace /> : <Navigate to="/sign-up" replace />}
             />
             
             </Routes>

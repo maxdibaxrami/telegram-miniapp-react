@@ -3,7 +3,7 @@ import { ArrowRight, ArrowLeft } from "@/Icons/index";
 import { useTranslation } from 'react-i18next';
 
 const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, handleSignup }) => {
-  const { i18n } = useTranslation();
+  const {t, i18n } = useTranslation();
   return (
       <Navbar isBlurred={false} className="w-full bg-transparent">
         <NavbarContent justify="start">
@@ -27,7 +27,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
         </NavbarContent>
         <NavbarContent justify="end">
           <Button
-            isIconOnly
+            isIconOnly={selectedTab != 0}
             aria-label="Like"
             color="primary"
             size="lg"
@@ -43,6 +43,13 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
               }  
             }}
           >
+            {selectedTab == 0 &&
+              <span style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}>
+                  {t("Next")}
+                </span>
+           }
+           
+
             <ArrowRight />
           </Button>
         </NavbarContent>

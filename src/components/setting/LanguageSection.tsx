@@ -80,19 +80,19 @@ export default function LanguageSection() {
     <>
       <RadioGroup value={selectedLanguage} onValueChange={setSelectedLanguage} label={t('language')}>
         <CustomRadio value="en">
-          <Avatar name="en" size="md" src="https://flagcdn.com/gb.svg" />
+          <Avatar name="en" size="md" src="/assets/gb.svg" />
           <p className="text-bold mx-2">English</p>
         </CustomRadio>
         <CustomRadio value="ru">
-          <Avatar name="ru" size="md" src="https://flagcdn.com/ru.svg" />
+          <Avatar name="ru" size="md" src="/assets/ru.svg" />
           <p className="text-bold mx-2">Russian</p>
         </CustomRadio>
         <CustomRadio value="fa">
-          <Avatar name="fa" size="md" src="https://flagcdn.com/ir.svg" />
+          <Avatar name="fa" size="md" src="/assets/ir.svg" />
           <p className="text-bold mx-2">Farsi</p>
         </CustomRadio>
         <CustomRadio value="ar">
-          <Avatar name="ar" size="md" src="https://flagcdn.com/sa.svg" />
+          <Avatar name="ar" size="md" src="/assets/sa.svg" />
           <p className="text-bold mx-2">Arabic</p>
         </CustomRadio>
       </RadioGroup>
