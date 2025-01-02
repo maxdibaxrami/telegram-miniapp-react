@@ -40,6 +40,7 @@ export default function ChatPage() {
       return null;
     }
   };
+  
 
   const fetchMessages = async () => {
     try {
