@@ -1,4 +1,4 @@
-import { Avatar } from "@nextui-org/react";
+import { Avatar, cn } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo } from "react";
 import PropTypes from 'prop-types';
@@ -9,7 +9,15 @@ import {
   HashtagIcon,
   ChatIcon,
   FireIcon,
-  HeartIcon
+  HeartIcon,
+  DrinkStatusIcon,
+  HeightIcon,
+  KidStatusIcon,
+  LanguageIcon,
+  LikeIcon,
+  PetStatusIcon,
+  SexualityIcon,
+  SmokingStatusIcon
 } from "@/Icons";
 import { Listbox, ListboxSection, ListboxItem, Chip } from "@nextui-org/react"; // Imported components
 import { useTranslation } from "react-i18next";
@@ -82,7 +90,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       gradient: "bg-gradient-to-br from-[#C20E4D] to-[#F54180]",
       icon: <WorkAndStudyIconSolid className="size-6" />,
       label: t("workAndEducation"),
-      text: profile.education,
+      text: profile.profileData.education,
     },
     {
       key: 2,
@@ -90,7 +98,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       gradient: "bg-gradient-to-br from-[#338EF7] to-[#004493]",
       icon: <AboutMeSolid className="size-6" />,
       label: `${t("Bio")}:`,
-      text: profile.bio,
+      text: profile.profileData.bio,
     },
     {
       key: 3,
@@ -98,7 +106,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       gradient: "bg-gradient-to-br from-[#0E793C] to-[#17C964]",
       icon: <SearchIcon className="size-6" />,
       label: t("lookingFor"),
-      text: Items.find(item => item.id == profile.lookingFor).title,
+      text: Items.find(item => item.id == profile.profileData.lookingFor).title,
     }
   ];
 
@@ -249,6 +257,44 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
     { id: 100, name: t("Astronaut Training") }
   ];
 
+
+  const PetStatus = [
+    { key: "has_pets", label: t("has_pets") },
+    { key: "no_pets", label: t("no_pets") },
+    { key: "likes_pets", label: t("likes_pets") },
+    { key: "does_not_like_pets", label: t("does_not_like_pets") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+  const DrinkStatus = [
+    { key: "drinks_regularly", label: t("drinks_regularly") },
+    { key: "occasionally_drinks", label: t("occasionally_drinks") },
+    { key: "does_not_drink", label: t("does_not_drink") },
+    { key: "trying_to_quit_drinking", label: t("trying_to_quit_drinking") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+  const SmokingStatus = [
+    { key: "smokes_regularly", label: t("smokes_regularly") },
+    { key: "occasionally_smokes", label: t("occasionally_smokes") },
+    { key: "does_not_smoke", label: t("does_not_smoke") },
+    { key: "trying_to_quit_smoking", label: t("trying_to_quit_smoking") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+  const KidStatus = [
+    { key: "has_kids", label: t("has_kids") },
+    { key: "no_kids", label: t("no_kids") },
+    { key: "wants_kids", label: t("wants_kids") },
+    { key: "does_not_want_kids", label: t("does_not_want_kids") },
+    { key: "open_to_kids", label: t("open_to_kids") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
   // Render profile information and Listbox when footer is open
   return (
     <div>
@@ -297,31 +343,111 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
                   <ListboxItem
                     key="7"
                     isReadOnly
-                    description={RealationStatus.find(RealationStatus => RealationStatus.key === profile.relationStatus).label}
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-primary/10 text-primary">
+                        <LikeIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={RealationStatus.find(RealationStatus => RealationStatus.key === profile.moreAboutMe.relationStatus).label}
                   >
-                    {t("relationStatus")}
+                    {t("relationStatus")}:
                   </ListboxItem>
                   <ListboxItem
                     key="8"
                     isReadOnly
-                    description={`${profile.height} cm`}
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-secondary/10 text-secondary">
+                        <HeightIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={`${profile.moreAboutMe.height} cm`}
                   >
-                    {t("height")}
+                    {t("height")}:
                   </ListboxItem>
                   <ListboxItem
                     key="10"
                     isReadOnly
-                    description={profile.languages.map((value)=> languages.find(languages => languages.key === value).label).join(", ")}
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-success/10 text-success">
+                        <LanguageIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={profile.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label).join(", ")}
                   >                    
 
-                    {t("language")}
+                    {t("language")}:
                   </ListboxItem>
                   <ListboxItem
                     key="11"
                     isReadOnly
-                    description={SexualityStatus.find(SexualityStatus => SexualityStatus.key === profile.sexuality).label}
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-warning/10 text-warning">
+                        <SexualityIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={SexualityStatus.find(SexualityStatus => SexualityStatus.key === profile.moreAboutMe.sexuality).label}
                   >
-                    {t("sexuality")}
+                    {t("sexuality")}:
+                  </ListboxItem>
+
+                  <ListboxItem
+                    key="12"
+                    isReadOnly
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-primary/10 text-primary">
+                        <KidStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={KidStatus.find(KidStatus => KidStatus.key === profile.moreAboutMe.kids).label}
+                  >
+                    {t("kids")}:
+                  </ListboxItem>
+
+                  <ListboxItem
+                    key="13"
+                    isReadOnly
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-secondary/10 text-secondary">
+                        <SmokingStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={SmokingStatus.find(SmokingStatus => SmokingStatus.key === profile.moreAboutMe.smoking).label}
+                  >
+                    {t("SmokingStatus")}:
+                  </ListboxItem>
+
+                  <ListboxItem
+                    key="14"
+                    isReadOnly
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-danger/10 text-danger">
+                        <DrinkStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={DrinkStatus.find(DrinkStatus => DrinkStatus.key === profile.moreAboutMe.drink).label}
+                  >
+                    {t("DrinkStatus")}:
+                  </ListboxItem>
+
+                  <ListboxItem
+                    key="15"
+                    isReadOnly
+                    classNames={{"title":"font-medium", "base":"px-0"}}
+                    startContent={
+                      <IconWrapper className="bg-warning/10 text-warning">
+                        <PetStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    description={PetStatus.find(PetStatus => PetStatus.key === profile.moreAboutMe.pets).label}
+                  >
+                    {t("PetStatus")}:
                   </ListboxItem>
                 </ListboxSection>
 
@@ -380,3 +506,10 @@ ExploreCartData.propTypes = {
 };
 
 export default ExploreCartData;
+
+
+export const IconWrapper = ({children, className}) => (
+  <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center rounded-small justify-center p-2")}>
+    {children}
+  </div>
+);

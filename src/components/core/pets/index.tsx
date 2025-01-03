@@ -26,26 +26,25 @@ import { useTranslation } from "react-i18next";
     );
   };
   
-const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+const PetsListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState(user.moreAboutMe.sexuality);
+  const [selected, setSelected] = useState(user.moreAboutMe.pets);
   const { t } = useTranslation();
 
   useEffect(()=>{
     if(selected !== ""){
-      setSlideAvailable("sexuality",selected)
+      setSlideAvailable("pets",selected)
     }else{
-      setSlideUnAvailable("sexuality",selected)
+      setSlideUnAvailable("pets",selected)
     }
 
   },[selected])
   
-  const SexualityStatus = [
-    { key: "straight", label: t("straight") },
-    { key: "gay", label: t("gay") },
-    { key: "lesbian", label: t("lesbian") },
-    { key: "bisexual", label: t("bisexual") },
-    { key: "pansexual", label: t("pansexual") },
+  const PetStatus = [
+    { key: "has_pets", label: t("has_pets") },
+    { key: "no_pets", label: t("no_pets") },
+    { key: "likes_pets", label: t("likes_pets") },
+    { key: "does_not_like_pets", label: t("does_not_like_pets") },
     { key: "ratthernotsay", label: t("Irathernotsay") },
 
   ];
@@ -53,9 +52,9 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("SexualityStatus")}>
-                {SexualityStatus.map((value)=> {
-                    return <CustomRadio  value={value.key}>
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("PetStatus")}>
+                {PetStatus.map((value, index)=> {
+                    return <CustomRadio key={index} value={value.key}>
                     {value.label}
                 </CustomRadio>
                 })}
@@ -67,6 +66,6 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   
 
   
-  export default SexualityStatusAuth;
+  export default PetsListSelector;
   
 

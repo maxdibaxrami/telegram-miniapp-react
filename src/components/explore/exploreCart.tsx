@@ -293,7 +293,7 @@ const ExploreCard = (props) => {
                   style={{ marginRight: "10px" }}
                   startContent={<HeartIconOutLine fill="#FFF" className="size-4  mx-1" />}
                 >
-                        {RealationStatus.find(RealationStatus => RealationStatus.key === props.profile.relationStatus).label}
+                  {RealationStatus.find(RealationStatus => RealationStatus.key === props.profile.moreAboutMe.relationStatus).label}
                 </Chip>
 
                 <Chip
@@ -305,10 +305,10 @@ const ExploreCard = (props) => {
 
                   startContent={<HeightIcon fill="#FFF" className="size-4  mx-1" />}
                 >
-                  {props.profile.height}
+                  {props.profile.moreAboutMe.height}
                 </Chip>
 
-                    {props.profile.languages.map((value)=> languages.find(languages => languages.key === value).label).map((value,index)=>{
+                    {props.profile.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label).map((value,index)=>{
                           return <Chip
                           variant="solid"
                           color="primary"
@@ -331,7 +331,7 @@ const ExploreCard = (props) => {
                   style={{ marginRight: "10px" }}
                   startContent={<SexualityIcon className="size-4  mx-1" />}
                 >
-                        {SexualityStatus.find(SexualityStatus => SexualityStatus.key === props.profile.sexuality).label}
+                        {SexualityStatus.find(SexualityStatus => SexualityStatus.key === props.profile.moreAboutMe.sexuality).label}
                 </Chip>
               </ParallaxText>
             </div>

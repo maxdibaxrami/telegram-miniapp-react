@@ -1,7 +1,8 @@
 import {
     cn,
     Radio,
-    RadioGroup,
+    Slider,
+    SliderValue,
   } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -28,29 +29,30 @@ import { useTranslation } from "react-i18next";
   
 const HeightAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
     const { t } = useTranslation();
-    const [selected, setSelected] = useState(""+user.height);
+    const [value, setValue] = useState<SliderValue>(user.moreAboutMe.height);
 
     useEffect(()=>{
-      if(selected !==""){
-        setSlideAvailable("height",selected)
+      if(value !== null ){
+        setSlideAvailable("height",value)
       }else{
-        setSlideUnAvailable("height",selected)
+        setSlideUnAvailable("height",value)
       }
   
-    },[selected])
+    },[value])
     
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t('Selectedplancanbechangedatanytime')} label={t('Height')} >
-                {HeightOptions.map((value, index)=> {
-                    return <CustomRadio key={index} value={value.key}>
-                    {value.label}
-                </CustomRadio>
-                })}
-                
-
-            </RadioGroup>
+                <Slider
+                  color="primary"
+                  label={t('Height')}
+                  maxValue={250}
+                  getValue={(a) => `${a} cm`}
+                  minValue={100}
+                  size="lg"
+                  value={value}
+                  onChange={setValue}
+                />
         </form>
       </div>
     );
@@ -59,23 +61,4 @@ const HeightAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
   
   export default HeightAuth;
-  
-
-  const HeightOptions = [
-    { key: "145", label: "4'9\" (145 cm)" },
-    { key: "150", label: "4'11\" (150 cm)" },
-    { key: "155", label: "5'1\" (155 cm)" },
-    { key: "160", label: "5'3\" (160 cm)" },
-    { key: "165", label: "5'5\" (165 cm)" },
-    { key: "170", label: "5'7\" (170 cm)" },
-    { key: "175", label: "5'9\" (175 cm)" },
-    { key: "180", label: "5'11\" (180 cm)" },
-    { key: "185", label: "6'1\" (185 cm)" },
-    { key: "190", label: "6'3\" (190 cm)" },
-    { key: "195", label: "6'5\" (195 cm)" },
-    { key: "200", label: "6'7\" (200 cm)" },
-    { key: "205", label: "6'9\" (205 cm)" },
-    { key: "210", label: "6'11\" (210 cm)" },
-    { key: "215", label: "7'1\" (215 cm)" }
-  ];
   

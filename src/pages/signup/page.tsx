@@ -9,10 +9,7 @@ import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
 import { SparklesText } from "@/components/animate/sparkles";
 import { Page } from "@/components/Page";
-import HeightAuth from '@/components/auth/HeightAuth';
 import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
-import LanguageAuth from "@/components/auth/languagesAuth";
-import SexualityStatusAuth from "@/components/auth/SexualityStatusAuth";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import InterestingAuth from "@/components/auth/interstingAuth";
 import "./style.css"
@@ -22,8 +19,12 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
 import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
+import { useTranslation } from "react-i18next";
 
 export default function SignupPage() {
+
+  const { i18n } = useTranslation();
+  
 
   const contentRef = useRef(null); // Ref to track content height
   const lp = useLaunchParams();
@@ -46,29 +47,22 @@ export default function SignupPage() {
     telegramId: initDataState.hash,
     username: initDataState.hash,
     firstName: '',
-    photoUrl: '',
     city: '',
     country: '',
-    languages: [],
-    interests: [],
-    height: '',
     gender: '',
     lookingFor: '',
-    relationStatus: '',
-    sexuality: '',
     education: '',
     work: '',
     bio: '',
-    verifiedAccount: true,
-    language: 'en',
     age: 24,
     dateBirth: '2000-01-14',
+    languages:[i18n.language],
+    language:i18n.language,
     lat: null,
     lon: null,
-    blockedUsers: [],
-    favoriteUsers: [],
   });
 
+  useEffect(()=>{console.log(user)},[user])
   useEffect(() => {
     // Call getLocation to fetch location and coordinates
     getLocation(setError, setLocation, setCoordinates);
@@ -157,7 +151,7 @@ export default function SignupPage() {
   return (
     <Page back={false}>
         <motion.div className="flex flex-col items-center justify-between">
-          <motion.div animate={selectedTab === 11? {top:"-100px", opacity:0} : "bottom-0"} ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
+          <motion.div animate={selectedTab === 8? {top:"-100px", opacity:0} : "bottom-0"} ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
             <div className="text-center">
               <SparklesText text="Mull Mull" />
             </div>
@@ -196,6 +190,7 @@ export default function SignupPage() {
                   <ProfileDataAuth2 user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
                 </motion.div>
               )}
+
               {selectedTab === 3 && (
                 <motion.div
                   animate={{ opacity: 1 }}
@@ -206,17 +201,8 @@ export default function SignupPage() {
                   <GenderStuffAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
                 </motion.div>
               )}
+
               {selectedTab === 4 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <HeightAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
-              )}
-              {selectedTab === 5 && (
                 <motion.div
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -226,28 +212,9 @@ export default function SignupPage() {
                   <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </motion.div>
               )}
-              {selectedTab === 6 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <LanguageAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
-                </motion.div>
-              )}
-              {selectedTab === 7 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <SexualityStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
-              )}
 
-              {selectedTab === 8 && (
+
+              {selectedTab === 5 && (
                 <motion.div
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -258,7 +225,7 @@ export default function SignupPage() {
                 </motion.div>
               )}
 
-              {selectedTab === 9 && (
+              {selectedTab === 6 && (
                 <motion.div
                   animate={{ opacity: 1 }}
                   exit={{  opacity: 0 }}
@@ -270,7 +237,7 @@ export default function SignupPage() {
               )}
 
 
-              {selectedTab === 10 && (
+              {selectedTab === 7 && (
                 <motion.div
                   animate={{  opacity: 1 }}
                   exit={{  opacity: 0 }}
@@ -280,7 +247,7 @@ export default function SignupPage() {
                   <ImageDataAuth userPhoto={userPhoto} setUserPhoto={setUserPhoto} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
                 </motion.div>
               )}
-              {selectedTab === 11 && (
+              {selectedTab === 8 && (
                 <motion.div
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -297,7 +264,7 @@ export default function SignupPage() {
           <motion.div
             className="fixed pb-6 bottom-0 backdrop-blur backdrop-saturate-150 "
             style={{width:"100%",zIndex:999}}
-            animate={selectedTab === 11? {bottom:"-100px"} : "bottom-0"}
+            animate={selectedTab === 8? {bottom:"-100px"} : "bottom-0"}
           >
             <BottomController
               nextPage={NextPage}

@@ -17,6 +17,8 @@ interface NearByState {
   page: number;
   limit: number;
   total: number;
+  genderFilter: string | null;
+
   filters: {
     ageRange: string | null;
     city: string | null;
@@ -34,6 +36,7 @@ const initialState: NearByState = {
   page: 1, // Start from the first page
   limit: 20, // Number of users to fetch per page
   total: 0,  // Total number of users available
+  genderFilter:null,
   filters: {
     ageRange: null,
     city: null,
@@ -71,6 +74,7 @@ export const fetchNearBySliceUsers = createAsyncThunk(
       radius,
       page,
       limit,
+      genderFilter, // Add gender filter here
     }: {
       userId: string;
       ageRange?: string;
@@ -82,6 +86,7 @@ export const fetchNearBySliceUsers = createAsyncThunk(
       radius?: number;
       page: number;
       limit: number;
+      genderFilter?: string; // Optional genderFilter
     },
     { rejectWithValue }
   ) => {
@@ -97,6 +102,7 @@ export const fetchNearBySliceUsers = createAsyncThunk(
         radius,
         page,
         limit,
+        genderFilter, // Include genderFilter in query params
       });
 
       // Make the API call to fetch the users with the filters and pagination
@@ -108,22 +114,24 @@ export const fetchNearBySliceUsers = createAsyncThunk(
   }
 );
 
+
 // Create the explore slice with pagination, dynamic data fetching, and filter management
 const NearBySlice = createSlice({
   name: 'nearby',
   initialState,
   reducers: {
     // Action to update filters
-    setFilters: (state, action: PayloadAction<NearByState['filters']>) => {
+    setFilters: (state, action: PayloadAction<NearByState['filters'] & { genderFilter: string | null }>) => {
       state.filters = action.payload;
+      state.genderFilter = action.payload.genderFilter || null; // Add gender filter
       state.page = 1; // Reset to first page when filters are updated
       state.data = null; // Clear current data to fetch with new filters
     },
+    
     // Action to remove a user from the state based on userId
     removeUserFromState: (state, action: PayloadAction<number>) => {
       state.loading = true;
       if (state.data) {
-        // Filter out the user based on the userId provided
         state.data = state.data.filter((user) => user.id !== action.payload);
         state.loading = false;
       }
@@ -131,43 +139,27 @@ const NearBySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch explore users cases
       .addCase(fetchNearBySliceUsers.pending, (state) => {
-        if(state.page === 1){
-          state.loading = true;
-        }else{
-          state.loadingMore = true;
-        }
-        
+        state.page === 1 ? (state.loading = true) : (state.loadingMore = true);
         state.error = null;
       })
       .addCase(fetchNearBySliceUsers.fulfilled, (state, action: PayloadAction<{ users: User[]; total: number }>) => {
-        if(state.page === 1){
-          state.loading = false;
-        }else{
-          state.loadingMore = false;
-        }
+        state.page === 1 ? (state.loading = false) : (state.loadingMore = false);
         state.total = action.payload.total;
 
-        // If there's already data, concatenate the new data (pagination)
-        if (state.data && state.data.length) {
-          state.data = [...state.data, ...action.payload.users];
-        } else {
-          state.data = action.payload.users;
-        }
-        state.page += 1; // Increment page after each successful fetch
+        state.data = state.data && state.data.length
+          ? [...state.data, ...action.payload.users]
+          : action.payload.users;
+
+        state.page += 1;
       })
       .addCase(fetchNearBySliceUsers.rejected, (state, action) => {
-        if(state.page === 1){
-          state.loading = false;
-        }else{
-          state.loadingMore = false;
-        }
+        state.page === 1 ? (state.loading = false) : (state.loadingMore = false);
         state.error = action.payload as string || 'Failed to fetch explore users';
       });
   },
 });
 
 export const { setFilters, removeUserFromState } = NearBySlice.actions;
-
 export default NearBySlice.reducer;
+

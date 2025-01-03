@@ -26,26 +26,25 @@ import { useTranslation } from "react-i18next";
     );
   };
   
-const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+const DrinkListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState(user.moreAboutMe.sexuality);
+  const [selected, setSelected] = useState(user.moreAboutMe.drink);
   const { t } = useTranslation();
 
   useEffect(()=>{
     if(selected !== ""){
-      setSlideAvailable("sexuality",selected)
+      setSlideAvailable("drink",selected)
     }else{
-      setSlideUnAvailable("sexuality",selected)
+      setSlideUnAvailable("drink",selected)
     }
 
   },[selected])
   
-  const SexualityStatus = [
-    { key: "straight", label: t("straight") },
-    { key: "gay", label: t("gay") },
-    { key: "lesbian", label: t("lesbian") },
-    { key: "bisexual", label: t("bisexual") },
-    { key: "pansexual", label: t("pansexual") },
+  const DrinkStatus = [
+    { key: "drinks_regularly", label: t("drinks_regularly") },
+    { key: "occasionally_drinks", label: t("occasionally_drinks") },
+    { key: "does_not_drink", label: t("does_not_drink") },
+    { key: "trying_to_quit_drinking", label: t("trying_to_quit_drinking") },
     { key: "ratthernotsay", label: t("Irathernotsay") },
 
   ];
@@ -53,9 +52,9 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("SexualityStatus")}>
-                {SexualityStatus.map((value)=> {
-                    return <CustomRadio  value={value.key}>
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("DrinkStatus")}>
+                {DrinkStatus.map((value)=> {
+                    return <CustomRadio key={value.key} value={value.key}>
                     {value.label}
                 </CustomRadio>
                 })}
@@ -67,6 +66,6 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   
 
   
-  export default SexualityStatusAuth;
+  export default DrinkListSelector;
   
 

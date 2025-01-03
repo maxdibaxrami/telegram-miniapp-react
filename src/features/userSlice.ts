@@ -5,8 +5,25 @@ import axios from '../api/base';
 interface Photo {
   url: any;
   id: number;
-  path: string;
   order: number;
+}
+
+interface ProfileData {
+  lookingFor: string;
+  education: string;
+  work: string;
+  bio: string;
+}
+
+interface MoreAboutMe {
+  languages: string[];
+  height: number;
+  relationStatus: string;
+  sexuality: string;
+  kids: string | null;
+  smoking: string | null;
+  drink: string | null;
+  pets: string | null;
 }
 
 interface UserData {
@@ -14,44 +31,34 @@ interface UserData {
   telegramId: string;
   username: string;
   firstName: string;
-  lastName: string | null;
   city: string;
+  profileData: ProfileData;
+  moreAboutMe: MoreAboutMe;
   country: string;
-  languages: string[];
   interests: string[];
-  height: number;
   premium: boolean;
   activityScore: number | null;
   gender: string;
-  lookingFor: string;
-  relationStatus: string;
-  sexuality: string;
-  education: string;
-  work: string;
-  hobbies: string | null;
   profileViews: number;
   lastActive: string | null;
-  bio: string;
   verifiedAccount: boolean;
   photos: Photo[];
   blockedUsers: string[] | null;
   favoriteUsers: string[] | null;
   age: number;
   languagePreferences: string[] | null;
-  reportedUsers: string[];
   isDeleted: boolean;
   language: string;
   lat: string;
   lon: string;
 }
 
-
 // Define the user state
 interface UserState {
   data: UserData | null;
   loading: boolean;
   updateUserData: boolean;
-  uploadProfileLoading:boolean;
+  uploadProfileLoading: boolean;
   error: string | null;
 }
 
@@ -59,8 +66,8 @@ interface UserState {
 const initialState: UserState = {
   data: null,
   loading: false,
-  updateUserData :false,
-  uploadProfileLoading : false,
+  updateUserData: false,
+  uploadProfileLoading: false,
   error: null,
 };
 
@@ -86,18 +93,15 @@ export const updateUserPhoto = createAsyncThunk(
   'user/updatePhoto',
   async ({ userId, photoFile }: { userId: string; photoFile: File }, { rejectWithValue }) => {
     try {
-      // Create FormData to handle file upload
       const formData = new FormData();
       formData.append('file', photoFile);
 
-      // Make the request to update the photo
       const response = await axios.patch(`/photo/update-file/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      // Return the updated photo information (assumed from response)
       return response.data as Photo;
     } catch (error: any) {
       return rejectWithValue(error.response.data || 'Failed to update photo');
@@ -108,7 +112,6 @@ export const updateUserPhoto = createAsyncThunk(
 export const uploadProfileImage = createAsyncThunk(
   'auth/uploadProfileImage',
   async ({ userId, imageFile, order }: any) => {
-
     const formData = new FormData();
     formData.append('file', imageFile);
     formData.append('userId', userId);
@@ -147,10 +150,9 @@ const userSlice = createSlice({
         state.updateUserData = false;
 
         if (state.data) {
-          // Merge the existing state with the updated fields
           state.data = { ...state.data, ...action.payload };
         } else {
-          state.data = action.payload as UserData; // If no data exists, set the new data
+          state.data = action.payload as UserData;
         }
       })
       .addCase(updateUserData.rejected, (state, action) => {
@@ -166,7 +168,6 @@ const userSlice = createSlice({
         state.uploadProfileLoading = false;
 
         if (state.data) {
-          // Update the photos array by adding the new photo or updating an existing one
           const updatedPhotos = state.data.photos.map(photo => 
             photo.id === action.payload.id ? action.payload : photo
           );
@@ -187,7 +188,6 @@ const userSlice = createSlice({
         state.uploadProfileLoading = false;
 
         if (state.data) {
-          // Add the uploaded image to the photos array
           state.data.photos.push(action.payload);
         }
       })
@@ -197,7 +197,5 @@ const userSlice = createSlice({
       });
   },
 });
-
-
 
 export default userSlice.reducer;

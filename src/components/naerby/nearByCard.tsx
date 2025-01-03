@@ -22,7 +22,7 @@ const NearByCard = ({ data, onCardClick, num }) => {
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
-          <CardFooter className=" backdrop-blur	bg-background/70 backdrop-saturate-150 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+          <CardFooter style={{height:"34px"}} className=" backdrop-blur	bg-background/70 backdrop-saturate-150 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
               <div className=" w-full">
                 <div className="flex justify-between items-center">
                   <p style={{textAlign:"start"}} className="flex items-center text-tiny text-foreground text-handller">

@@ -1,4 +1,5 @@
 {
+  "All":"الكل",
   "welcome": "مرحبًا",
   "description": "هذا تطبيق متعدد اللغات",
   "Selectlanguageforcontinue": "اختر اللغة للمتابعة:",
@@ -248,7 +249,7 @@
       "Setting": "الإعدادات",
       "EditProfile": "تعديل الملف الشخصي",
       "Delete": "حذف",
-      "youshoulduploadminimum3photoandmaximum6photo":"يجب عليك تحميل 3 صور على الأقل و 6 صور كحد أقصى",
+      "youshoulduploadminimum3photoandmaximum6photo":"يجب عليك تحميل 1 صور على الأقل و 6 صور كحد أقصى",
       "addPhoto":"أضف صورة",
       "hero_image_alt": "صورة بطل NextUI",
       "match_text": "إنه تطابق!",
@@ -263,7 +264,35 @@
       "Reachedlimit":"وصلت إلى الحد",
       "Tounlockallfeatures,youneedapremiumaccount.":"للوصول إلى جميع الميزات، يجب أن يكون لديك حساب مميز.",
       "Inviteyourfriendsandgetapremiumaccount":"ادعُ أصدقاءك واحصل على حساب بريميوم!",
-      "Next":"التالي"
+      "Next":"التالي",
+
+
+      "has_kids": "لديه أطفال",
+      "no_kids": "ليس لديه أطفال",
+      "wants_kids": "يريد أطفال",
+      "does_not_want_kids": "لا يريد أطفال",
+      "open_to_kids": "منفتح على الأطفال",
+
+
+      "smokes_regularly": "يدخن بانتظام",
+      "occasionally_smokes": "يدخن أحياناً",
+      "does_not_smoke": "لا يدخن",
+      "trying_to_quit_smoking": "يحاول الإقلاع عن التدخين",
+
+
+      "drinks_regularly": "يشرب بانتظام",
+      "occasionally_drinks": "يشرب أحياناً",
+      "does_not_drink": "لا يشرب",
+      "trying_to_quit_drinking": "يحاول الإقلاع عن الشرب",
+
+      "has_pets": "لديه حيوانات أليفة",
+      "no_pets": "ليس لديه حيوانات أليفة",
+      "likes_pets": "يحب الحيوانات الأليفة",
+      "does_not_like_pets": "لا يحب الحيوانات الأليفة",
+
+      "SmokingStatus": "التدخين",
+      "DrinkStatus": "شرب الكحول",
+      "PetStatus": "الحيوانات الأليفة"
 
 
 

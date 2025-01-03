@@ -16,7 +16,11 @@ import {
   HeightIcon,
   LanguageIcon,
   SexualityIcon,
-  PlusIconRound
+  PlusIconRound,
+  DrinkStatusIcon,
+  KidStatusIcon,
+  PetStatusIcon,
+  SmokingStatusIcon
 } from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/index";
@@ -227,6 +231,44 @@ export default function EditProfilePage() {
     { id: 100, name: t("Astronaut Training") }
   ];
 
+  const PetStatus = [
+    { key: "has_pets", label: t("has_pets") },
+    { key: "no_pets", label: t("no_pets") },
+    { key: "likes_pets", label: t("likes_pets") },
+    { key: "does_not_like_pets", label: t("does_not_like_pets") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+  const DrinkStatus = [
+    { key: "drinks_regularly", label: t("drinks_regularly") },
+    { key: "occasionally_drinks", label: t("occasionally_drinks") },
+    { key: "does_not_drink", label: t("does_not_drink") },
+    { key: "trying_to_quit_drinking", label: t("trying_to_quit_drinking") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+  const SmokingStatus = [
+    { key: "smokes_regularly", label: t("smokes_regularly") },
+    { key: "occasionally_smokes", label: t("occasionally_smokes") },
+    { key: "does_not_smoke", label: t("does_not_smoke") },
+    { key: "trying_to_quit_smoking", label: t("trying_to_quit_smoking") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+  const KidStatus = [
+    { key: "has_kids", label: t("has_kids") },
+    { key: "no_kids", label: t("no_kids") },
+    { key: "wants_kids", label: t("wants_kids") },
+    { key: "does_not_want_kids", label: t("does_not_want_kids") },
+    { key: "open_to_kids", label: t("open_to_kids") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
+  ];
+
+
   const { data: user, updateUserData } = useSelector((state: RootState) => state.user);
 
   const getPaddingForPlatform = () => {
@@ -340,7 +382,7 @@ export default function EditProfilePage() {
                   <ListboxItem
                     key="2"
                     onPress={()=> handleClickProfileData("Workandeducation")}
-                    description={user.education}
+                    description={user.profileData.education}
                     startContent={<IconWrapper className="bg-default/30 text-foreground/80"><WorkAndStudyIconSolid className="size-5"/></IconWrapper>}
                     endContent={
                       <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
@@ -352,7 +394,7 @@ export default function EditProfilePage() {
                   <ListboxItem
                     key="3"
                     onPress={()=> handleClickProfileData("WhyIamhere")}
-                    description={Items.find(item => item.id == user.lookingFor).title}
+                    description={Items.find(item => item.id == user.profileData.lookingFor).title}
                     startContent={<IconWrapper className="bg-default/30 text-foreground/80"><SearchIcon className="size-5"/></IconWrapper>}
 
                     endContent={
@@ -365,7 +407,7 @@ export default function EditProfilePage() {
                   <ListboxItem
                     key="4"
                     onPress={()=> handleClickProfileData("Bio")}
-                    description={user.bio}
+                    description={user.profileData.bio}
                     endContent={
                       <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
                     }
@@ -386,7 +428,7 @@ export default function EditProfilePage() {
                   <ListboxItem
                     key="7"
                     onPress={()=> handleClick("RealationStatus")}
-                    description={RealationStatus.find(RealationStatus => RealationStatus.key === user.relationStatus).label}
+                    description={RealationStatus.find(RealationStatus => RealationStatus.key === user.moreAboutMe.relationStatus).label}
                     endContent={
                       <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
                     }
@@ -402,7 +444,7 @@ export default function EditProfilePage() {
 
                   <ListboxItem
                    key="8"
-                    description={`${user.height} cm`}
+                    description={`${user.moreAboutMe.height} cm`}
                     onPress={()=> handleClick("height")}
 
                     endContent={
@@ -421,7 +463,7 @@ export default function EditProfilePage() {
                   <ListboxItem
                      key="10"
                      onPress={()=> handleClick("languages")}
-                     description={`${user.languages.map((value)=> languages.find(languages => languages.key === value).label)}`}
+                     description={`${user.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label)}`}
                      endContent={
                       <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
                     }
@@ -435,10 +477,11 @@ export default function EditProfilePage() {
                     
                     {t("Language")}
                   </ListboxItem>
+
                   <ListboxItem 
                     key="11" 
                     onPress={()=> handleClick("SexualityStatus")}
-                    description={SexualityStatus.find(SexualityStatus => SexualityStatus.key === user.sexuality).label}
+                    description={SexualityStatus.find(SexualityStatus => SexualityStatus.key === user.moreAboutMe.sexuality).label}
                     endContent={
                       <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
                     }
@@ -450,6 +493,81 @@ export default function EditProfilePage() {
                     >
                     
                     {t("SexualityStatus")}
+
+                  </ListboxItem>
+
+
+                  <ListboxItem 
+                    key="12" 
+                    onPress={()=> handleClick("kids")}
+                    description={KidStatus.find(KidStatus => KidStatus.key === user.moreAboutMe.kids).label}
+                    endContent={
+                      <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
+                    }
+                    startContent={
+                      <IconWrapper className="bg-primary/10 text-primary">
+                        <KidStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    >
+                    
+                    {t("kids")}
+
+                  </ListboxItem>
+
+
+                  <ListboxItem 
+                    key="13" 
+                    onPress={()=> handleClick("smoking")}
+                    description={SmokingStatus.find(SmokingStatus => SmokingStatus.key === user.moreAboutMe.smoking).label}
+                    endContent={
+                      <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
+                    }
+                    startContent={
+                      <IconWrapper className="bg-secondary/10 text-secondary">
+                        <SmokingStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    >
+                    
+                    {t("SmokingStatus")}
+
+                  </ListboxItem>
+
+
+                  <ListboxItem 
+                    key="14" 
+                    onPress={()=> handleClick("drink")}
+                    description={DrinkStatus.find(DrinkStatus => DrinkStatus.key === user.moreAboutMe.drink).label}
+                    endContent={
+                      <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
+                    }
+                    startContent={
+                      <IconWrapper className="bg-danger/10 text-danger">
+                        <DrinkStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    >
+                    
+                    {t("DrinkStatus")}
+
+                  </ListboxItem>
+
+                  <ListboxItem 
+                    key="15" 
+                    onPress={()=> handleClick("pets")}
+                    description={PetStatus.find(PetStatus => PetStatus.key === user.moreAboutMe.pets).label}
+                    endContent={
+                      <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
+                    }
+                    startContent={
+                      <IconWrapper className="bg-warning/10 text-warning">
+                        <PetStatusIcon className="size-5" />
+                      </IconWrapper>
+                    }
+                    >
+                    
+                    {t("PetStatus")}
 
                   </ListboxItem>
 

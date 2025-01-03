@@ -1,4 +1,5 @@
 {
+  "All":"Все",
   "welcome": "Добро пожаловать",
   "description": "Это многоязычное приложение",
   "Selectlanguageforcontinue": "Выберите язык для продолжения:",
@@ -247,7 +248,7 @@
       "Setting": "Настройки",
       "EditProfile": "Редактировать профиль",
       "Delete": "Удалить",
-      "youshoulduploadminimum3photoandmaximum6photo":"вам следует загрузить минимум 3 фото и максимум 6 фото",
+      "youshoulduploadminimum3photoandmaximum6photo":"вам следует загрузить минимум 1 фото и максимум 6 фото",
       "addPhoto":"Добавить фото",
       "hero_image_alt": "Изображение героя NextUI",
       "match_text": "Это совпадение!",
@@ -263,7 +264,39 @@
       "Reachedlimit":"Достигнут лимит",
       "Tounlockallfeatures,youneedapremiumaccount.":"Для разблокировки всех функций вам необходим премиум-аккаунт.",
       "Inviteyourfriendsandgetapremiumaccount":"Пригласите своих друзей и получите премиум-аккаунт!",
-      "Next":"Следующий"
+      "Next":"Следующий",
+
+
+      "has_kids": "Есть дети",
+      "no_kids": "Нет детей",
+      "wants_kids": "Хочет детей",
+      "does_not_want_kids": "Не хочет детей",
+      "open_to_kids": "Открыт для детей",
+
+
+      "smokes_regularly": "Курит регулярно",
+      "occasionally_smokes": "Курит иногда",
+      "does_not_smoke": "Не курит",
+      "trying_to_quit_smoking": "Пытается бросить курить",
+
+
+      "drinks_regularly": "Пьет регулярно",
+      "occasionally_drinks": "Пьет иногда",
+      "does_not_drink": "Не пьет",
+      "trying_to_quit_drinking": "Пытается бросить пить",
+
+
+      "has_pets": "Есть домашние животные",
+      "no_pets": "Нет домашних животных",
+      "likes_pets": "Любит домашних животных",
+      "does_not_like_pets": "Не любит домашних животных",
+
+      "SmokingStatus": "Курение",
+      "DrinkStatus": "Употребление алкоголя",
+      "PetStatus": "Домашние животные"
+
+
+
 
 
 

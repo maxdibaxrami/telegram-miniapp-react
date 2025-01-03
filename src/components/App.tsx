@@ -20,7 +20,7 @@ import { fetchMatches } from '@/features/matchSlice';
 import { fetchFilteredExplore } from '@/features/exploreSlice';
 import { fetchConversations } from '@/features/conversationsSlice';
 import { Toaster } from 'react-hot-toast';
-import { fetchNearBySliceUsers } from '@/features/nearBySlice';
+import { fetchNearBySliceUsers, setFilters } from '@/features/nearBySlice';
 
 const GetStoredLanguage = async () => {
   try {
@@ -60,8 +60,7 @@ export function App() {
   const { data, loading } = useSelector((state: RootState) => state.user);
   const [isLoading, setIsLoading] = useState(true);
   const [hasFetchedDetails, setHasFetchedDetails] = useState(false);
-  const filters = useSelector((state: RootState) => state.nearBy);
-
+  
   useEffect(() => {
     // Dispatch fetchUserData only once with the initial hash
     console.log(initDataState.hash);
@@ -71,7 +70,19 @@ export function App() {
   useEffect(() => {
     // Once user data is loaded, dispatch the secondary fetches only once
     if (data && data.id && !hasFetchedDetails) {
+
       setHasFetchedDetails(true);
+
+      const updatedFilters = {
+        ageRange: null,
+        city: null,
+        country: null,
+        languages: null,
+        genderFilter: data.gender === "male" ? "male" : "female",
+      };
+      // Dispatch filters to Redux store
+      dispatch(setFilters(updatedFilters));
+
       const userId = data.id.toString();
       console.log("123321")
       dispatch(fetchLikes(userId));
@@ -81,16 +92,16 @@ export function App() {
         userId: userId,  // Replace with actual user ID
         page: 1,
         limit: 10,
+        
       }));
 
       dispatch(fetchNearBySliceUsers({
-        userId: userId,
+        userId: data.id.toString(),
         page: 1,
         limit: 20,
-        ...filters, // Current filters (including nearby)
+        genderFilter: updatedFilters.genderFilter,
+        ...updatedFilters, // Using updatedFilters directly
       }));
-
-
 
     }
   }, [data]);

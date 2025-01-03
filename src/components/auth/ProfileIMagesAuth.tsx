@@ -27,7 +27,7 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
   };
 
   useEffect(()=> {
-    if(selectedImages.length >= 3){
+    if(selectedImages.length >= 1){
       setSlideAvailable() 
       setUserPhoto(selectedImages)
     }else{

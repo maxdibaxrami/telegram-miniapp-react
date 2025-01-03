@@ -25,10 +25,10 @@ const EditProfile = forwardRef((props:any, ref)=> {
   const dispatch: AppDispatch = useDispatch();
 
   // States to track editable fields
-  const [whyIamHere, setWhyIamHere] = useState(props.user.lookingFor || ""); 
+  const [whyIamHere, setWhyIamHere] = useState(props.user.profileData.lookingFor || ""); 
   const [firstName, setFirstName] = useState(props.user.firstName || "");
-  const [bio, setBio] = useState(props.user.bio || "");
-  const [workAndEducation, setWorkAndEducation] = useState(props.user.education || "");
+  const [bio, setBio] = useState(props.user.profileData.bio || "");
+  const [workAndEducation, setWorkAndEducation] = useState(props.user.profileData.education || "");
 
 
 
@@ -76,7 +76,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
             <form className="flex flex-col">
               {props.selectedItem==="name" &&  <Input autoFocus value={firstName} onChange={(e) => setFirstName(e.target.value)} label={t("Name")} type="text" /> }
 
-              {props.selectedItem==="WhyIamhere" && <LookingforList user={props.user} setSlideAvailable={HandlelookingForList} setSlideUnAvailable={HandlelookingForList}/>}
+              {props.selectedItem==="WhyIamhere" && <LookingforList user={props.user.profileData} setSlideAvailable={HandlelookingForList} setSlideUnAvailable={HandlelookingForList}/>}
 
               {props.selectedItem==="Bio" && <Textarea autoFocus value={bio} onChange={(e) => setBio(e.target.value)} className="w-full" label={t("Bio")} placeholder={t("EnteryourBio")}/>}
 

@@ -1,4 +1,5 @@
 {
+    "All":"All",
     "welcome": "Welcome",
     "description": "This is a multi-language app",
     "Selectlanguageforcontinue":"Select language for continue:",
@@ -248,7 +249,7 @@
     "Setting": "Setting",
     "EditProfile": "Edit Profile",
     "Delete": "Delete",
-    "youshoulduploadminimum3photoandmaximum6photo":"you should upload minimum 3 photo and maximum 6 photo",
+    "youshoulduploadminimum3photoandmaximum6photo":"you should upload minimum 1 photo and maximum 6 photo",
     "addPhoto":"Add Photo",
     "hero_image_alt": "NextUI hero Image",
     "match_text": "It’s a match!",
@@ -263,10 +264,37 @@
     "Reachedlimit":"Reached limit",
     "Tounlockallfeatures,youneedapremiumaccount.":"To unlock all features, you need a premium account.",
     "Inviteyourfriendsandgetapremiumaccount":"Invite your friends and get a premium account!",
-    "Next":"Next"
+    "Next":"Next",
 
 
+
+    "has_kids": "Has kids",
+    "no_kids": "No kids",
+    "wants_kids": "Wants kids",
+    "does_not_want_kids": "Doesn't want kids",
+    "open_to_kids": "Open to kids",
 
   
+    "smokes_regularly": "Smokes regularly",
+    "occasionally_smokes": "Occasionally smokes",
+    "does_not_smoke": "Doesn't smoke",
+    "trying_to_quit_smoking": "Trying to quit smoking",
+
+
+    "drinks_regularly": "Drinks regularly",
+    "occasionally_drinks": "Occasionally drinks",
+    "does_not_drink": "Doesn't drink",
+    "trying_to_quit_drinking": "Trying to quit drinking",
+
+
+    "has_pets": "Has pets",
+    "no_pets": "No pets",
+    "likes_pets": "Likes pets",
+    "does_not_like_pets": "Doesn't like pets",
+
+
+    "SmokingStatus": "Smoking",
+    "DrinkStatus": "Drinking",
+    "PetStatus": "Pets"
   }
   

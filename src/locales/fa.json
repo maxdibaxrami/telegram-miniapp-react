@@ -1,4 +1,5 @@
 {
+    "All":"همه",
     "welcome": "خوش آمدید",
     "description": "این یک برنامه چندزبانه است",
     "Selectlanguageforcontinue": "برای ادامه زبان را انتخاب کنید:",
@@ -248,7 +249,7 @@
       "Setting": "تنظیمات",
       "EditProfile": "ویرایش پروفایل",
       "Delete": "حذف",
-      "youshoulduploadminimum3photoandmaximum6photo":"شما باید حداقل 3 عکس و حداکثر 6 عکس آپلود کنید",
+      "youshoulduploadminimum3photoandmaximum6photo":"شما باید حداقل 1 عکس و حداکثر 6 عکس آپلود کنید",
       "addPhoto":"اضافه کردن عکس",
       "hero_image_alt": "تصویر قهرمان NextUI",
       "match_text": "این یک تطابق است!",
@@ -264,7 +265,34 @@
         "Reachedlimit":"به محدودیت رسیده‌اید",
         "Tounlockallfeatures,youneedapremiumaccount.":"برای دسترسی به تمام ویژگی‌ها، باید حساب کاربری ویژه داشته باشید.",
         "Inviteyourfriendsandgetapremiumaccount":"دوستان خود را دعوت کنید و حساب پریمیوم دریافت کنید!",
-        "Next":"بعدی"
+        "Next":"بعدی",
+        "has_kids": "فرزند دارد",
+        "no_kids": "فرزندی ندارد",
+        "wants_kids": "فرزند می‌خواهد",
+        "does_not_want_kids": "فرزند نمی‌خواهد",
+        "open_to_kids": "برای فرزند آزاد است",
+
+
+        "smokes_regularly": "به طور منظم سیگار می‌کشد",
+        "occasionally_smokes": "گاهی سیگار می‌کشد",
+        "does_not_smoke": "سیگار نمی‌کشد",
+        "trying_to_quit_smoking": "در تلاش برای ترک سیگار",
+
+
+        "drinks_regularly": "به طور منظم مشروب می‌نوشد",
+        "occasionally_drinks": "گاهی مشروب می‌نوشد",
+        "does_not_drink": "مشروب نمی‌نوشد",
+        "trying_to_quit_drinking": "در تلاش برای ترک مشروب",
+
+
+        "has_pets": "حیوان خانگی دارد",
+        "no_pets": "حیوان خانگی ندارد",
+        "likes_pets": "حیوانات خانگی را دوست دارد",
+        "does_not_like_pets": "حیوانات خانگی را دوست ندارد",
+
+        "SmokingStatus": "سیگار کشیدن",
+        "DrinkStatus": "نوشیدن الکل",
+        "PetStatus": "حیوانات خانگی"
 
 
 

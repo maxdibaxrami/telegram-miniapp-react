@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, handleSignup }) => {
   const {t, i18n } = useTranslation();
+  
   return (
       <Navbar isBlurred={false} className="w-full bg-transparent">
         <NavbarContent justify="start">
@@ -23,7 +24,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
           
         </NavbarContent>
         <NavbarContent className="flex w-full gap-4" justify="center">
-         <Progress style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}} isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 9} />
+         <Progress style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}} isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 12} />
         </NavbarContent>
         <NavbarContent justify="end">
           <Button
@@ -33,9 +34,9 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
             size="lg"
             radius="full"
             style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}
-            isDisabled={!nextSlideAvalable || selectedTab === 11}
+            isDisabled={!nextSlideAvalable || selectedTab === 8}
             onClick={()=>{
-              if(selectedTab===10){
+              if(selectedTab===7){
                 nextPage() 
                 handleSignup()
               }else{
@@ -43,13 +44,13 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
               }  
             }}
           >
+
             {selectedTab == 0 &&
               <span style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}>
                   {t("Next")}
-                </span>
-           }
+              </span>
+            }
            
-
             <ArrowRight />
           </Button>
         </NavbarContent>

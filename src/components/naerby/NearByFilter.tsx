@@ -28,6 +28,7 @@ const ExploreFilter = forwardRef((props, ref) => {
   const [locationValue, setLocationValue] = useState(filters.city ? "city" : (filters.country ? "country" : ""));
   const [age, setAge] = useState<SliderValue>(filters.ageRange ? filters.ageRange.split(',').map(Number) : [20, 28]);
   const [language, setLanguage] = useState<Selection>(new Set(filters.languages ? filters.languages.split(',') : []));
+  const [selectGender, setSelectGender] = useState("")
 
   // Languages options
   const languages = [
@@ -68,11 +69,12 @@ const ExploreFilter = forwardRef((props, ref) => {
       city: locationValue === "city" ? data.city : null,
       country: locationValue === "country" ? data.country : null,
       languages: Array.from(language).length !== 0 ? Array.from(language).join(",") : null,
+      genderFilter: selectGender || null,  // Add genderFilter to updated filters
     };
-
+  
     // Dispatch filters to Redux store
     dispatch(setFilters(updatedFilters));
-
+  
     // Fetch users based on the updated filters
     dispatch(
       fetchNearBySliceUsers({
@@ -81,17 +83,19 @@ const ExploreFilter = forwardRef((props, ref) => {
         city: locationValue === "city" ? data.city : null,
         country: locationValue === "country" ? data.country : null,
         languages: Array.from(language).length !== 0 ? Array.from(language).join(",") : null,
-        latitude: null, // Optional: you can update this later
-        longitude: null, // Optional: you can update this later
-        radius: null, // Optional: you can update this later
-        page: 1, // Reset to page 1 after applying new filters
-        limit: 20, // Number of users to fetch per page
+        latitude: null,
+        longitude: null,
+        radius: null,
+        page: 1,
+        limit: 20,
+        genderFilter: selectGender || null, // Include genderFilter in API call
       })
     );
-
+  
     // Close the modal after applying filters
     onClose();
   };
+  
 
   return (
     <Modal
@@ -141,6 +145,31 @@ const ExploreFilter = forwardRef((props, ref) => {
               value={age}
               onChange={setAge}
             />
+
+            <ButtonGroup className="w-full flex">
+              <Button
+                onPress={() => setSelectGender("male")}
+                color={selectGender === "male" ? "primary" : "default"}
+                className="grow"
+              >
+                {t("Male")}
+              </Button>
+              <Button
+                onPress={() => setSelectGender("female")}
+                color={selectGender === "female" ? "primary" : "default"}
+                className="grow"
+              >
+                {t("Female")}
+              </Button>
+              <Button
+                onPress={() => setSelectGender("")}
+                color={selectGender === "" ? "primary" : "default"}
+                className="grow"
+              >
+                {t("All")}
+              </Button>
+            </ButtonGroup>
+
 
             <Select
               className="w-full"

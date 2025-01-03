@@ -32,8 +32,8 @@ const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   const [selected, setSelected] = useState(user.gender);
   
   const Gender = [
-    { key: "Male", label: t('Male') },
-    { key: "Female", label: t('Female') },
+    { key: "male", label: t('Male') },
+    { key: "female", label: t('Female') },
   ];
 
   useEffect(()=>{

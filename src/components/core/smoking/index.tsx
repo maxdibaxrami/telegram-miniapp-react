@@ -26,26 +26,25 @@ import { useTranslation } from "react-i18next";
     );
   };
   
-const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+const SmokingListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState(user.moreAboutMe.sexuality);
+  const [selected, setSelected] = useState(user.moreAboutMe.smoking);
   const { t } = useTranslation();
 
   useEffect(()=>{
     if(selected !== ""){
-      setSlideAvailable("sexuality",selected)
+      setSlideAvailable("smoking",selected)
     }else{
-      setSlideUnAvailable("sexuality",selected)
+      setSlideUnAvailable("smoking",selected)
     }
 
   },[selected])
   
-  const SexualityStatus = [
-    { key: "straight", label: t("straight") },
-    { key: "gay", label: t("gay") },
-    { key: "lesbian", label: t("lesbian") },
-    { key: "bisexual", label: t("bisexual") },
-    { key: "pansexual", label: t("pansexual") },
+  const SmokingStatus = [
+    { key: "smokes_regularly", label: t("smokes_regularly") },
+    { key: "occasionally_smokes", label: t("occasionally_smokes") },
+    { key: "does_not_smoke", label: t("does_not_smoke") },
+    { key: "trying_to_quit_smoking", label: t("trying_to_quit_smoking") },
     { key: "ratthernotsay", label: t("Irathernotsay") },
 
   ];
@@ -53,8 +52,8 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("SexualityStatus")}>
-                {SexualityStatus.map((value)=> {
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("SmokingStatus")}>
+                {SmokingStatus.map((value)=> {
                     return <CustomRadio  value={value.key}>
                     {value.label}
                 </CustomRadio>
@@ -67,6 +66,6 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   
 
   
-  export default SexualityStatusAuth;
+  export default SmokingListSelector;
   
 
