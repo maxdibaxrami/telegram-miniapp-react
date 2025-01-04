@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import NearByCard from "@/components/naerby/nearByCard";
 import NearByUserModal from "@/components/naerby/NearByModal";
-import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { NotFoundLike } from "@/Icons/notFoundLike";
