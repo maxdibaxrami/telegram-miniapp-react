@@ -135,7 +135,7 @@ export default function ChatPage() {
     <Page>
       <ChatLayout>
         <ChatProfileSection profileDataState={profileDataState} loading={loading} isUserOnline={isUserOnline}/>
-        <main style={{ flex: 1, overflow: "auto" }}>
+        <main style={{ flex: 1,height:"100%", overflow: "auto" }}>
           <MessageSection user={user} messages={messages} /> {/* Pass messages to MessageSection */}
         </main>
         <ChatInput 
