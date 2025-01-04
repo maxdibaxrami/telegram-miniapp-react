@@ -12,7 +12,7 @@ import './mockEnv.ts';
 import { Provider } from 'react-redux';
 import { store } from './store.ts';
 
-const root = ReactDOM.createRoot(document.getElementById('content')!);
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 try {
   // Configure all application dependencies.

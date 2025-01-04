@@ -15,10 +15,8 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="wrap">
-      <div id="content">
-
-      </div>
+    <div id="root">
+      
     </div>
     <script src="https://unpkg.com/@telegram-apps/sdk@1.0.0/dist/index.iife.js"></script>
 
@@ -37,10 +35,6 @@
         postEvent('web_app_request_fullscreen');
 
         document.body.classList.add('mobile-body');
-        document.getElementById('wrap').classList.add('mobile-wrap');
-        document.getElementById('content').classList.add('mobile-content');
-
-        
 
         let initialHeight = window.innerHeight;
 
