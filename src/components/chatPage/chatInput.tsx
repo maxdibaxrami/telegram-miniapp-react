@@ -49,7 +49,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
   return (
     <div
       className="flex right-0 items-center justify-between bottom-0"
-      style={{ width: "100%",position:"fixed"}}
+      style={{ width: "100%"}}
     >
       <input
               type="file"
