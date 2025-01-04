@@ -20,45 +20,28 @@
 
       </div>
     </div>
-    <script src="https://unpkg.com/@telegram-apps/sdk@1.0.0/dist/index.iife.js"></script>
 
-    <script>
 
+  <script src="https://unpkg.com/@telegram-apps/sdk@1.0.0/dist/index.iife.js"></script>
+  <script>
       (function() {
-
         var { retrieveLaunchParams, postEvent } = window.telegramApps.sdk;
         var lp = retrieveLaunchParams();
-  
+
         // Some versions of Telegram don't need the classes above.
         if (['macos', 'tdesktop', 'weba', 'web', 'webk'].includes(lp.platform)) {
           return;
         }
-  
+
+        // Expand the application.
+        postEvent('web_app_expand');
         postEvent('web_app_request_fullscreen');
 
         document.body.classList.add('mobile-body');
         document.getElementById('wrap').classList.add('mobile-wrap');
         document.getElementById('content').classList.add('mobile-content');
-
-        
-
-        let initialHeight = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-          if (window.innerHeight >= initialHeight) {
-            console.log('Keyboard closed');
-            // Add your logic for when the keyboard closes
-          }
-          initialHeight = window.innerHeight;
-        });
-
-        window.querySelector('input').addEventListener('focus', function () {
-            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-
       })();
     </script>
-
     <script src="/src/index.tsx" type="module"></script>
 
   </body>
