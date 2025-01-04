@@ -48,8 +48,8 @@ export default function SignupPage() {
     
 
   const [user, setUser] = useState({
-    telegramId: initDataState.hash,
-    username: initDataState.hash,
+    telegramId: initDataState.user.id.toString(),
+    username: initDataState.user.id.toString(),
     firstName: '',
     city: '',
     country: '',
@@ -139,7 +139,7 @@ export default function SignupPage() {
         // Wait for all the uploads to complete
         await Promise.all(uploadPromises);
         
-        await dispatch(fetchUserData(initDataState.hash));
+        await dispatch(fetchUserData(initDataState.user.id.toString()));
 
         // Once all images are uploaded, set loading to false
         setUploadImageLoading(false);
@@ -171,12 +171,6 @@ export default function SignupPage() {
                   initial={{   opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <p>{initDataState.hash}</p>
-                  <p>{initDataState.queryId}</p>
-                  <p>{initDataRaw}</p>
-                  <p>{initDataState.user.id}</p>
-
-
                   <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </motion.div>
               )}

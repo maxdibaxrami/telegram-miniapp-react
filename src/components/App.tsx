@@ -63,8 +63,7 @@ export function App() {
   
   useEffect(() => {
     // Dispatch fetchUserData only once with the initial hash
-    console.log(initDataState.hash);
-    dispatch(fetchUserData(initDataState.hash));
+    dispatch(fetchUserData(initDataState.user.id.toString()));
   }, [dispatch, initDataState.hash]);
 
   useEffect(() => {
