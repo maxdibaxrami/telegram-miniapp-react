@@ -5,10 +5,12 @@ import NearByUserModal from "../naerby/NearByModal";
 import { useTranslation } from "react-i18next";
 
 import { BASEURL } from "@/constant";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
   const childRef = useRef();
   const { t } = useTranslation();
+   const lp = useLaunchParams();
  
   const handleClick = () => {
     if (childRef.current) {
@@ -17,10 +19,20 @@ const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
     }
   };
 
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      return '50px';
+    } else {
+      return '25px';
+    }
+  };
+
   if (loading) {
     return <Navbar
           classNames={{ wrapper: "px-4" }}
-          style={{ paddingTop: '47px' }}
+          style={{ paddingTop: `${getPaddingForPlatform()}` }}
+          className="fixed top-0"
+
     >
       <NavbarContent justify="start">
             <NavbarItem className="lg:flex">
@@ -49,10 +61,10 @@ const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
       <div>
         <Navbar
           disableAnimation
-          className="absolute top-0"
+          className="fixed top-0"
           classNames={{ wrapper: "px-4" }}
-          style={{ paddingTop: '47px' }}
-        >
+          style={{ paddingTop: `${getPaddingForPlatform()}` }}
+          >
           <NavbarContent justify="start">
             <NavbarItem className="lg:flex">
               {/* Additional content if needed */}
