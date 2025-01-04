@@ -21,7 +21,6 @@ export default function ChatLayout({
           position:"relative",
           flexDirection: 'column',
           overflow:"hidden",
-          backgroundColor:"red"
         }}
         >            
       {children}

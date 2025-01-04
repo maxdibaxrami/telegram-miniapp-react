@@ -100,7 +100,7 @@ export default function NearByPage() {
   }
 
   return (
-    <motion.div
+    <div
       className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         paddingTop: "4.5rem",
@@ -145,6 +145,6 @@ export default function NearByPage() {
         thisUserId={user.id}
       />
     }
-    </motion.div>
+    </div>
   );
 }
