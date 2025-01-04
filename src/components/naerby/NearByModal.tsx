@@ -64,6 +64,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
   const ToastErrorLikeLimit = (text1,text2,text3,text4) => {
     toast.custom((t) => (
       <div
+        style={{zIndex:"999"}}
         className={`${
           t.visible ? 'animate-enter' : 'animate-leave'
         } max-w-md backdrop-blur bg-default/70 backdrop-saturate-150 w-full shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
