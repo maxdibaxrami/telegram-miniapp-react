@@ -13,26 +13,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
     <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
       .mobile-body {
-          overflow: hidden;
-          height: 100vh;
-        }
+        height: 100%; /* Use 100% here, and dynamically set the height in JavaScript */
+      }
 
-        .mobile-wrap {
-          position: absolute;
-          left: 0;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          overflow-x: hidden;
-          overflow-y: auto;
-          background: red;
-        }
+      .mobile-wrap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: red;
+      }
 
-        .mobile-content {
-          height: calc(100% + 1px);
-          background: green;
-        }
+      .mobile-content {
+        height: calc(100% + 1px);
+        background: green;
+      }
 
     </style>
   </head>
@@ -60,9 +65,6 @@
         postEvent('web_app_expand');
         postEvent('web_app_request_fullscreen');
 
-        document.body.classList.add('mobile-body');
-        document.getElementById('wrap').classList.add('mobile-wrap');
-        document.getElementById('content').classList.add('mobile-content');
       })();
     </script>
     <script src="/src/index.tsx" type="module"></script>

@@ -7,6 +7,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 import { App } from '@/components/App.tsx';
+import MobileApp from './wapper';
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
@@ -29,17 +30,19 @@ export function Root() {
 
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
-      <Provider store={store}>
-        <ViewportHeightProvider>
-          <NextUIProvider>
-            <TonConnectUIProvider manifestUrl={publicUrl('tonconnect-manifest.json')}>
-              <NextThemesProvider attribute="class" defaultTheme="dark">
-                <App /> {/* I18nextProvider is now moved to the App component */}
-              </NextThemesProvider>
-            </TonConnectUIProvider>
-          </NextUIProvider>
-        </ViewportHeightProvider>
-      </Provider>
+     <ViewportHeightProvider>
+        <MobileApp>
+          <Provider store={store}>
+              <NextUIProvider>
+                <TonConnectUIProvider manifestUrl={publicUrl('tonconnect-manifest.json')}>
+                  <NextThemesProvider attribute="class" defaultTheme="dark">
+                    <App /> {/* I18nextProvider is now moved to the App component */}
+                  </NextThemesProvider>
+                </TonConnectUIProvider>
+              </NextUIProvider>
+          </Provider>
+        </MobileApp>
+      </ViewportHeightProvider>
     </ErrorBoundary>
   );
 }
