@@ -44,7 +44,7 @@ export default function ChatPage() {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/messages/user/${userId2}/${user.id}`);
+      const response = await axios.get(`/messages/user/${userId2}/${user.id}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching messages:", error);

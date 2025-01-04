@@ -137,12 +137,14 @@ export default function NearByPage() {
         loading={loadingUser} // Pass loading state to modal
       />
 
+    {SelectedCard &&
       <MatchModal
         isOpen={isModalOpen}
         modalData={SelectedCard}
         onClose={closeModal}
         thisUserId={user.id}
       />
+    }
     </motion.div>
   );
 }
