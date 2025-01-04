@@ -12,6 +12,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+      .mobile-body {
+          overflow: hidden;
+          height: 100vh;
+        }
+
+        .mobile-wrap {
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          overflow-x: hidden;
+          overflow-y: auto;
+          background: red;
+        }
+
+        .mobile-content {
+          height: calc(100% + 1px);
+          background: green;
+        }
+
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
