@@ -82,7 +82,7 @@ const DataList = ({user}) => {
         <ListboxItem
           key="delete"
           description={t('see_views')}
-          endContent={<Chip color="secondary">33</Chip>}
+          endContent={<Chip color="secondary">0</Chip>}
           startContent={
             <IconWrapper className="bg-default/40 text-secondary/80">
               <ViewIcon className="size-5" />
