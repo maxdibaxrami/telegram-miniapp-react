@@ -21,10 +21,14 @@ import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
 import { useTranslation } from "react-i18next";
 
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
+
+
 export default function SignupPage() {
 
   const { i18n } = useTranslation();
-  
+  const { initDataRaw } = retrieveLaunchParams();
+
 
   const contentRef = useRef(null); // Ref to track content height
   const lp = useLaunchParams();
@@ -167,6 +171,10 @@ export default function SignupPage() {
                   initial={{   opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
+                  <p>{initDataState.hash}</p>
+                  <p>{initDataState.queryId}</p>
+                  <p>{initDataRaw}</p>
+
                   <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </motion.div>
               )}
