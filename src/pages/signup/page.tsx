@@ -174,6 +174,8 @@ export default function SignupPage() {
                   <p>{initDataState.hash}</p>
                   <p>{initDataState.queryId}</p>
                   <p>{initDataRaw}</p>
+                  <p>{initDataState.user.id}</p>
+
 
                   <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </motion.div>
