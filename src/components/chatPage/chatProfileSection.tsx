@@ -18,7 +18,10 @@ const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
   };
 
   if (loading) {
-    return <Navbar>
+    return <Navbar
+          classNames={{ wrapper: "px-4" }}
+          style={{ paddingTop: '47px' }}
+    >
       <NavbarContent justify="start">
             <NavbarItem className="lg:flex">
               {/* Additional content if needed */}
@@ -30,8 +33,8 @@ const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
                 <Skeleton className="flex rounded-full w-12 h-12" />
               </div>
               <div className="w-full flex flex-col gap-2 w-24">
-                <Skeleton className="h-3 w-3/5 rounded-lg" />
-                <Skeleton className="h-3 w-4/5 rounded-lg" />
+                <Skeleton className="h-3 w-24 rounded-lg" />
+                <Skeleton className="h-3 w-14 rounded-lg" />
               </div>
             </div>
           </NavbarContent>
