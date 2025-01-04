@@ -1,22 +1,15 @@
 import useViewportHeight from '@/hooks/useViewPortHook';
-import { useEffect } from 'react';
+import { motion } from "framer-motion"
 
 const MobileApp = ({children}) => {
   const viewportHeight = useViewportHeight();
 
-  useEffect(() => {
-    const wrapElement = document.getElementById('wrap');
-    if (wrapElement) {
-      wrapElement.style.height = `${viewportHeight}px`;  // Dynamically set height
-    }
-  }, [viewportHeight]);
-
   return (
-    <div id="wrap">
-      <div id="content" style={{ height: '100%' }}>
+    <motion.div style={{overflowX:"hidden",overflowY:"auto"}} animate={{height:`${viewportHeight}px`}} className='fixed w-screen left-0 top-0 right-0 bottom-0' id="wrap">
+      <motion.div className='relative' id="content" animate={{height:`${viewportHeight}px`}}>
         {children}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

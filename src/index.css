@@ -11,10 +11,10 @@ body {
   padding: 0;
   margin: 0;
   position: relative;
-  overflow: auto;
 }
 
 html {
+  height: 100vh;
   scroll-behavior: smooth;
 
 }
