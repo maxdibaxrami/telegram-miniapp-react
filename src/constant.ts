@@ -1,1 +1,1 @@
-export const BASEURL = "https://80.78.242.127:3000/"
+export const BASEURL = "https://copychic.online/"
