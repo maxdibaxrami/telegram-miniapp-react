@@ -13,7 +13,6 @@ export default function ChatLayout({
   //const viewportHeight = useViewportHeightContext();
   return (
     <section 
-        className='bg-default-100'
         style={{
           height:`${height}px`,
           transition: 'height 0.3s ease',
@@ -21,6 +20,8 @@ export default function ChatLayout({
           paddingBottom:"2rem",
           position:"relative",
           flexDirection: 'column',
+          overflow:"hidden",
+          backgroundColor:"red"
         }}
         >            
       {children}
