@@ -5,10 +5,9 @@ const useViewportHeight = (): number => {
 
     useEffect(() => {
         const handleResize = () => {
-            setViewportHeight(window.innerHeight);
+            const newHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            setViewportHeight(newHeight);
         };
-
-        document.documentElement.style.transition = 'height 0.3s ease';
 
         window.visualViewport?.addEventListener('resize', handleResize);
         window.addEventListener('resize', handleResize);
