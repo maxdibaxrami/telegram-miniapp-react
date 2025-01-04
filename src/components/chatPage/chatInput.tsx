@@ -4,13 +4,11 @@ import { SendIcon, PhotoIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useRef, useState } from "react";
 import axios from '@/api/base';
-import useViewportHeight from "@/hooks/useViewPortHook";
 
 const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) => {
   const { t, i18n } = useTranslation();
   const [isUploading, setIsUploading] = useState(false); // Track the uploading state
   const fileInputRef = useRef(null); // Ref to control file input
-  const hight = useViewportHeight()
 
    // Handle file selection
    const handleFileChange = (event) => {
@@ -50,10 +48,9 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
 
   return (
     <div
-      className="flex right-0 items-center justify-between"
-      style={{ width: "100%", left: "50%"}}
+      className="flex right-0 items-center justify-between bottom-0"
+      style={{ width: "100%",position:"fixed"}}
     >
-      {hight}
       <input
               type="file"
               accept="image/*"

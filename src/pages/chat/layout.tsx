@@ -1,11 +1,14 @@
 //import { useViewportHeightContext } from '@/veiwPortContext';
 
+import useViewportHeight from "@/hooks/useViewPortHook";
+
 
 export default function ChatLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const height = useViewportHeight()
 
   //const viewportHeight = useViewportHeightContext();
   return (
@@ -13,6 +16,7 @@ export default function ChatLayout({
         className='bg-default-100'
         style={{
           maxHeight: `calc(100vh)`,
+          height:`${height}px`,
           transition: 'height 0.3s ease',
           display: 'flex',
           paddingBottom:"2rem",
