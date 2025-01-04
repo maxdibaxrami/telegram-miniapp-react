@@ -21,13 +21,10 @@ import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
 import { useTranslation } from "react-i18next";
 
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
-
 
 export default function SignupPage() {
 
   const { i18n } = useTranslation();
-  const { initDataRaw } = retrieveLaunchParams();
 
 
   const contentRef = useRef(null); // Ref to track content height
