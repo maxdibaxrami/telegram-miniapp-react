@@ -8,7 +8,6 @@ interface Photo {
   order: number;
 }
 
-
 interface ProfileData {
   lookingFor: string;
   education: string;
@@ -100,7 +99,6 @@ export const updateUserPhoto = createAsyncThunk(
       const response = await axios.patch(`/photo/update-file/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          maxBodyLength: Infinity
         },
       });
 
@@ -114,16 +112,13 @@ export const updateUserPhoto = createAsyncThunk(
 export const uploadProfileImage = createAsyncThunk(
   'auth/uploadProfileImage',
   async ({ userId, imageFile, order }: any) => {
-
     const formData = new FormData();
-
     formData.append('file', imageFile);
     formData.append('userId', userId);
     formData.append('order', order);
 
-    const response = await axios.post(`/photo/upload/`, formData,{maxBodyLength: Infinity});
+    const response = await axios.post(`/photo/upload/`, formData);
     return response.data;
-
   }
 );
 
@@ -163,6 +158,8 @@ const userSlice = createSlice({
       .addCase(updateUserData.rejected, (state, action) => {
         state.updateUserData = false;
         state.error = action.error.message || 'Failed to update user data';
+        console.log(action.error.message)
+
       })
       // Handle update user photo cases
       .addCase(updateUserPhoto.pending, (state) => {
@@ -183,11 +180,14 @@ const userSlice = createSlice({
       .addCase(updateUserPhoto.rejected, (state, action) => {
         state.uploadProfileLoading = false;
         state.error = action.payload as string || 'Failed to update photo';
+        console.log(action.payload as string)
+
       })
       // Handle upload profile image cases
       .addCase(uploadProfileImage.pending, (state) => {
         state.uploadProfileLoading = true;
         state.error = null;
+        
       })
       .addCase(uploadProfileImage.fulfilled, (state, action: PayloadAction<Photo>) => {
         state.uploadProfileLoading = false;
@@ -199,6 +199,7 @@ const userSlice = createSlice({
       .addCase(uploadProfileImage.rejected, (state, action) => {
         state.uploadProfileLoading = false;
         state.error = action.error.message || 'Failed to upload profile image';
+        console.log(state.error)
       });
   },
 });
