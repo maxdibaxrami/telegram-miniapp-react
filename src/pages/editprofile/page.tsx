@@ -126,6 +126,8 @@ export default function EditProfilePage() {
     { key: "pansexual", label: t("pansexual") },
     { key: "queer", label: t("queer") },
     { key: "questioning", label: t("questioning") },
+    { key: "ratthernotsay", label: t("Irathernotsay") },
+
   ];
 
   const hobbies = [

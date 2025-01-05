@@ -64,7 +64,7 @@ const ExploreCard = (props) => {
     { key: "open", label: t("open") },
     { key: "ratthernotsay", label: t("Irathernotsay") },
   ];
-
+  
 
   const languages = [
     { key: "en", label: t("en") },
@@ -253,11 +253,19 @@ const ExploreCard = (props) => {
               className="mySwiper"
               onSlideChange={() => setSlideCounter(slideCountrt + 1)}
             >
-                  {props?.profile?.photos?.map((value, index) => (
+                  {props?.profile?.photos.length === 0 ?
+                    <SwiperSlide key={0}>
+                      <SwiperImages url={"https://via.placeholder.com/400x500"} />
+                    </SwiperSlide>
+                
+                  :
+                    props?.profile?.photos?.map((value, index) => (
                       <SwiperSlide key={index}>
                         <SwiperImages url={value.url} />
                       </SwiperSlide>
-                    ))}
+                    ))
+                  }
+                  
             </Swiper>
 
 
@@ -293,7 +301,7 @@ const ExploreCard = (props) => {
                   style={{ marginRight: "10px" }}
                   startContent={<HeartIconOutLine fill="#FFF" className="size-4  mx-1" />}
                 >
-                  {RealationStatus.find(RealationStatus => RealationStatus.key === props.profile.moreAboutMe.relationStatus).label}
+                  {RealationStatus.find(RealationStatus => RealationStatus.key == props.profile.moreAboutMe.relationStatus).label}
                 </Chip>
 
                 <Chip

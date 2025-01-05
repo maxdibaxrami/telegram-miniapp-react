@@ -50,10 +50,11 @@ const MatchModal = ({ isOpen, onClose, modalData, thisUserId }) => {
               }}
             >
               <Image
-                isBlurred
                 alt={t("hero_image_alt")} // Translated text for image alt
-                src={`${BASEURL}${modalData.photos[0].url}`}
+                src={modalData?.photos[0]?.url? `${BASEURL}${modalData.photos[0].url}` : ''}
                 style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                fallbackSrc="https://via.placeholder.com/150x150"
+
               />
             </motion.div>
             <BlurIn data={true}>

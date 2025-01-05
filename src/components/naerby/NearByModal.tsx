@@ -266,11 +266,18 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                       className="mySwiper"
                       onSlideChange={() => setSlideCounter(slideCountrt + 1)}
                     >
-                      {props?.profile?.photos?.map((value, index) => (
-                        <SwiperSlide key={index}>
-                        <SwiperImages url={value.url} />
-                      </SwiperSlide>
-                      ))}
+                      {props?.profile?.photos.length === 0 ?
+                        <SwiperSlide key={0}>
+                          <SwiperImages url={"https://via.placeholder.com/400x500"} />
+                        </SwiperSlide>
+                    
+                      :
+                        props?.profile?.photos?.map((value, index) => (
+                          <SwiperSlide key={index}>
+                            <SwiperImages url={value.url} />
+                          </SwiperSlide>
+                        ))
+                      }
                     </Swiper>
                     
                     <div className="absolute" style={{ bottom: "170px", zIndex: 10 }}>

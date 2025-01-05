@@ -46,7 +46,7 @@ const PetsListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
     { key: "likes_pets", label: t("likes_pets") },
     { key: "does_not_like_pets", label: t("does_not_like_pets") },
     { key: "ratthernotsay", label: t("Irathernotsay") },
-
+    
   ];
 
     return (

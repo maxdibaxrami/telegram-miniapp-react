@@ -19,8 +19,8 @@ import {
   SettingIcon,
   EditProfileIcon
 } from '@/Icons/index'
-import BlurFade from "../animate/BlurFade";
 import { useTranslation } from 'react-i18next';
+import BoxReveal from "../animate/box-text";
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -58,66 +58,66 @@ const TopBar = () => {
         <NavbarContent justify="center">
           <NavbarItem className="flex items-center">
             {searchParams.get("page") === "profile" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <ProfileIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('Profile')}
                 </p>
-              </BlurFade>
+              </BoxReveal>
             }
 
             {searchParams.get("page") === "explore" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <FireIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('Explore')}
                 </p>
-              </BlurFade>
+              </BoxReveal>
             }
 
             {searchParams.get("page") === "nearby" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <LocationIcon className="size-6 text-primary"/>
-                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
-                  {t('Nearby')}
-                </p>
-              </BlurFade>
+                  <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                    {t('Nearby')}
+                  </p>
+              </BoxReveal>
             }
 
             {searchParams.get("page") === "likes" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <LikeIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('Likes')}
                 </p>
-              </BlurFade>
+              </BoxReveal>
             }
 
             {searchParams.get("page") === "chat" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <ChatIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('Chat')}
                 </p>
-              </BlurFade>
+              </BoxReveal>
             }
 
             {location.pathname === "/setting" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <SettingIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('Setting')}
                 </p>
-              </BlurFade>
+              </BoxReveal>
             }
 
             {location.pathname === "/profile-edit" && 
-              <BlurFade className="flex items-center">
+              <BoxReveal boxColor={"#5046e6"} duration={0.2}>
                 <EditProfileIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('EditProfile')}
                 </p>
-              </BlurFade>
+              </BoxReveal>
             }
           </NavbarItem>
         </NavbarContent>

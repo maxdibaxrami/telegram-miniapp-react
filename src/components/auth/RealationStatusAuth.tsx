@@ -37,7 +37,6 @@ const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
     { key: "ratthernotsay", label: t("Irathernotsay") },
   ];
   
-
   useEffect(()=>{
     if(selected !==""){
       setSlideAvailable("relationStatus",selected)

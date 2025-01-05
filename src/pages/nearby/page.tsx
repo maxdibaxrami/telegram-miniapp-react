@@ -11,6 +11,7 @@ import { fetchNearBySliceUsers } from "@/features/nearBySlice";
 import axios from '@/api/base';
 
 export default function NearByPage() {
+
   const [SelectedCard, setSelectedCard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loadingUser, setLoadingUser] = useState(false);
