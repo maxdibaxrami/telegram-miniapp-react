@@ -100,6 +100,8 @@ export const updateUserPhoto = createAsyncThunk(
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        maxBodyLength: Infinity, // Allow large body sizes
+        maxContentLength: Infinity, // Allow large content sizes
       });
 
       return response.data as Photo;
@@ -117,7 +119,13 @@ export const uploadProfileImage = createAsyncThunk(
     formData.append('userId', userId);
     formData.append('order', order);
 
-    const response = await axios.post(`/photo/upload/`, formData);
+    const response = await axios.post(`/photo/upload/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      maxBodyLength: Infinity, // Allow large body sizes
+      maxContentLength: Infinity, // Allow large content sizes
+    });
     return response.data;
   }
 );
