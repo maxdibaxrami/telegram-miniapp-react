@@ -1,7 +1,6 @@
 
 import { Button, cn, Image } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
-
 import {
   HashtagIcon,
   ArrowRight,
@@ -113,6 +112,8 @@ export default function EditProfilePage() {
       dispatch(uploadProfileImage({ userId: user.id.toString(), imageFile: photoFile, order }));
     });
   };
+
+
 
   return (
     <Page>

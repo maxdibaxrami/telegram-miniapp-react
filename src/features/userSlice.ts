@@ -8,6 +8,7 @@ interface Photo {
   order: number;
 }
 
+
 interface ProfileData {
   lookingFor: string;
   education: string;
