@@ -26,6 +26,7 @@ import { AppDispatch, RootState } from "@/store";
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMatches } from "@/features/matchSlice";
 import toast from "react-hot-toast";
+import { getlanguages, getRealationStatus, getSexualityStatus } from "@/constant";
 
 const variantsFrontCard = {
   animate: { scale: 1, y: 0, opacity: 1 },
@@ -119,47 +120,11 @@ const NearByUserModal = forwardRef((props:any, ref) => {
     ),{duration: 4000})
   }
   
-  const RealationStatus = [
-    { key: "Single", label: t("Single") },
-    { key: "Taken", label: t("Taken") },
-    { key: "open", label: t("open") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-  ];
+  const RealationStatus = getRealationStatus(t)
+  
+  const languages = getlanguages(t)
 
-  const languages = [
-    { key: "en", label: t("en") },
-    { key: "zh", label: t("zh") },
-    { key: "es", label: t("es") },
-    { key: "hi", label: t("hi") },
-    { key: "ar", label: t("ar") },
-    { key: "bn", label: t("bn") },
-    { key: "fr", label: t("fr") },
-    { key: "ru", label: t("ru") },
-    { key: "pt", label: t("pt") },
-    { key: "id", label: t("id") },
-    { key: "ja", label: t("ja") },
-    { key: "de", label: t("de") },
-    { key: "pa", label: t("pa") },
-    { key: "ur", label: t("ur") },
-    { key: "ko", label: t("ko") },
-    { key: "vi", label: t("vi") },
-    { key: "fa", label: t("fa") },
-    { key: "tr", label: t("tr") },
-    { key: "ta", label: t("ta") },
-    { key: "it", label: t("it") },
-  ];
-
-  const SexualityStatus = [
-    { key: "straight", label: t("straight") },
-    { key: "gay", label: t("gay") },
-    { key: "lesbian", label: t("lesbian") },
-    { key: "bisexual", label: t("bisexual") },
-    { key: "asexual", label: t("asexual") },
-    { key: "pansexual", label: t("pansexual") },
-    { key: "queer", label: t("queer") },
-    { key: "questioning", label: t("questioning") },
-  ];
-
+  const SexualityStatus = getSexualityStatus(t)
 
 
   const handleLikeUser = async () => {

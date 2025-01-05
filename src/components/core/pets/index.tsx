@@ -1,3 +1,4 @@
+import { getPetStatus } from "@/constant";
 import {
     cn,
     Radio,
@@ -40,14 +41,7 @@ const PetsListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
   },[selected])
   
-  const PetStatus = [
-    { key: "has_pets", label: t("has_pets") },
-    { key: "no_pets", label: t("no_pets") },
-    { key: "likes_pets", label: t("likes_pets") },
-    { key: "does_not_like_pets", label: t("does_not_like_pets") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-    
-  ];
+  const PetStatus = getPetStatus(t)
 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">

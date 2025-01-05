@@ -1,3 +1,4 @@
+import { getSexualityStatus } from "@/constant";
 import {
     cn,
     Radio,
@@ -40,15 +41,7 @@ const SexualityStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
 
   },[selected])
   
-  const SexualityStatus = [
-    { key: "straight", label: t("straight") },
-    { key: "gay", label: t("gay") },
-    { key: "lesbian", label: t("lesbian") },
-    { key: "bisexual", label: t("bisexual") },
-    { key: "pansexual", label: t("pansexual") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-
-  ];
+  const SexualityStatus = getSexualityStatus(t)
 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">

@@ -44,14 +44,14 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
         <p className="mb-1">{t("UploadprofileImage")}</p>
 
         <div>
-          <input
-            type="file"
-            id="file-upload"
-            accept="image/*"
-            multiple
-            hidden
-            onChange={handleFileChange}
-          />
+        <input
+          type="file"
+          id="file-upload"
+          accept="image/*, .heic"  // Include HEIC format along with image types
+          multiple
+          hidden
+          onChange={handleFileChange}
+        />
           <Button
             size="lg"
             className="w-full mb-2 font-bold"

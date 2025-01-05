@@ -1,3 +1,4 @@
+import { getSmokingStatus } from "@/constant";
 import {
     cn,
     Radio,
@@ -40,14 +41,7 @@ const SmokingListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => 
 
   },[selected])
   
-  const SmokingStatus = [
-    { key: "smokes_regularly", label: t("smokes_regularly") },
-    { key: "occasionally_smokes", label: t("occasionally_smokes") },
-    { key: "does_not_smoke", label: t("does_not_smoke") },
-    { key: "trying_to_quit_smoking", label: t("trying_to_quit_smoking") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-
-  ];
+  const SmokingStatus = getSmokingStatus(t)
 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">

@@ -1,3 +1,4 @@
+import { getKidStatus } from "@/constant";
 import {
     cn,
     Radio,
@@ -40,15 +41,7 @@ const KidsListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
   },[selected])
   
-  const KidStatus = [
-    { key: "has_kids", label: t("has_kids") },
-    { key: "no_kids", label: t("no_kids") },
-    { key: "wants_kids", label: t("wants_kids") },
-    { key: "does_not_want_kids", label: t("does_not_want_kids") },
-    { key: "open_to_kids", label: t("open_to_kids") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-
-  ];
+  const KidStatus = getKidStatus(t)
 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">

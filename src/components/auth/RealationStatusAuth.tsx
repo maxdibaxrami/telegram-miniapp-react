@@ -1,3 +1,4 @@
+import { getRealationStatus } from "@/constant";
 import {
     cn,
     Radio,
@@ -30,12 +31,7 @@ const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   const [selected, setSelected] = useState(user.moreAboutMe? user.moreAboutMe.relationStatus : user.relationStatus );
   const { t } = useTranslation();
 
-  const RealationStatus = [
-    { key: "Single", label: t("Single") },
-    { key: "Taken", label: t("Taken") },
-    { key: "open", label: t("open") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-  ];
+  const RealationStatus = getRealationStatus(t)
   
   useEffect(()=>{
     if(selected !==""){

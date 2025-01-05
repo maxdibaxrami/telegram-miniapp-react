@@ -17,6 +17,7 @@ import { AppDispatch, RootState } from "@/store";
 import { fetchNearBySliceUsers, setFilters } from "@/features/nearBySlice";
 import type { SliderValue } from "@nextui-org/react";
 import type { Selection } from "@nextui-org/react";
+import { getlanguages } from "@/constant";
 // @ts-ignore
 const ExploreFilter = forwardRef((props, ref) => {
   const { t } = useTranslation();
@@ -31,28 +32,7 @@ const ExploreFilter = forwardRef((props, ref) => {
   const [selectGender, setSelectGender] = useState("")
 
   // Languages options
-  const languages = [
-    { key: "en", label: t("en") },
-    { key: "zh", label: t("zh") },
-    { key: "es", label: t("es") },
-    { key: "hi", label: t("hi") },
-    { key: "ar", label: t("ar") },
-    { key: "bn", label: t("bn") },
-    { key: "fr", label: t("fr") },
-    { key: "ru", label: t("ru") },
-    { key: "pt", label: t("pt") },
-    { key: "id", label: t("id") },
-    { key: "ja", label: t("ja") },
-    { key: "de", label: t("de") },
-    { key: "pa", label: t("pa") },
-    { key: "ur", label: t("ur") },
-    { key: "ko", label: t("ko") },
-    { key: "vi", label: t("vi") },
-    { key: "fa", label: t("fa") },
-    { key: "tr", label: t("tr") },
-    { key: "ta", label: t("ta") },
-    { key: "it", label: t("it") },
-  ];
+  const languages = getlanguages(t)
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 

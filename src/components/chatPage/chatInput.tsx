@@ -52,7 +52,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
     >
       <input
               type="file"
-              accept="image/*"
+              accept="image/*, .heic"  // Include HEIC format along with image types
               className="hidden"
               onChange={handleFileChange}
               ref={fileInputRef} // Link file input with ref

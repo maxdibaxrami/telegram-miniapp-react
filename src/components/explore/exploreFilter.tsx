@@ -18,6 +18,7 @@ import { fetchFilteredExplore } from "@/features/exploreSlice";
 
 import type {SliderValue} from "@nextui-org/react";
 import type {Selection} from "@nextui-org/react";
+import { getlanguages } from "@/constant";
 
 const ExploreFilter = forwardRef((props,ref) => {{
   const { t } = useTranslation();
@@ -28,28 +29,7 @@ const ExploreFilter = forwardRef((props,ref) => {{
   const [age, setAge] = useState<SliderValue>([20, 28]);
   const [langauge, setLangauge] = useState<Selection>(new Set([]));
 
-  const languages = [
-    { key: "en", label: t("en") },
-    { key: "zh", label: t("zh") },
-    { key: "es", label: t("es") },
-    { key: "hi", label: t("hi") },
-    { key: "ar", label: t("ar") },
-    { key: "bn", label: t("bn") },
-    { key: "fr", label: t("fr") },
-    { key: "ru", label: t("ru") },
-    { key: "pt", label: t("pt") },
-    { key: "id", label: t("id") },
-    { key: "ja", label: t("ja") },
-    { key: "de", label: t("de") },
-    { key: "pa", label: t("pa") },
-    { key: "ur", label: t("ur") },
-    { key: "ko", label: t("ko") },
-    { key: "vi", label: t("vi") },
-    { key: "fa", label: t("fa") },
-    { key: "tr", label: t("tr") },
-    { key: "ta", label: t("ta") },
-    { key: "it", label: t("it") },
-  ];
+  const languages = getlanguages(t)
   
   const { isOpen, onOpen, onClose } = useDisclosure();
 

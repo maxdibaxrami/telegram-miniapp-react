@@ -1,3 +1,4 @@
+import { getDrinkStatus } from "@/constant";
 import {
     cn,
     Radio,
@@ -40,14 +41,7 @@ const DrinkListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
 
   },[selected])
   
-  const DrinkStatus = [
-    { key: "drinks_regularly", label: t("drinks_regularly") },
-    { key: "occasionally_drinks", label: t("occasionally_drinks") },
-    { key: "does_not_drink", label: t("does_not_drink") },
-    { key: "trying_to_quit_drinking", label: t("trying_to_quit_drinking") },
-    { key: "ratthernotsay", label: t("Irathernotsay") },
-
-  ];
+  const DrinkStatus = getDrinkStatus(t)
 
     return (
       <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
