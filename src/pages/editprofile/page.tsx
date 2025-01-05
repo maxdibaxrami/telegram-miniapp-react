@@ -36,9 +36,12 @@ import { updateUserPhoto, uploadProfileImage } from "@/features/userSlice";
 export default function EditProfilePage() {
   const { t, i18n } = useTranslation();  // Initialize translation hook
   const lp = useLaunchParams();
+  
   const [selectedItem, setSelectedItem] = useState("")
   const [selectedProfileData, setSelectedProfileData] = useState("")
+
   const dispatch = useDispatch<AppDispatch>();
+
   const fileInputRef = useRef<HTMLInputElement | null>(null); // Reference to file input
   const childRef = useRef();
   const profileDataModal = useRef()
@@ -71,7 +74,7 @@ export default function EditProfilePage() {
   
 
 
-  const { data: user, updateUserData } = useSelector((state: RootState) => state.user);
+  const { data: user, updateUserData, uploadProfileLoading } = useSelector((state: RootState) => state.user);
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -152,7 +155,7 @@ export default function EditProfilePage() {
                   key={user.photos.length + index}
                   className={imageClasses[user.photos.length + index]}
                 >
-                  <Button onPress={() => handleUploadPhoto(user.photos.length + index)} className="aspect-square rounded-lg object-cover w-full h-full" isIconOnly aria-label="Like" color="default">
+                  <Button isLoading={uploadProfileLoading} onPress={() => handleUploadPhoto(user.photos.length + index)} className="aspect-square rounded-lg object-cover w-full h-full" isIconOnly aria-label="Like" color="default">
                     <PlusIconRound className="size-8"/>
                   </Button>
                 </div>

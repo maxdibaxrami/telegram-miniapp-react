@@ -99,6 +99,7 @@ export const updateUserPhoto = createAsyncThunk(
       const response = await axios.patch(`/photo/update-file/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          maxBodyLength: Infinity
         },
       });
 
@@ -112,13 +113,16 @@ export const updateUserPhoto = createAsyncThunk(
 export const uploadProfileImage = createAsyncThunk(
   'auth/uploadProfileImage',
   async ({ userId, imageFile, order }: any) => {
+
     const formData = new FormData();
+
     formData.append('file', imageFile);
     formData.append('userId', userId);
     formData.append('order', order);
 
-    const response = await axios.post(`/photo/upload/`, formData);
+    const response = await axios.post(`/photo/upload/`, formData,{maxBodyLength: Infinity});
     return response.data;
+
   }
 );
 
