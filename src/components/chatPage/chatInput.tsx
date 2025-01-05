@@ -33,7 +33,6 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
 
       if (response.data && response.data.mediaUrl) {
         // Successfully uploaded file
-        console.log("File uploaded successfully:", response.data.mediaUrl);
         onSendImage(response.data.mediaUrl)
         setIsUploading(false); // Reset uploading state
 
@@ -48,7 +47,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
 
   return (
     <div
-      className="flex right-0 items-center justify-between bottom-0"
+      className="flex right-0 left-0 items-center justify-between bottom-0"
       style={{ width: "100%"}}
     >
       <input
@@ -65,8 +64,6 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
         endContent={
           <Button
             isIconOnly
-            aria-label="toggle password visibility"
-            className="focus:outline-none"
             color="primary"
             size="sm"
             radius="full"

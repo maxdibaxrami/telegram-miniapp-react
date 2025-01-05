@@ -17,7 +17,7 @@ export default function ChatLayout({
           height:`${height}px`,
           transition: 'height 0.3s ease',
           display: 'flex',
-          paddingBottom:"2rem",
+          paddingBottom:"1rem",
           position:"relative",
           flexDirection: 'column',
           overflow:"hidden",
