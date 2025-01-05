@@ -10,6 +10,7 @@ const useViewportHeight = (): number => {
       // If viewport height changes significantly (keyboard opened), reset scroll
       if (window.visualViewport?.height && window.visualViewport.height < window.innerHeight) {
         window.scrollTo(0, 0); // Scroll to the top when keyboard opens
+        document.getElementById("thisbody").scrollTo(0, 0);
       }
 
       setViewportHeight(newHeight);

@@ -77,13 +77,13 @@ export function App() {
         city: null,
         country: null,
         languages: null,
-        genderFilter: data.gender === "male" ? "male" : "female",
+        genderFilter: data.gender === "male" ? "female" : "male",
       };
       // Dispatch filters to Redux store
       dispatch(setFilters(updatedFilters));
 
       const userId = data.id.toString();
-      console.log("123321")
+
       dispatch(fetchLikes(userId));
       dispatch(fetchMatches(userId));
       dispatch(fetchConversations(userId));

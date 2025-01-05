@@ -10,15 +10,17 @@ const MobileApp = ({children}) => {
   useEffect(()=>{
     if (window.visualViewport?.height && window.visualViewport.height < window.innerHeight) {
       setKeyBoardOpen(true); // Scroll to the top when keyboard opens
+      document.getElementById("thisbody").classList.remove("mobile-body")
       return
     }
     setKeyBoardOpen(false); // Scroll to the top when keyboard opens
+    document.getElementById("thisbody").classList.add("mobile-body")
 
   },[viewportHeight])
 
   return (
     <motion.div style={{overflowX:"hidden",overflowY:"auto"}} animate={keyboardOpen?{height:`${viewportHeight}px`}:{height:"100vh"}} className='fixed w-screen left-0 top-0 right-0 bottom-0' id="wrap">
-      <motion.div className='relative' id="content" animate={keyboardOpen?{height:`${viewportHeight}px`}:{height:"100vh"}}>
+      <motion.div className='relative' id="content" animate={keyboardOpen?{height:`${viewportHeight+1}px`}:{height:"calc(100% + 1px)"}}>
         {children}
       </motion.div>
     </motion.div>
