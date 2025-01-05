@@ -19,6 +19,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
     }
   };
 
+  const [status, setStatus] = useState<any>()
 
   const uploadFile = async (file) => {
 
@@ -30,7 +31,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
     try {
       // Send file to the server
       const response = await axios.post("/messages/upload", formData);
-
+      setStatus(response)
       if (response.data && response.data.mediaUrl) {
         // Successfully uploaded file
         onSendImage(response.data.mediaUrl)
@@ -40,6 +41,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
       }
     } catch (error) {
       console.error("Error uploading file:", error);
+      setStatus(error)
     } finally {
       setIsUploading(false); // Reset uploading state
     }
@@ -57,6 +59,7 @@ const ChatInput = ({inputMessage, setInputMessage, onSendMessage,onSendImage}) =
               onChange={handleFileChange}
               ref={fileInputRef} // Link file input with ref
       />
+      {status}
       <Textarea
         className="w-full"
         value={inputMessage}
