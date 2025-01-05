@@ -4,8 +4,6 @@ import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { publicUrl } from '@/helpers/publicUrl.ts';
 import { ViewportHeightProvider } from '@/veiwPortContext';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { Provider } from 'react-redux';
-import { store } from '@/store';
 import { App } from '@/components/App.tsx';
 import MobileApp from './wapper';
 
