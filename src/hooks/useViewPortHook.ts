@@ -6,6 +6,12 @@ const useViewportHeight = (): number => {
   useEffect(() => {
     const handleResize = () => {
       const newHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+      // If viewport height changes significantly (keyboard opened), reset scroll
+      if (window.visualViewport?.height && window.visualViewport.height < window.innerHeight) {
+        window.scrollTo(0, 0); // Scroll to the top when keyboard opens
+      }
+
       setViewportHeight(newHeight);
     };
 
