@@ -32,7 +32,6 @@ export function Root() {
     <ErrorBoundary fallback={ErrorBoundaryError}>
      <ViewportHeightProvider>
         <MobileApp>
-          <Provider store={store}>
               <NextUIProvider>
                 <TonConnectUIProvider manifestUrl={publicUrl('tonconnect-manifest.json')}>
                   <NextThemesProvider attribute="class" defaultTheme="dark">
@@ -40,7 +39,6 @@ export function Root() {
                   </NextThemesProvider>
                 </TonConnectUIProvider>
               </NextUIProvider>
-          </Provider>
         </MobileApp>
       </ViewportHeightProvider>
     </ErrorBoundary>

@@ -34,6 +34,7 @@ import EditMoreAboutMeModal from "@/components/profile/editMoreAboutMe";
 import { updateUserPhoto, uploadProfileImage } from "@/features/userSlice";
 
 export default function EditProfilePage() {
+  
   const { t, i18n } = useTranslation();  // Initialize translation hook
   const lp = useLaunchParams();
   
