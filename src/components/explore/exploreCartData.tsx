@@ -25,12 +25,13 @@ import { getDrinkStatus, gethobbies, getKidStatus, getlanguages, getPetStatus, g
 
 const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   // Memoize the current slide type based on the slide count
-  const currentSlide = useMemo(() => slideCount % 3, [slideCount]);
-  const { t } = useTranslation();
+  
 
+  const { t } = useTranslation();
+  
   // Reusable ProfileCard component for profile details
-  const ProfileCard = ({ color, icon, label, text }) => (
-    <motion.div
+  const ProfileCard = ({ color, icon, label, text }) => {
+    return <motion.div
       className="flex gap-3 mt-1 mb-3"
       initial={openFooter ? { opacity: 1 } : { opacity: 0 }}
       style={{ marginLeft: "4px" }}
@@ -57,7 +58,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
         <p className="text-xs text-default-500">{text}</p>
       </div>
     </motion.div>
-  );
+};
 
   const Items = [
     {
@@ -82,7 +83,6 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       color: "danger" // Valid color
     },
   ];
-
   // Profile details to display
   const profileItems = [
     {
@@ -111,7 +111,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
     }
   ];
 
-
+  const currentSlide = useMemo(() => slideCount % 3 , [slideCount]);
 
 
   const RealationStatus = getRealationStatus(t)

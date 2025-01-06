@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, ArowUpIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, ArowUpIcon, VerifyIconFill, HashtagIcon, PerimumIcon } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import { useTranslation } from 'react-i18next';
 import { gethobbies, getlanguages, getRealationStatus, getSexualityStatus } from '@/constant';
@@ -227,7 +227,8 @@ const ExploreCard = (props) => {
                             {props.profile.firstName}, {props.profile.age}
                           </p>
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
-                          
+                          {props.profile.premium && <PerimumIcon />}
+
                         </div>
                         <Button
                           onClick={toggleFooter}

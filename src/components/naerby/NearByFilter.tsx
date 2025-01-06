@@ -22,14 +22,14 @@ import { getlanguages } from "@/constant";
 const ExploreFilter = forwardRef((props, ref) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, filters } = useSelector((state: RootState) => state.nearBy); // Get filters from the store
+  const { loading, filters,genderFilter } = useSelector((state: RootState) => state.nearBy); // Get filters from the store
   const { data } = useSelector((state: RootState) => state.user);
 
   // Initialize state with default values from Redux (if available)
   const [locationValue, setLocationValue] = useState(filters.city ? "city" : (filters.country ? "country" : ""));
-  const [age, setAge] = useState<SliderValue>(filters.ageRange ? filters.ageRange.split(',').map(Number) : [20, 28]);
+  const [age, setAge] = useState<SliderValue>(filters.ageRange ? filters.ageRange.split(',').map(Number) : [18, 100]);
   const [language, setLanguage] = useState<Selection>(new Set(filters.languages ? filters.languages.split(',') : []));
-  const [selectGender, setSelectGender] = useState("")
+  const [selectGender, setSelectGender] = useState(genderFilter === "male" ? "male" : (genderFilter ? "female" : ""))
 
   // Languages options
   const languages = getlanguages(t)

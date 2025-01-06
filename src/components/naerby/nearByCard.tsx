@@ -1,5 +1,5 @@
 import { Card, CardFooter, Image } from "@nextui-org/react";
-import { VerifyIconFill } from "@/Icons/index";
+import { PerimumIcon, VerifyIconFill } from "@/Icons/index";
 import { CircleSvg } from "@/Icons/index";
 import { BASEURL } from "@/constant";
 
@@ -10,15 +10,12 @@ const NearByCard = ({ data, onCardClick, num }) => {
         isPressable
         className="border-none relative"
         radius="lg"
-        classNames={{
-          base:"w-fit"
-        }}
+        
         onPress={() => onCardClick(data)}
       >
         <Image
           alt="Woman listing to music"
           className="object-cover aspect-square"
-          loading="lazy"
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
@@ -31,7 +28,8 @@ const NearByCard = ({ data, onCardClick, num }) => {
 
                   </p>
                   {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/> }
-                  
+                  {data.premium && <PerimumIcon />}
+
 
                 </div>
               </div>
