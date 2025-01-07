@@ -29,7 +29,7 @@ export default function NearByPage() {
         dispatch(fetchNearBySliceUsers({
           userId: user.id.toString(),
           page: page,
-          limit: 10,
+          limit: 20,
           ...filters
         }));
       }
@@ -71,7 +71,7 @@ export default function NearByPage() {
         paddingLeft: "12px",
         paddingRight: "12px",
         overflowY: "auto", // Ensure the parent is scrollable
-        maxHeight: "calc(100vh - 4.5rem)", // Add a height constraint if needed
+        maxHeight: "calc(100vh)", // Add a height constraint if needed
       }}
     >
       {users.map((value, index) => (
@@ -80,7 +80,8 @@ export default function NearByPage() {
             num={index}
             key={value.id}
           />
-        ))}
+        ))
+      }
       {loadingMore && <><NearByCardSkelete/><NearByCardSkelete /></>}
     </div>
   );
