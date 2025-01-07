@@ -20,9 +20,9 @@ const BottomMenu = () => {
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
-      return '100px';
+      return '25px';
     } else {
-      return '80px';
+      return '25px';
     }
   };
 
@@ -38,13 +38,14 @@ const BottomMenu = () => {
           animate={{ bottom: "0px" }}
           exit={{ bottom:"-120px"}}
   
-          className={"flex w-full px-2 fixed items-center backdrop-blur	bg-background/60 backdrop-saturate-150 border-foreground/20 shadow-small"}
+          className={"flex w-full px-4 fixed items-center backdrop-blur	bg-background/60 backdrop-saturate-150 border-foreground/20 shadow-small"}
           style={{
             zIndex: "50",
             width: "100%",
             overflow: "hidden",
             bottom:"-120px",
             justifyContent:"center",
+            paddingBottom:`${getPaddingForPlatform()}`
           }}
         >
             <Tabs
@@ -61,7 +62,6 @@ const BottomMenu = () => {
               style={{
                 zIndex: "10",
                 overflow: "hidden",
-                height:`${getPaddingForPlatform()}`,
                 width:"100%"
 
               }}
