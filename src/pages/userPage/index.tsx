@@ -2,7 +2,7 @@
 import "swiper/css";
 import "swiper/css/effect-creative";
 
-import { Button, cn, Image, Link } from "@nextui-org/react";
+import { Button, cn, Image, Link, Spinner } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
 import {
   HashtagIcon,
@@ -48,7 +48,7 @@ export default function EditProfilePage() {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { data: user , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
+  const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
   const { fetchLikeAntoherUser, requestLoading } = useSelector((state: RootState) => state.like);
 
   const userId = searchParams.get("userId")
@@ -223,299 +223,287 @@ export default function EditProfilePage() {
     }, []);
 
 
-  if(LoadingUser){
-    return <div>loading</div>
-  }
-  if(userId === "")
-  {
-    return <div>not found</div>
-  }
+    const moreAboutMeData = useMemo(()=>{
+      if(UserData){
+        return [
+          {
+            key: "relationStatus",
+            label: t("RelationStatus"),
+            icon: <LikeIcon className="size-5" />,
+            value: RealationStatus.find(RealationStatus => RealationStatus.key === UserData.moreAboutMe.relationStatus).label ,
+            color:"primary"
+          },
+          {
+            key: "height",
+            label: t("Height"),
+            icon: <HeightIcon className="size-5" />,
+            value: UserData.moreAboutMe.height,
+            color:"secondary"
+          },
+          {
+            key: "sexuality",
+            label: t("SexualityStatus"),
+            icon: <SexualityIcon className="size-5" />,
+            value: SexualityStatus.find(SexualityStatus => SexualityStatus.key === UserData.moreAboutMe.sexuality).label,
+            color:"success"
+          },
+          {
+            key: "Language",
+            label: t("Language"),
+            icon: <LanguageIcon className="size-5" />,
+            value:`${user.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label).join(", ")}`,
+            color:"primary"
+          },
+          {
+            key: "kids",
+            label: t("KidsStatus"),
+            icon: <KidStatusIcon className="size-5" />,
+            value: KidStatus.find(KidStatus => KidStatus.key === UserData.moreAboutMe.kids).label,
+            color:"warning"
+          },
+          
+          {
+            key: "smoking",
+            label: t("SmokingStatus"),
+            icon: <SmokingStatusIcon className="size-5" />,
+            value: SmokingStatus.find(SmokingStatus => SmokingStatus.key === UserData.moreAboutMe.smoking).label,
+            color:"secondary"
+          },
+          {
+            key: "drink",
+            label: t("DrinkStatus"),
+            icon: <DrinkStatusIcon className="size-5" />,
+            value: DrinkStatus.find(DrinkStatus => DrinkStatus.key === UserData.moreAboutMe.drink).label,
+            color:"danger"
+          },
+          {
+            key: "pets",
+            label: t("PetStatus"),
+            icon: <PetStatusIcon className="size-5" />,
+            value: PetStatus.find(PetStatus => PetStatus.key === UserData.moreAboutMe.pets).label,
+            color:"warning"
+          },
+        ];
+      }
+
+  
+
+  },[UserData, LoadingUser])
+
+
   return (
     <Page>
         <div
-        className="container mx-auto max-w-7xl flex-grow"
+          className="container mx-auto max-w-7xl flex-grow"
+          style={{
+            maxHeight: "100%",
+            height:"100%",
+            padding:"12px",
+            marginBottom:"5rem",
+          }}
       >
         <TopBarPages />
-        <section
-          className="flex flex-col items-center justify-center"
-          style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`}}  
-        >
-        
-            <div className="flex w-full justify-between items-center">
-                <div className="flex w-full relative flex-col">
-                  <Swiper
-                      slidesPerView={1}
-                      spaceBetween={30}
-                      loop={true}
-                      pagination={{ clickable: false }}
-                      navigation={false}
-                      modules={[Pagination, Autoplay]}
-                      autoplay={{
-                          delay: 4000, // 4 seconds delay
-                          disableOnInteraction: false, // Continue autoplay after user interaction
-                      }}
-                      className="mySwiper"
-                      onSlideChange={() => setSlideCounter(slideCountrt + 1)}
-                      >
-                      {[...UserData.photos].slice().sort((ph1, ph2) => ph1.order - ph2.order).map((_photo, index) => (
-                          <SwiperSlide key={index}>
-                              <Image 
-                                  alt="Profile hero Image"
-                                  radius="none"
-                                  className="w-full h-full"
-                                  classNames={{
-                                      wrapper: "w-full maxcontentimportant",
-                                  }}
-                                  
-                                  loading="lazy"
-                                  src={`${BASEURL}${_photo.url}`} // dynamic image URL
-                                  style={{
-                                      objectFit: "cover",
-                                      height:"60vh"
-                                  }}
-                              />
-                          </SwiperSlide>
-                      ))}
-                  </Swiper>
-                  <div
-                    style={{position:"absolute", bottom:0, zIndex:10, width:"100%", overflow:"hidden"}}
-                    className="items-start flex-col py-3 backdrop-blur bg-background/70 backdrop-saturate-150"
-                    >
-                      <div className="flex flex-grow w-full">
-                        <div className="flex flex-col w-full">
-                          <div className="flex items-center justify-between w-full ">
-                            <div className="flex flex-col px-2">
-                              <div className="flex items-center"> 
-                                <p className="text-foreground capitalize font-bold  text-xl">
-                                  {UserData.firstName}, {UserData.age}
-                                </p>
-                                {UserData.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
-                                {UserData.premium && <PerimumIcon />}
+        {!LoadingUser ? 
+                <section
+                className="flex flex-col items-center justify-center"
+                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`}}  
+              >
+              
+                  <div className="flex w-full justify-between items-center">
+                      <div className="flex w-full relative flex-col">
+                        <Swiper
+                            slidesPerView={1}
+                            spaceBetween={30}
+                            loop={true}
+                            pagination={{ clickable: false }}
+                            navigation={false}
+                            modules={[Pagination, Autoplay]}
+                            autoplay={{
+                                delay: 4000, // 4 seconds delay
+                                disableOnInteraction: false, // Continue autoplay after user interaction
+                            }}
+                            className="mySwiper"
+                            onSlideChange={() => setSlideCounter(slideCountrt + 1)}
+                            >
+                            {[...UserData.photos].slice().sort((ph1, ph2) => ph1.order - ph2.order).map((_photo, index) => (
+                                <SwiperSlide key={index}>
+                                    <Image 
+                                        alt="Profile hero Image"
+                                        className="w-full h-full"
+                                        classNames={{
+                                            wrapper: "w-full maxcontentimportant",
+                                        }}
+                                        
+                                        loading="lazy"
+                                        src={`${BASEURL}${_photo.url}`} // dynamic image URL
+                                        style={{
+                                            objectFit: "cover",
+                                            height:"60vh",
+                                        }}
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                        <div
+                          style={{position:"absolute", bottom:0, zIndex:10, width:"100%", overflow:"hidden",borderBottomLeftRadius:"12px",borderBottomRightRadius:"12px"}}
+                          className="items-start flex-col py-3 backdrop-blur bg-background/60 backdrop-saturate-150"
+                          >
+                            <div className="flex flex-grow w-full">
+                              <div className="flex flex-col w-full">
+                                <div className="flex items-center justify-between w-full ">
+                                  <div className="flex flex-col px-2">
+                                    <div className="flex items-center"> 
+                                      <p className="text-foreground capitalize font-bold  text-xl">
+                                        {UserData.firstName}, {UserData.age}
+                                      </p>
+                                      {UserData.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
+                                      {UserData.premium && <PerimumIcon />}
+                                    </div>
+                                    <div>
+                                      <p className="text-tiny">{`${UserData.country}, ${UserData.city}`}</p>
+                                    </div>
+                                  </div>
+                                  <div className="flex gap-2 px-2 items-center">
+      
+                                    <Button isDisabled={likedUser || liked} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="primary" variant="shadow">
+                                      {likedUser || liked ? <CheckIcon strokeWidth={2}/> : <LikeIcon/> }
+                                    </Button>
+      
+                                    {user.favoriteUsers.includes(UserData.id.toString()) ? 
+                                      <Button isLoading={updateUserDataLoading} size="lg" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
+                                        <FavoriteColor stroke={"#FFF"} fill={"#FFF"}/>
+                                      </Button>
+                                    : 
+                                      <Button isLoading={updateUserDataLoading} size="lg" onPress={() => HandleAddToFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
+                                        <FavoriteColor stroke={"#c98927"} fill={"#c98927"}/> 
+                                      </Button>
+                                    }
+      
+                                    
+                                  </div>
+                                </div>
                               </div>
-                              <div>
-                                <p className="text-tiny">{`${UserData.country}, ${UserData.city}`}</p>
-                              </div>
-                            </div>
-                            <div className="flex gap-2 px-2 items-center">
-
-                              <Button isDisabled={likedUser || liked} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="primary" variant="shadow">
-                                {likedUser || liked ? <CheckIcon strokeWidth={2}/> : <LikeIcon/> }
-                              </Button>
-
-                              {user.favoriteUsers.includes(UserData.id.toString()) ? 
-                                <Button size="lg" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
-                                  <FavoriteColor stroke={"#FFF"} fill={"#FFF"}/>
-                                </Button>
-                              : 
-                                <Button size="lg" onPress={() => HandleAddToFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
-                                  <FavoriteColor stroke={"#c98927"} fill={"#c98927"}/> 
-                                </Button>
-                              }
-
-                              
                             </div>
                           </div>
                         </div>
-                      </div>
+                  </div>
+            
+      
+                  <div className=" w-full mb-4">
+                    <div style={{marginTop:"-18px"}} className="w-full text-default-700 border-small px-1 pt-4 pb-2 rounded-small border-default-200 dark:border-default-100">
+                      <Listbox 
+                        aria-label="Listbox menu with sections" 
+                        variant="solid"
+                      >
+                        <ListboxSection                   
+                          classNames={{"heading":"font-bold"}} 
+                          showDivider 
+                          className="relative" 
+                          title={t("profile")}>
+                          <ListboxItem
+                            key="2"
+                            className="px-0"
+                            description={UserData.profileData.education}
+                            startContent={<IconWrapper className="bg-danger text-white p-2"><WorkAndStudyIconSolid className="size-5"/></IconWrapper>}
+                          >
+                            {t('Workandeducation')}
+                          </ListboxItem>
+      
+                          <ListboxItem
+                            key="3"
+                            className="px-0"
+                            description={lookingfor.find(lookingfor => lookingfor.id == user.profileData.lookingFor).title}
+                            startContent={<IconWrapper className="bg-success text-white p-2"><SearchIcon className="size-5"/></IconWrapper>}
+                          >
+                            {t("WhyIamhere")}
+                          </ListboxItem>
+      
+                        {UserData.profileData.bio === " " &&
+                          <ListboxItem
+                          key="4"
+                          className="px-0"
+                          description={UserData.profileData.bio}
+                          startContent={<IconWrapper className="bg-primary text-white p-2"><AboutMeSolid className="size-5"/></IconWrapper>}
+                          >
+                            {t("Bio")}
+                          
+                        </ListboxItem>
+                        }
+                        
+      
+                        </ListboxSection>
+                        <ListboxSection 
+                          classNames={{"heading":"font-bold"}} 
+                          className="relative" 
+                          title={t("more_about_me")}   
+                        >
+      
+                            {moreAboutMeData.map((item, index)=>{
+                              if(item.value === " " || item.value === "" || item.value ===null)
+                              {
+                                return null
+                              }
+      
+                              return <ListboxItem
+                                  key={index+5}
+                                  description={item.value}
+                                  className="px-0"
+                                  startContent={<IconWrapper className={`bg-default/40 p-1.5 text-${item.color}/80`}>{item.icon}</IconWrapper>}
+                                  >
+                                    {item.label}
+                                  
+                                </ListboxItem>
+                            })}
+                            
+                        </ListboxSection>
+      
+      
+                        <ListboxSection 
+                            classNames={{"heading":"font-bold"}} 
+                            className="relative" 
+                            title={t("interested")}
+                          >
+                          <ListboxItem
+                            key={111}
+                            className="px-0"
+      
+                          >
+                            
+                          <div className="flex flex-wrap">
+                            {UserData.interests.map((value, index) => {
+                                return (
+                                  <Chip
+                                    key={index}
+                                    className="m-1"
+                                    color="success"
+                                    avatar={<HashtagIcon className="size-4"/>}
+                                    variant="solid"
+                                  >
+                                    {hobbies.find(hobbie => hobbie.id == parseInt(value)).name}
+                                  </Chip>
+                                );
+                              })}
+                                
+                          </div>
+      
+                            
+                          </ListboxItem>
+                        </ListboxSection>
+                      </Listbox>
                     </div>
                   </div>
-                 </div>
-      
+              </section>
 
-            <div className=" w-full mb-4">
-              <div className="text-default-600 w-full border-small border-default-200 dark:border-default-100">
-                <Listbox 
-                  aria-label="Listbox menu with sections" 
-                >
-                  <ListboxSection                   
-                    classNames={{"heading":"font-bold"}} 
-                    showDivider 
-                    className="relative" 
-                    title={t("profile")}>
-                    <ListboxItem
-                      key="2"
-                      description={UserData.profileData.education}
-                      startContent={<IconWrapper className="bg-default/30 text-foreground/80"><WorkAndStudyIconSolid className="size-5"/></IconWrapper>}
-                    >
-                      {t('Workandeducation')}
-                    </ListboxItem>
+              :
 
-                    <ListboxItem
-                      key="3"
-                      description={lookingfor.find(lookingfor => lookingfor.id == user.profileData.lookingFor).title}
-                      startContent={<IconWrapper className="bg-default/30 text-foreground/80"><SearchIcon className="size-5"/></IconWrapper>}
-                    >
-                      {t("WhyIamhere")}
-                    </ListboxItem>
-
-                  {UserData.profileData.bio === " " &&
-                    <ListboxItem
-                    key="4"
-                    description={UserData.profileData.bio}
-                    startContent={<IconWrapper className="bg-default/30 text-foreground/80"><AboutMeSolid className="size-5"/></IconWrapper>}
-                    >
-                      {t("Bio")}
-                    
-                  </ListboxItem>
-                  }
-                  
-
-                  </ListboxSection>
-                  <ListboxSection 
-                    classNames={{"heading":"font-bold"}} 
-                    className="relative" 
-                    title={t("more_about_me")}   
-                  >
-
-
-                    <ListboxItem
-                      key="7"
-                      description={RealationStatus.find(RealationStatus => RealationStatus.key === UserData.moreAboutMe.relationStatus).label}
-                      startContent={
-                        <IconWrapper className="bg-primary/10 text-primary">
-                          <LikeIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                    >
-                      {t("RealationStatus")}
-
-                    </ListboxItem>
-
-                    <ListboxItem
-                    key="8"
-                      description={`${UserData.moreAboutMe.height} cm`}
-                      startContent={
-                        <IconWrapper className="bg-secondary/10 text-secondary">
-                          <HeightIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                      >
-                      
-                      {t("Height")}
-                    </ListboxItem>
-
-                    <ListboxItem
-                      key="10"
-                      description={`${UserData.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label)}`}
-                      startContent={
-                        <IconWrapper className="bg-success/10 text-success">
-                          <LanguageIcon className="size-5" />
-                        </IconWrapper>
-                      }
-
-                      >
-                      
-                      {t("Language")}
-                    </ListboxItem>
-
-                    <ListboxItem 
-                      key="11" 
-                      description={SexualityStatus.find(SexualityStatus => SexualityStatus.key === UserData.moreAboutMe.sexuality).label}
-                      startContent={
-                        <IconWrapper className="bg-warning/10 text-warning">
-                          <SexualityIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                      >
-                      
-                      {t("SexualityStatus")}
-
-                    </ListboxItem>
-
-
-                    <ListboxItem 
-                      key="12" 
-                      description={KidStatus.find(KidStatus => KidStatus.key === UserData.moreAboutMe.kids).label}
-                      startContent={
-                        <IconWrapper className="bg-primary/10 text-primary">
-                          <KidStatusIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                      >
-                      
-                      {t("kids")}
-
-                    </ListboxItem>
-
-
-                    <ListboxItem 
-                      key="13" 
-                      description={SmokingStatus.find(SmokingStatus => SmokingStatus.key === UserData.moreAboutMe.smoking).label}
-                      startContent={
-                        <IconWrapper className="bg-secondary/10 text-secondary">
-                          <SmokingStatusIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                      >
-                      
-                      {t("SmokingStatus")}
-
-                    </ListboxItem>
-
-
-                    <ListboxItem 
-                      key="14" 
-                      description={DrinkStatus.find(DrinkStatus => DrinkStatus.key === UserData.moreAboutMe.drink).label}
-                      startContent={
-                        <IconWrapper className="bg-danger/10 text-danger">
-                          <DrinkStatusIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                      >
-                      
-                      {t("DrinkStatus")}
-
-                    </ListboxItem>
-
-                    <ListboxItem 
-                      key="15" 
-                      description={PetStatus.find(PetStatus => PetStatus.key === UserData.moreAboutMe.pets).label}
-                      startContent={
-                        <IconWrapper className="bg-warning/10 text-warning">
-                          <PetStatusIcon className="size-5" />
-                        </IconWrapper>
-                      }
-                      >
-                      
-                      {t("PetStatus")}
-
-                    </ListboxItem>
-
-                    
-                  </ListboxSection>
-                  <ListboxSection 
-                    classNames={{"heading":"font-bold"}} 
-                    className="relative" 
-                    title={t("interested")}
-                    >
-                    <ListboxItem
-                    key={111}
-                    >
-                      
-                    <div className="flex flex-wrap">
-                      {UserData.interests.map((value, index) => {
-                          return (
-                            <Chip
-                              key={index}
-                              className="m-1"
-                              color="success"
-                              avatar={<HashtagIcon className="size-4"/>}
-                              variant="solid"
-                            >
-                              {hobbies.find(hobbie => hobbie.id == parseInt(value)).name}
-                            </Chip>
-                          );
-                        })}
-                          
-                    </div>
-
-                      
-                    </ListboxItem>
-                  </ListboxSection>
-                </Listbox>
+              <div 
+                className="flex flex-col items-center justify-center"
+                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`, height:`calc(100vh)`}}  
+              >
+                <Spinner size="lg" />
               </div>
-            </div>
-        </section>
+        }
+
       </div>
 
       <MatchModal
@@ -530,7 +518,7 @@ export default function EditProfilePage() {
 
 
 export const IconWrapper = ({children, className}) => (
-  <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center rounded-small justify-center p-2")}>
+  <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center rounded-small justify-center")}>
     {children}
   </div>
 );

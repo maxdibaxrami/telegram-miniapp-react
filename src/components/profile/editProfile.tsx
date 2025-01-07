@@ -70,7 +70,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
   return (
     <>
-      <Modal placement={props.selectedItem==="WhyIamhere"? "bottom":"center"} hideCloseButton classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/70"}} backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
+      <Modal placement={props.selectedItem==="WhyIamhere"? "bottom":"center"} hideCloseButton classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60"}} backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalContent>
           <ModalBody className={`pt-10 ${props.selectedItem==="WhyIamhere"? "px-0":""}`}>
             <form className="flex flex-col">

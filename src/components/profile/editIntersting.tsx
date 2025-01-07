@@ -46,7 +46,7 @@ const EditIntersting = ({user,children}) => {
       <div onClick={onOpen} className="flex flex-wrap">
         {children}
       </div>
-      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/70"}} hideCloseButton backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
+      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60"}} hideCloseButton backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalContent>
           <ModalBody className="pt-8">
 

@@ -31,8 +31,6 @@ const ProfilePage = () => {
       style={{
         maxHeight: "100%",
         height:"100%",
-        paddingTop: "4rem",
-        padding:"12px",
         marginTop:"4rem",
         marginBottom:"5rem",
         width:"calc( 100vw - 1.5rem )"

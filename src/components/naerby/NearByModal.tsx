@@ -314,7 +314,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                       <div className="relative h-full w-full">
                         <CardFooter
                           style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
-                          className="items-start flex-col py-3 backdrop-blur bg-background/80 backdrop-saturate-150"
+                          className="items-start flex-col py-3 backdrop-blur bg-background/60 backdrop-saturate-150"
                         >
                           <div className="flex flex-grow gap-2 w-full">
                             <div className="flex flex-col w-full">

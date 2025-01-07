@@ -81,7 +81,7 @@ const ExploreFilter = forwardRef((props, ref) => {
     <Modal
       backdrop="blur"
       classNames={{
-        base: "absolute z-50 px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/70",
+        base: "absolute z-50 px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60",
       }}
       isOpen={isOpen}
       size={"5xl"}

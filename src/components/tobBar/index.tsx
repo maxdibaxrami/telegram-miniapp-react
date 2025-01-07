@@ -5,9 +5,6 @@ import {
 } from "@nextui-org/react";
 
 import { useLocation, useSearchParams } from "react-router-dom";
-import { useRef } from "react";
-import NearByFilter from "../naerby/NearByFilter";
-import ExploreFilter from "../explore/exploreFilter";
 import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 import {
@@ -26,10 +23,6 @@ import BlurFade from "../animate/BlurFade";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
-interface ExploreFilterRef {
-  openModal: () => void;
-  closeModal: () => void;
-}
 
 const TopBar = () => {
   const { t } = useTranslation();
@@ -39,11 +32,6 @@ const TopBar = () => {
 
   const { userPageData : user , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
 
-  
-  const childRef = useRef<ExploreFilterRef>(null);
-  const childRefExplore = useRef<ExploreFilterRef>(null);
-
-  console.log(location)
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -144,9 +132,6 @@ const TopBar = () => {
         <NavbarContent justify="end">
         </NavbarContent>
       </Navbar>
-
-      <NearByFilter ref={childRef} />
-      <ExploreFilter ref={childRefExplore} />
     </>
   );
 };

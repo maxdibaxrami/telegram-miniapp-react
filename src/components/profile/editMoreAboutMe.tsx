@@ -107,7 +107,7 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
 
   return (
     <>
-      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/70"}} hideCloseButton scrollBehavior="inside" backdrop="blur" isOpen={isOpen} size={"2xl"} onClose={onClose}>
+      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60"}} hideCloseButton scrollBehavior="inside" backdrop="blur" isOpen={isOpen} size={"2xl"} onClose={onClose}>
         <ModalContent>
 
           <ModalBody className="px-0" style={props.selectedItem === "height" ? {maxHeight:"150px"}:{maxHeight:"600px"}}>
