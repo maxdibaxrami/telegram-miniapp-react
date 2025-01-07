@@ -39,7 +39,6 @@ const variantsFrontCard = {
 };
 
 const NearByUserModal = forwardRef((props:any, ref) => {
-  const maxLikes = 5;
   const location = useLocation();
   const [searchParams] = useSearchParams();
 
@@ -119,7 +118,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
       </div>
     ),{duration: 4000})
   }
-  
+  const maxLikes=50
   const RealationStatus = getRealationStatus(t)
   
   const languages = getlanguages(t)

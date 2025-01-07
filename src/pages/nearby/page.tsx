@@ -47,15 +47,6 @@ export default function NearByPage() {
         <div className="flex gap-4 flex-col px-6 text-center items-center">
           <p className="text-tiny">{t("exploreUserFilterNoUser")}</p>
         </div>
-
-
-       {/** <MatchModal
-          isOpen={isModalOpen}
-          modalData={SelectedCard}
-          onClose={closeModal}
-          thisUserId={user.id}
-
-        />*/} 
       </div>
     );
   }
@@ -85,15 +76,6 @@ export default function NearByPage() {
         ))
       )}
       {loadingMore && <><NearByCardSkelete/><NearByCardSkelete /></>}
-
-    {/* SelectedCard &&
-      <MatchModal
-        isOpen={isModalOpen}
-        modalData={SelectedCard}
-        onClose={closeModal}
-        thisUserId={user.id}
-      />
-    */}
     </div>
   );
 }

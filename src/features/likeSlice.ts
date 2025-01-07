@@ -43,6 +43,8 @@ interface LikeState {
   loading: boolean;
   requestLoading: boolean;
   error: string | null;
+  fetchLikeAntoherUser: Like[]| null,
+  fetchLikeAntoherUserLoading:boolean
 }
 
 // Initial state
@@ -51,11 +53,21 @@ const initialState: LikeState = {
   loading: true,
   requestLoading:false,
   error: null,
+  fetchLikeAntoherUser: null,
+  fetchLikeAntoherUserLoading : true,
 };
 
 // Thunk to fetch like data (user details)
 export const fetchLikes = createAsyncThunk(
   'like/fetchLikes',
+  async (userId: string) => {
+    const response = await axios.get(`/like/${userId}/likes`);
+    return response.data as Like[]; // Explicitly type the response
+  }
+);
+
+export const fetchLikesAnotherUser = createAsyncThunk(
+  'like/fetchLikesAnotherUser',
   async (userId: string) => {
     const response = await axios.get(`/like/${userId}/likes`);
     return response.data as Like[]; // Explicitly type the response
@@ -106,6 +118,23 @@ const likeSlice = createSlice({
         state.error = action.error.message || 'Failed to fetch likes';
       })
 
+      ////
+
+
+      .addCase(fetchLikesAnotherUser.pending, (state) => {
+        state.fetchLikeAntoherUserLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchLikesAnotherUser.fulfilled, (state, action: PayloadAction<Like[]>) => {
+        state.fetchLikeAntoherUserLoading = false;
+        state.fetchLikeAntoherUser = action.payload;
+      })
+      .addCase(fetchLikesAnotherUser.rejected, (state, action) => {
+        state.fetchLikeAntoherUserLoading = false;
+        state.error = action.error.message || 'Failed to fetch likes';
+      })
+
+      
       // Like user cases
       .addCase(likeUser.pending, (state) => {
         state.error = null;
