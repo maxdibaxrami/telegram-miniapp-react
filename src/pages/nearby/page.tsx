@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
-import NearByCardSkelete from "@/components/naerby/NearByCardSkelete";
 import { fetchNearBySliceUsers } from "@/features/nearBySlice";
 import { Spinner } from "@nextui-org/react";
 
@@ -19,7 +18,7 @@ export default function NearByPage() {
 
   useEffect(() => {
 
-    const parentContainer = document.getElementById("parent-wrap");
+    const parentContainer = document.getElementById("wrap");
 
     if (!parentContainer) return; // Ensure that the element exists
 
@@ -63,15 +62,12 @@ export default function NearByPage() {
 
   return (
     <div
-      id="parent-wrap" // Parent container with overflow and scroll
-      className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
+      className="grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
         paddingLeft: "12px",
         paddingRight: "12px",
-        overflowY: "auto", // Ensure the parent is scrollable
-        maxHeight: "calc(100vh)", // Add a height constraint if needed
       }}
     >
       {users.map((value, index) => (
@@ -82,7 +78,7 @@ export default function NearByPage() {
           />
         ))
       }
-      {loadingMore && <><NearByCardSkelete/><NearByCardSkelete /></>}
+      {loadingMore && <div className="col-span-2 w-full flex items-center my-2 justify-center"> <Spinner size="lg" /></div>}
     </div>
   );
 }

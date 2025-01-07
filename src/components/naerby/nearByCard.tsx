@@ -10,17 +10,18 @@ const NearByCard = ({ data, num }) => {
         isFooterBlurred
         isPressable
         className="border-none relative"
-        radius="lg"
+        radius="none"
         as={Link}
         to={`/user?userId=${data.id}`}
       >
         <Image
           alt="Woman listing to music"
           className="object-cover aspect-square"
+          radius="none"
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
-          <CardFooter style={{height:"34px"}} className=" backdrop-blur	bg-background/60 backdrop-saturate-150 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
+          <CardFooter style={{height:"40px"}} className="z-10 left-0 right-0 backdrop-blur	bg-background/60 backdrop-saturate-150 border-white/20 overflow-hidden py-2 absolute before:rounded-xl bottom-0 shadow-smallz-10">
               <div className=" w-full">
                 <div className="flex justify-between items-center">
                   <p style={{textAlign:"start"}} className="flex items-center text-tiny text-foreground text-handller">
