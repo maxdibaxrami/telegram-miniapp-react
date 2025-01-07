@@ -26,6 +26,8 @@ const BottomMenu = () => {
     }
   };
 
+
+  // group-data-[selected=true]:shadow-lg group-data-[selected=true]:shadow-primary/40
   return (
       <AnimatePresence >
         {searchParams.get('page')!=="explore" && (
@@ -54,6 +56,8 @@ const BottomMenu = () => {
               classNames={{
                 tab: " h-auto p-0.5 m-1 color-white aspect-square",
                 tabList: "bg-transparent",
+                cursor: "w-full bg-[transparent]",
+                tabContent: "group-data-[selected=true]:text-[#016feee6]",
               }}
               color="primary"
               size="lg"
@@ -72,8 +76,8 @@ const BottomMenu = () => {
                 href="/#/main?page=explore"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <FireIcon/>
-                    <p style={{fontSize:"11px"}}>{t('Explore')}</p>
+                    <FireIcon className="size-7"/>
+                    <p style={{fontSize:"12px"}}>{t('Explore')}</p>
 
                   </div>
                 }
@@ -84,8 +88,8 @@ const BottomMenu = () => {
                 href="/#/main?page=nearby"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <LocationIcon/>
-                    <p style={{fontSize:"11px"}}>{t('Nearby')}</p>
+                    <LocationIcon className="size-7"/>
+                    <p style={{fontSize:"12px"}}>{t('Nearby')}</p>
 
                   </div>
                 }
@@ -96,8 +100,8 @@ const BottomMenu = () => {
                 href="/#/main?page=chat"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <ChatIcon/>
-                    <p style={{fontSize:"11px"}}>{t('Chat')}</p>
+                    <ChatIcon className="size-7"/>
+                    <p style={{fontSize:"12px"}}>{t('Chat')}</p>
                   </div>
                 }
               />
@@ -108,8 +112,8 @@ const BottomMenu = () => {
 
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <LikeIcon/>
-                    <p style={{fontSize:"11px"}}>{t('Likes')}</p>
+                    <LikeIcon className="size-7"/>
+                    <p style={{fontSize:"12px"}}>{t('Likes')}</p>
 
                   </div>
                 }
@@ -120,8 +124,8 @@ const BottomMenu = () => {
                 href="/#/main?page=profile"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <ProfileIcon/>
-                    <p style={{fontSize:"11px"}}>{t('Profile')}</p>
+                    <ProfileIcon className="size-7"/>
+                    <p style={{fontSize:"12px"}}>{t('Profile')}</p>
                   </div>
                 }
               />
