@@ -251,6 +251,12 @@ const ExplorePage = () => {
       <motion.div style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
 
         <AnimatePresence initial={false}>
+          {users[index - 3] && (
+            <ExploreCard profile={users[index - 3]} key={index - 3} frontCard={false} />
+          )}
+          {users[index - 2] && (
+            <ExploreCard profile={users[index - 2]} key={index - 2} frontCard={false} />
+          )}
           {users[index - 1] && (
             <ExploreCard profile={users[index - 1]} key={index - 1} frontCard={false} />
           )}

@@ -56,8 +56,10 @@ const ExploreCard = (props) => {
 
   const variantsBackCard = {
     initial: { scale: 0, y: 105, opacity: 0 },
-    animate: { scale: 0.75, y: 30, opacity: 0.5 }
+    animate: { scale: 0.9, y: 60, opacity: 0.7 }
   };
+
+  
 
   const RealationStatus = getRealationStatus(t)
 
@@ -100,7 +102,7 @@ const ExploreCard = (props) => {
             : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
         }
       >
-        <div className='py-4' style={{ width: "calc(100% - 3rem)" }}>
+        <div className='pt-4 pb-8' style={{ width: "calc(100% - 4rem)" }}>
           <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
             <Swiper
               slidesPerView={1}
