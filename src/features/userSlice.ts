@@ -59,6 +59,8 @@ interface UserState {
   loading: boolean;
   updateUserData: boolean;
   uploadProfileLoading: boolean;
+  userPageData:UserData | null;
+  userPageLoading:boolean;
   error: string | null;
 }
 
@@ -69,8 +71,18 @@ const initialState: UserState = {
   updateUserData: false,
   uploadProfileLoading: false,
   error: null,
+  userPageData: null,
+  userPageLoading: true
 };
 
+
+export const fetchUserDataId = createAsyncThunk(
+  'user/fetchDataById',  // Change action type here
+  async (userId: string) => {
+    const response = await axios.get(`/users/${userId}`);
+    return response.data as UserData; // Explicitly type the response
+  }
+);
 // Thunk to fetch user data
 export const fetchUserData = createAsyncThunk(
   'user/fetchData',
@@ -85,6 +97,9 @@ export const updateUserData = createAsyncThunk(
   'user/updateData',
   async ({ userId, updatedData }: { userId: string; updatedData: Partial<UserData> }) => {
     const response = await axios.patch(`/users/${userId}`, updatedData);
+
+    console.log(response.data)
+
     return response.data as Partial<UserData>; // Explicitly type the response
   }
 );
@@ -149,6 +164,22 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Failed to fetch user data';
       })
+
+      // handle user id 
+
+      .addCase(fetchUserDataId.pending, (state) => {
+        state.userPageLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserDataId.fulfilled, (state, action: PayloadAction<UserData>) => {
+        state.userPageLoading = false;
+        state.userPageData = action.payload;
+      })
+      .addCase(fetchUserDataId.rejected, (state, action) => {
+        state.userPageLoading = false;
+        state.error = action.error.message || 'Failed to fetch user data';
+      })
+
       // Handle user update cases
       .addCase(updateUserData.pending, (state) => {
         state.updateUserData = true;

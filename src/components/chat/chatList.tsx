@@ -26,7 +26,7 @@ const ChatList = () => {
     await dispatch(updateUserData({
       userId: user.id.toString(),
       updatedData: {
-        favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value] : [value]  // Ensure favoriteUsers is an array
+        favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value.toString()] : [value]  // Ensure favoriteUsers is an array
       }
     }));
   };

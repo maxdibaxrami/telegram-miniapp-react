@@ -2,16 +2,17 @@ import { Card, CardFooter, Image } from "@nextui-org/react";
 import { PerimumIcon, VerifyIconFill } from "@/Icons/index";
 import { CircleSvg } from "@/Icons/index";
 import { BASEURL } from "@/constant";
+import { Link } from "react-router-dom";
 
-const NearByCard = ({ data, onCardClick, num }) => {
+const NearByCard = ({ data, num }) => {
   return (
       <Card
         isFooterBlurred
         isPressable
         className="border-none relative"
         radius="lg"
-        
-        onPress={() => onCardClick(data)}
+        as={Link}
+        to={`/user?userId=${data.id}`}
       >
         <Image
           alt="Woman listing to music"

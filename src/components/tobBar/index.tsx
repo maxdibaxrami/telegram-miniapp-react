@@ -17,10 +17,14 @@ import {
   LikeIcon,
   LocationIcon,
   SettingIcon,
-  EditProfileIcon
+  EditProfileIcon,
+  VerifyIconFill,
+  PerimumIcon
 } from '@/Icons/index'
 import { useTranslation } from 'react-i18next';
 import BlurFade from "../animate/BlurFade";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 interface ExploreFilterRef {
   openModal: () => void;
@@ -33,6 +37,9 @@ const TopBar = () => {
   const location = useLocation();
   const lp = useLaunchParams();
 
+  const { userPageData : user , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
+
+  
   const childRef = useRef<ExploreFilterRef>(null);
   const childRefExplore = useRef<ExploreFilterRef>(null);
 
@@ -119,6 +126,18 @@ const TopBar = () => {
                 </p>
               </BlurFade>
             }
+
+          {location.pathname === "/user" && LoadingUser === false &&
+              <BlurFade className="flex items-center">
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {user.firstName},
+                  {user.age}
+                  {user.verifiedAccount &&  <VerifyIconFill fill={"#016fee"} className="size-5"/>  }        
+                  {user.premium && <PerimumIcon className="size-5"/>}
+                </p>
+              </BlurFade>
+            }
+
           </NavbarItem>
         </NavbarContent>
 

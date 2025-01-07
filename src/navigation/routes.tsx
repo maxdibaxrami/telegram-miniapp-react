@@ -10,6 +10,8 @@ import EditProfile from '@/pages/editprofile/page';
 import Setting from '@/pages/setting/page';
 import ChatPage from '@/pages/chat/page';
 import SignupPage from '@/pages/signup/page';
+import userProfile from '@/pages/userPage/index';
+
 
 interface Route {
   path: string;
@@ -26,6 +28,7 @@ export const routes: Route[] = [
   { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params', auth:true },
   { path: '/main', Component: MainPage, title: 'Main Page', auth:true },
   { path: '/profile-edit', Component: EditProfile, title: 'Main Page', auth:true },
+  { path: '/user', Component: userProfile, title: 'user Page', auth:true },
   { path: '/setting', Component: Setting, title: 'Main Page', auth:true },
   { path: '/chat-detail', Component: ChatPage, title: 'Main Page', auth:true },
   { path: '/sign-up', Component: SignupPage, title: 'signup', auth: false },

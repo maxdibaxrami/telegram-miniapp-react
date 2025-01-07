@@ -1,22 +1,16 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect } from "react";
 import NearByCard from "@/components/naerby/nearByCard";
-import NearByUserModal from "@/components/naerby/NearByModal";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
-import MatchModal from "@/components/explore/matchModal";
 import NearByCardSkelete from "@/components/naerby/NearByCardSkelete";
 import { fetchNearBySliceUsers } from "@/features/nearBySlice";
-import axios from '@/api/base';
 
 export default function NearByPage() {
 
-  const [SelectedCard, setSelectedCard] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loadingUser, setLoadingUser] = useState(false);
+  //const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const childRef = useRef();
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -24,32 +18,7 @@ export default function NearByPage() {
   const { data: users, loading, page, total, filters, loadingMore } = useSelector((state: RootState) => state.nearBy);
   const { data: user } = useSelector((state: RootState) => state.user);
 
-  const handleClick = () => {
-    if (childRef.current) {
-      /* @ts-ignore */
-      childRef.current.callChildFunction();
-    }
-  };
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const onCardClick = async (data) => {
-    setSelectedCard(null); // Reset selected card state
-    setLoadingUser(true); // Set loading state to true
-
-    // Fetch the user data for the clicked card using axios
-    try {
-      const response = await axios.get(`/users/${data.id}`);
-      setSelectedCard(response.data); // Set the fetched user data to the state
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    } finally {
-      setLoadingUser(false); // Set loading state to false once the fetch is done
-    }
-
-    handleClick(); // Call the child function after setting the selected card
-  };
+  //const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     const handleWindowScroll = () => {
@@ -80,21 +49,13 @@ export default function NearByPage() {
         </div>
 
 
-        <MatchModal
+       {/** <MatchModal
           isOpen={isModalOpen}
           modalData={SelectedCard}
           onClose={closeModal}
           thisUserId={user.id}
 
-        />
-
-        <NearByUserModal
-          openModal={openModal}
-          closeModal={closeModal}
-          userId={user.id}
-          ref={childRef}
-          profile={SelectedCard}
-        />
+        />*/} 
       </div>
     );
   }
@@ -119,32 +80,20 @@ export default function NearByPage() {
           <NearByCard
             data={value}
             num={index}
-            onCardClick={onCardClick}
             key={value.id}
           />
         ))
       )}
       {loadingMore && <><NearByCardSkelete/><NearByCardSkelete /></>}
 
-
-
-      <NearByUserModal
-        openModal={openModal}
-        closeModal={closeModal}
-        userId={user.id}
-        ref={childRef}
-        profile={SelectedCard}
-        loading={loadingUser} // Pass loading state to modal
-      />
-
-    {SelectedCard &&
+    {/* SelectedCard &&
       <MatchModal
         isOpen={isModalOpen}
         modalData={SelectedCard}
         onClose={closeModal}
         thisUserId={user.id}
       />
-    }
+    */}
     </div>
   );
 }
