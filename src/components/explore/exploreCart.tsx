@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, ArowUpIcon, VerifyIconFill, HashtagIcon, PerimumIcon } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, ArowUpIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import { useTranslation } from 'react-i18next';
 import { gethobbies, getlanguages, getRealationStatus, getSexualityStatus } from '@/constant';
@@ -56,10 +56,8 @@ const ExploreCard = (props) => {
 
   const variantsBackCard = {
     initial: { scale: 0, y: 105, opacity: 0 },
-    animate: { scale: 0.9, y: 60, opacity: 0.7 }
+    animate: { scale: 0.9, y: 50, opacity: 0.7 }
   };
-
-  
 
   const RealationStatus = getRealationStatus(t)
 
@@ -102,7 +100,7 @@ const ExploreCard = (props) => {
             : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
         }
       >
-        <div className='pt-4 pb-8' style={{ width: "calc(100% - 4rem)" }}>
+        <div className='py-4' style={{ width: "calc(100% - 3rem)" }}>
           <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
             <Swiper
               slidesPerView={1}
@@ -219,7 +217,7 @@ const ExploreCard = (props) => {
               <div className="relative h-full w-full">
                 <CardFooter
                     style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
-                    className="items-start flex-col py-3 backdrop-blur bg-background/60 backdrop-saturate-150"
+                    className="items-start flex-col py-3 backdrop-blur bg-background/70 backdrop-saturate-150"
                 >
                   <div className="flex flex-grow gap-2 w-full">
                     <div className="flex flex-col w-full">
@@ -229,8 +227,7 @@ const ExploreCard = (props) => {
                             {props.profile.firstName}, {props.profile.age}
                           </p>
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
-                          {props.profile.premium && <PerimumIcon />}
-
+                          
                         </div>
                         <Button
                           onClick={toggleFooter}

@@ -66,8 +66,8 @@ export default function NearByPage() {
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft: "12px",
-        paddingRight: "12px",
+        paddingLeft: "0px",
+        paddingRight: "0px",
       }}
     >
       {users.map((value, index) => (
