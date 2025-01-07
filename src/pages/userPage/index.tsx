@@ -345,7 +345,7 @@ export default function EditProfilePage() {
                             ))}
                         </Swiper>
                         <div
-                          style={{position:"absolute", bottom:0, zIndex:10, width:"100%", overflow:"hidden",borderBottomLeftRadius:"12px",borderBottomRightRadius:"12px"}}
+                          style={{position:"absolute", bottom:0, zIndex:10, width:"100%", overflow:"hidden"}}
                           className="items-start flex-col py-3 backdrop-blur bg-background/60 backdrop-saturate-150"
                           >
                             <div className="flex flex-grow w-full">
@@ -390,7 +390,7 @@ export default function EditProfilePage() {
             
       
                   <div className=" w-full mb-4">
-                    <div style={{marginTop:"-18px"}} className="w-full text-default-700 border-small px-1 pt-4 pb-2 rounded-small border-default-200 dark:border-default-100">
+                    <div style={{marginTop:"-18px"}} className="w-full text-default-700 border-small px-1 pt-4 pb-2 rounded-large border-default-200 dark:border-default-100">
                       <Listbox 
                         aria-label="Listbox menu with sections" 
                         variant="solid"

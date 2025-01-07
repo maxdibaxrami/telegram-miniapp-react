@@ -34,7 +34,7 @@ const initialState: NearByState = {
   error: null,
   loadingMore: false,
   page: 1, // Start from the first page
-  limit: 20, // Number of users to fetch per page
+  limit: 10, // Number of users to fetch per page
   total: 0,  // Total number of users available
   genderFilter:null,
   filters: {

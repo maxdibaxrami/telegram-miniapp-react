@@ -6,10 +6,9 @@ import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
 import NearByCardSkelete from "@/components/naerby/NearByCardSkelete";
 import { fetchNearBySliceUsers } from "@/features/nearBySlice";
+import { Spinner } from "@nextui-org/react";
 
 export default function NearByPage() {
-
-  //const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { t } = useTranslation();
 
@@ -18,28 +17,39 @@ export default function NearByPage() {
   const { data: users, loading, page, total, filters, loadingMore } = useSelector((state: RootState) => state.nearBy);
   const { data: user } = useSelector((state: RootState) => state.user);
 
-  //const closeModal = () => setIsModalOpen(false);
-
   useEffect(() => {
+
+    const parentContainer = document.getElementById("parent-wrap");
+
+    if (!parentContainer) return; // Ensure that the element exists
+
     const handleWindowScroll = () => {
-      const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
+      const bottom = parentContainer.scrollHeight === parentContainer.scrollTop + parentContainer.clientHeight;
       if (bottom && !loading && users.length < total) {
         dispatch(fetchNearBySliceUsers({
           userId: user.id.toString(),
           page: page,
-          limit: 20,
+          limit: 10,
           ...filters
         }));
       }
     };
 
-    window.addEventListener("scroll", handleWindowScroll);
+    parentContainer.addEventListener("scroll", handleWindowScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleWindowScroll);
+      parentContainer.removeEventListener("scroll", handleWindowScroll);
     };
-  }, [users, loading, page, total, user.id, dispatch]);
+  }, [users, loading, page, total, user.id, dispatch, filters]);
 
+
+
+  if(loading){
+    return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
+      <Spinner size="lg" />
+    </div>
+  }
+  
   if (!loading && users.length === 0) {
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center">
@@ -53,28 +63,24 @@ export default function NearByPage() {
 
   return (
     <div
+      id="parent-wrap" // Parent container with overflow and scroll
       className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
-        overflowY: "auto",
+        paddingLeft: "12px",
+        paddingRight: "12px",
+        overflowY: "auto", // Ensure the parent is scrollable
+        maxHeight: "calc(100vh - 4.5rem)", // Add a height constraint if needed
       }}
     >
-      {loading ? (
-        Array.from({ length: 10 }).map((_, index) => (
-          <NearByCardSkelete key={index} />
-        ))
-      ) : (
-        users.map((value, index) => (
+      {users.map((value, index) => (
           <NearByCard
             data={value}
             num={index}
             key={value.id}
           />
-        ))
-      )}
+        ))}
       {loadingMore && <><NearByCardSkelete/><NearByCardSkelete /></>}
     </div>
   );

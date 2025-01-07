@@ -2,18 +2,20 @@ import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import { BASEURL } from "@/constant";
 import { VerifyIconFill } from "@/Icons";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-const LikeCard = ({ data, onPressData }) => {
+const LikeCard = ({ data }) => {
     const { t } = useTranslation();
   
   return (
       <Card
         isFooterBlurred
         isPressable
-        className="border-none mb-8 aspect-square w-full relative"
+        className="border-none aspect-square w-full relative"
         radius="lg"
         style={{backgroundColor: "transparent" }}
-        onPress={()=> onPressData(data)}
+        as={Link}
+        to={`/user?userId=${data.id}`}
 
       >
         <Image
@@ -39,7 +41,6 @@ const LikeCard = ({ data, onPressData }) => {
           color="default"
           radius="lg"
           size="sm"
-          onPress={()=> onPressData(data)}
           variant="flat"
         >
           {t("profile")}

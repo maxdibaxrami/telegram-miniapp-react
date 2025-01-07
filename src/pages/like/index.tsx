@@ -1,49 +1,26 @@
 import LikeCard from "./likeCard";
 import LikeCardSkelete from "./likeSkelete";
-
-import { useEffect, useRef, useState } from "react";
-import NearByUserModal from "@/components/naerby/NearByModal";
 import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
-
 import { NotFoundLike } from "@/Icons/notFoundLike";
 import { Button } from "@nextui-org/button";
 import { FireIcon } from "@/Icons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import MatchModal from "@/components/explore/matchModal";
+import { Spinner } from "@nextui-org/react";
 
 
 
 export default function LikesPage() {
-  const childRef = useRef();
-  const [SelectedCard, setSelectedCard] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { t } = useTranslation();  // Initialize translation hook
-
-  const { data: user } = useSelector((state: RootState) => state.user);
   const { data, loading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
 
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleClick = () => {
-    if (childRef.current) {
-      /* @ts-ignore */
-      childRef.current.callChildFunction(); // Call the function in the child
-    }
-  };
-
-  const onCardClick = (data) => {
-    setSelectedCard(data);
-    handleClick();
-  };
-
-  useEffect(()=>{console.log(isModalOpen)},[SelectedCard])
-
+  if(loading){
+    return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
+      <Spinner size="lg" />
+    </div>
+  }
   if(!loading && data.length===0){
     return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
         <NotFoundLike/>
@@ -53,17 +30,6 @@ export default function LikesPage() {
             {t('Explore')}
           </Button>
         </div>
-
-          <MatchModal
-            isOpen={isModalOpen}
-            modalData={SelectedCard}
-            onClose={closeModal}
-            thisUserId={user.id}
-          />
-
-      <NearByUserModal openModal={openModal} closeModal={closeModal} userId={user.id} ref={childRef} profile={SelectedCard} /> 
-
-          
     </div>
   }
   return (
@@ -72,31 +38,12 @@ export default function LikesPage() {
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
+        paddingLeft: "12px",
+        paddingRight: "12px",
       }}
     >
 
-      {loading?(
-        Array.from({ length: 10 }).map((_,index)=>{
-          return <LikeCardSkelete key={index}/>
-        })      
-      ):(
-        data.map((value) => (
-          <LikeCard onPressData={onCardClick} data={value} />
-        ))
-      )}
-
-          <MatchModal
-            isOpen={isModalOpen}
-            modalData={SelectedCard}
-            onClose={closeModal}
-            thisUserId={user.id}
-          />
-
-      <NearByUserModal openModal={openModal} closeModal={closeModal} userId={user.id} ref={childRef} profile={SelectedCard} /> 
-
-          
+      {data.map((value) => (<LikeCard data={value} />))}
 
     </motion.div >
   );
