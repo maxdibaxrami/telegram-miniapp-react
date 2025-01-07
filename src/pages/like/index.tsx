@@ -1,5 +1,4 @@
 import LikeCard from "./likeCard";
-import LikeCardSkelete from "./likeSkelete";
 import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
