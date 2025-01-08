@@ -9,14 +9,8 @@ const NearByCard = ({ data, onClick,isSelected }) => {
     <motion.div
       layoutId={isSelected.id == data.id.toString()? undefined : data.id.toString()}  // Use Framer Motion's layoutId to animate between states
       className={`relative ${isSelected ? "z-50" : ""}`}
-      style={{
-        cursor: "pointer",
-        width: isSelected ? "100%" : "auto", // When selected, take full width
-        height: isSelected ? "100%" : "auto", // When selected, take full height
-      }}
-
       transition={{
-        type: "tween",
+        type: "spring", // Simple, natural spring animation
       }}
     
     >
@@ -38,7 +32,7 @@ const NearByCard = ({ data, onClick,isSelected }) => {
           <CardFooter
             className="p-0 border-default/20 bg-background/60 border-1 overflow-hidden absolute bottom-0 shadow-small z-10"
           >
-            <motion.div transition={{type: "tween"}} animate={isSelected ? {height: "60px"} : {height: "42px"}} className="w-full py-1 flex items-center overflow-hidden px-1">
+            <motion.div transition={{type: "spring"}} animate={isSelected ? {height: "60px"} : {height: "42px"}} className="w-full py-1 flex items-center overflow-hidden px-1">
               <div className="flex items-center">
                 <p
                   style={{ textAlign: "start" }}

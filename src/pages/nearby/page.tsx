@@ -109,6 +109,9 @@ export default function NearByPage() {
              animate={{ opacity: 1 }}
              exit={{ opacity: 0 }}
              onClick={() => setSelected(null)}
+             transition={{
+              type: "spring", // Simple, natural spring animation
+            }}
            >
              <motion.div className="relative w-4/5 rounded-lg shadow-lg">
                <NearByCard
