@@ -27,7 +27,7 @@ const ChatFiltermenu = ({chatOrder, setChatOrder}) => {
     <Dropdown
     backdrop="blur">
       <DropdownTrigger>
-        <Button aria-label="Filter" color="default" size="sm">
+        <Button aria-label="Filter" variant="flat" color="default" size="sm">
           <FilterButton className="size-5" stroke="#fff" />
           <p className="capitalize font-bold">{selectedValue}</p>
         </Button>

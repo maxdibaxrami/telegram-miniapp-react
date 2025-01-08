@@ -105,8 +105,8 @@ const ChatList = () => {
       dispatch(fetchConversations(user.id.toString()));
   },[])
   return (
-    <>
-      <div className="flex justify-between py-2 items-center">
+    <div style={{borderRadius:"12px"}} className="bg-neutral/10 mt-1">
+      <div className="flex justify-between px-1 py-2 items-center ">
         <span style={{ fontWeight: "500" }} className="text-large text-default-600">
           {t("chat")}
         </span>
@@ -122,7 +122,6 @@ const ChatList = () => {
         :
         <ListboxWrapper>
           <Listbox
-            className="backdrop-blur-sm"
             classNames={{
               base: "w-full",
               list: "overflow-scroll",
@@ -205,7 +204,7 @@ const ChatList = () => {
         </ListboxWrapper>
       }
 
-    </>
+    </div>
   );
 };
 

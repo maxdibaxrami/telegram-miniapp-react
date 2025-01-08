@@ -295,6 +295,9 @@
 
     "SmokingStatus": "Smoking",
     "DrinkStatus": "Drinking",
-    "PetStatus": "Pets"
+    "PetStatus": "Pets",
+
+    "noMessages": "There's no conversation yet. Start talking and get to know each other!"
+
   }
   

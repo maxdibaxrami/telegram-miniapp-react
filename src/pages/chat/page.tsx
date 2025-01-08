@@ -10,8 +10,15 @@ import { RootState } from "@/store";
 import axios from '@/api/base';
 import { useEffect, useMemo, useState } from "react";
 import socketService from '@/socket/socketService'; // Import socket service
+import { NotFountChatList } from "@/Icons/notFoundChatList";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { Spinner } from "@nextui-org/react";
 
 export default function ChatPage() {
+
+  const { t } = useTranslation();
+  
 
   const [profileDataState, setProfileDataState] = useState(null);
   const [messages, setMessages] = useState([]); // State for messages
@@ -19,6 +26,7 @@ export default function ChatPage() {
   const [inputMessage, setInputMessage] = useState(''); // State for input message
   const [isUserOnline, setIsUserOnline] = useState(false);
   
+  const [messageLoading , setMessageLoading ] = useState(true)
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -44,11 +52,14 @@ export default function ChatPage() {
   
 
   const fetchMessages = async () => {
+    setMessageLoading(true)
     try {
       const response = await axios.get(`/messages/user/${userId2}/${user.id}`);
+      setMessageLoading(false)
       return response.data;
     } catch (error) {
       console.error("Error fetching messages:", error);
+      setMessageLoading(false)
       return [];
     }
   };
@@ -136,7 +147,19 @@ export default function ChatPage() {
     <Page>
       <ChatLayout>
         <ChatProfileSection profileDataState={profileDataState} loading={loading} isUserOnline={isUserOnline}/>
-        <main style={{display:"flex", overflow: "auto", flexGrow:1 }}>
+        <main style={{display:"flex",position:"relative", overflow: "auto", flexGrow:1 }}>
+          {messageLoading && 
+            <motion.div transition={{type:"spring"}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{borderRadius:"12px"}} className="absolute backdrop-blur p-3 backdrop-saturate-150 bg-neutral/30 top-1/2 z-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <Spinner color="current" size="lg"/>
+            </motion.div>
+          }
+          
+          {!messageLoading && messages.length === 0 && 
+            <motion.div transition={{type:"spring"}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{borderRadius:"12px"}} className="absolute backdrop-blur p-3 backdrop-saturate-150 bg-neutral/30 top-1/2 z-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <NotFountChatList/>
+              <p className="text-tiny text-center">{t("noMessages")}</p>
+            </motion.div>
+          }
           <MessageSection user={user} messages={messages} /> {/* Pass messages to MessageSection */}
         </main>
         <ChatInput 

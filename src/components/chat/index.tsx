@@ -10,8 +10,8 @@ const ChatPage = () => {
         overflow: "scroll",
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft:"0.75rem",
-        paddingRight:"0.75rem",
+        paddingLeft:"0.5rem",
+        paddingRight:"0.5rem",
         zIndex: 5,
       }}
       id="chatScrollcontainer"
