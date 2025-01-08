@@ -167,7 +167,7 @@ export default function EditProfilePage() {
         </div>
 
           <div  style={{paddingLeft:"12px", paddingRight:"12px"}}  className="w-full mb-4">
-            <div className="text-default-600 w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+            <div className="text-default-600 w-full  bg-neutral/10 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
               <Listbox aria-label="Listbox menu with sections" variant="solid">
                 <ListboxSection                   
                   classNames={{"heading":"font-bold"}} 

@@ -40,7 +40,7 @@ const BottomMenu = () => {
           animate={{ bottom: "0px" }}
           exit={{ bottom:"-120px"}}
   
-          className={"flex w-full px-4 fixed items-center backdrop-blur	bg-background/60 backdrop-saturate-150 border-foreground/20 shadow-small"}
+          className={"flex w-full px-4 fixed items-center backdrop-blur	bg-background/70 backdrop-saturate-150 border-foreground/20 shadow-small"}
           style={{
             zIndex: "50",
             width: "100%",
@@ -57,7 +57,7 @@ const BottomMenu = () => {
                 tab: " h-auto p-0.5 m-1 color-white aspect-square",
                 tabList: "bg-transparent",
                 cursor: "w-full bg-[transparent]",
-                tabContent: "group-data-[selected=true]:text-[#016feee6]",
+                tabContent: "group-data-[selected=true]:text-[#32c2ba]",
               }}
               color="primary"
               size="lg"

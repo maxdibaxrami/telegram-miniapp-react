@@ -44,7 +44,7 @@ const TopBar = () => {
   return (
     <>
       <Navbar
-        className="top-0 fixed text-default-600 z-50"
+        className="top-0 fixed text-default-600 z-50 "
         style={{ paddingTop: `${getPaddingForPlatform()}` }}
       >
         <NavbarContent justify="start">

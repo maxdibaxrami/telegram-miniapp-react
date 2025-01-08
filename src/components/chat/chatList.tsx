@@ -121,86 +121,87 @@ const ChatList = () => {
         </div>
         :
         <ListboxWrapper>
-      <Listbox
-        className="backdrop-blur-sm"
-        classNames={{
-          base: "w-full",
-          list: "overflow-scroll",
-        }}
-        items={filteredData}  // Use the filtered data
-        label="Assigned to"
-        variant="solid"
-      >
-        {(item) => {
-           const isSender = item.senderId === user.id;
-           const targetUser = isSender ? item.recipientId : item.senderId;
-           const targetFirstName = isSender ? item.firstName : item.senderFirstName;
-           const targetPhotoUrl = isSender ? item.photoUrl : item.senderPhotoUrl;
-           if(item.senderId == item.recipientId){
-            return null
-           }
-           // item.senderId != user.id &&
-           console.log("aaaaaaaaa", )
-           return (
-             <ListboxItem
-               key={item.userId}
-               endContent={
-                 <ChatItemMenu 
-                   data={item}
-                   targetUser={targetUser}
-                   favoriteUsers={user.favoriteUsers} 
-                   HandleAddToFavorite={HandleAddToFavorite}
-                   HandleRemoveFromFavorite={HandleRemoveFromFavorite}
-                   handleDelete={handleDelete}
-                   HandleBlockUser={HandleBlockUser}
-                 />
-               }
-               startContent={
-                 <Avatar
-                   isBordered
-                   color={item.readAt == null && item.senderId != user.id ? "primary" : "default"}
-                   radius="full"
-                   size="md"
-                   src={`${BASEURL}${targetPhotoUrl}`}
-                 />
-               }
-               textValue={truncateText(targetFirstName, 10)}
-             >
-               <Link to={`/chat-detail?user1=${item.senderId}&user2=${item.recipientId}`}>
-                 <div className="flex gap-2 items-center" style={{ width: "100%" }}>
-                   <div className="flex pl-2 flex-col">
-                     <span
-                       className={
-                          item.readAt == null && item.senderId != user.id 
-                           ? "text-small text-handller-chat font-bold text-default-700"
-                           : "text-small text-handller-chat text-default-700"
-                       }
-                     >
-                       {targetFirstName}
-                       <Chip
-                         className={item.readAt == null && item.senderId != user.id  ?  "visible ml-1" : "hidden"}
-                         color="primary"
-                         size="sm"
-                       >
-                         +1 {t("new")}
-                       </Chip>
-                     </span>
-                     <span
-                       className={
-                        item.readAt == null && item.senderId != user.id 
-                            ? "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
-                            : "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
-                       }
-                     >
-                       {truncateText(item.lastMessage, 20)}
-                     </span>
-                   </div>
-                 </div>
-               </Link>
-             </ListboxItem>
-           );
-        }}
-      </Listbox>
+          <Listbox
+            className="backdrop-blur-sm"
+            classNames={{
+              base: "w-full",
+              list: "overflow-scroll",
+            }}
+            items={filteredData}  // Use the filtered data
+            label="Assigned to"
+            variant="solid"
+          >
+            {(item) => {
+              const isSender = item.senderId === user.id;
+              const targetUser = isSender ? item.recipientId : item.senderId;
+              const targetFirstName = isSender ? item.firstName : item.senderFirstName;
+              const targetPhotoUrl = isSender ? item.photoUrl : item.senderPhotoUrl;
+              if(item.senderId == item.recipientId){
+                return null
+              }
+              // item.senderId != user.id &&
+              console.log("aaaaaaaaa", )
+              return (
+                <ListboxItem
+                  key={item.userId}
+                  
+                  endContent={
+                    <ChatItemMenu 
+                      data={item}
+                      targetUser={targetUser}
+                      favoriteUsers={user.favoriteUsers} 
+                      HandleAddToFavorite={HandleAddToFavorite}
+                      HandleRemoveFromFavorite={HandleRemoveFromFavorite}
+                      handleDelete={handleDelete}
+                      HandleBlockUser={HandleBlockUser}
+                    />
+                  }
+                  startContent={
+                    <Avatar
+                      isBordered
+                      color={item.readAt == null && item.senderId != user.id ? "primary" : "default"}
+                      radius="full"
+                      size="md"
+                      src={`${BASEURL}${targetPhotoUrl}`}
+                    />
+                  }
+                  textValue={truncateText(targetFirstName, 10)}
+                >
+                  <Link to={`/chat-detail?user1=${item.senderId}&user2=${item.recipientId}`}>
+                    <div className="flex gap-2 items-center" style={{ width: "100%" }}>
+                      <div className="flex pl-2 flex-col">
+                        <span
+                          className={
+                              item.readAt == null && item.senderId != user.id 
+                              ? "text-small text-handller-chat font-bold text-default-700"
+                              : "text-small text-handller-chat text-default-700"
+                          }
+                        >
+                          {targetFirstName}
+                          <Chip
+                            className={item.readAt == null && item.senderId != user.id  ?  "visible ml-1" : "hidden"}
+                            color="primary"
+                            size="sm"
+                          >
+                            +1 {t("new")}
+                          </Chip>
+                        </span>
+                        <span
+                          className={
+                            item.readAt == null && item.senderId != user.id 
+                                ? "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                                : "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                          }
+                        >
+                          {truncateText(item.lastMessage, 20)}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </ListboxItem>
+              );
+            }}
+          </Listbox>
         </ListboxWrapper>
       }
 

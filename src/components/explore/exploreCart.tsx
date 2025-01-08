@@ -158,7 +158,6 @@ const ExploreCard = (props) => {
               <ParallaxText baseVelocity={1}>
                 <Chip
                   variant="solid"
-                  color="primary"
                   size="md"
                   className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
                   style={{ marginRight: "10px" }}

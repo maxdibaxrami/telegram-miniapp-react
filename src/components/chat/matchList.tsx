@@ -27,6 +27,7 @@ const MatchList = () => {
         </div>
     <AvatarGroup
       isBordered
+      className="px-3"
       style={{height:"70px"}}
       renderCount={(count) => (
         <p className="text-small text-foreground font-medium ms-2">

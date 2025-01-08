@@ -27,7 +27,6 @@
   }
   
   .chat-you {
-    background-color: #016fee;
     border-radius: 20px 20px 20px 0;
     width: fit-content;
     color: #FFF;
@@ -57,13 +56,14 @@
   
 
 
-.message-container-dark{
-  background-image: url("/assets/chat-background.png"), linear-gradient(to top, #585858, #016fee8a); /* W3C */
-}
-
-.message-container-light{
-  background-image: url("/assets/chat-background.png"), linear-gradient(to top,#016fee33, #016fee85); /* W3C */
-}
+  .message-container-dark {
+    background-image: url("/assets/chat-background.png"), linear-gradient(to top, #2C3E50, #4CA1AF); /* Dark cool blues */
+    backdrop-filter: blur(10px);
+  }
+  .message-container-light {
+    background-image: url("/assets/chat-background.png"), linear-gradient(to top, #E0F7FA, #B2EBF2); /* Light cool blues */
+    backdrop-filter: blur(10px);
+  }
 
 .time {
   font-size: 0.8rem;

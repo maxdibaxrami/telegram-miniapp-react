@@ -41,7 +41,7 @@ import MatchModal from "@/components/explore/matchModal";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
-export default function EditProfilePage() {
+export default function ProfilePage() {
   const maxLikes = 5;
   const { t } = useTranslation();  // Initialize translation hook
   const lp = useLaunchParams();
@@ -390,7 +390,7 @@ export default function EditProfilePage() {
             
       
                   <div className=" w-full mb-4">
-                    <div className="mt-2 w-full text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
+                    <div className="mt-2 w-full bg-neutral/10 text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
                       <Listbox 
                         aria-label="Listbox menu with sections" 
                         variant="solid"
@@ -435,7 +435,7 @@ export default function EditProfilePage() {
                       </Listbox>
                     </div>
 
-                    <div className="mt-2 w-full text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
+                    <div className="mt-2 w-full  bg-neutral/10 text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
 
                       <Listbox 
                         aria-label="Listbox menu with sections" 
@@ -470,7 +470,7 @@ export default function EditProfilePage() {
                       </Listbox>
                     </div>
 
-                    <div className="mt-2 w-full text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
+                    <div className="mt-2 w-full  bg-neutral/10 text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
 
                       <Listbox 
                         aria-label="Listbox menu with sections" 

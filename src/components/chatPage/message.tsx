@@ -71,7 +71,7 @@ const MessageSection = ({ messages, user }) => {
           <motion.div
             key={index}
             variants={messageVariants}
-            className={`chat-${messageType} chat-m ${messageType === "me" ? "bg-background text-foreground" : ""} flex flex-col`}
+            className={`chat-${messageType} chat-m ${messageType === "me" ? "backdrop-blur	bg-neutral/30 backdrop-saturate-150" : "backdrop-blur	bg-primary/80 backdrop-saturate-150"} flex flex-col`}
           >
             <div className={`chat-bubble chat-${messageType}`}>
               {!msg.mediaUrl && <p>{msg.content}</p>}
