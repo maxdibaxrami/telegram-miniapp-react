@@ -1,53 +1,41 @@
 import { Card, CardFooter, Image } from "@nextui-org/react";
-import { motion } from "framer-motion";
+import { PerimumIcon, VerifyIconFill } from "@/Icons/index";
 import { BASEURL } from "@/constant";
-import { PerimumIcon, VerifyIconFill } from "@/Icons";
+import { Link } from "react-router-dom";
 
-const NearByCard = ({ data, onClick,isSelected }) => {
-
+const NearByCard = ({ data }) => {
   return (
-    <motion.div
-      layoutId={isSelected.id == data.id.toString()? undefined : data.id.toString()}  // Use Framer Motion's layoutId to animate between states
-      className={`relative ${isSelected ? "z-50" : ""}`}
-      transition={{
-        type: "spring", // Simple, natural spring animation
-      }}
-    
-    >
       <Card
         isFooterBlurred
         isPressable
-        className="border-none"
-        radius={isSelected? "lg" :"none"}
-        onPress={() => onClick()}
-
+        radius="lg"
+        className="border-none relative"
+        as={Link}
+        to={`/user?userId=${data.id}`}
       >
         <Image
-          alt={data.firstName}
+          alt="Woman listing to music"
           className="object-cover aspect-square"
-          radius={isSelected? "lg" :"none"}
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
-          <CardFooter
-            className="p-0 border-default/20 bg-background/60 border-1 overflow-hidden absolute bottom-0 shadow-small z-10"
-          >
-            <motion.div transition={{type: "spring"}} animate={isSelected ? {height: "60px"} : {height: "42px"}} className="w-full py-1 flex items-center overflow-hidden px-1">
-              <div className="flex items-center">
-                <p
-                  style={{ textAlign: "start" }}
-                  className="flex items-center text-tiny text-foreground/80"
-                >
-                  {`${data.firstName} , ${data.age}`}
-                  
-                </p>
-                    {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="size-6"/> }
-                    {data.premium && <PerimumIcon />}
+      <CardFooter style={{height:"40px"}} className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
+            <div className=" w-full">
+                <div className="flex justify-between items-center">
+                  <p style={{textAlign:"start"}} className="flex items-center text-tiny text-white/80 text-handller">
+                    {`${data.firstName} ${data.age}`}
+
+                   {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/> }
+                   {data.premium && <PerimumIcon />}
+                  </p>
+
+                </div>
               </div>
-            </motion.div>
           </CardFooter>
+       
+
       </Card>
-    </motion.div>
+ 
   );
 };
 

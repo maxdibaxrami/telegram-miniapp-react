@@ -299,13 +299,14 @@ export default function EditProfilePage() {
             maxHeight: "100%",
             height:"100%",
             marginBottom:"5rem",
+            
           }}
       >
         <TopBarPages />
         {!LoadingUser ? 
                 <section
                 className="flex flex-col items-center justify-center"
-                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`}}  
+                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`, paddingLeft:"0.75rem",paddingRight:"0.75rem"}}  
               >
               
                   <div className="flex w-full justify-between items-center">
@@ -321,7 +322,7 @@ export default function EditProfilePage() {
                                 delay: 4000, // 4 seconds delay
                                 disableOnInteraction: false, // Continue autoplay after user interaction
                             }}
-                            className="mySwiper"
+                            className="mySwiper rounded-large"
                             onSlideChange={() => setSlideCounter(slideCountrt + 1)}
                             >
                             {[...UserData.photos].slice().sort((ph1, ph2) => ph1.order - ph2.order).map((_photo, index) => (
@@ -329,7 +330,6 @@ export default function EditProfilePage() {
                                     <Image 
                                         alt="Profile hero Image"
                                         className="w-full h-full"
-                                        radius="none"
                                         classNames={{
                                             wrapper: "w-full maxcontentimportant",
                                         }}
@@ -345,7 +345,7 @@ export default function EditProfilePage() {
                             ))}
                         </Swiper>
                         <div
-                          style={{position:"absolute", bottom:0, zIndex:10, width:"100%", overflow:"hidden"}}
+                          style={{position:"absolute", bottom:0, zIndex:10, width:"100%", overflow:"hidden",borderBottomRightRadius:"12px",borderBottomLeftRadius:"12px"}}
                           className="items-start flex-col py-3 backdrop-blur bg-background/60 backdrop-saturate-150"
                           >
                             <div className="flex flex-grow w-full">
@@ -384,20 +384,19 @@ export default function EditProfilePage() {
                                 </div>
                               </div>
                             </div>
+                            </div>
                           </div>
                         </div>
-                  </div>
             
       
                   <div className=" w-full mb-4">
-                    <div style={{marginTop:"-18px"}} className="w-full text-default-700 border-small px-1 pt-4 pb-2 rounded-large border-default-200 dark:border-default-100">
+                    <div className="mt-2 w-full text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
                       <Listbox 
                         aria-label="Listbox menu with sections" 
                         variant="solid"
                       >
                         <ListboxSection                   
                           classNames={{"heading":"font-bold"}} 
-                          showDivider 
                           className="relative" 
                           title={t("profile")}>
                           <ListboxItem
@@ -432,11 +431,21 @@ export default function EditProfilePage() {
                         
       
                         </ListboxSection>
+
+                      </Listbox>
+                    </div>
+
+                    <div className="mt-2 w-full text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
+
+                      <Listbox 
+                        aria-label="Listbox menu with sections" 
+                        variant="solid"
+                      >
+
                         <ListboxSection 
                           classNames={{"heading":"font-bold"}} 
                           className="relative" 
                           title={t("more_about_me")}   
-                          showDivider
                         >
       
                             {moreAboutMeData.map((item, index)=>{
@@ -457,6 +466,15 @@ export default function EditProfilePage() {
                             })}
                             
                         </ListboxSection>
+                      </Listbox>
+                    </div>
+
+                    <div className="mt-2 w-full text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
+
+                      <Listbox 
+                        aria-label="Listbox menu with sections" 
+                        variant="solid"
+                      >
                         <ListboxSection 
                             classNames={{"heading":"font-bold"}} 
                             className="relative" 
@@ -488,6 +506,7 @@ export default function EditProfilePage() {
                             
                           </ListboxItem>
                         </ListboxSection>
+
                       </Listbox>
                     </div>
                   </div>
