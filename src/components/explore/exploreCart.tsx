@@ -139,7 +139,7 @@ const ExploreCard = (props) => {
                     return <Chip
                               variant="solid"
                               size="md"
-                              className="mx-2 backdrop-blur bg-neutral/70 backdrop-saturate-150"
+                              className="mx-2 backdrop-blur bg-neutral/40 backdrop-saturate-150"
                               style={{ marginRight: "10px" }}
                               startContent={<HashtagIcon className="size-4  mx-1" />}
                             >
@@ -158,6 +158,7 @@ const ExploreCard = (props) => {
                 <Chip
                   variant="solid"
                   size="md"
+                  color="primary"
                   className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
                   style={{ marginRight: "10px" }}
                   startContent={<HeartIconOutLine fill="#FFF" className="size-4  mx-1" />}

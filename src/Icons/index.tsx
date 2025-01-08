@@ -137,6 +137,7 @@ const FireIcon = (props:JSX.IntrinsicElements['svg']) => {
       <svg
         className="size-6"
         stroke="#c98927"
+        fill="#c98927"
         strokeWidth={1.5}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
