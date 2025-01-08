@@ -157,7 +157,7 @@ const MainPage = () => {
                               transform: "translateX(-50%)",
                             }}
                             initial={{ bottom: "-30px"}}
-                            animate={{ bottom: "100px" }}
+                            animate={{ bottom: "130px" }}
                             exit={{ bottom: "-30px"}}
                           >
                             <Button

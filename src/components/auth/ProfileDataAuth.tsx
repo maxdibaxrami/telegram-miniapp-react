@@ -1,3 +1,4 @@
+import useViewportHeight from "@/hooks/useViewPortHook";
 import {
   Input,
   Textarea,
@@ -12,6 +13,10 @@ const ProfileDataAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   const [bio, setBio] = useState(user.bio)
   const [workAndEducation, setWorkAndEducation] = useState(user.education)
 
+  const height = useViewportHeight()
+
+  console.log(height)
+  
   useEffect(()=>{
     if(name.length> 3 && bio.length>3 , workAndEducation.length>3){
       setSlideAvailable("firstName",name)

@@ -6,8 +6,9 @@ import { useTranslation } from "react-i18next";
 
 import { BASEURL } from "@/constant";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { Link } from "react-router-dom";
 
-const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
+const ChatProfileSection = ({loading, profileDataState,isUserOnline, userId2}) => {
   const childRef = useRef();
   const { t } = useTranslation();
    const lp = useLaunchParams();
@@ -71,7 +72,7 @@ const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
             </NavbarItem>
           </NavbarContent>
           <NavbarContent justify="center">
-            <button className="lg:flex flex items-center" onClick={handleClick}>
+            <Link to={`/user?userId=${userId2}`} className="lg:flex flex items-center" onClick={handleClick}>
               <Avatar
                 isBordered
                 className="mx-2"
@@ -93,7 +94,7 @@ const ChatProfileSection = ({loading, profileDataState,isUserOnline}) => {
                 )}
                 
               </div>
-            </button>
+            </Link>
           </NavbarContent>
           <NavbarContent justify="end">
             {/* Additional content if needed */}

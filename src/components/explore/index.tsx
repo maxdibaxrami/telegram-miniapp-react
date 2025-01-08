@@ -15,7 +15,7 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
-import {  Link, Skeleton } from "@nextui-org/react";
+import {  Link, Spinner } from "@nextui-org/react";
 import toast from 'react-hot-toast';
 import { fetchMatches } from "@/features/matchSlice";
 
@@ -208,33 +208,32 @@ const ExplorePage = () => {
     ),{duration: 4000})
   }
   if (loading) {
-    return <div style={{ position: "relative" }}>
-    <motion.div className="flex justify-center" style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
-
-      <Skeleton className="rounded-lg" style={{height:'calc(100vh - 170px)',marginTop:"70px",width: "calc(100% - 3rem)"}}>
-
-      </Skeleton>
-
-      <motion.div
-          className="card p-2 footerswipcard fixed"
-          style={{ right: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
-          transition={{ type: "tween" }}
-        >
-           <Skeleton className="rounded-full flex items-center justify-center" style={{ width: "72px", height: "72px" }}>
-           </Skeleton>
+    return <motion.div style={{ position: "relative" }}>
+        <motion.div className="flex justify-center items-center" style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
+          <Spinner size="lg" />
         </motion.div>
 
         <motion.div
-          className="card p-2 footerswipcard fixed"
+          className="m-2 footerswipcard fixed"
+          style={{ right: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
           transition={{ type: "tween" }}
-          style={{ left: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
         >
-          <Skeleton className="rounded-full flex items-center justify-center" style={{ width: "72px", height: "72px" }}>
-          </Skeleton>
+          <Button isLoading={loading} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+            <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9" />
+          </Button>
         </motion.div>
 
+        <motion.div
+          className="card m-2 footerswipcard fixed"
+          transition={{ type: "tween" }}
+          style={{ left: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+        >
+          <Button isLoading={loading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+            <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9"/>
+          </Button>
         </motion.div>
-    </div>;
+
+    </motion.div>;
   }
 
   if (users.length <= 2) {

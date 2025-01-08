@@ -124,6 +124,7 @@ const ExploreFilter = forwardRef((props, ref) => {
               step={1}
               value={age}
               onChange={setAge}
+              color="secondary"
             />
 
             <ButtonGroup className="w-full flex">
