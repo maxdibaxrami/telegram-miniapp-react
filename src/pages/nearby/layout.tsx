@@ -1,4 +1,3 @@
-import { AnimateSharedLayout } from "framer-motion";
 import "./style.css"
 
 export default function BlogLayout({
