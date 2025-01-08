@@ -1,3 +1,6 @@
+import { AnimateSharedLayout } from "framer-motion";
+import "./style.css"
+
 export default function BlogLayout({
   children,
 }: {
@@ -6,7 +9,7 @@ export default function BlogLayout({
   return (
     <section className="flex items-start flex-col gap-4 py-8">
       <div className="inline-block w-full max-w-lg text-center">
-        {children}
+          {children}
       </div>
     </section>
   );
