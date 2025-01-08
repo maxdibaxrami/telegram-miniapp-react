@@ -9,21 +9,22 @@ const NearByCard = ({ data, num }) => {
       <Card
         isFooterBlurred
         isPressable
-        radius="lg"
         className="border-none relative"
+        radius="none"
         as={Link}
         to={`/user?userId=${data.id}`}
       >
         <Image
           alt="Woman listing to music"
           className="object-cover aspect-square"
+          radius="none"
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
-      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-            <div className=" w-full">
+        <CardFooter style={{height:"40px"}} className="justify-between px-2 border-default/20 bg-background/60 border-1 overflow-hidden py-1 absolute bottom-0 shadow-small z-10">
+          <div className=" w-full">
                 <div className="flex justify-between items-center">
-                  <p style={{textAlign:"start"}} className="flex items-center text-tiny text-white/80 text-handller">
+                  <p style={{textAlign:"start"}} className="flex items-center text-tiny text-foreground/80 text-handller">
                     {`${data.firstName} ${data.age}`}
                     {num % 2 ===0 && <CircleSvg/>} 
                     {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="size-6"/> }

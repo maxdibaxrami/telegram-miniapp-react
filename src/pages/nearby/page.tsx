@@ -62,12 +62,12 @@ export default function NearByPage() {
 
   return (
     <div
-      className="gap-2 grid grid-cols-2 sm:grid-cols-2 py-2"
+      className="grid grid-cols-2 sm:grid-cols-2 py-2"
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft: "12px",
-        paddingRight: "12px",
+        paddingLeft: "0px",
+        paddingRight: "0px",
       }}
     >
       {users.map((value, index) => (
