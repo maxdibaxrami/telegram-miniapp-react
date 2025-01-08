@@ -1,6 +1,7 @@
 import { Card, CardFooter, Image } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { BASEURL } from "@/constant";
+import { PerimumIcon, VerifyIconFill } from "@/Icons";
 
 const NearByCard = ({ data, onClick,isSelected }) => {
 
@@ -36,13 +37,16 @@ const NearByCard = ({ data, onClick,isSelected }) => {
             className="justify-between px-2 border-default/20 bg-background/60 border-1 overflow-hidden py-1 absolute bottom-0 shadow-small z-10"
           >
             <div className="w-full">
-              <div className="flex justify-between items-center">
+              <div className="flex items-center">
                 <p
                   style={{ textAlign: "start" }}
                   className="flex items-center text-tiny text-foreground/80"
                 >
-                  {`${data.firstName} ${data.age}`}
+                  {`${data.firstName} , ${data.age}`}
+                  
                 </p>
+                    {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="size-6"/> }
+                    {data.premium && <PerimumIcon />}
               </div>
             </div>
           </CardFooter>
