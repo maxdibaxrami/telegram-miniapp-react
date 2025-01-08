@@ -6,7 +6,7 @@ import {
   Button,
 } from "@nextui-org/react";
 
-import { FilterButton, NewIcon, Favorite, FavoriteColor } from "@/Icons/index";
+import { FilterButton, NewIcon, FavoriteColor } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 

@@ -1,5 +1,5 @@
 
-export const NotFoundLike = (props) => {
+export const NotFoundLike = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
     <g id="freepik--Floor--inject-298">
       <path
