@@ -14,12 +14,9 @@ const NearByCard = ({ data, onClick,isSelected }) => {
         width: isSelected ? "100%" : "auto", // When selected, take full width
         height: isSelected ? "100%" : "auto", // When selected, take full height
       }}
-      onClick={onClick}
+
       transition={{
-        type: "spring",
-        stiffness: 500,
-        damping: 30,
-        mass: 1,
+        type: "tween",
       }}
     
     >
