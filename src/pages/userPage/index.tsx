@@ -229,28 +229,28 @@ export default function EditProfilePage() {
           {
             key: "relationStatus",
             label: t("RelationStatus"),
-            icon: <LikeIcon className="size-6" />,
+            icon: <LikeIcon className="size-5" />,
             value: RealationStatus.find(RealationStatus => RealationStatus.key === UserData.moreAboutMe.relationStatus).label ,
             color:"primary"
           },
           {
             key: "height",
             label: t("Height"),
-            icon: <HeightIcon className="size-6" />,
+            icon: <HeightIcon className="size-5" />,
             value: UserData.moreAboutMe.height,
             color:"secondary"
           },
           {
             key: "sexuality",
             label: t("SexualityStatus"),
-            icon: <SexualityIcon className="size-6" />,
+            icon: <SexualityIcon className="size-5" />,
             value: SexualityStatus.find(SexualityStatus => SexualityStatus.key === UserData.moreAboutMe.sexuality).label,
             color:"success"
           },
           {
             key: "Language",
             label: t("Language"),
-            icon: <LanguageIcon className="size-6" />,
+            icon: <LanguageIcon className="size-5" />,
             value:`${user.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label).join(", ")}`,
             color:"primary"
           },
@@ -265,21 +265,21 @@ export default function EditProfilePage() {
           {
             key: "smoking",
             label: t("SmokingStatus"),
-            icon: <SmokingStatusIcon className="size-6" />,
+            icon: <SmokingStatusIcon className="size-5" />,
             value: SmokingStatus.find(SmokingStatus => SmokingStatus.key === UserData.moreAboutMe.smoking).label,
             color:"secondary"
           },
           {
             key: "drink",
             label: t("DrinkStatus"),
-            icon: <DrinkStatusIcon className="size-6" />,
+            icon: <DrinkStatusIcon className="size-5" />,
             value: DrinkStatus.find(DrinkStatus => DrinkStatus.key === UserData.moreAboutMe.drink).label,
             color:"danger"
           },
           {
             key: "pets",
             label: t("PetStatus"),
-            icon: <PetStatusIcon className="size-6" />,
+            icon: <PetStatusIcon className="size-5" />,
             value: PetStatus.find(PetStatus => PetStatus.key === UserData.moreAboutMe.pets).label,
             color:"warning"
           },
@@ -458,7 +458,8 @@ export default function EditProfilePage() {
                                   key={index+5}
                                   description={item.value}
                                   className="px-0"
-                                  startContent={<IconWrapper className={`p-1.5 text-${item.color}/80`}>{item.icon}</IconWrapper>}
+                                  showDivider={moreAboutMeData.length-1 !== index}
+                                  startContent={<IconWrapper className={`p-1.5 text-${item.color}/80 bg-${item.color}/10`}>{item.icon}</IconWrapper>}
                                   >
                                     {item.label}
                                   

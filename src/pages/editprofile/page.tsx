@@ -122,11 +122,11 @@ export default function EditProfilePage() {
       >
         <TopBarPages />
         <section
-          className="flex flex-col items-center justify-center gap-4"
+          className="flex flex-col items-center justify-center gap-1"
           style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`}}  
         >
-        <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem" }} className="flex mb-4 w-full justify-between items-center">
-        <input accept="image/*, .heic" type="file" ref={fileInputRef} style={{ display: 'none' }} />
+        <div style={{paddingLeft:"0.75rem", paddingRight:"0.75rem"}} className="flex mb-4 w-full justify-between items-center">
+          <input accept="image/*, .heic" type="file" ref={fileInputRef} style={{ display: 'none' }} />
 
           <div className="grid grid-cols-3 grid-rows-3 gap-4">
             {user.photos
@@ -166,7 +166,7 @@ export default function EditProfilePage() {
           </div>
         </div>
 
-          <div className="px-6 w-full mb-4">
+          <div  style={{paddingLeft:"0.75rem", paddingRight:"0.75rem"}}  className="w-full mb-4">
             <div className="text-default-600 w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
               <Listbox aria-label="Listbox menu with sections" variant="solid">
                 <ListboxSection                   
