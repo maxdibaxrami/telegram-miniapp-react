@@ -33,12 +33,12 @@ export default function LikesPage() {
   }
   return (
     <motion.div 
-      className="grid grid-cols-2 py-2"
+      className="gap-2 grid grid-cols-2 py-2"
       style={{
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft: "0px",
-        paddingRight: "0px",
+        paddingLeft: "12px",
+        paddingRight: "12px",
       }}
     >
 

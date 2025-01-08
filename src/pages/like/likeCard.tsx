@@ -1,6 +1,6 @@
 import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import { BASEURL } from "@/constant";
-import { VerifyIconFill } from "@/Icons";
+import { PerimumIcon, VerifyIconFill } from "@/Icons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,6 @@ const LikeCard = ({ data }) => {
         isFooterBlurred
         isPressable
         className="border-none aspect-square w-full relative"
-        radius="none"
         style={{backgroundColor: "transparent" }}
         as={Link}
         to={`/user?userId=${data.id}`}
@@ -21,7 +20,6 @@ const LikeCard = ({ data }) => {
         <Image
           alt="Woman listing to music"
           className="object-cover w-full h-full"
-          radius="none"
           classNames={{
             wrapper:"w-full aspect-square h-full maxcontentimportant",
             img : "w-full aspect-square h-full "
@@ -32,21 +30,30 @@ const LikeCard = ({ data }) => {
         />
 
 
-      <CardFooter className="justify-between px-2 border-default/20 bg-background/60 border-1 overflow-hidden py-1 absolute bottom-0 shadow-small z-10">
-        <p className="text-tiny capitalize text-foreground/80 flex items-center">
-        {data.firstName} 
-        {data.verifiedAccount &&< VerifyIconFill className="mx-1 size-5 text-primary/80" />}
-        </p>
-        <Button
-          className="text-tiny text-white bg-primary/80"
-          color="default"
-          radius="lg"
-          size="sm"
-          variant="flat"
-        >
-          {t("profile")}
-        </Button>
-      </CardFooter>
+        <CardFooter style={{height:"40px"}} className="p-1 justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
+            
+            <div className=" w-full">
+                <div className="flex justify-between items-center">
+                  <p style={{textAlign:"start"}} className="flex items-center text-tiny text-white/80 text-handller">
+                    {`${data.firstName} ${data.age}`}
+
+                   {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/> }
+                   {data.premium && <PerimumIcon />}
+                  </p>
+
+                  <Button
+                    className="text-tiny text-white bg-primary/80"
+                    color="primary"
+                    radius="lg"
+                    size="sm"
+                    variant="flat"
+                  >
+                    {t("profile")}
+                  </Button>
+                </div>
+              </div>
+
+        </CardFooter>
       </Card>
   );
 };

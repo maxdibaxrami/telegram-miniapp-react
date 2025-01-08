@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import NearByCard from "@/components/naerby/nearByCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
@@ -16,9 +16,6 @@ export default function NearByPage() {
 
   const { data: users, loading, page, total, filters, loadingMore } = useSelector((state: RootState) => state.nearBy);
   const { data: user } = useSelector((state: RootState) => state.user);
-
-  const [selected, setSelected] = useState<any>(null);
-
 
   useEffect(() => {
 

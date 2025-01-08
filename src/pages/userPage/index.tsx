@@ -229,35 +229,35 @@ export default function EditProfilePage() {
           {
             key: "relationStatus",
             label: t("RelationStatus"),
-            icon: <LikeIcon className="size-5" />,
+            icon: <LikeIcon className="size-6" />,
             value: RealationStatus.find(RealationStatus => RealationStatus.key === UserData.moreAboutMe.relationStatus).label ,
             color:"primary"
           },
           {
             key: "height",
             label: t("Height"),
-            icon: <HeightIcon className="size-5" />,
+            icon: <HeightIcon className="size-6" />,
             value: UserData.moreAboutMe.height,
             color:"secondary"
           },
           {
             key: "sexuality",
             label: t("SexualityStatus"),
-            icon: <SexualityIcon className="size-5" />,
+            icon: <SexualityIcon className="size-6" />,
             value: SexualityStatus.find(SexualityStatus => SexualityStatus.key === UserData.moreAboutMe.sexuality).label,
             color:"success"
           },
           {
             key: "Language",
             label: t("Language"),
-            icon: <LanguageIcon className="size-5" />,
+            icon: <LanguageIcon className="size-6" />,
             value:`${user.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label).join(", ")}`,
             color:"primary"
           },
           {
             key: "kids",
             label: t("KidsStatus"),
-            icon: <KidStatusIcon className="size-5" />,
+            icon: <KidStatusIcon className="size-6" />,
             value: KidStatus.find(KidStatus => KidStatus.key === UserData.moreAboutMe.kids).label,
             color:"warning"
           },
@@ -265,21 +265,21 @@ export default function EditProfilePage() {
           {
             key: "smoking",
             label: t("SmokingStatus"),
-            icon: <SmokingStatusIcon className="size-5" />,
+            icon: <SmokingStatusIcon className="size-6" />,
             value: SmokingStatus.find(SmokingStatus => SmokingStatus.key === UserData.moreAboutMe.smoking).label,
             color:"secondary"
           },
           {
             key: "drink",
             label: t("DrinkStatus"),
-            icon: <DrinkStatusIcon className="size-5" />,
+            icon: <DrinkStatusIcon className="size-6" />,
             value: DrinkStatus.find(DrinkStatus => DrinkStatus.key === UserData.moreAboutMe.drink).label,
             color:"danger"
           },
           {
             key: "pets",
             label: t("PetStatus"),
-            icon: <PetStatusIcon className="size-5" />,
+            icon: <PetStatusIcon className="size-6" />,
             value: PetStatus.find(PetStatus => PetStatus.key === UserData.moreAboutMe.pets).label,
             color:"warning"
           },
@@ -458,7 +458,7 @@ export default function EditProfilePage() {
                                   key={index+5}
                                   description={item.value}
                                   className="px-0"
-                                  startContent={<IconWrapper className={`bg-default/40 p-1.5 text-${item.color}/80`}>{item.icon}</IconWrapper>}
+                                  startContent={<IconWrapper className={`p-1.5 text-${item.color}/80`}>{item.icon}</IconWrapper>}
                                   >
                                     {item.label}
                                   
