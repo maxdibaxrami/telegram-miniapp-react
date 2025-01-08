@@ -298,7 +298,6 @@ export default function EditProfilePage() {
           style={{
             maxHeight: "100%",
             height:"100%",
-            padding:"12px",
             marginBottom:"5rem",
           }}
       >
@@ -330,6 +329,7 @@ export default function EditProfilePage() {
                                     <Image 
                                         alt="Profile hero Image"
                                         className="w-full h-full"
+                                        radius="none"
                                         classNames={{
                                             wrapper: "w-full maxcontentimportant",
                                         }}
@@ -436,6 +436,7 @@ export default function EditProfilePage() {
                           classNames={{"heading":"font-bold"}} 
                           className="relative" 
                           title={t("more_about_me")}   
+                          showDivider
                         >
       
                             {moreAboutMeData.map((item, index)=>{
@@ -456,8 +457,6 @@ export default function EditProfilePage() {
                             })}
                             
                         </ListboxSection>
-      
-      
                         <ListboxSection 
                             classNames={{"heading":"font-bold"}} 
                             className="relative" 

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
-import { CloseCircleIcon, HeartEyesImoji, PerimumIcon } from "@/Icons";
+import { CloseCircleIcon, LikeIcon, PerimumIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { likeUser } from "@/features/likeSlice";
@@ -274,22 +274,22 @@ const ExplorePage = () => {
         </AnimatePresence>
 
         <motion.div
-          className="card backdrop-blur bg-primary/10 backdrop-saturate-150 p-2 footerswipcard fixed"
+          className="m-2 footerswipcard fixed"
           style={{ right: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
           transition={{ type: "tween" }}
         >
-          <Button className="bg-primary/90 backdrop-saturate-150 backdrop-blur" onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+          <Button  onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="flat">
             <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9" />
           </Button>
         </motion.div>
 
         <motion.div
-          className="card backdrop-blur bg-primary/10 backdrop-saturate-150 p-2 footerswipcard fixed"
+          className="card m-2 footerswipcard fixed"
           transition={{ type: "tween" }}
           style={{ left: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
         >
-          <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="success" variant="shadow" className="flex items-center justify-center">
-            <HeartEyesImoji className="w-full h-full"/>
+          <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="danger" variant="flat" className="flex items-center justify-center">
+            <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9"/>
           </Button>
         </motion.div>
          
