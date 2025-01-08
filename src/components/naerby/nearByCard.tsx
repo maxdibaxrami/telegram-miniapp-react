@@ -16,7 +16,7 @@ const NearByCard = ({ data, onClick,isSelected }) => {
       }}
 
       transition={{
-        type: "tween",
+        type: "keyframes",
       }}
     
     >
