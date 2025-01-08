@@ -5,9 +5,8 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
 import { fetchNearBySliceUsers } from "@/features/nearBySlice";
-import { Card, CardFooter, Spinner,Image } from "@nextui-org/react";
-import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion";
-import { BASEURL } from "@/constant";
+import { Spinner } from "@nextui-org/react";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
 export default function NearByPage() {
 
@@ -97,51 +96,28 @@ export default function NearByPage() {
             <NearByCard
               data={user}
               onClick={() => handleCardClick(user)}
+              isSelected={selected != null && selected.id === user.id}
             />
         ))}
 
         <AnimatePresence>
           {selected && (
-            <motion.div
-              layoutId={selected.id.toString()}
-              className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => handleCardClick(null)}
-            >
-              <motion.div onClick={() => handleCardClick(null)} className="relative w-4/5 bg-white rounded-lg shadow-lg">
-                <Card
-                  isFooterBlurred
-                  isPressable
-                  className="border-none"
-                  radius="lg"
-                >
-                  <Image
-                    alt={selected.firstName}
-                    className="object-cover aspect-square"
-                    radius="lg"
-                    src={`${BASEURL}${selected.photo}`}
-                    style={{ height: "100%", width: "100%" }}
-                  />
-                    <CardFooter
-                      style={{ height: "40px" }}
-                      className="justify-between px-2 border-default/20 bg-background/60 border-1 overflow-hidden py-1 absolute bottom-0 shadow-small z-10"
-                    >
-                      <div className="w-full">
-                        <div className="flex justify-between items-center">
-                          <p
-                            style={{ textAlign: "start" }}
-                            className="flex items-center text-tiny text-foreground/80"
-                          >
-                            {`${selected.firstName} ${selected.age}`}
-                          </p>
-                        </div>
-                      </div>
-                    </CardFooter>
-                </Card>
-              </motion.div>
-            </motion.div>
+             <motion.div
+             layoutId={`l${selected.id}`}
+             className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black/50 z-50"
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             exit={{ opacity: 0 }}
+             onClick={() => setSelected(null)}
+           >
+             <motion.div className="relative w-4/5 rounded-lg shadow-lg">
+               <NearByCard
+                 data={users.find((user) => user.id === selected.id)}
+                 isSelected={true}
+                 onClick={() => setSelected(null)}
+               />
+             </motion.div>
+           </motion.div>
           )}
         </AnimatePresence>
 
