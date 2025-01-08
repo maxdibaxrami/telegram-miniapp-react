@@ -492,7 +492,7 @@ export default function ProfilePage() {
                                 return (
                                   <Chip
                                     key={index}
-                                    className="m-1"
+                                    className="m-1 bg-neutral/70"
                                     color="success"
                                     avatar={<HashtagIcon className="size-4"/>}
                                     variant="solid"

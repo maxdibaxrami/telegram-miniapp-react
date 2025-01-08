@@ -91,7 +91,7 @@ const ProfilePage = () => {
               name={
               <div className="flex items-center">
                 {user.firstName}
-                {user.verifiedAccount &&< VerifyIconFill fill="#016fee" className="ml-2 size-6" />}
+                {user.verifiedAccount &&< VerifyIconFill fill="#21b6a8" className="ml-2 size-6" />}
                 {user.premium && <PerimumIcon />}
               </div>
               }

@@ -294,8 +294,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
                         ? profile.interests.map((value, index) => (
                             <Chip
                               key={index}
-                              className="m-1"
-                              color="success"
+                              className="m-1 bg-neutral/70"
                               startContent={<HashtagIcon className="size-4" />}
                               variant="solid"
                             >

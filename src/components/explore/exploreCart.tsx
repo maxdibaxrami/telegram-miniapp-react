@@ -138,9 +138,8 @@ const ExploreCard = (props) => {
                   props.profile.interests.map((value)=>{
                     return <Chip
                               variant="solid"
-                              color="success"
                               size="md"
-                              className="mx-2 backdrop-blur bg-success/90 backdrop-saturate-150"
+                              className="mx-2 backdrop-blur bg-neutral/70 backdrop-saturate-150"
                               style={{ marginRight: "10px" }}
                               startContent={<HashtagIcon className="size-4  mx-1" />}
                             >
@@ -225,7 +224,7 @@ const ExploreCard = (props) => {
                           <p className="text-foreground capitalize font-bold  text-xl">
                             {props.profile.firstName}, {props.profile.age}
                           </p>
-                          {props.profile.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
+                          {props.profile.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/>}
                           
                         </div>
                         <Button

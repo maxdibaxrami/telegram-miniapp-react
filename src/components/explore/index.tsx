@@ -275,10 +275,10 @@ const ExplorePage = () => {
 
         <motion.div
           className="m-2 footerswipcard fixed"
-          style={{ right: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          style={{ right: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
           transition={{ type: "tween" }}
         >
-          <Button  onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="flat">
+          <Button  onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
             <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9" />
           </Button>
         </motion.div>
@@ -286,9 +286,9 @@ const ExplorePage = () => {
         <motion.div
           className="card m-2 footerswipcard fixed"
           transition={{ type: "tween" }}
-          style={{ left: "51%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          style={{ left: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
         >
-          <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="danger" variant="flat" className="flex items-center justify-center">
+          <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
             <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9"/>
           </Button>
         </motion.div>

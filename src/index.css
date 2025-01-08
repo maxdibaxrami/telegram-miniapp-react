@@ -114,3 +114,7 @@ html {
 .bg-transparent {
   background-color: transparent !important;
 }
+
+.swiper-pagination-bullet-active{
+  background-color: #1FB6A8;
+}

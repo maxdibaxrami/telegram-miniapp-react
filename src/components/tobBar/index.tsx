@@ -120,7 +120,7 @@ const TopBar = () => {
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {user.firstName},
                   {user.age}
-                  {user.verifiedAccount &&  <VerifyIconFill fill={"#016fee"} className="size-5"/>  }        
+                  {user.verifiedAccount &&  <VerifyIconFill fill={"#21b6a8"} className="size-5"/>  }        
                   {user.premium && <PerimumIcon className="size-5"/>}
                 </p>
               </BlurFade>

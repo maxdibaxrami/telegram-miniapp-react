@@ -157,7 +157,7 @@ export default function EditProfilePage() {
                   key={user.photos.length + index}
                   className={imageClasses[user.photos.length + index]}
                 >
-                  <Button isLoading={uploadProfileLoading} onPress={() => handleUploadPhoto(user.photos.length + index)} className="aspect-square rounded-lg object-cover w-full h-full" isIconOnly aria-label="Like" color="default">
+                  <Button isLoading={uploadProfileLoading} onPress={() => handleUploadPhoto(user.photos.length + index)} className="aspect-square bg-neutral/10 rounded-lg object-cover w-full h-full" isIconOnly aria-label="Like" color="default">
                     <PlusIconRound className="size-8"/>
                   </Button>
                 </div>
@@ -395,8 +395,7 @@ export default function EditProfilePage() {
                         return (
                           <Chip
                             key={index}
-                            className="m-1"
-                            color="success"
+                            className="m-1 bg-neutral/70"
                             avatar={<HashtagIcon className="size-4"/>}
                             variant="solid"
                           >
