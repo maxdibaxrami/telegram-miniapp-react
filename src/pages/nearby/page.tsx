@@ -6,7 +6,7 @@ import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
 import { fetchNearBySliceUsers } from "@/features/nearBySlice";
 import { Card, CardFooter, Spinner,Image } from "@nextui-org/react";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion";
 import { BASEURL } from "@/constant";
 
 export default function NearByPage() {
@@ -110,7 +110,7 @@ export default function NearByPage() {
               exit={{ opacity: 0 }}
               onClick={() => handleCardClick(null)}
             >
-              <motion.div onClick={() => handleCardClick(null)} className="relative w-4/5  rounded-lg shadow-lg">
+              <motion.div onClick={() => handleCardClick(null)} className="relative w-4/5 bg-white rounded-lg shadow-lg">
                 <Card
                   isFooterBlurred
                   isPressable
