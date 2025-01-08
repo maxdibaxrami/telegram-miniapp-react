@@ -15,6 +15,12 @@ const NearByCard = ({ data, onClick,isSelected }) => {
         height: isSelected ? "100%" : "auto", // When selected, take full height
       }}
       onClick={onClick}
+      transition={{
+        type: "spring",
+        stiffness: 500,
+        damping: 30,
+        mass: 1,
+      }}
     
     >
       <Card
@@ -33,10 +39,9 @@ const NearByCard = ({ data, onClick,isSelected }) => {
           style={{ height: "100%", width: "100%" }}
         />
           <CardFooter
-            style={{ height: "40px" }}
-            className="justify-between px-2 border-default/20 bg-background/60 border-1 overflow-hidden py-1 absolute bottom-0 shadow-small z-10"
+            className="p-0 border-default/20 bg-background/60 border-1 overflow-hidden absolute bottom-0 shadow-small z-10"
           >
-            <div className="w-full">
+            <motion.div transition={{type: "tween"}} animate={isSelected ? {height: "60px"} : {height: "34px"}} className="w-full py-1 flex items-center overflow-hidden px-1">
               <div className="flex items-center">
                 <p
                   style={{ textAlign: "start" }}
@@ -48,7 +53,7 @@ const NearByCard = ({ data, onClick,isSelected }) => {
                     {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="size-6"/> }
                     {data.premium && <PerimumIcon />}
               </div>
-            </div>
+            </motion.div>
           </CardFooter>
       </Card>
     </motion.div>
