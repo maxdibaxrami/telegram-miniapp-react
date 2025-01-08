@@ -38,7 +38,7 @@ const NearByCard = ({ data, onClick,isSelected }) => {
           <CardFooter
             className="p-0 border-default/20 bg-background/60 border-1 overflow-hidden absolute bottom-0 shadow-small z-10"
           >
-            <motion.div transition={{type: "tween"}} animate={isSelected ? {height: "60px"} : {height: "34px"}} className="w-full py-1 flex items-center overflow-hidden px-1">
+            <motion.div transition={{type: "tween"}} animate={isSelected ? {height: "60px"} : {height: "42px"}} className="w-full py-1 flex items-center overflow-hidden px-1">
               <div className="flex items-center">
                 <p
                   style={{ textAlign: "start" }}
