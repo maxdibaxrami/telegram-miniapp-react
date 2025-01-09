@@ -7,24 +7,35 @@ import SelectedProfileImageCard from "./selectedProfileImageCard";
 const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, userPhoto }) => {
   const { t } = useTranslation();
   const [selectedImages, setSelectedImages] = useState(userPhoto);
-
+  const [loading, setLoading] = useState(false);  // Loading state for file reading
 
   // Handle file selection
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const files = Array.from(event.target.files);
     if (files.length + selectedImages.length > 6) {
       alert("You can only upload a maximum of 6 images.");
       return;
     }
+
+    setLoading(true);  // Set loading to true during file processing
     
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setSelectedImages((prevImages) => [...prevImages, e.target.result]);
-      };
-              // @ts-ignore
-      reader.readAsDataURL(file);
-    });
+    const newImages = [];
+    for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          newImages.push(e.target.result);
+          if (newImages.length === files.length) {  // Wait for all files to be processed
+            setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+            setLoading(false);  // Stop loading once all images are processed
+          }
+        };
+        reader.onerror = () => {
+          console.error("Error reading file");
+          setLoading(false);
+        };
+                // @ts-ignore
+        reader.readAsDataURL(file);
+    }
   };
 
   // Handle image deletion
@@ -34,41 +45,41 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
     );
   };
 
-  useEffect(()=> {
-    if(selectedImages.length >= 1){
-      setSlideAvailable() 
-      setUserPhoto(selectedImages)
-    }else{
-      setSlideUnAvailable()
-      setUserPhoto(selectedImages)
+  useEffect(() => {
+    if (selectedImages.length >= 1) {
+      setSlideAvailable();
+      setUserPhoto(selectedImages);
+    } else {
+      setSlideUnAvailable();
+      setUserPhoto(selectedImages);
+    }
+  }, [selectedImages]);
 
-    } 
-
-  },[selectedImages])
-
+  useEffect(() => {
+    console.log(selectedImages)
+  }, [selectedImages]);
   return (
     <div className="flex justify-between flex-col px-6 pt-8 pb-4">
       <form className="flex w-full flex-col gap-4">
         <p className="mb-1">{t("UploadprofileImage")}</p>
 
         <div>
-        <input
-          type="file"
-          id="file-upload"
-          accept={'image/*'}  // Include HEIC format along with image types
-          hidden
-          onChange={handleFileChange}
-        />
+          <input
+            type="file"
+            id="file-upload"
+            accept="image/*"
+            hidden
+            onChange={handleFileChange}
+          />
           <Button
             size="lg"
             className="w-full mb-2 font-bold"
             color="success"
-            isDisabled={selectedImages.length >= 6}
+            isDisabled={selectedImages.length >= 6 || loading}  // Disable button if loading or max images reached
             endContent={<PhotoIcon />}
             onPress={() => document.getElementById("file-upload").click()}
           >
-            
-            {t("addPhoto")}
+            {loading ? t("Uploading...") : t("addPhoto")}
           </Button>
 
           <div className="w-full h-full pb-4 gap-2 grid grid-cols-2 sm:grid-cols-3">
@@ -81,8 +92,9 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
             ))}
           </div>
 
-          <p className="mb-1 text-small">{t("youshoulduploadminimum3photoandmaximum6photo")}</p>
-
+          <p className="mb-1 text-small">
+            {t("youshoulduploadminimum3photoandmaximum6photo")}
+          </p>
         </div>
       </form>
     </div>
