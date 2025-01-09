@@ -53,7 +53,7 @@ const ExploreCard = (props) => {
     variantsFrontCard: {
       animate: {
         scale: 1,
-        y: 30,  // Keep this vertical offset, it can be adjusted based on screen size
+        y: 40,  // Keep this vertical offset, it can be adjusted based on screen size
         opacity: 1,
         transition: {
           scale: { duration: 0.2, ease: "easeOut" },
@@ -72,7 +72,7 @@ const ExploreCard = (props) => {
       initial: { scale: 0, y: 0, opacity: 0 },
       animate: {
         scale: 0.95,
-        y: -10,  // Slight negative offset for smooth reveal
+        y: 0,  // Slight negative offset for smooth reveal
         opacity: 0.9,
         transition: {
           scale: { duration: 0.2 },
@@ -86,7 +86,7 @@ const ExploreCard = (props) => {
       initial: { scale: 0, y: 0, opacity: 0 },
       animate: {
         scale: 0.9,  // Slightly smaller scale for third card
-        y: -40,  // Adjusted Y offset for better layout consistency
+        y: -30,  // Adjusted Y offset for better layout consistency
         opacity: 0.8,
         transition: {
           scale: { duration: 0.2 },
