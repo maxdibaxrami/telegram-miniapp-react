@@ -18,8 +18,6 @@ import { useTranslation } from "react-i18next";
 import {  Link, Spinner } from "@nextui-org/react";
 import toast from 'react-hot-toast';
 import { fetchMatches } from "@/features/matchSlice";
-import { LikeConfetti } from "./buttonEffect";
-import { SparklesText } from "../animate/sparkles";
 import { SparklesHeartText } from "../animate/hearSparkles";
 
 
@@ -57,7 +55,7 @@ const ExplorePage = () => {
     }
   };
 
-  const handleLikeUser = async (event) => {
+  const handleLikeUser = async () => {
 
     if (likesCount >= maxLikes) {
       ToastErrorLikeLimit(<p>{t("Reachedlimit")}</p>,<p>{t("Youhavereachedyourdailylikelimitof50")}</p>,<p>{t("Tounlockallfeatures,youneedapremiumaccount.")}</p>,<p>{t("Inviteyourfriendsandgetapremiumaccount")}</p>)
