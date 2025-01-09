@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {
   WorkAndStudyIconSolid,
   AboutMeSolid,
-  SearchIcon,
   HashtagIcon,
   ChatIcon,
   FireIcon,
