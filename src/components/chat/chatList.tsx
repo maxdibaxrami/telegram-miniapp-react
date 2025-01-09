@@ -106,7 +106,7 @@ const ChatList = () => {
   },[])
   return (
     <div style={{borderRadius:"12px"}} className="bg-neutral/10 mt-1">
-      <div className="flex justify-between px-1 py-2 items-center ">
+      <div className="flex justify-between px-3 py-2 items-center ">
         <span style={{ fontWeight: "500" }} className="text-large text-default-600">
           {t("chat")}
         </span>
