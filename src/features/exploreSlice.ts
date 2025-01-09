@@ -44,6 +44,7 @@ interface ExploreState {
   page: number;
   limit: number;
   total: number;
+  secondLoading:boolean
 }
 
 // Initial state
@@ -54,6 +55,7 @@ const initialState: ExploreState = {
   page: 1, // Start from the first page
   limit: 10, // Number of users to fetch per page
   total: 0,  // Total number of users available
+  secondLoading : false,
 };
 
 // Utility function to build query params
@@ -132,11 +134,15 @@ const exploreSlice = createSlice({
     builder
       // Fetch filtered users cases
       .addCase(fetchFilteredExplore.pending, (state) => {
-        state.loading = true;
+        if(state.page === 1){
+          state.loading = true;
+        }
+        state.secondLoading = true
         state.error = null;
       })
       .addCase(fetchFilteredExplore.fulfilled, (state, action: PayloadAction<{ users: User[]; total: number }>) => {
         state.loading = false;
+        state.secondLoading = false
         state.total = action.payload.total;
         
         // If there's already data, concatenate the new data (pagination)
@@ -150,6 +156,8 @@ const exploreSlice = createSlice({
       })
       .addCase(fetchFilteredExplore.rejected, (state, action) => {
         state.loading = false;
+        state.secondLoading = false
+
         state.error = action.payload as string || 'Failed to fetch filtered users';
       });
   },

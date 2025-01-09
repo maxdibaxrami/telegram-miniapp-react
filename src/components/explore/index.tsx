@@ -27,7 +27,7 @@ const ExplorePage = () => {
 
   const [index, setIndex] = useState<number | null>(null);  // Start with null to handle async loading
   const { data: user } = useSelector((state: RootState) => state.user);
-  const { data: users, loading, page, limit, total } = useSelector((state: RootState) => state.explore);
+  const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
   const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
 
   const maxLikes = 50;
@@ -207,6 +207,8 @@ const ExplorePage = () => {
       </div>
     ),{duration: 4000})
   }
+
+
   if (loading) {
     return <motion.div style={{ position: "relative" }}>
         <motion.div className="flex justify-center items-center" style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
@@ -215,7 +217,7 @@ const ExplorePage = () => {
 
         <motion.div
           className="m-2 footerswipcard fixed"
-          style={{ right: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          style={{ right: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
           transition={{ type: "tween" }}
         >
           <Button isLoading={loading} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
@@ -226,7 +228,7 @@ const ExplorePage = () => {
         <motion.div
           className="card m-2 footerswipcard fixed"
           transition={{ type: "tween" }}
-          style={{ left: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
         >
           <Button isLoading={loading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
             <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9"/>
@@ -236,7 +238,7 @@ const ExplorePage = () => {
     </motion.div>;
   }
 
-  if (users.length <= 2) {
+  if (users.length <= 0) {
     return <div className="relative h-screen w-screen flex flex-col items-center justify-center">
       <NotFoundUserExplore/>
       <div className="flex gap-4 flex-col px-6 text-center items-center">
@@ -250,19 +252,29 @@ const ExplorePage = () => {
       <motion.div style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
 
         <AnimatePresence initial={false}>
+
+          {secondLoading && 
+            <div className="relative h-screen w-screen flex flex-col items-center justify-center">
+              <NotFoundUserExplore/>
+              <div className="flex gap-4 flex-col px-6 text-center items-center">
+                  <p className="text-tiny">{t("nolikemessage")}</p>
+                </div>
+            </div>
+          }
+
           {users[index - 2] && (
-            <ExploreCard profile={users[index - 2]} key={index - 2} frontCard={false} />
+            <ExploreCard profile={users[index - 2]} key={index - 2} frontCard={"variantsBackCardThird"} />
           )}
       
           {users[index - 1] && (
-            <ExploreCard profile={users[index - 1]} key={index - 1} frontCard={false} />
+            <ExploreCard profile={users[index - 1]} key={index - 1} frontCard={"variantsBackCard"} />
           )}
           {users[index] && (
             <ExploreCard
               key={index}
               NextSlide={NextSlide}
               openModal={openModal}
-              frontCard={true}
+              frontCard={"variantsFrontCard"}
               index={index}
               profile={users[index]}
               setIndex={setIndex}
@@ -274,7 +286,7 @@ const ExplorePage = () => {
 
         <motion.div
           className="m-2 footerswipcard fixed"
-          style={{ right: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          style={{ right: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
           transition={{ type: "tween" }}
         >
           <Button  onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
@@ -285,7 +297,7 @@ const ExplorePage = () => {
         <motion.div
           className="card m-2 footerswipcard fixed"
           transition={{ type: "tween" }}
-          style={{ left: "50%", borderRadius:"50%", bottom: "15px", zIndex: 50 }}
+          style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
         >
           <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
             <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9"/>

@@ -390,7 +390,7 @@ export default function EditProfilePage() {
                    endContent={<ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>}
                    >
                     
-                  <EditIntersting user={user}>
+                  <EditIntersting user={user} loading={updateUserData}>
                       {user.interests.map((value, index) => {
                         return (
                           <Chip

@@ -19,50 +19,61 @@ const ExploreCard = (props) => {
 
   const [openFooter, setOpenFooter] = useState(false);
   const [exitX, setExitX] = useState(1);
+  
   const [slideCountrt, setSlideCounter] = useState<number>(1);
   
   const { t } = useTranslation();  // Initialize translation hook
 
 
   const x = useMotionValue(0);
+  const y = useMotionValue(30);
   const rotate = useTransform(x, [-400, 0, 400], [-5, 0, 5], { clamp: false });
 
   // Detecting when the drag motion reaches max left or right
   const handleDragEnd = (_, info) => {
-    if (!openFooter) { // Disable swapping when footer is open
       if (info.offset.x < -130) {
         setExitX(-130);
         props.setIndex(props.index - 1); // Move to next slide
-        props.handleNotLike()
+        props.handleNotLike();
       } else if (info.offset.x > 130) {
         setExitX(130);
         props.setIndex(props.index - 1); // Move to next slide
-        props.handleNotLike()
-
+        props.handleNotLike();
       }
-    }
+      
+      // Reset `y` to its initial value after drag ends
+      y.set(30); 
+    
   };
 
   const toggleFooter = () => setOpenFooter(!openFooter);
 
-  const variantsFrontCard = {
-    animate: { scale: 1, y: 0, opacity: 1 },
-    exit: (custom) => ({
-      x: custom,
-      opacity: 0,
-      transition: { duration: 0.2 }
-    })
-  };
+  const carsAnimate = {
+    variantsFrontCard : {
+      animate: { scale: 1, y: 30, opacity: 1 },
+      exit: (custom) => ({
+        x: custom,
+        opacity: 0,
+        transition: { duration: 0.2 }
+      })
+    },
 
-  const variantsBackCard = {
-    initial: { scale: 0, y: 105, opacity: 0 },
-    animate: { scale: 0.9, y: 50, opacity: 0.7 }
-  };
+    variantsBackCard : {
+      initial: { scale: 0, y: 0, opacity: 0 },
+      animate: { scale: 0.9, y: -10, opacity: 0.9 }
+    },
+
+    variantsBackCardThird : {
+      initial: { scale: 0, y: 0, opacity: 0 },
+      animate: { scale: 0.70, y: -70, opacity: 0.8 }
+    }
+
+  }
+  
 
   const RealationStatus = getRealationStatus(t)
 
   const languages = getlanguages(t)
-
 
   const SexualityStatus = getSexualityStatus(t)
 
@@ -79,6 +90,7 @@ const ExploreCard = (props) => {
           position: "absolute",
           top: 0,
           x,
+          y,
           rotate,
           cursor: "grab",
           display: "flex",
@@ -87,15 +99,15 @@ const ExploreCard = (props) => {
         }}
         whileTap={{ cursor: "grabbing" }}
         onDragEnd={handleDragEnd} // Handling drag end with slide transition
-        drag={!openFooter} // Disable dragging when footer is open
+        drag={"x"} // Disable dragging when footer is open
         dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
-        variants={props.frontCard ? variantsFrontCard : variantsBackCard}
+        variants={carsAnimate[props.frontCard]}
         initial="initial"
         animate="animate"
         exit="exit"
         custom={exitX}
         transition={
-          props.frontCard
+          props.frontCard ==="variantsFrontCard"
             ? { type: "spring", stiffness: 300, damping: 20 }
             : { scale: { duration: 0.2 }, opacity: { duration: 0.4 } }
         }

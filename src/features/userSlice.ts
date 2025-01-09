@@ -39,7 +39,7 @@ interface UserData {
   premium: boolean;
   activityScore: number | null;
   gender: string;
-  profileViews: number;
+  profileViews: string[] | null;
   lastActive: string | null;
   verifiedAccount: boolean;
   photos: Photo[];
@@ -103,6 +103,18 @@ export const updateUserData = createAsyncThunk(
     return response.data as Partial<UserData>; // Explicitly type the response
   }
 );
+
+export const updateUserProfileViews = createAsyncThunk(
+  'user/updateUserProfileViews',
+  async ({ userId, updatedData }: { userId: string; updatedData: Partial<UserData> }) => {
+    const response = await axios.patch(`/users/${userId}`, updatedData);
+
+    console.log(response.data)
+
+    return response.data as Partial<UserData>; // Explicitly type the response
+  }
+);
+
 
 export const updateUserPhoto = createAsyncThunk(
   'user/updatePhoto',

@@ -15,7 +15,7 @@ import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
 
-const EditIntersting = ({user,children}) => {
+const EditIntersting = ({user,children,loading}) => {
   const { t } = useTranslation();
   const [selectedData, setSelectedData] = useState(user)
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,7 +27,7 @@ const EditIntersting = ({user,children}) => {
   }
 
     // Dynamically create the payload with only modified fields
-    const handleSaveData = () => {
+    const handleSaveData = async () => {
       const updatedData: any = {};
       console.log(selectedData)
       if (selectedData !== user.interests) {
@@ -35,7 +35,7 @@ const EditIntersting = ({user,children}) => {
       }
       if (Object.keys(updatedData).length > 0) {
         // Dispatch the update action only if there are changes
-        dispatch(updateUserData({ userId: user.id, updatedData }));
+        await dispatch(updateUserData({ userId: user.id, updatedData }));
       }
   
       onClose(); // Close the modal after saving
@@ -58,7 +58,7 @@ const EditIntersting = ({user,children}) => {
             <Button color="default" variant="solid" onPress={onClose}>
               {t("close")}
             </Button>
-            <Button isDisabled={Array.from(selectedData).length === 0} color="success" onPress={handleSaveData}>
+            <Button isLoading={loading} isDisabled={Array.from(selectedData).length === 0} color="success" onPress={handleSaveData}>
               {t("save")}
             </Button>
           </ModalFooter>

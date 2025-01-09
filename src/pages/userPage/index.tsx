@@ -31,7 +31,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { BASEURL, getDrinkStatus, gethobbies, getKidStatus, getlanguages, getlookingfor, getPetStatus, getRealationStatus, getSexualityStatus, getSmokingStatus } from "@/constant";
 import { useEffect, useMemo, useState } from "react";
-import { fetchUserDataId, updateUserData } from "@/features/userSlice";
+import { fetchUserDataId, updateUserData, updateUserProfileViews } from "@/features/userSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from 'swiper/modules';
 import { useSearchParams } from "react-router-dom";
@@ -57,6 +57,7 @@ export default function ProfilePage() {
   const [likesCount, setLikesCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [likedUser, setLikedUser ] = useState(false);
+  
   const lookingfor = getlookingfor(t)
   const RealationStatus = getRealationStatus(t)
   const languages = getlanguages(t)
@@ -70,6 +71,27 @@ export default function ProfilePage() {
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
 
+  useEffect(()=>{
+
+    if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViews)) {
+      const userIdString = user.id.toString();
+
+      // Check if the user's ID is not already in the profileViews array
+      if (UserData.profileViews.includes(userIdString)) {
+        return
+      }
+        // Update the profileViews array with the new user ID
+        dispatch(updateUserProfileViews({
+          userId: UserData.id.toString(),
+          updatedData: {
+            profileViews: [...UserData.profileViews, userIdString]  // Append the user ID to the array
+          }
+        }));
+    }
+
+    
+  },[UserData])
+
   const liked = useMemo(() => {
     if (fetchLikeAntoherUser) {
       return !!fetchLikeAntoherUser.some((like) => like.id === user.id);
@@ -79,8 +101,9 @@ export default function ProfilePage() {
 
   useEffect(()=> {
     if(userId){
-      dispatch(fetchUserDataId(userId))
       dispatch(fetchLikesAnotherUser(userId))
+      dispatch(fetchUserDataId(userId))
+
     }
   } ,[userId])
 

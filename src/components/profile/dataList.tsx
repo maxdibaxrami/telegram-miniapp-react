@@ -25,7 +25,7 @@ const DataList = ({user}) => {
     <div className="w-full mt-3 text-default-700 bg-neutral/10 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
       <Listbox aria-label={t('listbox_aria_label')} variant="solid">
         <ListboxItem
-          key="new"
+          key="edit_profile"
           showDivider
           description={t('edit_profile')}
           endContent={
@@ -46,7 +46,7 @@ const DataList = ({user}) => {
           {t('profile')}
         </ListboxItem>
         <ListboxItem
-          key="copy"
+          key="activityScore"
           showDivider
           description={t('boost_profile')}
           endContent={
@@ -67,7 +67,7 @@ const DataList = ({user}) => {
           {t('activity')}
         </ListboxItem>
         <ListboxItem
-          key="edit"
+          key="see_likes"
           showDivider
           description={t('see_likes')}
           endContent={<Chip color="danger">{data && data.length}</Chip>}
@@ -80,9 +80,9 @@ const DataList = ({user}) => {
           {t('who_like_you')}
         </ListboxItem>
         <ListboxItem
-          key="delete"
+          key="see_views"
           description={t('see_views')}
-          endContent={<Chip color="secondary">0</Chip>}
+          endContent={<Chip color="secondary">{data && data.length}</Chip>}
           startContent={
             <IconWrapper className="bg-default/40 text-secondary/80">
               <ViewIcon className="size-5" />
