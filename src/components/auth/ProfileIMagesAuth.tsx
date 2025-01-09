@@ -3,10 +3,22 @@ import { Button } from "@nextui-org/react";
 import { PhotoIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import SelectedProfileImageCard from "./selectedProfileImageCard";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, userPhoto }) => {
   const { t } = useTranslation();
   const [selectedImages, setSelectedImages] = useState(userPhoto);
+  const lp = useLaunchParams();
+
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return 'image/*, .heic'  // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return'image/*'  // Default padding
+    }
+  };
 
   // Handle file selection
   const handleFileChange = (event) => {
@@ -47,7 +59,7 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
         <input
           type="file"
           id="file-upload"
-          accept="image/*, .heic"  // Include HEIC format along with image types
+          accept={getPaddingForPlatform()}  // Include HEIC format along with image types
           multiple
           hidden
           onChange={handleFileChange}
