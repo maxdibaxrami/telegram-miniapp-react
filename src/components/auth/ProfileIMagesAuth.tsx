@@ -56,7 +56,6 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
           type="file"
           id="file-upload"
           accept={'image/*'}  // Include HEIC format along with image types
-          multiple
           hidden
           onChange={handleFileChange}
         />
