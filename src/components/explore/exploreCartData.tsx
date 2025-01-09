@@ -83,6 +83,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       color: "danger" // Valid color
     },
   ];
+
   // Profile details to display
   const profileItems = [
     {
@@ -105,13 +106,14 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
       key: 3,
       color: "success",
       gradient: "bg-gradient-to-br from-[#0E793C] to-[#17C964]",
-      icon: <SearchIcon className="size-6" />,
+      icon: Items.find(item => item.id == profile.profileData.lookingFor)?.icon,
       label: t("lookingFor"),
-      text: Items.find(item => item.id == profile.profileData.lookingFor).title,
+      text: Items.find(item => item.id == profile.profileData.lookingFor)?.title,
     }
-  ];
+  ].filter((value) => value.text);
+  
 
-  const currentSlide = useMemo(() => slideCount % 3 , [slideCount]);
+  const currentSlide = useMemo(() => slideCount % profileItems.length , [slideCount, profileItems]);
 
 
   const RealationStatus = getRealationStatus(t)
