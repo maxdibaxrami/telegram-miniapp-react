@@ -40,7 +40,7 @@ const BottomMenu = () => {
           animate={{ bottom: "0px" }}
           exit={{ bottom:"-120px"}}
   
-          className={"flex w-full px-4 fixed items-center backdrop-blur	bg-background/70 backdrop-saturate-150 border-foreground/20 shadow-small"}
+          className={"flex w-full px-2 fixed items-center backdrop-blur	bg-background/70 backdrop-saturate-150 border-foreground/20 shadow-small"}
           style={{
             zIndex: "50",
             width: "100%",
@@ -54,14 +54,14 @@ const BottomMenu = () => {
               aria-label="Options"
               fullWidth
               classNames={{
-                tab: " h-auto p-0.5 m-1 color-white aspect-square",
+                tab: " h-auto p-2 aspect-square m-1 color-white aspect-square",
                 tabList: "bg-transparent",
-                cursor: "w-full bg-[transparent]",
-                tabContent: "group-data-[selected=true]:text-[#32c2ba]",
+                cursor: "w-full",
+                tabContent: "group-data-[selected=true]:text-[#FFF]",
               }}
               color="primary"
               size="lg"
-              radius="sm"
+              radius="full"
               selectedKey={searchParams.get("page")}
               style={{
                 zIndex: "10",
@@ -76,7 +76,7 @@ const BottomMenu = () => {
                 href="/#/main?page=explore"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <FireIcon className="size-7"/>
+                    <FireIcon className="size-6"/>
                     <p style={{fontSize:"12px"}}>{t('Explore')}</p>
 
                   </div>
@@ -88,7 +88,7 @@ const BottomMenu = () => {
                 href="/#/main?page=nearby"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <LocationIcon className="size-7"/>
+                    <LocationIcon className="size-6"/>
                     <p style={{fontSize:"12px"}}>{t('Nearby')}</p>
 
                   </div>
@@ -100,7 +100,7 @@ const BottomMenu = () => {
                 href="/#/main?page=chat"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <ChatIcon className="size-7"/>
+                    <ChatIcon className="size-6"/>
                     <p style={{fontSize:"12px"}}>{t('Chat')}</p>
                   </div>
                 }
@@ -112,7 +112,7 @@ const BottomMenu = () => {
 
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <LikeIcon className="size-7"/>
+                    <LikeIcon className="size-6"/>
                     <p style={{fontSize:"12px"}}>{t('Likes')}</p>
 
                   </div>
@@ -124,7 +124,7 @@ const BottomMenu = () => {
                 href="/#/main?page=profile"
                 title={
                   <div className="flex flex-col justify-center items-center">
-                    <ProfileIcon className="size-7"/>
+                    <ProfileIcon className="size-6"/>
                     <p style={{fontSize:"12px"}}>{t('Profile')}</p>
                   </div>
                 }
