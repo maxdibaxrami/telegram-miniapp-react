@@ -1,4 +1,3 @@
-"use client";
 
 import { CSSProperties, ReactElement, useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -38,7 +37,7 @@ interface SparklesTextProps {
    * @description
    * The text to be displayed
    * */
-  text: string;
+  text: any;
 
   /**
    * @default 10

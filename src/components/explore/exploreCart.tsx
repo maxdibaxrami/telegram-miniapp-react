@@ -47,28 +47,57 @@ const ExploreCard = (props) => {
   };
 
   const toggleFooter = () => setOpenFooter(!openFooter);
-
+ 
+  
   const carsAnimate = {
-    variantsFrontCard : {
-      animate: { scale: 1, y: 30, opacity: 1 },
+    variantsFrontCard: {
+      animate: {
+        scale: 1,
+        y: 30,  // Keep this vertical offset, it can be adjusted based on screen size
+        opacity: 1,
+        transition: {
+          scale: { duration: 0.2, ease: "easeOut" },
+          y: { duration: 0.2, ease: "easeOut" },
+          opacity: { duration: 0.3 }
+        }
+      },
       exit: (custom) => ({
-        x: custom,
+        x: custom,  // Horizontal translation for exit
         opacity: 0,
         transition: { duration: 0.2 }
       })
     },
-
-    variantsBackCard : {
+  
+    variantsBackCard: {
       initial: { scale: 0, y: 0, opacity: 0 },
-      animate: { scale: 0.9, y: -10, opacity: 0.9 }
+      animate: {
+        scale: 0.95,
+        y: -10,  // Slight negative offset for smooth reveal
+        opacity: 0.9,
+        transition: {
+          scale: { duration: 0.2 },
+          y: { duration: 0.2 },
+          opacity: { duration: 0.3 }
+        }
+      }
     },
-
-    variantsBackCardThird : {
+  
+    variantsBackCardThird: {
       initial: { scale: 0, y: 0, opacity: 0 },
-      animate: { scale: 0.70, y: -70, opacity: 0.8 }
+      animate: {
+        scale: 0.9,  // Slightly smaller scale for third card
+        y: -40,  // Adjusted Y offset for better layout consistency
+        opacity: 0.8,
+        transition: {
+          scale: { duration: 0.2 },
+          y: { duration: 0.2 },
+          opacity: { duration: 0.3 }
+        }
+      }
     }
-
-  }
+  };
+  
+  
   
 
   const RealationStatus = getRealationStatus(t)

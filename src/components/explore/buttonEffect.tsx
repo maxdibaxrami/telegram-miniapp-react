@@ -63,4 +63,23 @@ const MatchConfetti = () => {
   })();
 };
 
-export { heartConfetti, MatchConfetti };
+const LikeConfetti = (event) => {
+  // Get the button's position in the viewport
+  const rect = event.target.getBoundingClientRect();
+  const x = (rect.left + rect.width / 2) / window.innerWidth; // Calculate the horizontal center
+  const y = (rect.top + rect.height / 2) / window.innerHeight; // Calculate the vertical center
+
+  // Trigger confetti with a smaller "pump" and fewer particles
+  confetti({
+    particleCount: 30, // Reduced particle count
+    spread: 50, // Narrower spread
+    startVelocity: 30, // Slower initial velocity for a smaller effect
+    gravity: 0.7, // More gravity to bring the particles down faster
+    origin: { x, y }, // Confetti originates from the center of the button
+    colors: ["#f5f242", "#ffdf00", "#ffd700"],
+    shapes: ["circle"],
+    scalar: 0.6, // Slightly smaller particle size
+  });
+};
+
+export { heartConfetti, MatchConfetti, LikeConfetti };
