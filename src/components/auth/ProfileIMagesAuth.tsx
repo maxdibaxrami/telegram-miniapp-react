@@ -27,8 +27,15 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
       alert("You can only upload a maximum of 6 images.");
       return;
     }
-    const newImages = files.map((file:any) => URL.createObjectURL(file));
-    setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImages((prevImages) => [...prevImages, e.target.result]);
+      };
+              // @ts-ignore
+      reader.readAsDataURL(file);
+    });
   };
 
   // Handle image deletion
