@@ -2,13 +2,12 @@
 import "swiper/css";
 import "swiper/css/effect-creative";
 
-import { Button, cn, Image, Link, Spinner } from "@nextui-org/react";
+import { Avatar, Button, cn, Image, Spinner } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
 import {
   HashtagIcon,
   WorkAndStudyIconSolid,
   AboutMeSolid,
-  SearchIcon,
   LikeIcon,
   HeightIcon,
   LanguageIcon,
@@ -20,7 +19,11 @@ import {
   PerimumIcon,
   VerifyIconFill,
   CheckIcon,
-  FavoriteColor
+  FavoriteColor,
+  ChatIcon,
+  FireIcon,
+  HeartIcon,
+  LockIcon
 } from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/index";
@@ -29,7 +32,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
-import { BASEURL, getDrinkStatus, gethobbies, getKidStatus, getlanguages, getlookingfor, getPetStatus, getRealationStatus, getSexualityStatus, getSmokingStatus } from "@/constant";
+import { BASEURL, getDrinkStatus, gethobbies, getKidStatus, getlanguages, getPetStatus, getRealationStatus, getSexualityStatus, getSmokingStatus } from "@/constant";
 import { useEffect, useMemo, useState } from "react";
 import { fetchUserDataId, updateUserData, updateUserProfileViews } from "@/features/userSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -39,7 +42,9 @@ import { fetchMatches } from "@/features/matchSlice";
 import { fetchLikesAnotherUser, likeUser } from "@/features/likeSlice";
 import MatchModal from "@/components/explore/matchModal";
 import { motion } from "framer-motion";
-import toast from "react-hot-toast";
+import { incrementLikes, resetLikes, setLastReset } from "@/features/NearByLikeLimitation";
+import { PopOverPerimum } from "@/components/perimum/popOver";
+import { SparklesHeartText } from "@/components/animate/hearSparkles";
 
 export default function ProfilePage() {
   const maxLikes = 5;
@@ -50,15 +55,14 @@ export default function ProfilePage() {
 
   const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
   const { fetchLikeAntoherUser, requestLoading } = useSelector((state: RootState) => state.like);
+  const { likesCount, lastReset } = useSelector((state: RootState) => state.NearByLimitation);
 
   const userId = searchParams.get("userId")
 
   const [slideCountrt, setSlideCounter] = useState<number>(1);
-  const [likesCount, setLikesCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [likedUser, setLikedUser ] = useState(false);
   
-  const lookingfor = getlookingfor(t)
   const RealationStatus = getRealationStatus(t)
   const languages = getlanguages(t)
   const SexualityStatus = getSexualityStatus(t)
@@ -99,6 +103,15 @@ export default function ProfilePage() {
     return false;
   }, [fetchLikeAntoherUser, user.id]);
 
+  useEffect(() => {
+    const today = new Date().setHours(0, 0, 0, 0); // Get today's date at midnight
+    if (lastReset < today) {
+      // It's a new day, reset the like count
+      dispatch(resetLikes());
+      dispatch(setLastReset(today));
+    }
+  }, [dispatch, lastReset]);
+
   useEffect(()=> {
     if(userId){
       dispatch(fetchLikesAnotherUser(userId))
@@ -117,63 +130,6 @@ export default function ProfilePage() {
     }
   };
 
-  const ToastErrorLikeLimit = (text1,text2,text3,text4) => {
-    toast.custom((t) => (
-      <div
-        style={{zIndex:"999"}}
-        className={`${
-          t.visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md backdrop-blur bg-default/70 backdrop-saturate-150 w-full shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-      >
-        <div className="flex-1 w-0 p-4">
-          <div className="flex items-center">
-            <div className="flex items-center px-0.5">
-            <motion.div
-                animate={{
-                  scale: [1, 1.2, 1.2, 1.2, 1],
-                  rotate: [0, 0, 5, -5, 0],
-                  borderRadius: ["50%", "50%", "50%", "50%", "50%"],
-                }}
-                transition={{
-                  duration: 2,
-                  ease: "easeInOut",
-                  times: [0, 0.2, 0.5, 0.8, 1],
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                }}
-              >         
-                <Button size="lg" radius="full" isIconOnly aria-label="Like" color="default">
-                  <PerimumIcon className="size-7"/>
-                </Button>
-              </motion.div>
-            </div>
-            <div className="ml-3 px-1 flex-1">
-              <p className="text-sm font-bold text-foreground-900">
-                {text1}
-              </p>
-              <p className="mt-1 text-sm text-foreground-500">
-                {text2}
-              </p>
-              <p className="mt-1 text-sm text-foreground-500">
-                <Link size="sm" color="warning" href="#" underline="always">
-                  {text3}
-                </Link>
-  
-              </p>
-              <p>
-                <Link size="sm" color="success" href="#" underline="always">
-                  {text4}
-                </Link>
-              </p>
-              <div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-      </div>
-    ),{duration: 4000})
-  }
 
    const HandleAddToFavorite = async (value) => {
       await dispatch(updateUserData({
@@ -197,21 +153,17 @@ export default function ProfilePage() {
 
 
   const handleLikeUser = async () => {
+    
     if (likesCount >= maxLikes && searchParams.get('page') != "likes")  {
-      ToastErrorLikeLimit(<p>{t("Reachedlimit")}</p>,<p>{t("Youhavereachedyourdailylikelimitof5")}</p>,<p>{t("Tounlockallfeatures,youneedapremiumaccount.")}</p>,<p>{t("Inviteyourfriendsandgetapremiumaccount")}</p>)
       return;
     }  
 
     try {
       // Dispatch the action and unwrap the result
       const resultAction = await dispatch(likeUser({ userId: user.id , likedUserId: parseInt(userId) }));
-      
-      const newCount = likesCount + 1;
-      setLikesCount(newCount);
+      dispatch(incrementLikes())
       setLikedUser(true)
 
-      // @ts-ignore
-      localStorage.setItem('likesCountNearBy', newCount);
       // @ts-ignore
       if (resultAction.payload.isMatch === true) {
         openModal()
@@ -224,26 +176,88 @@ export default function ProfilePage() {
     }
   };
 
-    useEffect(() => {
-      // Check if there's a stored like count and reset date
-      const storedLikes = localStorage.getItem('likesCountNearBy');
-      const lastReset = localStorage.getItem('lastResetNearBy');
-  
-      const today = new Date().setHours(0, 0, 0, 0); // Current day midnight
-  // @ts-ignore
-      if (lastReset < today) {
-        // It's a new day, reset the counter
 
-        // @ts-ignore
-        localStorage.setItem('likesCountNearBy', 0);
-        // @ts-ignore
-        localStorage.setItem('lastResetNearBy', today);
-        setLikesCount(0);
-      } else if (storedLikes) {
-        // Set the current like count from storage
-        setLikesCount(parseInt(storedLikes, 10));
+    const ProfileCard = ({ color, icon, label, text }) => {
+      return <motion.div
+        className="flex gap-3 mt-1 mb-1"
+        initial={{ opacity: 1 }}
+        style={{ marginLeft: "4px" }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          ease: "linear",
+          duration: 0.25,
+        }}
+      >
+        <div className="flex items-center justify-center">
+          <Avatar
+            color={color}
+            radius="full"
+            icon={icon}
+            size="md"
+            classNames={{
+              icon: "text-white/90 size-6",
+            }}
+          />
+        </div>
+        <div className="flex flex-col">
+          <p className="text-small font-bold">{label}</p>
+          <p className="text-xs text-default-500">{text}</p>
+        </div>
+      </motion.div>
+  };
+  
+    const Items = [
+      {
+        id: "1",
+        title: t("Heretodate"),
+        description: t("IwanttogoondatesandhaveagoodtimeNolabels"),
+        icon: <FireIcon />,
+        color: "success" // Valid color
+      },
+      {
+        id: "2",
+        title: t("Opentochat"),
+        description: t("ImheretochatandseewhereitgoesNopressure"),
+        icon: <ChatIcon />,
+        color: "warning" // Valid color
+      },
+      {
+        id: "3",
+        title: t("Readyforarelationship"),
+        description: t("ImlookingforsomethingthatlastsNogames"),
+        icon: <HeartIcon fill="#FFF" />,
+        color: "danger" // Valid color
+      },
+    ];
+  
+    // Profile details to display
+    const profileItems = [
+      {
+        key: 1,
+        color: "danger",
+        gradient: "bg-gradient-to-br from-[#C20E4D] to-[#F54180]",
+        icon: <WorkAndStudyIconSolid className="size-6" />,
+        label: t("workAndEducation"),
+        text: UserData?.profileData.education,
+      },
+      {
+        key: 2,
+        color: "primary",
+        gradient: "bg-gradient-to-br from-[#338EF7] to-[#004493]",
+        icon: <AboutMeSolid className="size-6" />,
+        label: `${t("Bio")}:`,
+        text: UserData?.profileData.bio,
+      },
+      {
+        key: 3,
+        color: "success",
+        gradient: "bg-gradient-to-br from-[#0E793C] to-[#17C964]",
+        icon: Items.find(item => item.id == UserData?.profileData.lookingFor)?.icon,
+        label: t("lookingFor"),
+        text: Items.find(item => item.id == UserData?.profileData.lookingFor)?.title,
       }
-    }, []);
+    ].filter((value) => value.text);
 
 
     const moreAboutMeData = useMemo(()=>{
@@ -280,7 +294,7 @@ export default function ProfilePage() {
           {
             key: "kids",
             label: t("KidsStatus"),
-            icon: <KidStatusIcon className="size-6" />,
+            icon: <KidStatusIcon className="size-5" />,
             value: KidStatus.find(KidStatus => KidStatus.key === UserData.moreAboutMe.kids).label,
             color:"warning"
           },
@@ -388,9 +402,26 @@ export default function ProfilePage() {
                                   </div>
                                   <div className="flex gap-2 px-2 items-center">
       
-                                    <Button isDisabled={likedUser || liked} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="primary" variant="shadow">
-                                      {likedUser || liked ? <CheckIcon strokeWidth={2}/> : <LikeIcon/> }
-                                    </Button>
+                                  {likesCount >= maxLikes ? 
+                                      <PopOverPerimum>
+                                          <Button radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
+                                            <LockIcon className="size-6"/> 
+                                          </Button>
+                                      </PopOverPerimum>
+                                    
+                                    
+                                    :
+                                      <SparklesHeartText
+                                        text={
+                                          <Button className="z-50" isDisabled={likedUser || liked} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
+                                            {likedUser || liked ? <CheckIcon className="size-6" strokeWidth={2}/> : <LikeIcon className="size-6"/> }
+                                          </Button>
+                                        }
+                                        colors={{ first: "#ff4b61", second: "#A8B2BD" }}
+                                        sparklesCount={10} // Initial number of hearts
+                                      />
+                                    }
+                                    
       
                                     {user.favoriteUsers.includes(UserData.id.toString()) ? 
                                       <Button isLoading={updateUserDataLoading} size="lg" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
@@ -413,7 +444,7 @@ export default function ProfilePage() {
             
       
                   <div className=" w-full mb-4">
-                    <div className="mt-2 w-full bg-neutral/10 text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
+                    <div style={{paddingTop:"20px", marginTop:"-20px"}} className="mt-2 w-full bg-neutral/10 text-default-700 border-small px-1 rounded-large border-default-200 dark:border-default-100">
                       <Listbox 
                         aria-label="Listbox menu with sections" 
                         variant="solid"
@@ -422,36 +453,21 @@ export default function ProfilePage() {
                           classNames={{"heading":"font-bold"}} 
                           className="relative" 
                           title={t("profile")}>
-                          <ListboxItem
-                            key="2"
-                            className="px-0"
-                            description={UserData.profileData.education}
-                            startContent={<IconWrapper className="bg-danger text-white p-2"><WorkAndStudyIconSolid className="size-5"/></IconWrapper>}
-                          >
-                            {t('Workandeducation')}
-                          </ListboxItem>
-      
-                          <ListboxItem
-                            key="3"
-                            className="px-0"
-                            description={lookingfor.find(lookingfor => lookingfor.id == user.profileData.lookingFor).title}
-                            startContent={<IconWrapper className="bg-success text-white p-2"><SearchIcon className="size-5"/></IconWrapper>}
-                          >
-                            {t("WhyIamhere")}
-                          </ListboxItem>
-      
-                        {UserData.profileData.bio === " " &&
-                          <ListboxItem
-                          key="4"
-                          className="px-0"
-                          description={UserData.profileData.bio}
-                          startContent={<IconWrapper className="bg-primary text-white p-2"><AboutMeSolid className="size-5"/></IconWrapper>}
-                          >
-                            {t("Bio")}
-                          
-                        </ListboxItem>
-                        }
-                        
+                         
+                         {profileItems.map((item,index) => (
+                            <ListboxItem
+                              key={index+5}
+                              className="px-0 py-0"
+                              >
+                              <ProfileCard
+                                key={item.key}
+                                color={item.color}
+                                icon={item.icon}
+                                label={item.label}
+                                text={item.text}
+                              />
+                            </ListboxItem>
+                          ))}
       
                         </ListboxSection>
 
@@ -480,8 +496,8 @@ export default function ProfilePage() {
                               return <ListboxItem
                                   key={index+5}
                                   description={item.value}
+                                  classNames={{"description":"text-default-500"}}
                                   className="px-0"
-                                  showDivider={moreAboutMeData.length-1 !== index}
                                   startContent={<IconWrapper className={`p-1.5 text-${item.color}/80 bg-${item.color}/10`}>{item.icon}</IconWrapper>}
                                   >
                                     {item.label}

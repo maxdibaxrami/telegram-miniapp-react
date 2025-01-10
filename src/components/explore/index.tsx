@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
-import { CloseCircleIcon, LikeIcon, LockIcon, PerimumIcon } from "@/Icons";
+import { CloseCircleIcon, LikeIcon, LockIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { likeUser } from "@/features/likeSlice";
@@ -15,11 +15,12 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
-import {  Link, Spinner } from "@nextui-org/react";
-import toast from 'react-hot-toast';
+import { Spinner } from "@nextui-org/react";
 import { fetchMatches } from "@/features/matchSlice";
 import { SparklesHeartText } from "../animate/hearSparkles";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";
+
+import { PopOverPerimum } from "../perimum/popOver";
 
 
 
@@ -67,7 +68,6 @@ const ExplorePage = () => {
   const handleLikeUser = async () => {
 
     if (likesCount >= maxLikes) {
-      ToastErrorLikeLimit(<p>{t("Reachedlimit")}</p>,<p>{t("Youhavereachedyourdailylikelimitof50")}</p>,<p>{t("Tounlockallfeatures,youneedapremiumaccount.")}</p>,<p>{t("Inviteyourfriendsandgetapremiumaccount")}</p>)
       return;
     }
 
@@ -92,7 +92,6 @@ const ExplorePage = () => {
     
   const handleNotLike = () => {
     if (likesCount >= maxLikes) {
-      ToastErrorLikeLimit(<p>{t("Reachedlimit")}</p>,<p>{t("Youhavereachedyourdailylikelimitof50")}</p>,<p>{t("Tounlockallfeatures,youneedapremiumaccount.")}</p>,<p>{t("Inviteyourfriendsandgetapremiumaccount")}</p>)
       return;
     }
 
@@ -133,65 +132,6 @@ const ExplorePage = () => {
   }, [users, page, limit]);
   
 
-  const ToastErrorLikeLimit = (text1,text2,text3,text4) => {
-    toast.custom((t) => (
-      <div
-        style={{zIndex:"999"}}
-        className={`${
-          t.visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md backdrop-blur bg-default/70 backdrop-saturate-150 w-full shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-      >
-        <div className="flex-1 w-0 p-4">
-          <div className="flex items-center">
-            <div className="flex items-center px-0.5">
-            <motion.div
-                animate={{
-                  scale: [1, 1.2, 1.2, 1.2, 1],
-                  rotate: [0, 0, 5, -5, 0],
-                  borderRadius: ["50%", "50%", "50%", "50%", "50%"],
-                }}
-                transition={{
-                  duration: 2,
-                  ease: "easeInOut",
-                  times: [0, 0.2, 0.5, 0.8, 1],
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                }}
-              >         
-                <Button size="lg" radius="full" isIconOnly aria-label="Like" color="default">
-                  <PerimumIcon className="size-7"/>
-                </Button>
-              </motion.div>
-            </div>
-            <div className="ml-3 px-1 flex-1">
-              <p className="text-sm font-bold text-foreground-900">
-                {text1}
-              </p>
-              <p className="mt-1 text-sm text-foreground-500">
-                {text2}
-              </p>
-              <p className="mt-1 text-sm text-foreground-500">
-                <Link size="sm" color="warning" href="#" underline="always">
-                  {text3}
-                </Link>
-
-              </p>
-              <p>
-                <Link size="sm" color="success" href="#" underline="always">
-                  {text4}
-                </Link>
-              </p>
-              <div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    ),{duration: 4000})
-  }
-
-
   if (loading) {
     return <motion.div style={{ position: "relative" }}>
         <motion.div className="flex justify-center items-center" style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
@@ -224,6 +164,10 @@ const ExplorePage = () => {
             </div>
           }
 
+          {users[index - 3] && (
+            <ExploreCard profile={users[index - 3]} key={index - 3} frontCard={"variantsBackCardThird"} />
+          )}
+          
           {users[index - 2] && (
             <ExploreCard profile={users[index - 2]} key={index - 2} frontCard={"variantsBackCardThird"} />
           )}
@@ -231,6 +175,7 @@ const ExplorePage = () => {
           {users[index - 1] && (
             <ExploreCard profile={users[index - 1]} key={index - 1} frontCard={"variantsBackCard"} />
           )}
+
           {users[index] && (
             <ExploreCard
               key={index}
@@ -251,7 +196,7 @@ const ExplorePage = () => {
           style={{ right: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
           transition={{ type: "tween" }}
         >
-          <Button  onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+          <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
             <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8" />
           </Button>
         </motion.div>
@@ -261,16 +206,29 @@ const ExplorePage = () => {
           transition={{ type: "tween" }}
           style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
         >
+
+          {likesCount >= maxLikes ? 
+          <PopOverPerimum isOpen={true}>
+               <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
+                  <LockIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
+              </Button>
+          </PopOverPerimum>
+        
+        
+        :
           <SparklesHeartText
-              text={
-                <Button isDisabled={likesCount >= maxLikes} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                  {likesCount >= maxLikes ? <LockIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> : <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> }
-                </Button>
-              }
-              colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-              sparklesCount={20} // Initial number of hearts
-            />
-          
+            text={
+              <Button radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                  <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
+              </Button>
+            }
+            colors={{ first: "#ff4b61", second: "#A8B2BD" }}
+            sparklesCount={20} // Initial number of hearts
+          />
+        }
+
+ 
+
         </motion.div>
          
       </motion.div>

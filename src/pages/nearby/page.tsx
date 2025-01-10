@@ -45,7 +45,7 @@ export default function NearByPage() {
   
 
   if(loading){
-    return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
+    return <div className="h-screen py-24 flex item-center justify-center w-screen flex flex-col p-6 items-center justify-center"> 
       <Spinner size="lg" />
     </div>
   }
@@ -64,23 +64,21 @@ export default function NearByPage() {
 
   return (
     <LayoutGroup>
-    <div
-      className="grid grid-cols-2 sm:grid-cols-2"
-      style={{
-        paddingTop: "4.5rem",
-        paddingBottom: "6rem",
-        paddingLeft: "12px",
-        paddingRight: "12px",
-      }}
-    >
-        {users.map((user) => (
-            <NearByCard
-              data={user}
-            />
-        ))}
+      <div
+        className="grid grid-cols-2 sm:grid-cols-2"
+        style={{
+          paddingTop: "4.2rem",
+          paddingBottom: "6rem",
+        }}
+      >
+          {users.map((user) => (
+              <NearByCard
+                data={user}
+              />
+          ))}
 
-      {loadingMore && <div className="col-span-2 w-full flex items-center justify-center"> <Spinner size="lg" /></div>}
-    </div>
+        {loadingMore && <div className="col-span-2 w-full flex items-center justify-center"> <Spinner size="lg" /></div>}
+      </div>
     </LayoutGroup>
 
   );

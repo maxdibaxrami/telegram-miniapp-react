@@ -8,7 +8,7 @@ import exploreReducer from './features/exploreSlice'
 import conversationsReducer from './features/conversationsSlice'
 import nearByReducer from './features/nearBySlice'
 import likeLimitationSlice from './features/likeLimitationSlice';
-
+import NearByLimitationSlice from './features/NearByLikeLimitation'
 
 // Configure the store
 export const store = configureStore({
@@ -19,8 +19,9 @@ export const store = configureStore({
     match: matchReducer,
     explore: exploreReducer,
     conversation: conversationsReducer,
-    nearBy:nearByReducer,
-    likeLimit:likeLimitationSlice
+    nearBy: nearByReducer,
+    likeLimit: likeLimitationSlice,
+    NearByLimitation: NearByLimitationSlice
 
   },
 });

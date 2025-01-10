@@ -26,7 +26,7 @@ const SwiperImages = ({url}) => {
             style={{
                 objectFit: "cover",
                 padding: "0px 0px 5px 0px",
-                height:`calc(100vh - 250px`
+                height:`calc(100vh - 280px`
             }}
         />
     </>
