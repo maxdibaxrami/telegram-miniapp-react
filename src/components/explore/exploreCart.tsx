@@ -42,7 +42,7 @@ const ExploreCard = (props) => {
       }
       
       // Reset `y` to its initial value after drag ends
-      y.set(30); 
+      y.set(40); 
     
   };
 

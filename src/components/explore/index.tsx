@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
-import { CloseCircleIcon, LikeIcon, PerimumIcon } from "@/Icons";
+import { CloseCircleIcon, LikeIcon, LockIcon, PerimumIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { likeUser } from "@/features/likeSlice";
@@ -19,25 +19,34 @@ import {  Link, Spinner } from "@nextui-org/react";
 import toast from 'react-hot-toast';
 import { fetchMatches } from "@/features/matchSlice";
 import { SparklesHeartText } from "../animate/hearSparkles";
+import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";
 
 
 
 const ExplorePage = () => {
   
   const dispatch: AppDispatch = useDispatch();  // Use the correct AppDispatch type from your store
-
+  const maxLikes = 50;
   const [index, setIndex] = useState<number | null>(null);  // Start with null to handle async loading
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
-  const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
-
-  const maxLikes = 50;
-  const [likesCount, setLikesCount] = useState(0);
-
+  //const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
   const { t } = useTranslation();  // Initialize translation hook
-  
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { likesCount, lastReset } = useSelector((state: RootState) => state.likeLimit);
+
+  useEffect(() => {
+    const today = new Date().setHours(0, 0, 0, 0); // Get today's date at midnight
+    if (lastReset < today) {
+      // It's a new day, reset the like count
+      dispatch(resetLikes());
+      dispatch(setLastReset(today));
+    }
+  }, [dispatch, lastReset]);
+
+  useEffect(()=>{ console.log(likesCount) },[likesCount])
+
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -75,11 +84,7 @@ const ExplorePage = () => {
 
       NextSlide();  // Move to the previous user
       dispatch(removeUserFromState(users[index].id));
-      const newCount = likesCount + 1;
-      setLikesCount(newCount);
-      // @ts-ignore
-      localStorage.setItem('likesCount', newCount);
-
+      dispatch(incrementLikes())
     } catch (error) {
       console.error('Failed to like user:', error);
     }
@@ -92,13 +97,9 @@ const ExplorePage = () => {
     }
 
     if (index === null) return;
-    dispatch(removeUserFromState(users[index].id));
     NextSlide();
-
-    const newCount = likesCount + 1;
-    setLikesCount(newCount);
-    // @ts-ignore
-    localStorage.setItem('likesCount', newCount);
+    dispatch(removeUserFromState(users[index].id));
+    dispatch(incrementLikes())
   };
 
   const lp = useLaunchParams();
@@ -131,26 +132,6 @@ const ExplorePage = () => {
     }
   }, [users, page, limit]);
   
-  useEffect(() => {
-    // Check if there's a stored like count and reset date
-    const storedLikes = localStorage.getItem('likesCount');
-    const lastReset = localStorage.getItem('lastReset');
-
-    const today = new Date().setHours(0, 0, 0, 0); // Current day midnight
-// @ts-ignore
-
-    if (lastReset < today) {
-      // It's a new day, reset the counter
-      // @ts-ignore
-      localStorage.setItem('likesCount', 0);
-      // @ts-ignore
-      localStorage.setItem('lastReset', today);
-      setLikesCount(0);
-    } else if (storedLikes) {
-      // Set the current like count from storage
-      setLikesCount(parseInt(storedLikes, 10));
-    }
-  }, []);
 
   const ToastErrorLikeLimit = (text1,text2,text3,text4) => {
     toast.custom((t) => (
@@ -271,7 +252,7 @@ const ExplorePage = () => {
           transition={{ type: "tween" }}
         >
           <Button  onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
-            <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9" />
+            <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8" />
           </Button>
         </motion.div>
 
@@ -281,14 +262,14 @@ const ExplorePage = () => {
           style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
         >
           <SparklesHeartText
-            text={
-              <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-9"/>
-              </Button>
-            }
-            colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-            sparklesCount={20} // Adjust number of hearts
-          />
+              text={
+                <Button isDisabled={likesCount >= maxLikes} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                  {likesCount >= maxLikes ? <LockIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> : <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> }
+                </Button>
+              }
+              colors={{ first: "#ff4b61", second: "#A8B2BD" }}
+              sparklesCount={20} // Initial number of hearts
+            />
           
         </motion.div>
          

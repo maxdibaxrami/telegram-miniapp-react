@@ -1,4 +1,3 @@
-import { heartConfetti } from "../explore/buttonEffect";
 
 const HeartEyesImoji = ({ dataId, openModal }) => {
   return (
@@ -10,7 +9,6 @@ const HeartEyesImoji = ({ dataId, openModal }) => {
         if (dataId.id === 4 || dataId.id === 8) {
           openModal();
         } else {
-          heartConfetti();
         }
       }}
     >

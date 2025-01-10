@@ -1,4 +1,3 @@
-import { heartConfetti } from "../explore/buttonEffect";
 
 const HeartEyesImoji = ({ dataId, openModal,NextSlide }) => {
 
@@ -14,7 +13,6 @@ const HeartEyesImoji = ({ dataId, openModal,NextSlide }) => {
 
         } else {
           NextSlide()
-          heartConfetti();
         }
       }}
     >

@@ -1,39 +1,32 @@
 import confetti from "canvas-confetti";
 
-const heartConfetti = () => {
+const heartConfetti = (event) => {
+
+  const rect = event.target.getBoundingClientRect();
+  const x = (rect.left + rect.width / 2) / window.innerWidth; // Calculate the horizontal center
+  const y = (rect.top + rect.height / 2) / window.innerHeight; // Calculate the vertical center
+
+
   if (typeof window !== "undefined") {
     const scalar = 2;
-    const unicorn = confetti.shapeFromText({ text: "😍", scalar });
     const unicorn2 = confetti.shapeFromText({ text: "❤️", scalar });
-    const unicorn3 = confetti.shapeFromText({ text: "🥰", scalar });
 
     const defaults = {
       startVelocity: 40,
       scalar,
       particleCount: 5,
       spread: 40,
-      origin: { y: 0.8, x: 0.6 },
+      origin: { x, y }, // Confetti originates from the center of the button
+
     };
 
-    confetti({
-      ...defaults,
-      particleCount: 5,
-      shapes: [unicorn3],
-    });
 
     confetti({
       ...defaults,
-      particleCount: 5,
+      particleCount: 2,
       shapes: [unicorn2],
     });
 
-    confetti({
-      ...defaults,
-      particleCount: 5,
-      flat: true,
-      shapes: [unicorn],
-      scalar: scalar * 1.4,
-    });
   }
 };
 
