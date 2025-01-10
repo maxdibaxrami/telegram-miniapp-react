@@ -2,6 +2,12 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../api/base';
 
 // Define the shape of the user data
+
+const getLocalStorageData = (): UserData | null => {
+  const storedData = localStorage.getItem('userDataFull');
+  return storedData ? JSON.parse(storedData) : null;
+};
+
 interface Photo {
   url: any;
   id: number;
@@ -66,13 +72,13 @@ interface UserState {
 
 // Initial state
 const initialState: UserState = {
-  data: null,
+  data: getLocalStorageData() || null,
   loading: false,
   updateUserData: false,
   uploadProfileLoading: false,
   error: null,
   userPageData: null,
-  userPageLoading: true
+  userPageLoading: true,
 };
 
 
@@ -171,6 +177,9 @@ const userSlice = createSlice({
       .addCase(fetchUserData.fulfilled, (state, action: PayloadAction<UserData>) => {
         state.loading = false;
         state.data = action.payload;
+
+        // Save the fetched data to localStorage
+        localStorage.setItem('userDataFull', JSON.stringify(action.payload));
       })
       .addCase(fetchUserData.rejected, (state, action) => {
         state.loading = false;

@@ -1,15 +1,13 @@
 import { BASEURL } from "@/constant";
-import { LikeIcon } from "@/Icons";
 import { RootState } from "@/store";
 import { Avatar, AvatarGroup, Skeleton } from "@nextui-org/react";
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const MatchList = () => {
   const { t } = useTranslation();
-  const { data: user, loading: selfuserLoading } = useSelector((state: RootState) => state.user);
+  const { data: user } = useSelector((state: RootState) => state.user);
   const { data: match, loading } = useSelector((state: RootState) => state.match);
   const { data: conversation, loading: loadingConversation } = useSelector((state: RootState) => state.conversation);
 
