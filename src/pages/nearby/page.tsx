@@ -25,7 +25,7 @@ export default function NearByPage() {
 
     const handleWindowScroll = () => {
       const bottom = parentContainer.scrollHeight === parentContainer.scrollTop + parentContainer.clientHeight;
-      if (bottom && !loading && users.length < total) {
+      if (bottom && loading === false && users.length < total && loadingMore === false) {
         dispatch(fetchNearBySliceUsers({
           userId: user.id.toString(),
           page: page,

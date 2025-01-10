@@ -15,7 +15,7 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
-import { Spinner } from "@nextui-org/react";
+import {Spinner } from "@nextui-org/react";
 import { fetchMatches } from "@/features/matchSlice";
 import { SparklesHeartText } from "../animate/hearSparkles";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";

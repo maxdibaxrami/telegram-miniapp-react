@@ -11,6 +11,7 @@ const LikeCard = ({ data }) => {
       <Card
         isFooterBlurred
         isPressable
+        radius="none"
         className="border-none aspect-square w-full relative"
         style={{backgroundColor: "transparent" }}
         as={Link}
@@ -20,6 +21,7 @@ const LikeCard = ({ data }) => {
         <Image
           alt="Woman listing to music"
           className="object-cover w-full h-full"
+          radius="none"
           classNames={{
             wrapper:"w-full aspect-square h-full maxcontentimportant",
             img : "w-full aspect-square h-full "
@@ -30,7 +32,7 @@ const LikeCard = ({ data }) => {
         />
 
 
-        <CardFooter style={{height:"40px"}} className="p-1 justify-between bg-background/70 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 mr-1 z-10">
+        <CardFooter style={{height:"44px"}} className="p-2 justify-between bg-background/70 overflow-hidden py-1 absolute bottom-2 shadow-small z-10">
             
             <div className=" w-full">
                 <div className="flex justify-between items-center">

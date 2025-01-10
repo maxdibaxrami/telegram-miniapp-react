@@ -7,11 +7,11 @@ export const PopOverPerimum = (props) => {
     const { t } = useTranslation();  // Initialize translation hook
     
   return (
-    <Popover className="before:bg-background/50" {...props} showArrow offset={10} placement="bottom">
+    <Popover className="before:bg-background/90" {...props} showArrow offset={10} placement="bottom">
       <PopoverTrigger>
         {props.children}
       </PopoverTrigger>
-      <PopoverContent className="w-[240px] rounded-lg backdrop-blur bg-background/80 backdrop-saturate-150 ring-1 ring-black ring-opacity-5">
+      <PopoverContent className="w-[240px] rounded-lg backdrop-blur bg-background/90 backdrop-saturate-150 ring-1 ring-black ring-opacity-5">
         <div
           style={{zIndex:"999"}}
           className={` w-full rounded-lg pointer-events-auto flex`}
