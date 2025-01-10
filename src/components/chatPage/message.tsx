@@ -32,8 +32,7 @@ const MessageSection = ({ messages, user }) => {
   const divRef = useRef(null);
 
   // Sort messages by timestamp
-  // @ts-ignore
-  const sortedMessages = messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+  const sortedMessages = [...messages].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 
   // Scroll to the bottom of the div when sortedMessages change
   const moveBottom = useCallback(() => {

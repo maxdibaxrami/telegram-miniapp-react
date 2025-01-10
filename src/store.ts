@@ -9,6 +9,8 @@ import conversationsReducer from './features/conversationsSlice'
 import nearByReducer from './features/nearBySlice'
 import likeLimitationSlice from './features/likeLimitationSlice';
 import NearByLimitationSlice from './features/NearByLikeLimitation'
+import messageReducer from './features/messageSlice';
+import statusReducer from './features/statusSlice';
 
 // Configure the store
 export const store = configureStore({
@@ -21,7 +23,10 @@ export const store = configureStore({
     conversation: conversationsReducer,
     nearBy: nearByReducer,
     likeLimit: likeLimitationSlice,
-    NearByLimitation: NearByLimitationSlice
+    NearByLimitation: NearByLimitationSlice,
+    message: messageReducer,
+    status: statusReducer,
+
 
   },
 });

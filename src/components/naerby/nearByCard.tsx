@@ -20,7 +20,7 @@ const NearByCard = ({ data }) => {
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
-      <CardFooter style={{height:"44px"}} className="justify-between z-10 bg-background/70 overflow-hidden py-1 absolute before:rounded-xl bottom-2 shadow-smallz-10">
+      <CardFooter style={{height:"44px"}} className="justify-between z-10 bg-background/70 overflow-hidden py-1 absolute before:rounded-xl bottom-0 shadow-small z-10">
             <div className=" w-full">
                 <div className="flex justify-between items-center">
                   <p style={{textAlign:"start"}} className="flex items-center text-tiny text-foreground/80 text-handller">
