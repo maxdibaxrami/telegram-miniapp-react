@@ -19,7 +19,7 @@ export const PopOverPerimum = (props) => {
           <div className="flex-1 w-0 py-6">
             <div className="flex flex-col items-center">
               <div className="flex items-center mb-4 px-0.5">
-              <motion.div
+                <motion.div
                   animate={{
                     scale: [1.2, 1.4, 1.4, 1.4, 1.2],
                     rotate: [0, 0, 5, -5, 0],
@@ -45,7 +45,6 @@ export const PopOverPerimum = (props) => {
                 </p>
                 <p className="text-center mt-2 text-sm font-tiny text-foreground/70">
                     {t("Tounlockallfeatures,youneedapremiumaccount.")}
-
                 </p>
 
                 <p className="text-center mt-2">

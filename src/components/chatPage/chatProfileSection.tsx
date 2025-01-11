@@ -26,6 +26,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
   const getPaddingForPlatform = () => {
     return ['ios'].includes(lp.platform) ? '50px' : '25px';
   };
+  
 
   if (loading) {
     return (

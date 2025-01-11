@@ -20,7 +20,7 @@ const MatchList = () => {
 
   // Preprocess the matches to filter out users who have a conversation
   const filteredMatches = !loading && !loadingConversation && match
-    ? match.filter((value) => !hasConversation(value.likedUser.id))
+    ? match.filter((value) => !hasConversation(value.likedUser.id === user.id? value.user.id : value.likedUser.id ))
     : [];
 
   return (

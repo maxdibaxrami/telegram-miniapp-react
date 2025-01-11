@@ -99,11 +99,12 @@ const ChatList = () => {
       // Otherwise, return all users except blocked ones
       return true;
     }) || [];
-  }, [data, user.favoriteUsers, selectedValue, user.id]);
+  }, [data, user.favoriteUsers, selectedValue, user]);
   
   useEffect(()=>{
       dispatch(fetchConversations(user.id.toString()));
   },[])
+
   return (
     <div style={{borderRadius:"12px"}} className="bg-neutral/10 mt-1">
       <div className="flex justify-between px-3 py-2 items-center ">
@@ -139,7 +140,6 @@ const ChatList = () => {
                 return null
               }
               // item.senderId != user.id &&
-              console.log("aaaaaaaaa", )
               return (
                 <ListboxItem
                   key={item.userId}

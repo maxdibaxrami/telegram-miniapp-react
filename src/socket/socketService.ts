@@ -50,7 +50,7 @@ class SocketService {
     }
   }
 
-  public sendMessageImage(senderId: string, recipientId: string,content :string , mediaUrl: string) {
+  public sendMessageImage(senderId: string, recipientId: string, content :string , mediaUrl: string) {
     if (this.socket) {
       this.socket.emit('sendMessage', {
         senderId,

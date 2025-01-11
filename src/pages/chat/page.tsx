@@ -22,7 +22,7 @@ import { addMessage, setLoading, setMessages } from "@/features/messageSlice";
 interface Message {
   senderId: string;
   recipientId: string;
-  content: string; // Required property
+  content?: string; // Required property
   mediaUrl?: string; // Optional property
   timestamp: string;
 }
@@ -101,18 +101,15 @@ export default function ChatPage() {
       dispatch(addMessage(message));
     });
 
-    // Listen for user online/offline status
+            // Listen for user online/offline status
     socketService.on("userOnline", (userId: string) => {
       dispatch(setUserOnline({ userId, isOnline: true }));
     });
-  
+          
     socketService.on("userOffline", (userId: string) => {
       dispatch(setUserOffline(userId));
     });
-  
-    return () => {
-      socketService.cleanup();
-    };
+
     
   }, [user, user1, user2]);
 
@@ -152,10 +149,9 @@ export default function ChatPage() {
     if (url) {
 
       const newMessage: Message = {
-        senderId: 'user123',
-        recipientId: 'user456',
-        content: 'Hello, how are you?', // Must include this field
-        mediaUrl: 'http://example.com/image.jpg', // Optional
+        senderId: user.id.toString(),
+        recipientId: userId2,
+        mediaUrl: url, // Optional
         timestamp: new Date().toISOString(),
       };
 
@@ -178,7 +174,7 @@ export default function ChatPage() {
           }
           
           {!messageLoading && messages.length === 0 && 
-            <motion.div transition={{type:"spring"}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{borderRadius:"12px"}} className="absolute backdrop-blur p-3 backdrop-saturate-150 bg-neutral/30 top-1/2 z-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <motion.div transition={{type:"spring"}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{borderRadius:"12px"}} className="flex items-center justify-center flex-col absolute backdrop-blur p-3 backdrop-saturate-150 bg-neutral/30 top-1/2 z-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <NotFountChatList/>
               <p className="text-tiny text-center">{t("noMessages")}</p>
             </motion.div>

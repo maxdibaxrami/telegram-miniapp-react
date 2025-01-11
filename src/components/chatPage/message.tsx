@@ -4,6 +4,7 @@ import "./style.css";
 import { BASEURL } from "@/constant";
 import { SeenIcon } from "@/Icons";
 import { useCallback, useRef, useEffect } from "react";
+import {Image} from "@nextui-org/react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -76,7 +77,7 @@ const MessageSection = ({ messages, user }) => {
               {!msg.mediaUrl && <p>{msg.content}</p>}
 
               {msg.mediaUrl && (
-                <img alt="conversation" className="chat-image" src={`${BASEURL}${msg.mediaUrl}`} />
+                <Image alt="conversation" className="chat-image" src={`${BASEURL}${msg.mediaUrl}`}/>
               )}
               <small className={`chat${messageType}--time flex items-center w-90 justify-between`}>
                 {formatTimestamp(msg.timestamp)} {msg.readAt && <SeenIcon className="size-4 mx-2" />}

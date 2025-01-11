@@ -83,7 +83,7 @@ export default function Setting() {
             </Switch>
            <LanguageSection/>
   
-
+              <button onClick={()=> localStorage.clear()}> localstorage clear</button>
           </div>
         </section>
       </div>

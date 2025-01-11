@@ -54,7 +54,7 @@ const BottomMenu = () => {
               aria-label="Options"
               fullWidth
               classNames={{
-                tab: " h-auto p-2 aspect-square m-1 color-white aspect-square",
+                tab: " h-auto p-2 m-1 color-white",
                 tabList: "bg-transparent",
                 cursor: "w-full",
                 tabContent: "group-data-[selected=true]:text-[#FFF]",

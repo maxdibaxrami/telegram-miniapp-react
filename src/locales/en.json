@@ -297,7 +297,11 @@
     "DrinkStatus": "Drinking",
     "PetStatus": "Pets",
 
-    "noMessages": "There's no conversation yet. Start talking and get to know each other!"
+    "noMessages": "There's no conversation yet. Start talking and get to know each other!",
+
+    "invite_your_friend":"Invite friend",
+    "premium_account":"Premium account"
+
 
   }
   

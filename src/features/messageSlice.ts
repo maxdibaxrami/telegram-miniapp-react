@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface Message {
     senderId: string;
     recipientId: string;
-    content: string; // Required property
+    content?: string; // Required property
     mediaUrl?: string; // Optional property
     timestamp: string;
   }

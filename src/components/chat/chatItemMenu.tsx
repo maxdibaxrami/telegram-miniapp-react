@@ -8,6 +8,7 @@ import {
 
 import { DeleteChatIcon, Favorite, MoreIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUsers, targetUser, HandleRemoveFromFavorite,handleDelete }) => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUser
   const targetUserId = targetUser.id ? targetUser.id : targetUser;
   
   // Check if the target user is in the favoriteUsers list by comparing ids
-  const isFavorite = favoriteUsers.some(user => user == targetUserId);  // Compare by id
+  const isFavorite = useMemo(() => favoriteUsers.some(user => user == targetUserId),[favoriteUsers,targetUserId]);  // Compare by id
   
   console.log(isFavorite); // Log to verify the result
 
