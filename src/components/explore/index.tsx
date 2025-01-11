@@ -37,6 +37,9 @@ const ExplorePage = () => {
 
   const { likesCount, lastReset } = useSelector((state: RootState) => state.likeLimit);
 
+  const { requestLoading } = useSelector((state: RootState) => state.like);
+
+
   useEffect(() => {
     const today = new Date().setHours(0, 0, 0, 0); // Get today's date at midnight
     if (lastReset < today) {
@@ -73,6 +76,10 @@ const ExplorePage = () => {
 
     try {
       // Dispatch the action and unwrap the result
+      NextSlide();  // Move to the previous user
+      dispatch(removeUserFromState(users[index].id));
+      dispatch(incrementLikes())
+
       if (index === null) return;
       const resultAction = await dispatch(likeUser({ userId: user.id, likedUserId: users[index].id }));
       // @ts-ignore
@@ -82,9 +89,7 @@ const ExplorePage = () => {
         openModal();
       }
 
-      NextSlide();  // Move to the previous user
-      dispatch(removeUserFromState(users[index].id));
-      dispatch(incrementLikes())
+
     } catch (error) {
       console.error('Failed to like user:', error);
     }
@@ -218,12 +223,12 @@ const ExplorePage = () => {
         :
           <SparklesHeartText
             text={
-              <Button radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+              <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
                   <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
               </Button>
             }
             colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-            sparklesCount={20} // Initial number of hearts
+            sparklesCount={10} // Initial number of hearts
           />
         }
 

@@ -40,7 +40,7 @@ export default function LikesPage() {
       }}
     >
 
-      {data.map((value) => (<LikeCard data={value} />))}
+      {data.map((value, index) => (<LikeCard key={index} data={value} />))}
 
     </motion.div >
   );

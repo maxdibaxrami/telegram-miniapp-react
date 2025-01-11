@@ -82,7 +82,7 @@ const DataList = ({user}) => {
         <ListboxItem
           key="see_views"
           description={t('see_views')}
-          endContent={<Chip color="secondary">{data && data.length}</Chip>}
+          endContent={<Chip color="secondary">{user && user.profileViews.length}</Chip>}
           startContent={
             <IconWrapper className="bg-default/40 text-secondary/80">
               <ViewIcon className="size-5" />

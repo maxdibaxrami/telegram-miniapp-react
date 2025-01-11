@@ -393,7 +393,7 @@ export default function ProfilePage() {
                                       <p className="text-foreground capitalize font-bold  text-xl">
                                         {UserData.firstName}, {UserData.age}
                                       </p>
-                                      {UserData.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/>}
+                                      {UserData.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/>}
                                       {UserData.premium && <PerimumIcon />}
                                     </div>
                                     <div>

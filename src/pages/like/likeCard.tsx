@@ -39,7 +39,7 @@ const LikeCard = ({ data }) => {
                   <p style={{textAlign:"start"}} className="flex items-center text-tiny text-white/80 text-handller">
                     {`${data.firstName} ${data.age}`}
 
-                   {data.verifiedAccount && <VerifyIconFill fill="#016fee" className="ml-2 size-6"/> }
+                   {data.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/> }
                    {data.premium && <PerimumIcon />}
                   </p>
                   
