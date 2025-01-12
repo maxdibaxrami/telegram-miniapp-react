@@ -26,7 +26,6 @@ export default function SignupPage() {
 
   const { i18n } = useTranslation();
 
-
   const contentRef = useRef(null); // Ref to track content height
   const lp = useLaunchParams();
   const dispatch = useDispatch<AppDispatch>();
@@ -148,6 +147,10 @@ export default function SignupPage() {
       setUploadImageLoading(false);
     }
   };
+
+
+
+ // useEffect(()=>{console.log({lp.startParam})},[])
 
   return (
     <Page back={false}>
