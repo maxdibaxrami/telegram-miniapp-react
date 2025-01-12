@@ -195,7 +195,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           </motion.li>
         </motion.ul>
       </div>
-      <p>{searchParams.get('start')}</p>
+      <p>{searchParams.get('startapp')}</p>
     </div>
   );
 };
