@@ -62,6 +62,7 @@ export function App() {
   const [hasFetchedDetails, setHasFetchedDetails] = useState(false);
   
   useEffect(() => {
+    console.log(initDataState)
     // Dispatch fetchUserData only once with the initial hash
     dispatch(fetchUserData(initDataState.user.id.toString()));
   }, [dispatch, initDataState.hash]);
