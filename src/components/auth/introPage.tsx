@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 import { cloudStorage } from '@telegram-apps/sdk';
 import FontHandller from "../FontHandller";
+import { useSearchParams } from "react-router-dom";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -24,6 +25,7 @@ const item = {
 
 const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
   const { t, i18n } = useTranslation();
+  const [searchParams] = useSearchParams();
 
   const [isSelected, setIsSelected] = useState(i18n.language); // Initialize empty, we'll set this in useEffect
 
@@ -193,6 +195,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           </motion.li>
         </motion.ul>
       </div>
+      <p>{searchParams.get('start')}</p>
     </div>
   );
 };
