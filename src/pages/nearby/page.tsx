@@ -29,7 +29,7 @@ export default function NearByPage() {
         dispatch(fetchNearBySliceUsers({
           userId: user.id.toString(),
           page: page,
-          limit: 50,
+          limit: 20,
           ...filters
         }));
       }

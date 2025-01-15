@@ -58,19 +58,20 @@ const ExploreCard = (props) => {
                 delay: 3000, // 3 seconds
                 disableOnInteraction: false, // Keep auto-play after user interaction
               }}
+              onClick={toggleFooter}
               modules={[Pagination, Autoplay]}
               className="mySwiper"
               onSlideChange={() => setSlideCounter(slideCountrt + 1)}
             >
                   {props?.profile?.photos.length === 0 ?
                     <SwiperSlide key={0}>
-                      <SwiperImages status={props.isFirst} url={"https://via.placeholder.com/400x500"} />
+                      <SwiperImages url={"https://via.placeholder.com/400x500"} />
                     </SwiperSlide>
                 
                   :
                     props?.profile?.photos?.map((value, index) => (
                       <SwiperSlide key={index}>
-                        <SwiperImages status={props.isFirst} url={value.url} />
+                        <SwiperImages url={value.url} />
                       </SwiperSlide>
                     ))
                   }
@@ -150,6 +151,7 @@ const ExploreCard = (props) => {
             >
               <div className="relative h-full w-full">
                 <CardFooter
+                    onClick={toggleFooter}
                     style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
                     className="items-start flex-col py-2 backdrop-blur bg-background/70 backdrop-saturate-150"
                 >

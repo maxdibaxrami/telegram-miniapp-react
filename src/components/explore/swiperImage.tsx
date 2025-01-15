@@ -1,14 +1,8 @@
 import { BASEURL } from "@/constant";
 import { Image } from "@nextui-org/react";
-import { useSwiper } from "swiper/react";
 
-const SwiperImages = ({ url, status=true }) => {
-  const swiper = useSwiper();
+const SwiperImages = ({ url }) => {
 
-  const NextSlide = () => {
-    swiper.slideNext();
-    console.log(swiper.activeIndex);
-  };
 
   return (
     <Image
@@ -17,7 +11,6 @@ const SwiperImages = ({ url, status=true }) => {
       classNames={{
         wrapper: "w-full maxcontentimportant",
       }}
-      onClick={NextSlide}
       src={`${BASEURL}${url}`}
       radius="none"
       disableAnimation={true}
@@ -25,7 +18,7 @@ const SwiperImages = ({ url, status=true }) => {
       style={{
         objectFit: "cover",
         padding: "0px 0px 5px 0px",
-        height: status ? "calc(100vh - 300px)" : "93px", // Dynamic height based on status
+        height: "calc(100vh - 250px)", // Dynamic height based on status
         transition: "height 0.2s", // Smooth transition for height change
         transitionDelay: "0.5s"
       }}

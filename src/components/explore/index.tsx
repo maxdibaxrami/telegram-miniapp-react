@@ -156,7 +156,7 @@ const ExplorePage = () => {
 
   return (
     <div className="w-screen" style={{ position: "relative"}}>
-      <ScrollShadow hideScrollBar size={270} style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
+      <ScrollShadow hideScrollBar size={180} style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
         <ul style={{marginTop:"3.6rem"}} className="flex flex-col-reverse	">
             <AnimatePresence mode={"sync"}>
               {users.map((user, index) => (
@@ -207,7 +207,7 @@ const ExplorePage = () => {
                         </Button>
                       }
                       colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-                      sparklesCount={10} // Initial number of hearts
+                      sparklesCount={5} // Initial number of hearts
                     />
                   }
       </motion.div>

@@ -155,10 +155,11 @@ const MainPage = () => {
                               zIndex: 50,
                               left: "50%",
                               transform: "translateX(-50%)",
+                              bottom:"130px"
                             }}
-                            initial={{ bottom: "-30px"}}
-                            animate={{ bottom: "130px" }}
-                            exit={{ bottom: "-30px"}}
+                            initial={{ opacity:0 }}
+                            animate={{ opacity:1 }}
+                            exit={{ opacity:0 }}
                           >
                             <Button
                               variant="shadow"
