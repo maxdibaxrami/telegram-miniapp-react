@@ -32,8 +32,7 @@ export const routes: Route[] = [
   { path: '/setting', Component: Setting, title: 'Main Page', auth:true },
   { path: '/chat-detail', Component: ChatPage, title: 'Main Page', auth:true },
   { path: '/sign-up', Component: SignupPage, title: 'signup', auth: false },
-
-
+  
   {
     path: '/ton-connect',
     auth:true,

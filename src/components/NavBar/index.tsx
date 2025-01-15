@@ -39,7 +39,6 @@ const BottomMenu = () => {
           initial={{ bottom:"-120px" }}
           animate={{ bottom: "0px" }}
           exit={{ bottom:"-120px"}}
-  
           className={"flex w-full px-2 fixed items-center backdrop-blur	bg-background/70 backdrop-saturate-150 border-foreground/20 shadow-small"}
           style={{
             zIndex: "50",
@@ -56,7 +55,7 @@ const BottomMenu = () => {
               classNames={{
                 tab: " h-auto p-2 m-1 color-white",
                 tabList: "bg-transparent",
-                cursor: "w-full",
+                cursor: "",
                 tabContent: "group-data-[selected=true]:text-[#FFF]",
               }}
               color="primary"
@@ -109,12 +108,10 @@ const BottomMenu = () => {
               <Tab
                 key="likes"
                 href="/#/main?page=likes"
-
                 title={
                   <div className="flex flex-col justify-center items-center">
                     <LikeIcon className="size-6"/>
                     <p style={{fontSize:"12px"}}>{t('Likes')}</p>
-
                   </div>
                 }
               />

@@ -57,12 +57,11 @@ export function App() {
   const isDark = useSignal(miniApp.isDark);
   const initDataState = useSignal(initData.state);
   const dispatch = useDispatch<AppDispatch>();
-  const { data, loading } = useSelector((state: RootState) => state.user);
+  const { data, loading, error } = useSelector((state: RootState) => state.user);
   const [isLoading, setIsLoading] = useState(true);
   const [hasFetchedDetails, setHasFetchedDetails] = useState(false);
   
   useEffect(() => {
-    console.log(initDataState)
     // Dispatch fetchUserData only once with the initial hash
     dispatch(fetchUserData(initDataState.user.id.toString()));
   }, [dispatch, initDataState.hash]);
@@ -105,6 +104,14 @@ export function App() {
 
     }
   }, [data]);
+
+  useEffect(()=>{
+    if(error === "ERR_BAD_REQUEST")
+    {
+      localStorage.clear()
+    }
+  
+  },[error])
 
   useEffect(() => {
     const loadI18n = async () => {

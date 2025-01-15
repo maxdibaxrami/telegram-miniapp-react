@@ -27,7 +27,9 @@ export default function SignupPage() {
   const { i18n } = useTranslation();
 
   const contentRef = useRef(null); // Ref to track content height
+
   const lp = useLaunchParams();
+
   const dispatch = useDispatch<AppDispatch>();
   const initDataState = useSignal(initData.state);
   const [uploadImageLoading, setUploadImageLoading] = useState(true)
@@ -100,6 +102,7 @@ export default function SignupPage() {
   }
 
   const NextPage = () => setSelectedTab(selectedTab + 1);
+  
   const prevPage = () => {
     if(selectedTab === 0 ) 
       return 

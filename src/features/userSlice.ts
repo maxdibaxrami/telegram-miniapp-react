@@ -184,6 +184,11 @@ const userSlice = createSlice({
       .addCase(fetchUserData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Failed to fetch user data';
+        console.log(action.error.code)
+        if(action.error.code === "ERR_BAD_REQUEST"){
+          localStorage.clear();
+          state.data = null;
+        }
       })
 
       // handle user id 
