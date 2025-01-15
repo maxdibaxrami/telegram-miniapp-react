@@ -108,7 +108,7 @@ const ChatList = () => {
   return (
     <div style={{borderRadius:"12px"}} className="bg-neutral/10 mt-1">
       <div className="flex justify-between px-3 py-2 items-center ">
-        <span style={{ fontWeight: "500" }} className="text-large text-default-600">
+        <span  className="text-large text-default-600 font-bold">
           {t("chat")}
         </span>
         <ChatFiltermenu chatOrder={selectedKeys} setChatOrder={setSelectedKeys}/>
@@ -160,7 +160,7 @@ const ChatList = () => {
                       isBordered
                       color={item.readAt == null && item.senderId != user.id ? "primary" : "default"}
                       radius="full"
-                      size="md"
+                      size="lg"
                       src={`${BASEURL}${targetPhotoUrl}`}
                     />
                   }
@@ -172,13 +172,13 @@ const ChatList = () => {
                         <span
                           className={
                               item.readAt == null && item.senderId != user.id 
-                              ? "text-small text-handller-chat font-bold text-default-700"
-                              : "text-small text-handller-chat text-default-700"
+                              ? " text-handller-chat font-bold text-default-700"
+                              : "text-handller-chat font-normal text-default-700"
                           }
                         >
                           {targetFirstName}
                           <Chip
-                            className={item.readAt == null && item.senderId != user.id  ?  "visible ml-1" : "hidden"}
+                            className={item.readAt == null && item.senderId != user.id  ?  "visible ml-1 px-2" : "hidden"}
                             color="primary"
                             size="sm"
                           >
@@ -189,7 +189,7 @@ const ChatList = () => {
                           className={
                             item.readAt == null && item.senderId != user.id 
                                 ? "text-tiny text-handller-chat font-bold text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
-                                : "text-tiny text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
+                                : "text-tiny font-normal text-handller-chat text-default-700 mt-1 truncate overflow-hidden text-ellipsis w-32"
                           }
                         >
                           {truncateText(item.lastMessage, 20)}

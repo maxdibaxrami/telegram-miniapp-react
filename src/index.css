@@ -118,3 +118,29 @@ html {
 .swiper-pagination-bullet-active{
   background-color: #1FB6A8;
 }
+
+.borderRadius50{
+  border-radius: 50%;
+}
+
+.border-bottom-0{
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+
+@keyframes moveRight {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.animated-background {
+  background-image: linear-gradient(135deg, #21b6a8 15%, transparent 15%, transparent 50%, #21b6a8 50%, #21b6a8 65%, transparent 65%);
+  background-size: 60px 60px;
+  animation: moveRight 4s linear infinite;
+  
+}

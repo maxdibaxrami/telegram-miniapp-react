@@ -153,7 +153,8 @@ const MainPage = () => {
                             style={{
                               position: "fixed",
                               zIndex: 50,
-                              left: "20px",
+                              left: "50%",
+                              transform: "translateX(-50%)",
                               bottom:"130px"
                             }}
                             initial={{ opacity:0 }}
@@ -168,7 +169,8 @@ const MainPage = () => {
                               isIconOnly
                               aria-label="Like"
                               color="primary"
-                              className='bg-primary/80 backdrop-blur backdrop-saturate-150'
+                              className='bg-primary/80 backdrop-blur'
+
                             >
                               <FitlerIcon />
                             </Button>

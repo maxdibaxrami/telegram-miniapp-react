@@ -343,7 +343,7 @@ export default function ProfilePage() {
         {!LoadingUser ? 
                 <section
                 className="flex flex-col items-center justify-center"
-                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`, paddingLeft:"12px",paddingRight:"12px"}}  
+                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`, paddingLeft:"18px",paddingRight:"18px"}}  
               >
               
                   <div className="flex w-full justify-between items-center">

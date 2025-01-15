@@ -26,11 +26,14 @@ import { PopOverPerimum } from "../perimum/popOver";
 
 const ExplorePage = () => {
   
-  const dispatch: AppDispatch = useDispatch();  // Use the correct AppDispatch type from your store
   const maxLikes = 50;
+  
+  const dispatch: AppDispatch = useDispatch();  // Use the correct AppDispatch type from your store
+  
   const [index, setIndex] = useState<number | null>(null);  // Start with null to handle async loading
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: users, loading, page, limit, total } = useSelector((state: RootState) => state.explore);
+
   //const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
   const { t } = useTranslation();  // Initialize translation hook
   const [isModalOpen, setIsModalOpen] = useState(false);

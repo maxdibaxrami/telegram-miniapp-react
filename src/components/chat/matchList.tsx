@@ -1,4 +1,5 @@
 import { BASEURL } from "@/constant";
+import { LikeIcon } from "@/Icons";
 import { RootState } from "@/store";
 import { Avatar, AvatarGroup, Skeleton } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
@@ -9,24 +10,12 @@ const MatchList = () => {
   const { t } = useTranslation();
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: match, loading } = useSelector((state: RootState) => state.match);
-  const { data: conversation, loading: loadingConversation } = useSelector((state: RootState) => state.conversation);
 
-  // Function to check if the match has an existing conversation
-  const hasConversation = (userId: number) => {
-    return conversation?.some(
-      (conv) => conv.senderId === userId || conv.recipientId === userId
-    );
-  };
-
-  // Preprocess the matches to filter out users who have a conversation
-  const filteredMatches = !loading && !loadingConversation && match
-    ? match.filter((value) => !hasConversation(value.likedUser.id === user.id? value.user.id : value.likedUser.id ))
-    : [];
 
   return (
-    <>
+    <div style={{position:"relative",zIndex:10}} className="backdrop-blur p-2 px-3 bg-background/70 backdrop-saturate-150 rounded-xl	">
       <div style={{ paddingBottom: "0.5rem" }} className="flex justify-between items-center">
-        <span style={{ fontWeight: "500" }} className="text-large text-default-600">
+        <span className="text-large text-default-600 font-bold">
           {t("matches")}
         </span>
       </div>
@@ -42,7 +31,16 @@ const MatchList = () => {
         )}
       >
 
-
+      <div  className="flex items-center">
+              <Avatar
+                as={Link}
+                to={`/main?page=likes`}
+                color="secondary"
+                radius="full"
+                size="lg"
+                icon={<LikeIcon className="size-8"/>}
+              />
+          </div>
 
         {/* Loading skeletons */}
         {loading ? (
@@ -53,21 +51,24 @@ const MatchList = () => {
           ))
         ) : (
           /* Render filtered matches */
-          filteredMatches.map((value, index) => (
-            <div key={index} className="flex items-center">
+          match.map((value, index) => {
+            const user2 = user.id !== value.likedUser.id? value.likedUser : value.user
+            return <div key={index} className="flex items-center">
               <Avatar
                 as={Link}
                 to={`/chat-detail?user1=${value.likedUser.id}&user2=${value.user.id}`}
-                color="primary"
+                color={user2.premium? "warning" : "danger" }
                 radius="full"
                 size="lg"
-                src={`${BASEURL}${user.id !== value.likedUser.id? value.likedUser.photos[0].url : value.user.photos[0].url}`}
+                src={`${BASEURL}${user2.photos[0].url}`}
               />
             </div>
-          ))
+            })
         )}
+
+  
       </AvatarGroup>
-    </>
+    </div>
   );
 };
 

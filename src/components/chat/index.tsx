@@ -10,14 +10,15 @@ const ChatPage = () => {
         overflow: "scroll",
         paddingTop: "4.5rem",
         paddingBottom: "6rem",
-        paddingLeft:"0.5rem",
-        paddingRight:"0.5rem",
+        paddingLeft:"18px",
+        paddingRight:"18px",
         zIndex: 5,
       }}
       id="chatScrollcontainer"
     >
-
-      <MatchList/>
+      <div className="animated-background rounded-xl p-0.5 mb-2" style={{width:"100%", height:"100%", zIndex:1}}>
+        <MatchList/>
+      </div>
 
       
       <ChatList />

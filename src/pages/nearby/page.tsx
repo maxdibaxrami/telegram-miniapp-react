@@ -83,24 +83,20 @@ export default function NearByPage() {
         style={{
           paddingTop: "4.2rem",
           paddingBottom: "6rem",
-          paddingRight: "12px",
-          paddingLeft: "12px",
+          paddingRight: "18px",
+          paddingLeft: "18px",
         }}
       >
         {users.map((user) => (
           <NearByCard key={user.id} data={user} />
         ))}
 
-        {loadingMore && (
-          <div className="col-span-2 w-full mt-6 mb-6 flex items-center justify-center">
-            <Spinner size="lg" />
-          </div>
-        )}
-
         {/* Sentinel div for Intersection Observer */}
         <div ref={loadMoreRef} className="col-span-2 w-full flex items-center justify-center">
           {!loadingMore && users.length < total && (
-            <div>{t("exploreUserLoadingMore")}</div>
+            <div className="col-span-2 w-full mt-6 mb-6 flex items-center justify-center">
+              <Spinner size="lg" />
+            </div>
           )}
         </div>
       </div>
