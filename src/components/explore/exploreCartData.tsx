@@ -31,7 +31,7 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   // Reusable ProfileCard component for profile details
   const ProfileCard = ({ color, icon, label, text }) => {
     return <motion.div
-      className="flex gap-3 mt-1 mb-3"
+      className="flex gap-3 mt-1"
       initial={openFooter ? { opacity: 1 } : { opacity: 0 }}
       style={{ marginLeft: "4px" }}
       animate={{ opacity: 1 }}

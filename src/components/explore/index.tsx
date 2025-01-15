@@ -15,7 +15,7 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
-import {Spinner } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
 import { fetchMatches } from "@/features/matchSlice";
 import { SparklesHeartText } from "../animate/hearSparkles";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";
@@ -30,7 +30,7 @@ const ExplorePage = () => {
   const maxLikes = 50;
   const [index, setIndex] = useState<number | null>(null);  // Start with null to handle async loading
   const { data: user } = useSelector((state: RootState) => state.user);
-  const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
+  const { data: users, loading, page, limit, total } = useSelector((state: RootState) => state.explore);
   //const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
   const { t } = useTranslation();  // Initialize translation hook
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -120,7 +120,7 @@ const ExplorePage = () => {
 
 
   useEffect(() => {
-    if (users && users.length <= 3 && (page * limit) < total ) {
+    if (users && users.length <= 1 && (page * limit) < total ) {
       // Dispatch action to fetch more data
       console.log("Dispatch action to fetch more data")
       dispatch(fetchFilteredExplore({
@@ -155,88 +155,63 @@ const ExplorePage = () => {
   }
 
   return (
-    <div style={{ position: "relative" }}>
-      <motion.div style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
-
-        <AnimatePresence initial={false}>
-
-          {secondLoading && 
-            <div className="relative h-screen w-screen flex flex-col items-center justify-center">
-              <NotFoundUserExplore/>
-              <div className="flex gap-4 flex-col px-6 text-center items-center">
-                  <p className="text-tiny">{t("nolikemessage")}</p>
-                </div>
-            </div>
-          }
-
-          {users[index - 3] && (
-            <ExploreCard profile={users[index - 3]} key={index - 3} frontCard={"variantsBackCardThird"} />
-          )}
-          
-          {users[index - 2] && (
-            <ExploreCard profile={users[index - 2]} key={index - 2} frontCard={"variantsBackCardThird"} />
-          )}
-      
-          {users[index - 1] && (
-            <ExploreCard profile={users[index - 1]} key={index - 1} frontCard={"variantsBackCard"} />
-          )}
-
-          {users[index] && (
-            <ExploreCard
-              key={index}
-              NextSlide={NextSlide}
-              openModal={openModal}
-              frontCard={"variantsFrontCard"}
-              index={index}
-              profile={users[index]}
-              setIndex={setIndex}
-              handleNotLike={handleNotLike}
-              drag="x"
-            />
-          )}
-        </AnimatePresence>
-
-        <motion.div
-          className="m-2 footerswipcard fixed"
-          style={{ right: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
-          transition={{ type: "tween" }}
-        >
-          <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
-            <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8" />
-          </Button>
-        </motion.div>
-
-        <motion.div
-          className="card m-2 footerswipcard fixed"
-          transition={{ type: "tween" }}
-          style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
-        >
-
-          {likesCount >= maxLikes ? 
-          <PopOverPerimum isOpen={true}>
-               <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
-                  <LockIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
-              </Button>
-          </PopOverPerimum>
-        
-        
-        :
-          <SparklesHeartText
-            text={
-              <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                  <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
-              </Button>
-            }
-            colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-            sparklesCount={10} // Initial number of hearts
-          />
-        }
-
- 
-
-        </motion.div>
+    <div className="w-screen" style={{ position: "relative"}}>
+      <div style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
+        <ul style={{marginTop:"3.2rem"}} className="flex flex-col-reverse	">
+            <AnimatePresence mode={"popLayout"}>
+              {users.map((user, index) => (
+                <motion.li
+                  layout
+                  // initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ type: "tween" }}
+                  key={index}
+                >
+                  <ExploreCard isFirst={user && users && user.id === users[users.length - 1]?.id} profile={user} key={index}/>
+                </motion.li>
+              ))}
+            </AnimatePresence>
+        </ul>
+      </div>
          
+      <motion.div
+                  className="m-2 footerswipcard fixed"
+                  style={{ right: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
+                  transition={{ type: "tween" }}
+                >
+                  <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+                    <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8" />
+                  </Button>
       </motion.div>
+
+      <motion.div
+                  className="card m-2 footerswipcard fixed"
+                  transition={{ type: "tween" }}
+                  style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
+                >
+
+                  {likesCount >= maxLikes ? 
+                    <PopOverPerimum isOpen={true}>
+                        <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
+                            <LockIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
+                        </Button>
+                    </PopOverPerimum>
+                  
+                  
+                  :
+                    <SparklesHeartText
+                      text={
+                        <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                            <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
+                        </Button>
+                      }
+                      colors={{ first: "#ff4b61", second: "#A8B2BD" }}
+                      sparklesCount={10} // Initial number of hearts
+                    />
+                  }
+      </motion.div>
+
 
       {users[index] && (
         <MatchModal
