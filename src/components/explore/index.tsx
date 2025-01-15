@@ -15,7 +15,7 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
-import { Spinner } from "@nextui-org/react";
+import { ScrollShadow, Spinner } from "@nextui-org/react";
 import { fetchMatches } from "@/features/matchSlice";
 import { SparklesHeartText } from "../animate/hearSparkles";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";
@@ -156,7 +156,7 @@ const ExplorePage = () => {
 
   return (
     <div className="w-screen" style={{ position: "relative"}}>
-      <div style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
+      <ScrollShadow hideScrollBar size={270} style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
         <ul style={{marginTop:"3.6rem"}} className="flex flex-col-reverse	">
             <AnimatePresence mode={"sync"}>
               {users.map((user, index) => (
@@ -173,7 +173,7 @@ const ExplorePage = () => {
               ))}
             </AnimatePresence>
         </ul>
-      </div>
+      </ScrollShadow>
          
       <motion.div
                   className="m-2 footerswipcard fixed"
