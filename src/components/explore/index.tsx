@@ -157,7 +157,7 @@ const ExplorePage = () => {
   return (
     <div className="w-screen" style={{ position: "relative"}}>
       <div style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
-        <ul style={{marginTop:"3.2rem"}} className="flex flex-col-reverse	">
+        <ul style={{marginTop:"3.6rem"}} className="flex flex-col-reverse	">
             <AnimatePresence mode={"sync"}>
               {users.map((user, index) => (
                 <motion.li
