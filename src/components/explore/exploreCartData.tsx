@@ -114,7 +114,6 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
 
   const currentSlide = useMemo(() => slideCount % profileItems.length , [slideCount, profileItems]);
 
-
   const RealationStatus = getRealationStatus(t)
 
   const languages = getlanguages(t)
@@ -122,7 +121,6 @@ const ExploreCartData = ({ slideCount, profile, openFooter }) => {
   const SexualityStatus = getSexualityStatus(t)
 
   const hobbies = gethobbies(t)
-
 
   const PetStatus = getPetStatus(t)
 
