@@ -24,7 +24,7 @@ const SwiperImages = ({ url, status=true }) => {
         objectFit: "cover",
         padding: "0px 0px 5px 0px",
         height: status ? "calc(100vh - 300px)" : "93px", // Dynamic height based on status
-        transition: "height 0.5s ease", // Smooth transition for height change
+        transition: "height ease", // Smooth transition for height change
       }}
     />
   );

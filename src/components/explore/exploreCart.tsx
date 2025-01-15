@@ -10,10 +10,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
 import ParallaxText from '@/components/animate/text-slider';
-import { HeartIconOutLine, HeightIcon, LanguageIcon, SexualityIcon, ArowUpIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, ArowUpIcon, VerifyIconFill, HashtagIcon } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import { useTranslation } from 'react-i18next';
-import { gethobbies, getlanguages, getRealationStatus, getSexualityStatus } from '@/constant';
+import { gethobbies, getlanguages, getRealationStatus } from '@/constant';
 
 const ExploreCard = (props) => {
 
@@ -29,7 +29,6 @@ const ExploreCard = (props) => {
 
   const languages = getlanguages(t)
 
-  const SexualityStatus = getSexualityStatus(t)
 
   const hobbies = gethobbies(t)
 
@@ -79,13 +78,13 @@ const ExploreCard = (props) => {
             </Swiper>
 
 
-            <div className="absolute" style={{ bottom: "163px", zIndex: 10 }}>
+            <div className="absolute" style={{ bottom: "125px", zIndex: 10 }}>
               <ParallaxText baseVelocity={-1}>
                 {Array.isArray(props.profile.interests) && props.profile.interests.length > 0?
                   props.profile.interests.map((value)=>{
                     return <Chip
                               variant="solid"
-                              size="md"
+                              size="sm"
                               className="mx-2 backdrop-blur bg-neutral/40 backdrop-saturate-150"
                               style={{ marginRight: "10px" }}
                               startContent={<HashtagIcon className="size-4  mx-1" />}
@@ -100,11 +99,11 @@ const ExploreCard = (props) => {
 
             </div>
 
-            <div className="absolute" style={{ bottom: "130px", zIndex: 10 }}>
+            <div className="absolute" style={{ bottom: "95px", zIndex: 10 }}>
               <ParallaxText baseVelocity={1}>
                 <Chip
                   variant="solid"
-                  size="md"
+                  size="sm"
                   color="primary"
                   className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
                   style={{ marginRight: "10px" }}
@@ -116,7 +115,7 @@ const ExploreCard = (props) => {
                 <Chip
                   variant="solid"
                   color="primary"
-                  size="md"
+                  size="sm"
                   style={{ marginRight: "10px" }}
                   className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
 
@@ -131,7 +130,7 @@ const ExploreCard = (props) => {
                           color="primary"
                           className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
                           key={index}
-                          size="md"
+                          size="sm"
                           startContent={<LanguageIcon className="size-4  mx-1" />}
                         >
                           {value}
@@ -139,17 +138,6 @@ const ExploreCard = (props) => {
                         </Chip>
                       })}
 
-
-                <Chip
-                  variant="solid"
-                  color="primary"
-                  size="md"
-                  className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
-                  style={{ marginRight: "10px" }}
-                  startContent={<SexualityIcon className="size-4  mx-1" />}
-                >
-                  {SexualityStatus.find(SexualityStatus => SexualityStatus.key === props.profile.moreAboutMe.sexuality).label}
-                </Chip>
               </ParallaxText>
             </div>
 
