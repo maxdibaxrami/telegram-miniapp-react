@@ -20,6 +20,8 @@ const SwiperImages = ({ url, status=true }) => {
       onClick={NextSlide}
       src={`${BASEURL}${url}`}
       radius="none"
+      disableAnimation={true}
+      disableSkeleton={false}
       style={{
         objectFit: "cover",
         padding: "0px 0px 5px 0px",
