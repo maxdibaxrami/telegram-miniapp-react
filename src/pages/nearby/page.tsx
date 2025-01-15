@@ -65,12 +65,12 @@ export default function NearByPage() {
   return (
     <LayoutGroup>
       <div
-        className="grid gap-2 grid-cols-2 sm:grid-cols-2"
+        className="grid gap-3 grid-cols-2 sm:grid-cols-3"
         style={{
           paddingTop: "4.2rem",
           paddingBottom: "6rem",
-          paddingRight:"12px",
-          paddingLeft:"12px",
+          paddingRight:"14px",
+          paddingLeft:"14px",
         }}
       >
           {users.map((user) => (

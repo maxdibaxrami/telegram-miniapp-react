@@ -16,7 +16,6 @@ const NearByCard = ({ data }) => {
         <Image
           alt="Woman listing to music"
           className="object-cover aspect-square"
-          radius="none"
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
