@@ -122,7 +122,6 @@ const ProfilePage = () => {
                   className="flex  items-center aspect-video justify-center"
                   animate={{
                     scale: [1.3, 1.5, 1.5, 1.5, 1.3],
-                    rotate: [0, 0, 5, -5, 0],
                     borderRadius: ["50%", "50%", "50%", "50%", "50%"],
                   }}
                   transition={{
@@ -150,36 +149,6 @@ const ProfilePage = () => {
               <p className="w-full font-bold">{t("invite_your_friend")}</p>
             </CardFooter>
           </Card>
-          <div className="animated-background rounded-xl p-0.5 mb-2" style={{width:"100%", height:"100%", zIndex:1}}>
-            <div style={{position:"relative",zIndex:10}} className="backdrop-blur h-full p-2 px-3 backdrop-saturate-150 rounded-xl	">
-              <motion.div
-                  className="flex overflow-visible items-center aspect-video justify-center"
-                  animate={{
-                    scale: [1.3, 1.5, 1.5, 1.5, 1.3],
-                    borderRadius: ["50%", "50%", "50%", "50%", "50%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    times: [0, 0.2, 0.5, 0.8, 1],
-                    repeat: Infinity,
-                    repeatDelay: 1,
-                  }}
-                >       
-                
-                  <SparklesCustomIconText
-                    colors={{ first: "#21b6a8", second: "#ff4b61" }}
-                    sparklesCount={20} // Initial number of hearts
-                    text={  
-                      <Button variant="solid" size="lg" radius="full" isIconOnly aria-label="Like" color="primary">
-                        <FirendsIcon fill="#fff" className="size-6"/>
-                      </Button>
-                    }
-                  />  
-
-              </motion.div>
-            </div>
-          </div>
 
           <Card classNames={{"body":"bg-neutral/10"}} isPressable shadow="sm" onPress={() => console.log("item pressed")}>
             <CardBody className="overflow-visible p-0">
@@ -187,7 +156,6 @@ const ProfilePage = () => {
                   className="flex items-center aspect-video justify-center"
                   animate={{
                     scale: [1.3, 1.5, 1.5, 1.5, 1.3],
-                    rotate: [0, 0, 5, -5, 0],
                     borderRadius: ["50%", "50%", "50%", "50%", "50%"],
                   }}
                   transition={{
@@ -195,7 +163,7 @@ const ProfilePage = () => {
                     ease: "easeInOut",
                     times: [0, 0.2, 0.5, 0.8, 1],
                     repeat: Infinity,
-                    repeatDelay: 1,
+                    repeatDelay: 2,
                   }}
                 >       
                   <SparklesStarText
@@ -214,7 +182,7 @@ const ProfilePage = () => {
               <p className="w-full font-bold">{t("premium_account")}</p>
             </CardFooter>
           </Card>
-
+          
       </div>
       
       <DataList user={user}/>

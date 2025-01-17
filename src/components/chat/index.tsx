@@ -16,7 +16,7 @@ const ChatPage = () => {
       }}
       id="chatScrollcontainer"
     >
-      <div className="animated-background rounded-xl p-0.5 mb-2" style={{width:"100%", height:"100%", zIndex:1}}>
+      <div className="animated-background rounded-xl mb-2 shadow" style={{width:"100%", height:"100%", zIndex:1}}>
         <MatchList/>
       </div>
 

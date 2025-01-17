@@ -64,7 +64,7 @@ const BottomMenu = () => {
               href="/#/main?page=explore"
               title={
                 <div className="flex flex-col justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center shadow-md">
+                  <div className="rounded-full flex items-center justify-center">
                     <FireIcon className="size-6" />
                   </div>
                   <p style={{ fontSize: "12px" }}>{t('Explore')}</p>
@@ -77,7 +77,7 @@ const BottomMenu = () => {
               href="/#/main?page=nearby"
               title={
                 <div className="flex flex-col justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center shadow-md">
+                  <div className="rounded-full flex items-center justify-center">
                     <LocationIcon className="size-6" />
                   </div>
                   <p style={{ fontSize: "12px" }}>{t('Nearby')}</p>
@@ -90,7 +90,7 @@ const BottomMenu = () => {
               href="/#/main?page=chat"
               title={
                 <div className="flex flex-col justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center shadow-md">
+                  <div className="rounded-full flex items-center justify-center">
                     <ChatIcon className="size-6" />
                   </div>
                   <p style={{ fontSize: "12px" }}>{t('Chat')}</p>
@@ -103,7 +103,7 @@ const BottomMenu = () => {
               href="/#/main?page=likes"
               title={
                 <div className="flex flex-col justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center shadow-md">
+                  <div className="rounded-full flex items-center justify-center">
                     <LikeIcon className="size-6" />
                   </div>
                   <p style={{ fontSize: "12px" }}>{t('Likes')}</p>
@@ -116,7 +116,7 @@ const BottomMenu = () => {
               href="/#/main?page=profile"
               title={
                 <div className="flex flex-col justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center shadow-md">
+                  <div className="rounded-full flex items-center justify-center">
                     <ProfileIcon className="size-6" />
                   </div>
                   <p style={{ fontSize: "12px" }}>{t('Profile')}</p>

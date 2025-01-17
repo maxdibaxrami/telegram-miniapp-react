@@ -141,6 +141,5 @@ html {
 .animated-background {
   background-image: linear-gradient(135deg, #21b6a8 15%, transparent 15%, transparent 50%, #21b6a8 50%, #21b6a8 65%, transparent 65%);
   background-size: 60px 60px;
-  animation: moveRight 4s linear infinite;
   
 }
