@@ -30,7 +30,7 @@ const LikeCard = ({ data }) => {
         />
 
 
-          <CardFooter style={{height:"42px"}} className="justify-between z-10 bg-background/70 overflow-hidden py-1 absolute before:rounded-xl bottom-0 z-10">
+          <CardFooter style={{height:"42px"}} className="justify-between border-0 border-transparent z-10 bg-background/70 overflow-hidden py-1 absolute before:rounded-xl bottom-0 z-10">
             
             <div className=" w-full">
                 <div className="flex justify-between items-center">

@@ -67,7 +67,15 @@ export default function NearByPage() {
 
   if (!loading && users.length === 0) {
     return (
-      <div className="h-screen w-screen flex flex-col items-center justify-center">
+      <div 
+        className="h-screen w-screen flex flex-col items-center justify-center"
+        style={{
+          paddingTop: "4.2rem",
+          paddingBottom: "6rem",
+          paddingRight: "18px",
+          paddingLeft: "18px",
+        }}
+      >
         <NotFoundLike />
         <div className="flex gap-4 flex-col px-6 text-center items-center">
           <p className="text-tiny">{t("exploreUserFilterNoUser")}</p>

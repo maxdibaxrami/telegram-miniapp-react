@@ -45,7 +45,6 @@ const MainPage = () => {
                 exit={{ y: -20, opacity: 0 }}
                 initial={{ y: 0, opacity: 1 }}
                 transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30, duration: 3999 },
                   opacity: { duration: 0.6 },
                 }}
               >
@@ -66,7 +65,6 @@ const MainPage = () => {
                     exit={{ y: -10, opacity: 0 }}
                     initial={{ y: 10, opacity: 0 }}
                     transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.6 },
                     }}
                   >
@@ -84,8 +82,7 @@ const MainPage = () => {
                     initial={{ y: 10 }}
                     style={{ width: "100%" }}
                     transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.6},
+                      opacity: { duration: 0.6 },
                     }}
                   >
                     <ChatPage />
@@ -99,12 +96,10 @@ const MainPage = () => {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -10, opacity: 0 }}
                     initial={{ y: 10, opacity: 0 }}
+                    style={{width:"100%"}}
                     transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.6 },
                     }}
-                    style={{width:"100%"}}
-
                   >
                     <LikesPage/>
                   </motion.div>
@@ -117,12 +112,10 @@ const MainPage = () => {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -10, opacity: 0 }}
                     initial={{ y: 10, opacity: 0 }}
+                    style={{width:"100%"}}
                     transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.6 },
                     }}
-                    style={{width:"100%"}}
-
                   >
                     <NearByPage/>
                   </motion.div>
@@ -136,7 +129,6 @@ const MainPage = () => {
                     exit={{ y: -10, opacity: 0 }}
                     initial={{ y: 10, opacity: 0 }}
                     transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.6 },
                     }}
                     

@@ -9,6 +9,7 @@ const NearByCard = ({ data }) => {
         isFooterBlurred
         isPressable
         radius="lg"
+        disableAnimation
         className="border-none relative"
         as={Link}
         to={`/user?userId=${data.id}`}
@@ -16,6 +17,7 @@ const NearByCard = ({ data }) => {
         <Image
           alt="Woman listing to music"
           className="object-cover aspect-square"
+          loading="lazy"
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />
