@@ -116,8 +116,8 @@ const ProfilePage = () => {
       </div>
 
       <div className="gap-2 mt-4 items-center grid grid-cols-2">
-          <Card radius="sm" isPressable shadow="sm" onPress={() => console.log("item pressed")}>
-            <CardBody className="overflow-visible p-0">
+          <Card as={Link} radius="sm" isPressable shadow="sm" to={"/add-firends"}>
+            <CardBody  className="overflow-visible p-0">
               <motion.div
                   className="flex  items-center aspect-video justify-center"
                   animate={{
@@ -150,7 +150,7 @@ const ProfilePage = () => {
             </CardFooter>
           </Card>
 
-          <Card radius="sm" isPressable shadow="sm" onPress={() => console.log("item pressed")}>
+          <Card as={Link} radius="sm" isPressable shadow="sm" to={"/add-firends"}>
             <CardBody className="overflow-visible p-0">
               <motion.div
                   className="flex items-center aspect-video justify-center"

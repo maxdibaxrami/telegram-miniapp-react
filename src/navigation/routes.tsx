@@ -11,6 +11,7 @@ import Setting from '@/pages/setting/page';
 import ChatPage from '@/pages/chat/page';
 import SignupPage from '@/pages/signup/page';
 import userProfile from '@/pages/userPage/index';
+import AddFirends from '@/pages/addFirends/page';
 
 
 interface Route {
@@ -32,6 +33,10 @@ export const routes: Route[] = [
   { path: '/setting', Component: Setting, title: 'Main Page', auth:true },
   { path: '/chat-detail', Component: ChatPage, title: 'Main Page', auth:true },
   { path: '/sign-up', Component: SignupPage, title: 'signup', auth: false },
+  { path: '/add-firends', Component: AddFirends, title: 'signup', auth: true },
+
+
+  
   
   {
     path: '/ton-connect',

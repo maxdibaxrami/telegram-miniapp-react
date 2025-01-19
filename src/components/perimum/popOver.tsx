@@ -48,7 +48,7 @@ export const PopOverPerimum = (props) => {
                 </p>
 
                 <p className="text-center mt-2">
-                  <Link className="text-center" size="sm" color="success" href="/#/add-firend" underline="always">
+                  <Link className="text-center" size="sm" color="success" href={"/#/add-firends"} underline="always">
                     {t("Inviteyourfriendsandgetapremiumaccount")}
                   </Link>
                 </p>

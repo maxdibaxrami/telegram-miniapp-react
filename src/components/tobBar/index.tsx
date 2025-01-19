@@ -16,7 +16,8 @@ import {
   SettingIcon,
   EditProfileIcon,
   VerifyIconFill,
-  PerimumIcon
+  PerimumIcon,
+  AddFirendsIcon
 } from '@/Icons/index'
 import { useTranslation } from 'react-i18next';
 import BlurFade from "../animate/BlurFade";
@@ -111,6 +112,15 @@ const TopBar = () => {
                 <EditProfileIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                   {t('EditProfile')}
+                </p>
+              </BlurFade>
+            }
+
+            {location.pathname === "/add-firends" && 
+              <BlurFade className="flex items-center">
+                <AddFirendsIcon className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('invite_your_friend')}
                 </p>
               </BlurFade>
             }

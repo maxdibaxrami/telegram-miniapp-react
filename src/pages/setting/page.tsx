@@ -33,7 +33,7 @@ export default function Setting() {
       <div className="container mx-auto max-w-7xl flex-grow light-background--color">
         <section className="flex flex-col items-center justify-center gap-4 text-default-600">
           <TopBarPages />
-          <div style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`,paddingLeft:"12px",paddingRight:"12px"}} className="w-full h-full pb-4">            
+          <div style={{paddingTop:`calc(5rem + ${getPaddingForPlatform()})`,paddingLeft:"18px",paddingRight:"18px"}} className="w-full h-full pb-4">            
             <Switch
               onChange={onChange}
               classNames={{

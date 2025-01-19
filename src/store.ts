@@ -11,6 +11,7 @@ import likeLimitationSlice from './features/likeLimitationSlice';
 import NearByLimitationSlice from './features/NearByLikeLimitation'
 import messageReducer from './features/messageSlice';
 import statusReducer from './features/statusSlice';
+import referralReducer from './features/refralSlice';
 
 // Configure the store
 export const store = configureStore({
@@ -26,7 +27,7 @@ export const store = configureStore({
     NearByLimitation: NearByLimitationSlice,
     message: messageReducer,
     status: statusReducer,
-
+    referral: referralReducer,
 
   },
 });
