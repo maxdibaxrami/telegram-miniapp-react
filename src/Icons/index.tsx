@@ -10,7 +10,7 @@ const HeartIcon = (props) => {
   return (
     <svg
       className="size-6"
-      fill="none"
+      fill="currentColor"
       stroke="currentColor"
       strokeWidth={1.5}
       viewBox="0 0 24 24"

@@ -12,12 +12,12 @@ const SwiperImages = ({ url }) => {
         wrapper: "w-full maxcontentimportant",
       }}
       src={`${BASEURL}${url}`}
-      radius="none"
+      radius="lg"
       disableAnimation={true}
       disableSkeleton={false}
+      
       style={{
         objectFit: "cover",
-        padding: "0px 0px 5px 0px",
         height: "calc(100vh - 250px)", // Dynamic height based on status
         transition: "height 0.2s", // Smooth transition for height change
         transitionDelay: "0.5s"

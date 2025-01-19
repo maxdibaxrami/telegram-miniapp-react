@@ -1,3 +1,9 @@
+import {
+  ChatIcon,
+  FireIcon,
+  HeartIcon,
+} from "@/Icons";
+
 export const BASEURL = "https://copychic.online/"
 
     
@@ -204,3 +210,37 @@ export const gethobbies = (t) => [
     { key: "6", label: t("Irathernotsay") },
 
   ];
+
+export const getStaticData = (t) => ({
+  Items: [
+    {
+      id: "1",
+      title: t("Heretodate"),
+      description: t("IwanttogoondatesandhaveagoodtimeNolabels"),
+      icon: FireIcon,
+      color: "success"
+    },
+    {
+      id: "2",
+      title: t("Opentochat"),
+      description: t("ImheretochatandseewhereitgoesNopressure"),
+      icon: ChatIcon ,
+      color: "warning"
+    },
+    {
+      id: "3",
+      title: t("Readyforarelationship"),
+      description: t("ImlookingforsomethingthatlastsNogames"),
+      icon: HeartIcon,
+      color: "danger"
+    }
+  ],
+  RealationStatus: getRealationStatus(t),
+  languages: getlanguages(t),
+  SexualityStatus: getSexualityStatus(t),
+  hobbies: gethobbies(t),
+  PetStatus: getPetStatus(t),
+  DrinkStatus: getDrinkStatus(t),
+  SmokingStatus: getSmokingStatus(t),
+  KidStatus: getKidStatus(t),
+});

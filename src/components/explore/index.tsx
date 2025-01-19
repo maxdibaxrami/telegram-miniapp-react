@@ -52,9 +52,6 @@ const ExplorePage = () => {
     }
   }, [dispatch, lastReset]);
 
-  useEffect(()=>{ console.log(likesCount) },[likesCount])
-
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 

@@ -47,7 +47,7 @@ const ExploreCard = (props) => {
         
       >
         <div className='py-2' style={{ width: "calc(100% - 36px)" }}>
-          <Card radius="lg" isFooterBlurred className="w-full col-span-12 sm:col-span-7">
+          <Card radius="lg" isFooterBlurred className="w-full col-span-12 sm:col-span-7 bg-transparent shadow-0">
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
