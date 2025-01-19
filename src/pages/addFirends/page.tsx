@@ -1,6 +1,6 @@
 import TopBarPages from "@/components/tobBar/index";
 import { Page } from "@/components/Page";
-import { useLaunchParams, useSignal, shareURL } from "@telegram-apps/sdk-react";
+import { useLaunchParams, shareURL } from "@telegram-apps/sdk-react";
 import { AddFirendsImage } from "@/Icons/addFirends";
 import { motion } from "framer-motion";
 import { Button, Spinner } from "@nextui-org/react";
