@@ -116,7 +116,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="gap-2 mt-4 items-center grid grid-cols-2">
-          <Card classNames={{"body":"bg-neutral/10"}} isPressable shadow="sm" onPress={() => console.log("item pressed")}>
+          <Card radius="sm" isPressable shadow="sm" onPress={() => console.log("item pressed")}>
             <CardBody className="overflow-visible p-0">
               <motion.div
                   className="flex  items-center aspect-video justify-center"
@@ -145,12 +145,12 @@ const ProfilePage = () => {
 
               </motion.div>
             </CardBody>
-            <CardFooter className="text-small text-center justify-between">
+            <CardFooter className="backdrop-blur bg-background/70 backdrop-saturate-150 text-small text-center justify-between">
               <p className="w-full font-bold">{t("invite_your_friend")}</p>
             </CardFooter>
           </Card>
 
-          <Card classNames={{"body":"bg-neutral/10"}} isPressable shadow="sm" onPress={() => console.log("item pressed")}>
+          <Card radius="sm" isPressable shadow="sm" onPress={() => console.log("item pressed")}>
             <CardBody className="overflow-visible p-0">
               <motion.div
                   className="flex items-center aspect-video justify-center"
@@ -178,7 +178,7 @@ const ProfilePage = () => {
                      
               </motion.div>
             </CardBody>
-            <CardFooter className="text-small text-center justify-between">
+            <CardFooter className="text-small backdrop-blur bg-background/70 backdrop-saturate-150 text-center justify-between">
               <p className="w-full font-bold">{t("premium_account")}</p>
             </CardFooter>
           </Card>

@@ -41,9 +41,9 @@ const MainPage = () => {
             
           <AnimatePresence mode="wait">
               <motion.div
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                initial={{ y: 0, opacity: 1 }}
+                animate={{opacity: 1 }}
+                exit={{opacity: 0 }}
+                initial={{ opacity: 1 }}
                 transition={{
                   opacity: { duration: 0.6 },
                 }}
@@ -61,9 +61,9 @@ const MainPage = () => {
               {searchParams.get('page') === "explore" && (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -10, opacity: 0 }}
-                    initial={{ y: 10, opacity: 0 }}
+                    animate={{opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
                     transition={{
                       opacity: { duration: 0.6 },
                     }}
@@ -77,9 +77,9 @@ const MainPage = () => {
               {searchParams.get('page') === "chat" && (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    animate={{ y: 0,}}
-                    exit={{ y: -80 }}
-                    initial={{ y: 10 }}
+                    animate={{opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
                     style={{ width: "100%" }}
                     transition={{
                       opacity: { duration: 0.6 },
@@ -93,9 +93,9 @@ const MainPage = () => {
               {searchParams.get('page') === "likes" && (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -10, opacity: 0 }}
-                    initial={{ y: 10, opacity: 0 }}
+                    animate={{opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
                     style={{width:"100%"}}
                     transition={{
                       opacity: { duration: 0.6 },
@@ -109,9 +109,9 @@ const MainPage = () => {
               {searchParams.get('page') === "nearby" && (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -10, opacity: 0 }}
-                    initial={{ y: 10, opacity: 0 }}
+                    animate={{opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
                     style={{width:"100%"}}
                     transition={{
                       opacity: { duration: 0.6 },
@@ -125,9 +125,9 @@ const MainPage = () => {
               {searchParams.get('page') === "profile" && (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -10, opacity: 0 }}
-                    initial={{ y: 10, opacity: 0 }}
+                    animate={{opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
                     transition={{
                       opacity: { duration: 0.6 },
                     }}
