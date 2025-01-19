@@ -1,7 +1,6 @@
 import TopBarPages from "@/components/tobBar/index";
 import { Page } from "@/components/Page";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
-import { shareURL } from '@telegram-apps/sdk';
+import { useLaunchParams, useSignal, shareURL } from "@telegram-apps/sdk-react";
 import { AddFirendsImage } from "@/Icons/addFirends";
 import { motion } from "framer-motion";
 import { Button, Spinner } from "@nextui-org/react";
@@ -20,13 +19,13 @@ export default function AddFirends() {
   const dispatch = useDispatch<AppDispatch>();
   const { data: referral, loading } = useSelector((state: RootState) => state.referral);
   const { data: user } = useSelector((state: RootState) => state.user);
-
+  
   const getPaddingForPlatform = () => {
     return lp.platform === 'ios' ? '50px' : '25px'; // Padding for different platforms
   };
 
   const AddFirendsDialog = () => {
-    if (shareURL.isAvailable() && referral) {
+    if (shareURL && referral) {
       // Only share when referral is available
       shareURL(referral, t("share_link"));
     } else {
