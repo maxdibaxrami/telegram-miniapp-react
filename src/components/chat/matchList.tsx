@@ -13,7 +13,7 @@ const MatchList = () => {
 
 
   return (
-    <div style={{position:"relative",zIndex:10}} className="backdrop-blur p-2 px-3 bg-background/60 backdrop-saturate-150 rounded-xl	">
+    <div style={{position:"relative",zIndex:10}} className="p-2 px-3 bg-background/60 rounded-xl	">
       <div style={{ paddingBottom: "0.5rem" }} className="flex justify-between items-center">
         <span className="text-large text-default-600 font-bold">
           {t("matches")}
