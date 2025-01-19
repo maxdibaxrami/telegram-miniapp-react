@@ -13,8 +13,7 @@ const SwiperImages = ({ url }) => {
       }}
       src={`${BASEURL}${url}`}
       radius="lg"
-      disableAnimation={true}
-      disableSkeleton={false}
+      loading="lazy"
       
       style={{
         objectFit: "cover",

@@ -3,7 +3,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './style.css';
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Button, Card, CardFooter, Chip } from "@nextui-org/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,24 +14,20 @@ import { HeartIconOutLine, HeightIcon, LanguageIcon, ArowUpIcon, VerifyIconFill,
 import ExploreCartData from './exploreCartData';
 import { useTranslation } from 'react-i18next';
 import { gethobbies, getlanguages, getRealationStatus } from '@/constant';
+import React from 'react';
+
 
 const ExploreCard = (props) => {
 
   const [openFooter, setOpenFooter] = useState(false);
-  
-  const [slideCountrt, setSlideCounter] = useState<number>(1);
-  
+    
   const { t } = useTranslation();  // Initialize translation hook
 
   const toggleFooter = () => setOpenFooter(!openFooter);
  
-  const RealationStatus = getRealationStatus(t)
-
-  const languages = getlanguages(t)
-
-
-  const hobbies = gethobbies(t)
-
+  const RealationStatus = useMemo(() => getRealationStatus(t), [t]);
+  const languages = useMemo(() => getlanguages(t), [t]);
+  const hobbies = useMemo(() => gethobbies(t), [t]);
 
   return (
     <>
@@ -47,7 +43,7 @@ const ExploreCard = (props) => {
         
       >
         <div className='py-2' style={{ width: "calc(100% - 36px)" }}>
-          <Card radius="lg" isFooterBlurred className="w-full col-span-12 sm:col-span-7 bg-transparent shadow-0">
+          <Card radius="lg" isFooterBlurred className="w-full col-span-12 sm:col-span-7 bg-transparent border-0 shadow-0">
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
@@ -61,7 +57,6 @@ const ExploreCard = (props) => {
               onClick={toggleFooter}
               modules={[Pagination, Autoplay]}
               className="mySwiper"
-              onSlideChange={() => setSlideCounter(slideCountrt + 1)}
             >
                   {props?.profile?.photos.length === 0 ?
                     <SwiperSlide key={0}>
@@ -153,7 +148,7 @@ const ExploreCard = (props) => {
                 <CardFooter
                     onClick={toggleFooter}
                     style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
-                    className="items-start flex-col py-2 backdrop-blur bg-background/70 backdrop-saturate-150"
+                    className="items-start border-0 flex-col py-2 backdrop-blur bg-background/70 backdrop-saturate-150"
                 >
                   <div className="flex flex-grow w-full">
                     <div className="flex flex-col w-full">
@@ -180,7 +175,7 @@ const ExploreCard = (props) => {
                         </Button>
                       </div>
 
-                      <ExploreCartData openFooter={openFooter} slideCount={slideCountrt} profile={props.profile} />
+                      <ExploreCartData openFooter={openFooter} profile={props.profile} />
                     </div>
                   </div>
                 </CardFooter>
@@ -194,4 +189,4 @@ const ExploreCard = (props) => {
   );
 };
 
-export default ExploreCard;
+export default React.memo(ExploreCard);

@@ -52,6 +52,9 @@ const ExplorePage = () => {
     }
   }, [dispatch, lastReset]);
 
+  useEffect(()=>{ console.log(likesCount) },[likesCount])
+
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -168,7 +171,7 @@ const ExplorePage = () => {
                   transition={{ type: "tween" }}
                   key={index}
                 >
-                  <ExploreCard isFirst={user && users && user.id === users[users.length - 1]?.id} profile={user} key={index}/>
+                  <ExploreCard profile={user} key={index}/>
                 </motion.li>
               ))}
             </AnimatePresence>

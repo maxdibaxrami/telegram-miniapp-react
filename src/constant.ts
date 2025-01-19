@@ -211,7 +211,7 @@ export const gethobbies = (t) => [
 
   ];
 
-export const getStaticData = (t) => ({
+export const getStaticData = (t: (key: string) => string) => ({
   Items: [
     {
       id: "1",
@@ -231,7 +231,7 @@ export const getStaticData = (t) => ({
       id: "3",
       title: t("Readyforarelationship"),
       description: t("ImlookingforsomethingthatlastsNogames"),
-      icon: HeartIcon,
+      icon: HeartIcon ,
       color: "danger"
     }
   ],
