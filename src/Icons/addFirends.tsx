@@ -1,6 +1,6 @@
 
 export const AddFirendsImage = () => {
-    return <svg className="aspect-square	" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+    return <svg style={{width:"400px",height:"400px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
     <g id="freepik--background-complete--inject-47">
       <rect
         x="72.24"
