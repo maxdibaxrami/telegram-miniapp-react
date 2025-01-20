@@ -51,7 +51,7 @@ const MatchModal = ({ isOpen, onClose, modalData, thisUserId }) => {
             >
               <Image
                 alt={t("hero_image_alt")} // Translated text for image alt
-                src={modalData?.photos[0]?.url? `${BASEURL}${modalData.photos[0].url}` : ''}
+                src={modalData?.photos[0]?.small? `${BASEURL}${modalData.photos[0].small}` : ''}
                 style={{ width: "150px", height: "150px", objectFit: "cover" }}
               />
             </motion.div>

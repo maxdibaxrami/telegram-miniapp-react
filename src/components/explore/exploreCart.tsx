@@ -66,7 +66,7 @@ const ExploreCard = (props) => {
                   :
                     props?.profile?.photos?.map((value, index) => (
                       <SwiperSlide key={index}>
-                        <SwiperImages url={value.url} />
+                        <SwiperImages url={value.large} />
                       </SwiperSlide>
                     ))
                   }

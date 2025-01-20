@@ -11,7 +11,7 @@ interface User {
   city: string;
   country: string;
   languages: string[];
-  interests: string[];
+  interests: number[];
   height: number;
   premium: boolean;
   activityScore: number | null;
@@ -22,19 +22,19 @@ interface User {
   education: string;
   work: string;
   hobbies: string | null;
-  profileViews: number;
+  profileViews: number[] | null;
   lastActive: string | null;
   bio: string;
   verifiedAccount: boolean;
-  blockedUsers: string[] | null;
-  favoriteUsers: string[] | null;
+  blockedUsers: number[] | null;
+  favoriteUsers: number[] | null;
   isDeleted: boolean;
   language: string;
   lat: string | null;
   lon: string | null;
   age: number | null;
   languagePreferences: string[] | null;
-  photos: { id: number; url: string; order: number }[]; // Photos array
+  photos: { id: number; large:string; small:string ; order: number }[]; // Photos array
 }
 
 // Define the structure of a match

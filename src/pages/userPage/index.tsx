@@ -78,7 +78,7 @@ export default function ProfilePage() {
   useEffect(()=>{
 
     if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViews)) {
-      const userIdString = user.id.toString();
+      const userIdString = user.id;
 
       // Check if the user's ID is not already in the profileViews array
       if (UserData.profileViews.includes(userIdString)) {
@@ -135,7 +135,7 @@ export default function ProfilePage() {
       await dispatch(updateUserData({
         userId: user.id.toString(),
         updatedData: {
-          favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value.toString()] : [value]  // Ensure favoriteUsers is an array
+          favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value] : [value]  // Ensure favoriteUsers is an array
         }
       }));
     };
@@ -372,7 +372,7 @@ export default function ProfilePage() {
                                         }}
                                         
                                         loading="lazy"
-                                        src={`${BASEURL}${_photo.url}`} // dynamic image URL
+                                        src={`${BASEURL}${_photo.large}`} // dynamic image URL
                                         style={{
                                             objectFit: "cover",
                                             height:"60vh",
@@ -423,7 +423,7 @@ export default function ProfilePage() {
                                     }
                                     
       
-                                    {user.favoriteUsers.includes(UserData.id.toString()) ? 
+                                    {user.favoriteUsers.includes(UserData.id) ? 
                                       <Button isLoading={updateUserDataLoading} size="lg" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
                                         <FavoriteColor stroke={"#FFF"} fill={"#FFF"}/>
                                       </Button>
@@ -536,7 +536,7 @@ export default function ProfilePage() {
                                     avatar={<HashtagIcon className="size-4"/>}
                                     variant="solid"
                                   >
-                                    {hobbies.find(hobbie => hobbie.id == parseInt(value)).name}
+                                    {hobbies.find(hobbie => hobbie.id == value).name}
                                   </Chip>
                                 );
                               })}

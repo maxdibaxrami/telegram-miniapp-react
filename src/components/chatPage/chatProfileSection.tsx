@@ -68,7 +68,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
                 color={isUserOnline ? "success" : "primary"}
                 radius="full"
                 size="md"
-                src={`${BASEURL}${profileDataState.photos[0].url}`}
+                src={`${BASEURL}${profileDataState.photos[0].small}`}
               />
               {/* Online status dot */}
               <span

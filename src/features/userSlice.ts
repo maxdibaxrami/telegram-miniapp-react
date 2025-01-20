@@ -9,9 +9,11 @@ const getLocalStorageData = (): UserData | null => {
 };
 
 interface Photo {
-  url: any;
   id: number;
+  large?:string; 
+  small?:string ; 
   order: number;
+  largeUrl?: string
 }
 
 interface ProfileData {
@@ -41,16 +43,16 @@ interface UserData {
   profileData: ProfileData;
   moreAboutMe: MoreAboutMe;
   country: string;
-  interests: string[];
+  interests: number[];
   premium: boolean;
   activityScore: number | null;
   gender: string;
-  profileViews: string[] | null;
+  profileViews: number[] | null;
   lastActive: string | null;
   verifiedAccount: boolean;
   photos: Photo[];
-  blockedUsers: string[] | null;
-  favoriteUsers: string[] | null;
+  blockedUsers: number[] | null;
+  favoriteUsers: number[] | null;
   age: number;
   languagePreferences: string[] | null;
   isDeleted: boolean;

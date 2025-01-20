@@ -140,7 +140,7 @@ export default function EditProfilePage() {
                     onClick={() => handleUpdatePhoto(photo.id)} // Update photo when clicked
                   >
                     <Image
-                      src={`${BASEURL}${photo.url}`}
+                      src={`${BASEURL}${photo.largeUrl}`}
                       alt={`Image ${index}`}
                       classNames={{
                         img: 'aspect-square',
@@ -399,7 +399,7 @@ export default function EditProfilePage() {
                             avatar={<HashtagIcon className="size-4"/>}
                             variant="solid"
                           >
-                            {hobbies.find(hobbie => hobbie.id == parseInt(value)).name}
+                            {hobbies.find(hobbie => hobbie.id == value).name}
                           </Chip>
                         );
                       })}

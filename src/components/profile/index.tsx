@@ -1,4 +1,4 @@
-import { Image, User, Button, CardBody, Card, CardFooter } from "@nextui-org/react";
+import { Image, User, Button} from "@nextui-org/react";
 import { Pagination, Autoplay } from 'swiper/modules';
 
 import {
@@ -6,7 +6,6 @@ import {
   PerimumIcon,
   EditProfileIcon,
   SettingIcon,
-  FirendsIcon
 } from "@/Icons/index";
 
 import DataList from "./dataList";
@@ -17,15 +16,10 @@ import { BASEURL } from "@/constant";
 
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { SparklesStarText } from "../animate/star-sparkles";
-import { SparklesCustomIconText } from "../animate/user-sparkles";
 
 const ProfilePage = () => {
 
   const [slideCountrt, setSlideCounter] = useState<number>(1);
-  const { t } = useTranslation();
   const { data: user } = useSelector((state: RootState) => state.user);
 
   return (
@@ -65,7 +59,7 @@ const ProfilePage = () => {
                         }}
                         
                         loading="lazy"
-                        src={`${BASEURL}${_photo.url}`} // dynamic image URL
+                        src={`${BASEURL}${_photo.largeUrl}`} // dynamic image URL
                         style={{
                             objectFit: "cover",
                             height:"55vh"
@@ -115,76 +109,6 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="gap-2 mt-4 items-center grid grid-cols-2">
-          <Card as={Link} radius="sm" isPressable shadow="sm" to={"/add-firends"}>
-            <CardBody  className="overflow-visible p-0">
-              <motion.div
-                  className="flex  items-center aspect-video justify-center"
-                  animate={{
-                    scale: [1.3, 1.5, 1.5, 1.5, 1.3],
-                    borderRadius: ["50%", "50%", "50%", "50%", "50%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    times: [0, 0.2, 0.5, 0.8, 1],
-                    repeat: Infinity,
-                    repeatDelay: 1,
-                  }}
-                >       
-                
-                  <SparklesCustomIconText
-                    colors={{ first: "#21b6a8", second: "#ff4b61" }}
-                    sparklesCount={20} // Initial number of hearts
-                    text={  
-                      <Button variant="solid" size="lg" radius="full" isIconOnly aria-label="Like" color="default">
-                        <FirendsIcon className="size-7"/>
-                      </Button>
-                    }
-                  />  
-
-              </motion.div>
-            </CardBody>
-            <CardFooter className="backdrop-blur bg-background/70 backdrop-saturate-150 text-small text-center justify-between">
-              <p className="w-full font-bold">{t("invite_your_friend")}</p>
-            </CardFooter>
-          </Card>
-
-          <Card as={Link} radius="sm" isPressable shadow="sm" to={"/add-firends"}>
-            <CardBody className="overflow-visible p-0">
-              <motion.div
-                  className="flex items-center aspect-video justify-center"
-                  animate={{
-                    scale: [1.3, 1.5, 1.5, 1.5, 1.3],
-                    borderRadius: ["50%", "50%", "50%", "50%", "50%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    times: [0, 0.2, 0.5, 0.8, 1],
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                  }}
-                >       
-                  <SparklesStarText
-                    colors={{ first: "#fffe00", second: "#f5a525" }}
-                    sparklesCount={20} // Initial number of hearts
-                    text={  
-                      <Button size="lg" radius="full" isIconOnly aria-label="Like" color="default">
-                        <PerimumIcon className="size-7"/>
-                      </Button>
-                    }
-                  />  
-                     
-              </motion.div>
-            </CardBody>
-            <CardFooter className="text-small backdrop-blur bg-background/70 backdrop-saturate-150 text-center justify-between">
-              <p className="w-full font-bold">{t("premium_account")}</p>
-            </CardFooter>
-          </Card>
-          
-      </div>
-      
       <DataList user={user}/>
     </div>
   );

@@ -11,7 +11,7 @@ interface Like {
   city: string;
   country: string;
   languages: string[];
-  interests: string[];
+  interests: number[];
   height: number;
   premium: boolean;
   activityScore: number | null;
@@ -26,8 +26,8 @@ interface Like {
   lastActive: string | null;
   bio: string;
   verifiedAccount: boolean;
-  blockedUsers: string[] | null;
-  favoriteUsers: string[] | null;
+  blockedUsers: number[] | null;
+  favoriteUsers: number[] | null;
   isDeleted: boolean;
   language: string;
   lat: string | null;

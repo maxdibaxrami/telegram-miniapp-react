@@ -1,9 +1,11 @@
 import { Listbox, ListboxItem, CircularProgress, Chip, cn } from "@nextui-org/react";
-import { ProfileIcon, FlashIcon, LikeIcon, ViewIcon } from "@/Icons/index";
+import { ProfileIcon, LikeIcon, ViewIcon, PerimumIcon, FirendsIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { SparklesStarText } from "../animate/star-sparkles";
+import { SparklesCustomIconText } from "../animate/user-sparkles";
 
 const DataList = ({user}) => {
   const { t } = useTranslation();
@@ -24,52 +26,81 @@ const DataList = ({user}) => {
   return (
     <div className="w-full mt-3 text-default-700 bg-neutral/10 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
       <Listbox aria-label={t('listbox_aria_label')} variant="solid">
+
+        <ListboxItem
+          key="invite_your_friend"
+          href={"/add-firends"}
+          showDivider
+          description={t("Inviteyourfriendsandgetapremiumaccount")}
+          className="px-0"
+          startContent={
+            <IconWrapper className="bg-default/40 text-primary/70">
+                  <SparklesCustomIconText
+                    colors={{ first: "#21b6a8", second: "#ff4b61" }}
+                    sparklesCount={5} // Initial number of hearts
+                    text={  
+                        <FirendsIcon className="size-5"/>
+                    }
+                  />  
+            </IconWrapper>
+          }
+        >
+          {t('invite_your_friend')}
+        </ListboxItem>
+
+      <ListboxItem
+          key="premium_account"
+          showDivider
+          description={t("Tounlockallfeatures,youneedapremiumaccount.")}
+          className="px-0"
+          startContent={
+            <IconWrapper className="bg-default/40 text-primary/70">
+              <SparklesStarText
+                    colors={{ first: "#fffe00", second: "#f5a525" }}
+                    sparklesCount={5} // Initial number of hearts
+                    text={  
+                        <PerimumIcon className="size-5"/>
+                    }
+                  />  
+            </IconWrapper>
+          }
+        >
+          {t('premium_account')}
+        </ListboxItem>
+
+
+
+
         <ListboxItem
           key="edit_profile"
           showDivider
+          href={"/profile-edit"}
           description={t('edit_profile')}
+          className="px-0"
           endContent={
             <CircularProgress
               aria-label={t('loading')}
-              color="primary"
+              color="success"
               showValueLabel={true}
-              size="lg"
+              size="md"
               value={persent}
             />
           }
           startContent={
-            <IconWrapper className="bg-default/40 text-primary/70">
+            <IconWrapper className="bg-default/40 text-success/70">
               <ProfileIcon className="size-5" />
             </IconWrapper>
           }
         >
           {t('profile')}
         </ListboxItem>
-        <ListboxItem
-          key="activityScore"
-          showDivider
-          description={t('boost_profile')}
-          endContent={
-            <CircularProgress
-              aria-label={t('loading')}
-              color="warning"
-              showValueLabel={true}
-              size="lg"
-              value={user.activityScore}
-            />
-          }
-          startContent={
-            <IconWrapper className="bg-default/40 text-warning/80">
-              <FlashIcon className="size-5" />
-            </IconWrapper>
-          }
-        >
-          {t('activity')}
-        </ListboxItem>
+
         <ListboxItem
           key="see_likes"
+          href={"/main?page=likes"}
           showDivider
           description={t('see_likes')}
+          className="px-0"
           endContent={<Chip color="danger">{data && data.length}</Chip>}
           startContent={
             <IconWrapper className="bg-default/40 text-danger/80">
@@ -82,6 +113,7 @@ const DataList = ({user}) => {
         <ListboxItem
           key="see_views"
           description={t('see_views')}
+          className="px-0"
           endContent={<Chip color="secondary">{user && user.profileViews.length}</Chip>}
           startContent={
             <IconWrapper className="bg-default/40 text-secondary/80">
