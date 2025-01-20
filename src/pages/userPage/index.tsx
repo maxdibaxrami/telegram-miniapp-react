@@ -357,7 +357,7 @@ export default function ProfilePage() {
       >
         <TopBarPages />
         {!LoadingUser ? 
-                <section
+              <section
                 className="flex flex-col items-center justify-center"
                 style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`, paddingLeft:"18px",paddingRight:"18px"}}  
               >

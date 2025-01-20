@@ -152,7 +152,6 @@ const ChatList = () => {
                     <ChatItemMenu 
                       data={item}
                       targetUser={targetUser}
-                      favoriteUsers={user.favoriteUsers} 
                       HandleAddToFavorite={HandleAddToFavorite}
                       HandleRemoveFromFavorite={HandleRemoveFromFavorite}
                       handleDelete={handleDelete}

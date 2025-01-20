@@ -29,7 +29,7 @@ const DataList = ({user}) => {
 
         <ListboxItem
           key="invite_your_friend"
-          href={"/add-firends"}
+          href={"/#/add-firends"}
           showDivider
           description={t("Inviteyourfriendsandgetapremiumaccount")}
           className="px-0"
@@ -74,7 +74,7 @@ const DataList = ({user}) => {
         <ListboxItem
           key="edit_profile"
           showDivider
-          href={"/profile-edit"}
+          href={"/#/profile-edit"}
           description={t('edit_profile')}
           className="px-0"
           endContent={
@@ -97,7 +97,7 @@ const DataList = ({user}) => {
 
         <ListboxItem
           key="see_likes"
-          href={"/main?page=likes"}
+          href={"/#/main?page=likes"}
           showDivider
           description={t('see_likes')}
           className="px-0"
@@ -113,6 +113,7 @@ const DataList = ({user}) => {
         <ListboxItem
           key="see_views"
           description={t('see_views')}
+          href={"/#/profile-view"}
           className="px-0"
           endContent={<Chip color="secondary">{user && user.profileViews.length}</Chip>}
           startContent={

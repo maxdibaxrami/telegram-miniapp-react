@@ -38,7 +38,9 @@ interface shortuser {
   id:number;
   firstName?:string;
   age?:number;
-  imageUrl?:string
+  imageUrl?:string;
+  verifiedAccount?:boolean;
+  premium?:boolean;
 }
 
 interface UserData {

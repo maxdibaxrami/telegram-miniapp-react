@@ -8,10 +8,22 @@ import {
 
 import { DeleteChatIcon, Favorite, MoreIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
+import { RootState } from "@/store";
+import { useSelector } from "react-redux";
 
-const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUsers, targetUser, HandleRemoveFromFavorite,handleDelete }) => {
+const ChatItemMenu = ({ data, HandleBlockUser, HandleAddToFavorite, targetUser, HandleRemoveFromFavorite, handleDelete }) => {
   const { t } = useTranslation();
+  const { data: user } = useSelector((state: RootState) => state.user);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Update the favorite state based on favoriteUsers
+  const targetUserId = targetUser.id ? targetUser.id : targetUser;
+
+  useMemo(() => {
+    setIsFavorite(user.favoriteUsers.map(v=> v.id).includes(targetUserId));
+  }, [user, targetUserId]);
 
   const onActive = (key) => {
     switch (key) {
@@ -22,28 +34,17 @@ const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUser
         HandleRemoveFromFavorite(targetUser);
         break;
       case "deletechat":
-        handleDelete(data.recipientId,data.senderId)
+        handleDelete(data.recipientId, data.senderId);
         break;
       case "blockandreport":
-          HandleBlockUser(targetUser);  // Block user
-          handleDelete(data.recipientId,data.senderId)
-
-          break;
-      default:
+        HandleBlockUser(targetUser);
+        handleDelete(data.recipientId, data.senderId);
         break;
     }
-  }
-
-  // If targetUser is an object, use targetUser.id, otherwise directly compare the ids
-  const targetUserId = targetUser.id ? targetUser.id : targetUser;
-  
-  // Check if the target user is in the favoriteUsers list by comparing ids
-  const isFavorite = useMemo(() => favoriteUsers.some(user => user == targetUserId),[favoriteUsers,targetUserId]);  // Compare by id
-  
-  console.log(isFavorite); // Log to verify the result
+  };
 
   return (
-    <Dropdown backdrop="blur">
+    <Dropdown backdrop="opaque">
       <DropdownTrigger>
         <Button
           isIconOnly
@@ -55,8 +56,7 @@ const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUser
           <MoreIcon />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu onAction={(key) => onActive(key)} aria-label="Dropdown menu with icons" variant="faded">
-
+      <DropdownMenu onAction={onActive} aria-label="Dropdown menu with icons" variant="faded">
         {isFavorite ? (
           <DropdownItem key="removeFavorite" startContent={<Favorite status={true} />}>
             {t("Remove_from_favorite")}
@@ -75,14 +75,16 @@ const ChatItemMenu = ({data, HandleBlockUser , HandleAddToFavorite, favoriteUser
         >
           {t("deleteChat")}
         </DropdownItem>
-       {/*  <DropdownItem
+
+        {/* Uncomment if "Block and Report" is needed */}
+        {/* <DropdownItem
           key="blockandreport"
           className="text-danger"
           color="danger"
           startContent={<BlockAndReport />}
         >
           {t("blockAndReport")}
-        </DropdownItem>*/}
+        </DropdownItem> */}
       </DropdownMenu>
     </Dropdown>
   );

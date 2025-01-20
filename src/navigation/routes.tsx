@@ -12,6 +12,7 @@ import ChatPage from '@/pages/chat/page';
 import SignupPage from '@/pages/signup/page';
 import userProfile from '@/pages/userPage/index';
 import AddFirends from '@/pages/addFirends/page';
+import ProfileViewPage from '@/pages/profileView';
 
 
 interface Route {
@@ -33,7 +34,9 @@ export const routes: Route[] = [
   { path: '/setting', Component: Setting, title: 'Main Page', auth:true },
   { path: '/chat-detail', Component: ChatPage, title: 'Main Page', auth:true },
   { path: '/sign-up', Component: SignupPage, title: 'signup', auth: false },
-  { path: '/add-firends', Component: AddFirends, title: 'signup', auth: true },
+  { path: '/add-firends', Component: AddFirends, title: 'add firends', auth: true },
+  { path: '/profile-view', Component: ProfileViewPage, title: 'profile View', auth: true },
+
 
 
   

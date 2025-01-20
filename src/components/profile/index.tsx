@@ -75,9 +75,7 @@ const ProfilePage = () => {
           <div className="flex">
             <User
               avatarProps={{
-                src: "https://i.pravatar.cc/?u=a04258114e29026702d",
                 className: "hidden",
-                
               }}
               className="mt-2"
               classNames={{

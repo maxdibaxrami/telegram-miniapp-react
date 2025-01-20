@@ -3,7 +3,7 @@ import { BASEURL } from "@/constant";
 import { PerimumIcon, ProfileIcon, VerifyIconFill } from "@/Icons";
 import { Link } from "react-router-dom";
 
-const LikeCard = ({ data }) => {
+const ProfileViewCard = ({ data }) => {
   
   return (
       <Card
@@ -23,7 +23,7 @@ const LikeCard = ({ data }) => {
             img : "w-full aspect-square h-full "
           }}
           loading="lazy"
-          src={`${BASEURL}${data.photos[0].url}`}
+          src={`${BASEURL}${data.imageUrl}`}
           style={{ width: "100%", height: "100%",maxWidth:"unset" }}
         />
 
@@ -58,4 +58,4 @@ const LikeCard = ({ data }) => {
   );
 };
 
-export default LikeCard;
+export default ProfileViewCard;
