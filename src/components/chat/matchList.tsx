@@ -60,7 +60,7 @@ const MatchList = () => {
                 color={user2.premium? "warning" : "danger" }
                 radius="full"
                 size="lg"
-                src={`${BASEURL}${user2.photos[0].small}`}
+                src={`${BASEURL}${user2.photos[0].smallUrl}`}
               />
             </div>
             })

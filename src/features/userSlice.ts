@@ -34,6 +34,13 @@ interface MoreAboutMe {
   pets: string | null;
 }
 
+interface shortuser {
+  id:number;
+  firstName?:string;
+  age?:number;
+  imageUrl?:string
+}
+
 interface UserData {
   id: number;
   telegramId: string;
@@ -47,12 +54,12 @@ interface UserData {
   premium: boolean;
   activityScore: number | null;
   gender: string;
-  profileViews: number[] | null;
+  profileViews: shortuser[] | null;
   lastActive: string | null;
   verifiedAccount: boolean;
   photos: Photo[];
-  blockedUsers: number[] | null;
-  favoriteUsers: number[] | null;
+  blockedUsers: shortuser[] | null;
+  favoriteUsers: shortuser[] | null;
   age: number;
   languagePreferences: string[] | null;
   isDeleted: boolean;
@@ -103,7 +110,7 @@ export const fetchUserData = createAsyncThunk(
 // Thunk to update user data
 export const updateUserData = createAsyncThunk(
   'user/updateData',
-  async ({ userId, updatedData }: { userId: string; updatedData: Partial<UserData> }) => {
+  async ({ userId, updatedData }: { userId: string; updatedData: any }) => {
     const response = await axios.patch(`/users/${userId}`, updatedData);
 
     console.log(response.data)
@@ -114,7 +121,7 @@ export const updateUserData = createAsyncThunk(
 
 export const updateUserProfileViews = createAsyncThunk(
   'user/updateUserProfileViews',
-  async ({ userId, updatedData }: { userId: string; updatedData: Partial<UserData> }) => {
+  async ({ userId, updatedData }: { userId: string; updatedData: any }) => {
     const response = await axios.patch(`/users/${userId}`, updatedData);
 
     console.log(response.data)

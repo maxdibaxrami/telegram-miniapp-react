@@ -34,7 +34,7 @@ interface User {
   lon: string | null;
   age: number | null;
   languagePreferences: string[] | null;
-  photos: { id: number; large:string; small:string ; order: number }[]; // Photos array
+  photos: { id: number; largeurl:string; smallUrl:string ; order: number }[]; // Photos array
 }
 
 // Define the structure of a match

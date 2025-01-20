@@ -23,30 +23,34 @@ const ChatList = () => {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set(["new"]));
 
   const HandleAddToFavorite = async (value) => {
+    const arrayOfIds = user.favoriteUsers.map(v=> v.id)
     await dispatch(updateUserData({
       userId: user.id.toString(),
       updatedData: {
-        favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value] : [value]  // Ensure favoriteUsers is an array
+        favoriteUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure favoriteUsers is an array
       }
     }));
   };
 
   const HandleRemoveFromFavorite = async (value) => {
+    const arrayOfIds = user.favoriteUsers.map(v=> v.id)
+
     await dispatch(updateUserData({
       userId: user.id.toString(),
       updatedData: {
-        favoriteUsers: Array.isArray(user.favoriteUsers)
-          ? user.favoriteUsers.filter(favorite => favorite != value)  // Remove the user with the matching id
+        favoriteUsers: Array.isArray(arrayOfIds)
+          ? arrayOfIds.filter(favorite => favorite != value)  // Remove the user with the matching id
           : []  // If favoriteUsers is not an array, set it to an empty array
       }
     }));
   };
 
   const HandleBlockUser = async (value) => {
+    const arrayOfIds = user.blockedUsers.map(v=> v.id)
     await dispatch(updateUserData({
       userId: user.id.toString(),
       updatedData: {
-        blockedUsers: Array.isArray(user.blockedUsers) ? [...user.blockedUsers, value] : [value]  // Ensure blockedUsers is an array
+        blockedUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure blockedUsers is an array
       }
     }));
   };
@@ -93,7 +97,7 @@ const ChatList = () => {
   
       // If "Favorite" is selected, only show favorite users
       if (selectedValue === "Favorite") {
-        return user.favoriteUsers.includes(targetUser);
+        return user.favoriteUsers.map(v=> v.id).includes(targetUser);
       }
   
       // Otherwise, return all users except blocked ones

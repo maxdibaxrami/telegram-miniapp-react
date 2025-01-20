@@ -55,6 +55,9 @@ export default function ProfilePage() {
 
   const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
   const { fetchLikeAntoherUser, requestLoading } = useSelector((state: RootState) => state.like);
+
+  const { data : matchs } = useSelector((state: RootState) => state.match);
+
   const { likesCount, lastReset } = useSelector((state: RootState) => state.NearByLimitation);
 
   const userId = searchParams.get("userId")
@@ -78,17 +81,17 @@ export default function ProfilePage() {
   useEffect(()=>{
 
     if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViews)) {
-      const userIdString = user.id;
-
+      const userId = user.id;
+      const arrayOfIds = UserData.profileViews.map(v=> v.id)
       // Check if the user's ID is not already in the profileViews array
-      if (UserData.profileViews.includes(userIdString)) {
+      if (arrayOfIds.includes(userId)) {
         return
       }
         // Update the profileViews array with the new user ID
         dispatch(updateUserProfileViews({
           userId: UserData.id.toString(),
           updatedData: {
-            profileViews: [...UserData.profileViews, userIdString]  // Append the user ID to the array
+            profileViews: [...arrayOfIds, userId]  // Append the user ID to the array
           }
         }));
     }
@@ -102,6 +105,14 @@ export default function ProfilePage() {
     }
     return false;
   }, [fetchLikeAntoherUser, user.id]);
+
+  const match = useMemo(() => {
+    if (matchs && UserData) {
+      return !!matchs.some((match) => match.likedUser.id === UserData.id || match.user.id === UserData.id);
+    }
+    return false;
+  }, [matchs, UserData]);
+
 
   useEffect(() => {
     const today = new Date().setHours(0, 0, 0, 0); // Get today's date at midnight
@@ -132,20 +143,25 @@ export default function ProfilePage() {
 
 
    const HandleAddToFavorite = async (value) => {
+    
+      const arrayOfIds = user.favoriteUsers.map(v=> v.id)
       await dispatch(updateUserData({
         userId: user.id.toString(),
         updatedData: {
-          favoriteUsers: Array.isArray(user.favoriteUsers) ? [...user.favoriteUsers, value] : [value]  // Ensure favoriteUsers is an array
+          favoriteUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure favoriteUsers is an array
         }
       }));
+
     };
   
     const HandleRemoveFromFavorite = async (value) => {
+      const arrayOfIds = user.favoriteUsers.map(v=> v.id)
+
       await dispatch(updateUserData({
         userId: user.id.toString(),
         updatedData: {
-          favoriteUsers: Array.isArray(user.favoriteUsers)
-            ? user.favoriteUsers.filter(favorite => favorite != value)  // Remove the user with the matching id
+          favoriteUsers: Array.isArray(arrayOfIds)
+            ? arrayOfIds.filter(favorite => favorite != value)  // Remove the user with the matching id
             : []  // If favoriteUsers is not an array, set it to an empty array
         }
       }));
@@ -413,8 +429,8 @@ export default function ProfilePage() {
                                     :
                                       <SparklesHeartText
                                         text={
-                                          <Button className="z-50" isDisabled={likedUser || liked} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
-                                            {likedUser || liked ? <CheckIcon className="size-6" strokeWidth={2}/> : <LikeIcon className="size-6"/> }
+                                          <Button className="z-50" isDisabled={likedUser || liked || match} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
+                                            {likedUser || liked || match ? <CheckIcon className="size-6" strokeWidth={2}/> : <LikeIcon className="size-6"/> }
                                           </Button>
                                         }
                                         colors={{ first: "#ff4b61", second: "#A8B2BD" }}
@@ -423,7 +439,7 @@ export default function ProfilePage() {
                                     }
                                     
       
-                                    {user.favoriteUsers.includes(UserData.id) ? 
+                                    {user.favoriteUsers.map(v=> v.id).includes(UserData.id) ? 
                                       <Button isLoading={updateUserDataLoading} size="lg" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
                                         <FavoriteColor stroke={"#FFF"} fill={"#FFF"}/>
                                       </Button>

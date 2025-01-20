@@ -25,7 +25,7 @@ const LikeCard = ({ data }) => {
             img : "w-full aspect-square h-full "
           }}
           loading="lazy"
-          src={`${BASEURL}${data.photos[0].small}`}
+          src={`${BASEURL}${data.photos[0].url}`}
           style={{ width: "100%", height: "100%",maxWidth:"unset" }}
         />
 
