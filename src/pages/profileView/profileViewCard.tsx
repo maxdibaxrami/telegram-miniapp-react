@@ -20,7 +20,7 @@ const ProfileViewCard = ({ data }) => {
           className="object-cover w-full h-full shadow-small"
           classNames={{
             wrapper:"w-full aspect-square h-full maxcontentimportant",
-            img : "w-full aspect-square h-full "
+            img : "w-full aspect-square h-full"
           }}
           loading="lazy"
           src={`${BASEURL}${data.imageUrl}`}
