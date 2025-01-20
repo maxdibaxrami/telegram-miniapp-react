@@ -68,6 +68,7 @@ interface UserData {
   language: string;
   lat: string;
   lon: string;
+  profileViewsIds?: number[]
 }
 
 // Define the user state

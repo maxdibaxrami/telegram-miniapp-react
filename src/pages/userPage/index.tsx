@@ -80,9 +80,9 @@ export default function ProfilePage() {
 
   useEffect(()=>{
 
-    if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViews)) {
+    if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViewsIds)) {
       const userId = user.id;
-      const arrayOfIds = UserData.profileViews.map(v=> v.id)
+      const arrayOfIds = UserData.profileViewsIds;
       // Check if the user's ID is not already in the profileViews array
       if (arrayOfIds.includes(userId)) {
         return
@@ -97,7 +97,7 @@ export default function ProfilePage() {
     }
 
     
-  },[UserData])
+  },[UserData, LoadingUser])
 
   const liked = useMemo(() => {
     if (fetchLikeAntoherUser) {
@@ -127,7 +127,6 @@ export default function ProfilePage() {
     if(userId){
       dispatch(fetchLikesAnotherUser(userId))
       dispatch(fetchUserDataId(userId))
-
     }
   } ,[userId])
 
