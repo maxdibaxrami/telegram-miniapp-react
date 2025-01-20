@@ -54,6 +54,7 @@ export default function ProfileViewPage() {
           style={{
             maxHeight: "100%",
             height:"100%",
+            marginBottom:"5rem",
             
           }}
       >
