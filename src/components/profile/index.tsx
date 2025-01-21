@@ -4,8 +4,8 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import {
   VerifyIconFill,
   PerimumIcon,
-  EditProfileIcon,
   SettingIcon,
+  PenIcon,
 } from "@/Icons/index";
 
 import DataList from "./dataList";
@@ -16,9 +16,11 @@ import { BASEURL } from "@/constant";
 
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { useTranslation } from "react-i18next";
 
 const ProfilePage = () => {
-
+  
+  const { t } = useTranslation();
   const [slideCountrt, setSlideCounter] = useState<number>(1);
   const { data: user } = useSelector((state: RootState) => state.user);
 
@@ -95,8 +97,8 @@ const ProfilePage = () => {
 
           <div className="flex items-center">
 
-            <Button radius="full" variant="shadow" as={Link} to={`/profile-edit`} className="mx-2" isIconOnly color="primary" size="md">
-                <EditProfileIcon className="size-5"/>
+            <Button radius="full" startContent={<PenIcon className="size-5"/>} variant="shadow" as={Link} to={`/profile-edit`} className="mx-2 font-bold" color="primary" size="md">
+                {t('edit_profile')}
             </Button> 
 
             <Button radius="full" variant="shadow" as={Link} to="/setting" isIconOnly color="primary" size="md">

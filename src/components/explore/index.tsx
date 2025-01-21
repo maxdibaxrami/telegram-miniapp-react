@@ -36,12 +36,12 @@ const ExplorePage = () => {
 
   //const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
   const { t } = useTranslation();  // Initialize translation hook
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { likesCount, lastReset } = useSelector((state: RootState) => state.likeLimit);
 
   const { requestLoading } = useSelector((state: RootState) => state.like);
-
 
   useEffect(() => {
     const today = new Date().setHours(0, 0, 0, 0); // Get today's date at midnight
@@ -51,9 +51,6 @@ const ExplorePage = () => {
       dispatch(setLastReset(today));
     }
   }, [dispatch, lastReset]);
-
-  useEffect(()=>{ console.log(likesCount) },[likesCount])
-
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -88,7 +85,6 @@ const ExplorePage = () => {
       // @ts-ignore
       if (resultAction.payload.isMatch === true) {
         dispatch(fetchMatches(user.id.toString()));
-
         openModal();
       }
 

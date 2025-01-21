@@ -7,6 +7,7 @@ import {
   Button,
   useDisclosure,
   ModalBody,
+  ModalHeader,
 } from "@nextui-org/react";
 
 import { useTranslation } from "react-i18next";
@@ -14,6 +15,7 @@ import InterestingList from "../core/InterstingList";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
+import { HashtagIcon } from "@/Icons";
 
 const EditIntersting = ({user,children,loading}) => {
   const { t } = useTranslation();
@@ -46,12 +48,18 @@ const EditIntersting = ({user,children,loading}) => {
       <div onClick={onOpen} className="flex flex-wrap">
         {children}
       </div>
-      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60"}} hideCloseButton backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
+      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/90"}} hideCloseButton backdrop="opaque" isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalContent>
-          <ModalBody className="pt-8">
+        <ModalHeader className="flex font-bold flex-col gap-1">
 
+            <div className="flex items-center gap-2">
+              <HashtagIcon className="size-5" />
+              {t("interested")}
+            </div>
+
+          </ModalHeader>
+          <ModalBody className="">
             <InterestingList user={user} onChangeValue={onChangeValue}/>
-
           </ModalBody>
 
           <ModalFooter>

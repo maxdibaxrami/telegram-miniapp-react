@@ -20,7 +20,9 @@ export default function InterestingList({onChangeValue, user}) {
   const hobbies = gethobbies(t)
   
   const [values, setValues] = React.useState<Selection>(new Set(user.interests));
+
   useEffect(()=> onChangeValue(values) ,[values])
+  
   const arrayValues = Array.from(values);
 
   const topContent = React.useMemo(() => {

@@ -7,6 +7,8 @@ import {
   ModalBody,
   forwardRef,
   ScrollShadow,
+  ModalHeader,
+  cn,
 } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 import { useEffect, useImperativeHandle, useState } from "react";
@@ -21,6 +23,7 @@ import KidsListSelector from "../core/kids";
 import SmokingListSelector from "../core/smoking";
 import DrinkListSelector from "../core/drink";
 import PetsListSelector from "../core/pets";
+import { LikeIcon, HeightIcon, SexualityIcon, LanguageIcon, KidStatusIcon, SmokingStatusIcon, DrinkStatusIcon, PetStatusIcon } from "@/Icons";
 
 interface MoreAboutMe {
   languages: string[];
@@ -107,11 +110,36 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
 
   return (
     <>
-      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60"}} hideCloseButton scrollBehavior="inside" backdrop="blur" isOpen={isOpen} size={"2xl"} onClose={onClose}>
+      <Modal classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/90"}} hideCloseButton scrollBehavior="inside" backdrop="opaque" isOpen={isOpen} size={"2xl"} onClose={onClose}>
         <ModalContent>
+          <ModalHeader className="flex font-bold flex-col gap-1">
 
+            <div className="flex items-center gap-2">
+
+              {props.selectedItem==="height" && <HeightIcon className="size-6"/>}
+              {props.selectedItem==="RealationStatus" && <LikeIcon className="size-6"/>}
+              {props.selectedItem==="languages" && <LanguageIcon className="size-6"/>}
+              {props.selectedItem==="SexualityStatus" &&  <SexualityIcon className="size-6"/>}
+              {props.selectedItem==="kids" && <KidStatusIcon className="size-6"/>}
+              {props.selectedItem==="smoking" && <SmokingStatusIcon className="size-6"/>}
+              {props.selectedItem==="drink" && <DrinkStatusIcon className="size-6"/>}
+              {props.selectedItem==="pets" &&  <PetStatusIcon className="size-6"/>}
+
+              
+              {props.selectedItem==="height" &&  t("height")}
+              {props.selectedItem==="RealationStatus" && t("RealationStatus")}
+              {props.selectedItem==="languages" && t("languages")}
+              {props.selectedItem==="SexualityStatus" &&  t('SexualityStatus') }
+              {props.selectedItem==="kids" &&  t("kids")}
+              {props.selectedItem==="smoking" && t("smoking")}
+              {props.selectedItem==="drink" && t("drink")}
+              {props.selectedItem==="pets" &&  t('pets') }
+              
+            </div>
+
+          </ModalHeader>
           <ModalBody className="px-0" style={props.selectedItem === "height" ? {maxHeight:"150px"}:{maxHeight:"600px"}}>
-            <ScrollShadow size={100} hideScrollBar className={props.selectedItem === "height" ? "h-[150px]": "h-[600px]"}>
+            <ScrollShadow size={100} hideScrollBar className={props.selectedItem === "height" ? "h-[100px]": "h-[350px]"}>
 
               {props.selectedItem === "height" && <HeightAuth user={props.user} setSlideAvailable={onSetData} setSlideUnAvailable={onSetData}/>}
               {props.selectedItem === "RealationStatus" && <RealationStatusAuth user={props.user} setSlideAvailable={onSetData} setSlideUnAvailable={onSetData}/>}
@@ -144,3 +172,10 @@ EditMoreAboutMeModal.displayName = "EditMoreAboutMeModal";
 
 export default EditMoreAboutMeModal;
 
+
+
+export const IconWrapper = ({children, className}) => (
+  <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center rounded-small justify-center p-2")}>
+    {children}
+  </div>
+);

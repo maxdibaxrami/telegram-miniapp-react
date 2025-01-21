@@ -67,7 +67,7 @@ const ExploreFilter = forwardRef((props, ref) => {
         longitude: null,
         radius: null,
         page: 1,
-        limit: 20,
+        limit: 50,
         genderFilter: selectGender || null, // Include genderFilter in API call
       })
     );
@@ -81,7 +81,7 @@ const ExploreFilter = forwardRef((props, ref) => {
     <Modal
       backdrop="opaque"
       classNames={{
-        base: "absolute border-bottom-0 z-50 px-0 backdrop-saturate-150 backdrop-blur bg-background/80 mb-0",
+        base: "absolute border-bottom-0 z-50 px-0 backdrop-saturate-150 backdrop-blur bg-background/90 mb-0",
       }}
       isOpen={isOpen}
       size={"5xl"}

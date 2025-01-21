@@ -16,9 +16,10 @@ import { useTranslation } from "react-i18next";
         {...otherProps}
         classNames={{
           base: cn(
-            "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
-            "flex-row-reverse max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
-            "data-[selected=true]:border-primary",
+          "inline-flex m-0 bg-neutral/20 hover:bg-content items-center justify-between",
+          "flex-row-reverse max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+          "data-[selected=true]:border-primary data-[selected=true]:bg-primary/10"
+   
           ),
         }}
       >
@@ -42,9 +43,9 @@ const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
   const languages = getlanguages(t)
     return (
-      <div className="flex  justify-between flex-col px-6 pt-8 pb-4">
+      <div className="flex  justify-between flex-col px-6  pb-4">
         <form className="flex w-full flex-col gap-4">
-            <CheckboxGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onChange={setSelected} description={t("Selectedplancanbechangedatanytime")} label={t("Language")}>
+            <CheckboxGroup value={selected} onChange={setSelected} description={t("Selectedplancanbechangedatanytime")}>
                 {languages.map((value)=> {
                     return <CustomCheckBox value={value.key}>
                     {value.label}

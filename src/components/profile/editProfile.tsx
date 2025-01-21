@@ -8,6 +8,7 @@ import {
   ModalBody,
   Textarea,
   forwardRef,
+  ModalHeader,
 } from "@nextui-org/react";
 
 import { useTranslation } from "react-i18next";
@@ -17,6 +18,7 @@ import LookingforList from "@/components/core/WhyIamHereAuthList";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
+import { AboutMeSolid, ProfileIcon, SearchIcon, WorkAndStudyIconSolid } from "@/Icons";
 
 
 const EditProfile = forwardRef((props:any, ref)=> {
@@ -70,9 +72,26 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
   return (
     <>
-      <Modal placement={props.selectedItem==="WhyIamhere"? "bottom":"center"} hideCloseButton classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur-lg bg-background/60"}} backdrop="blur" isOpen={isOpen} size={"5xl"} onClose={onClose}>
+      <Modal hideCloseButton placement={props.selectedItem==="WhyIamhere"? "bottom":"bottom"} classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur bg-background/90"}} backdrop="opaque" isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalContent>
-          <ModalBody className={`pt-10 ${props.selectedItem==="WhyIamhere"? "px-0":""}`}>
+          <ModalHeader className="flex font-bold flex-col gap-1">
+
+            <div className="flex items-center gap-2">
+
+              {props.selectedItem==="name" &&  <ProfileIcon className="size-6" />}
+              {props.selectedItem==="WhyIamhere" && <SearchIcon className="size-6"/>}
+              {props.selectedItem==="Bio" && <AboutMeSolid className="size-6"/>}
+              {props.selectedItem==="Workandeducation" && <WorkAndStudyIconSolid className="size-6"/>}
+              
+              {props.selectedItem==="name" &&  t("Name")}
+              {props.selectedItem==="WhyIamhere" && t("WhyIamhere")}
+              {props.selectedItem==="Bio" && t("EnteryourBio")}
+              {props.selectedItem==="Workandeducation" &&  t('Workandeducation') }
+              
+            </div>
+
+          </ModalHeader>
+          <ModalBody className={`${props.selectedItem==="WhyIamhere"? "px-0":""}`}>
             <form className="flex flex-col">
               {props.selectedItem==="name" &&  <Input autoFocus value={firstName} onChange={(e) => setFirstName(e.target.value)} label={t("Name")} type="text" /> }
 

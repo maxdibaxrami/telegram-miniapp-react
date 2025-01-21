@@ -97,7 +97,7 @@ export function App() {
       dispatch(fetchNearBySliceUsers({
         userId: data.id.toString(),
         page: 1,
-        limit: 20,
+        limit: 50,
         genderFilter: updatedFilters.genderFilter,
         ...updatedFilters, // Using updatedFilters directly
       }));

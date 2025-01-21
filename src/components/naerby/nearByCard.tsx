@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const NearByCard = ({ data }) => {
   return (
       <Card
-        isFooterBlurred
         isPressable
         disableRipple
         radius="lg"
