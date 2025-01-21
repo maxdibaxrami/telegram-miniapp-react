@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { cloudStorage, viewport } from '@telegram-apps/sdk';
 import FontHandller from "../FontHandller";
 
+
 const container = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
@@ -193,7 +194,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
           </motion.li>
         </motion.ul>
 
-        {viewport.safeAreaInsetTop()}
+        {viewport.contentSafeAreaInsetTop()}
       </div>
     </div>
   );
