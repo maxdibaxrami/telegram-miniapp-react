@@ -13,7 +13,7 @@ import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import InterestingAuth from "@/components/auth/interstingAuth";
 import "./style.css"
-import { useLaunchParams, useSignal, initData } from "@telegram-apps/sdk-react";
+import { useLaunchParams, useSignal, initData, viewportContentSafeAreaInsets, viewportSafeAreaInsets } from "@telegram-apps/sdk-react";
 import { signupUser, uploadProfileImage } from "@/features/authSlice";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
@@ -43,7 +43,10 @@ export default function SignupPage() {
   const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
   const [error, setError] = useState('');
   
-    
+  useEffect(()=>{
+    console.log(viewportSafeAreaInsets())
+    console.log(viewportContentSafeAreaInsets())
+  },[])
 
   const [user, setUser] = useState({
     telegramId: initDataState.user.id.toString(),
