@@ -62,6 +62,7 @@ export default {
               DEFAULT: "#94A3B8", // Mid gray for inactive elements
               dark: "#475569",    // Darker gray for text and icons
             },
+            focus: '#33C2BA',
           },
           typography: {
             fontFamily: "Nunito, sans-serif", // Clean, modern typography for dating vibes
@@ -135,7 +136,9 @@ export default {
               light: "#F0F4F8",   // Very light gray with a cool undertone for soft backgrounds
               DEFAULT: "#A8B2BD", // Mid cool gray for neutral elements with a modern look
               dark: "#5C6673",    // Dark cool gray for text, icons, and high-contrast areas
-            }
+            },
+            focus: '#33C2BA',
+            
           },
           typography: {
             fontFamily: "Nunito, sans-serif", // Clean, approachable typography for dark mode

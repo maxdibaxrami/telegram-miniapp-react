@@ -39,7 +39,7 @@ export default function Setting() {
               classNames={{
                 base: cn(
                   "inline-flex flex-row-reverse w-full max-w-md items-center",
-                  "justify-between cursor-pointer rounded-lg gap-2 py-4 px-2 border-2 border-transparent",
+                  "justify-between cursor-pointer rounded-lg gap-2 py-4 border-2 border-transparent",
                   "data-[selected=true]:border-primary",
                 ),
                 wrapper: "p-0 h-4 overflow-visible",
@@ -54,7 +54,7 @@ export default function Setting() {
               isSelected={theme === "light" ? true : false}
             >
               <div className="flex flex-col gap-1">
-                <p className="text-medium capitalize">{t('mode')}</p>
+                <p className="text-medium capitalize font-bold">{t('mode')}</p>
                 <p className="text-tiny text-default-400">{t('mode_desc')}</p>
               </div>
             </Switch>
@@ -62,7 +62,7 @@ export default function Setting() {
               classNames={{
                 base: cn(
                   "inline-flex flex-row-reverse w-full max-w-md items-center",
-                  "justify-between cursor-pointer rounded-lg px-2 gap-2 py-4 border-2 border-transparent",
+                  "justify-between cursor-pointer rounded-lg gap-2 py-4 border-2 border-transparent",
                   "data-[selected=true]:border-primary",
                 ),
                 wrapper: "p-0 h-4 overflow-visible",
@@ -77,7 +77,7 @@ export default function Setting() {
               defaultChecked={true}
             >
               <div className="flex flex-col gap-1">
-                <p className="text-medium">{t('profile_visibility')}</p>
+                <p className="text-medium capitalize font-bold">{t('profile_visibility')}</p>
                 <p className="text-tiny text-default-400">{t('profile_visibility_desc')}</p>
               </div>
             </Switch>

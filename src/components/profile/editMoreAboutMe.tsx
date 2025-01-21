@@ -131,9 +131,9 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
               {props.selectedItem==="languages" && t("languages")}
               {props.selectedItem==="SexualityStatus" &&  t('SexualityStatus') }
               {props.selectedItem==="kids" &&  t("kids")}
-              {props.selectedItem==="smoking" && t("smoking")}
-              {props.selectedItem==="drink" && t("drink")}
-              {props.selectedItem==="pets" &&  t('pets') }
+              {props.selectedItem==="smoking" && t("SmokingStatus")}
+              {props.selectedItem==="drink" && t("DrinkStatus")}
+              {props.selectedItem==="pets" &&  t('PetStatus') }
               
             </div>
 

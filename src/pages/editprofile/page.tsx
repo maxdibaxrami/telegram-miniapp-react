@@ -389,24 +389,21 @@ export default function EditProfilePage() {
                    key={111}
                    endContent={<ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>}
                    >
-                    
-                  <EditIntersting user={user} loading={updateUserData}>
-                      {user.interests.map((value, index) => {
-                        return (
-                          <Chip
-                            key={index}
-                            className="m-1 bg-neutral/70"
-                            avatar={<HashtagIcon className="size-4"/>}
-                            variant="solid"
-                          >
-                            {hobbies.find(hobbie => hobbie.id == value).name}
-                          </Chip>
-                        );
-                      })}
-                        
-                  </EditIntersting>
-
-                    
+                    <EditIntersting user={user} loading={updateUserData}>
+                        {user.interests.map((value, index) => {
+                          return (
+                            <Chip
+                              key={index}
+                              className="m-1 bg-neutral/70"
+                              avatar={<HashtagIcon className="size-4"/>}
+                              variant="solid"
+                            >
+                              {hobbies.find(hobbie => hobbie.id == value).name}
+                            </Chip>
+                          );
+                        })}
+                          
+                    </EditIntersting>
                   </ListboxItem>
                 </ListboxSection>
               </Listbox>

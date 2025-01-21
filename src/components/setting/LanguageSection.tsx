@@ -12,9 +12,9 @@ export const CustomRadio = (props) => {
       {...otherProps}
       classNames={{
         base: cn(
-          "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
+          "inline-flex m-0 bg-neutral/20 items-center justify-between font-medium",
           "flex-row-reverse max-w-[100%] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
-          "data-[selected=true]:border-primary",
+          "data-[selected=true]:border-primary data-[selected=true]:bg-primary/10",
         ),
       }}
     >
@@ -78,7 +78,7 @@ export default function LanguageSection() {
 
   return (
     <>
-      <RadioGroup value={selectedLanguage} onValueChange={setSelectedLanguage} label={t('language')}>
+      <RadioGroup classNames={{"label":"font-bold"}} value={selectedLanguage} onValueChange={setSelectedLanguage} label={t('language')}>
         <CustomRadio value="en">
           <Avatar name="en" size="md" src="/assets/gb.svg" />
           <p className="text-bold mx-2">English</p>

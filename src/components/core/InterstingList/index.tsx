@@ -9,7 +9,7 @@ import { gethobbies } from "@/constant";
 
 
 export const ListboxWrapper = ({children}: {children: React.ReactNode}) => (
-  <div className="w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+  <div className="w-full border-small px-1 py-2 bg-neutral/10 rounded-small border-default-200 dark:border-default-100">
     {children}
   </div>
 );
@@ -23,6 +23,8 @@ export default function InterestingList({onChangeValue, user}) {
 
   useEffect(()=> onChangeValue(values) ,[values])
   
+  console.log(user.interests)
+
   const arrayValues = Array.from(values);
 
   const topContent = React.useMemo(() => {
@@ -37,7 +39,7 @@ export default function InterestingList({onChangeValue, user}) {
         orientation="horizontal"
       >
         {arrayValues.map((value) => (
-          <Chip key={value}>{hobbies.find((hobbies) => `${hobbies.id}` === `${value}`)?.name}</Chip>
+          <Chip className="bg-neutral" key={value}  >{hobbies.find((hobbies) => `${hobbies.id}` === `${value}`)?.name}</Chip>
         ))}
       </ScrollShadow>
     );
@@ -52,7 +54,7 @@ export default function InterestingList({onChangeValue, user}) {
           base: "w-full",
           list: "max-h-[400px] overflow-scroll",
         }}
-        defaultSelectedKeys={user.interests}
+        defaultSelectedKeys={user.interests.map(v=> v.toString())}
         items={hobbies}
         label={t('Selectinterested')}
         selectionMode="multiple"

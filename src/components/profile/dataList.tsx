@@ -1,5 +1,5 @@
 import { Listbox, ListboxItem, CircularProgress, Chip, cn } from "@nextui-org/react";
-import { ProfileIcon, LikeIcon, ViewIcon, PerimumIcon, FirendsIcon } from "@/Icons/index";
+import { ProfileIcon, LikeIcon, ViewIcon, PerimumIcon, FirendsIcon, ArrowRight } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { SparklesStarText } from "../animate/star-sparkles";
 import { SparklesCustomIconText } from "../animate/user-sparkles";
 
 const DataList = ({user}) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();  // Initialize translation hook
   const [persent, setPersent] = useState(0)
   const CompiliteProfilePersent = () => {
     let validDataCount = 0;
@@ -44,6 +44,9 @@ const DataList = ({user}) => {
                   />  
             </IconWrapper>
           }
+          endContent={
+            <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
+          }
         >
           {t('invite_your_friend')}
         </ListboxItem>
@@ -63,6 +66,10 @@ const DataList = ({user}) => {
                     }
                   />  
             </IconWrapper>
+          }
+
+          endContent={
+            <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
           }
         >
           {t('premium_account')}
@@ -86,6 +93,7 @@ const DataList = ({user}) => {
               value={persent}
             />
           }
+          
           startContent={
             <IconWrapper className="bg-default/40 text-success/70">
               <ProfileIcon className="size-5" />
