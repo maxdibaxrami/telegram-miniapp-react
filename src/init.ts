@@ -52,8 +52,8 @@ export function init(debug: boolean): void {
     .then(() => {
       // Bind the CSS variables for the viewport
       viewport.bindCssVars();
-      console.log(viewport.bindCssVars())
-      
+      viewport.safeAreaInsets();
+      viewport.contentSafeAreaInsets();
     });
 
   // Bind the theme parameters to CSS variables (colors, etc.).
