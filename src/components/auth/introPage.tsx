@@ -2,7 +2,7 @@ import { Chip, Avatar, Checkbox } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
-import { cloudStorage } from '@telegram-apps/sdk';
+import { cloudStorage, viewport } from '@telegram-apps/sdk';
 import FontHandller from "../FontHandller";
 
 const container = {
@@ -192,6 +192,8 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
             </Chip>
           </motion.li>
         </motion.ul>
+
+        {viewport.safeAreaInsetTop()}
       </div>
     </div>
   );

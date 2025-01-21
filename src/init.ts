@@ -9,7 +9,9 @@ import {
   init as initSDK,
 } from '@telegram-apps/sdk-react';
 
-
+import {
+  disableVerticalSwipes,
+} from '@telegram-apps/sdk';
 
 /**
  * Initializes the application and configures its dependencies.
@@ -39,6 +41,8 @@ export function init(debug: boolean): void {
   miniApp.mount();
   themeParams.mount();
   initData.restore();
+  disableVerticalSwipes.ifAvailable()
+
   // Mount and configure the viewport
   void viewport
     .mount()
@@ -57,4 +61,5 @@ export function init(debug: boolean): void {
 
   // Expand the viewport to full screen
   expandViewport()
+
 }
