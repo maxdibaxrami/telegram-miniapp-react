@@ -70,7 +70,7 @@ export function App() {
     // Once user data is loaded, dispatch the secondary fetches only once
     if (data && data.id && !hasFetchedDetails) {
 
-      setHasFetchedDetails(true);
+      setHasFetchedDetails(data.id !== null ? true : false);
 
       const updatedFilters = {
         ageRange: null,

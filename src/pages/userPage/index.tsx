@@ -23,7 +23,8 @@ import {
   ChatIcon,
   FireIcon,
   HeartIcon,
-  LockIcon
+  LockIcon,
+  EducationIcon
 } from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/index";
@@ -252,9 +253,9 @@ export default function ProfilePage() {
         key: 1,
         color: "danger",
         gradient: "bg-gradient-to-br from-[#C20E4D] to-[#F54180]",
-        icon: <WorkAndStudyIconSolid className="size-6" />,
-        label: t("workAndEducation"),
-        text: UserData?.profileData.education,
+        icon: <EducationIcon className="size-6" />,
+        label: t("Education"),
+        text: UserData?.profileData.education.replace("_"," "),
       },
       {
         key: 2,

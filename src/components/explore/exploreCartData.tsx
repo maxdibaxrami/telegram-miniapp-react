@@ -13,7 +13,8 @@ import {
   LikeIcon,
   PetStatusIcon,
   SexualityIcon,
-  SmokingStatusIcon
+  SmokingStatusIcon,
+  EducationIcon
 } from "@/Icons";
 import { Listbox, ListboxSection, ListboxItem, Chip } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
@@ -35,9 +36,9 @@ const ExploreCartData = ({ profile, openFooter }) => {
     {
       key: 1,
       color: "danger",
-      icon: <WorkAndStudyIconSolid className="size-6" />,
-      label: t("workAndEducation"),
-      text: profile.profileData.education,
+      icon: <EducationIcon className="size-6" />,
+      label: t("Education"),
+      text: profile.profileData.education.replace("_"," "),
     },
     {
       key: 2,

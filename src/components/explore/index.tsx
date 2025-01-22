@@ -22,31 +22,22 @@ import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitat
 
 import { PopOverPerimum } from "../perimum/popOver";
 
-
-
 const ExplorePage = () => {
-  
   const maxLikes = 50;
   
-  const dispatch: AppDispatch = useDispatch();  // Use the correct AppDispatch type from your store
-  
-  const [index, setIndex] = useState<number | null>(null);  // Start with null to handle async loading
+  const dispatch: AppDispatch = useDispatch(); 
+
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: users, loading, page, limit, total } = useSelector((state: RootState) => state.explore);
 
-  //const { requestLoading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
-  const { t } = useTranslation();  // Initialize translation hook
-
+  const { t } = useTranslation(); 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { likesCount, lastReset } = useSelector((state: RootState) => state.likeLimit);
-
   const { requestLoading } = useSelector((state: RootState) => state.like);
 
   useEffect(() => {
-    const today = new Date().setHours(0, 0, 0, 0); // Get today's date at midnight
+    const today = new Date().setHours(0, 0, 0, 0); 
     if (lastReset < today) {
-      // It's a new day, reset the like count
       dispatch(resetLikes());
       dispatch(setLastReset(today));
     }
@@ -55,167 +46,140 @@ const ExplorePage = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  // Initialize the index to start from the last item when users array is loaded
-  useEffect(() => {
-    if (users && users.length > 0) {
-      setIndex(users.length - 1);  // Start from the last user
-    }
-  }, [users]);
 
-  const NextSlide = () => {
-    if (index !== null && index > 0) {
-      setIndex(index - 1);  // Decrement the index to move backwards
+  const removeFirstUser = () => {
+    if (users && users.length > 0) {
+      dispatch(removeUserFromState(users[0].id)); 
     }
   };
 
   const handleLikeUser = async () => {
+    if (likesCount >= maxLikes) return;
 
-    if (likesCount >= maxLikes) {
-      return;
-    }
+    console.log(users[0])
 
     try {
-      // Dispatch the action and unwrap the result
-      NextSlide();  // Move to the previous user
-      dispatch(removeUserFromState(users[index].id));
-      dispatch(incrementLikes())
-
-      if (index === null) return;
-      const resultAction = await dispatch(likeUser({ userId: user.id, likedUserId: users[index].id }));
+      removeFirstUser();  
+      dispatch(incrementLikes());
+      const resultAction = await dispatch(likeUser({ userId: user.id, likedUserId: users[0].id }));
       // @ts-ignore
       if (resultAction.payload.isMatch === true) {
         dispatch(fetchMatches(user.id.toString()));
         openModal();
       }
-
-
     } catch (error) {
       console.error('Failed to like user:', error);
     }
   };
-    
-  const handleNotLike = () => {
-    if (likesCount >= maxLikes) {
-      return;
-    }
 
-    if (index === null) return;
-    NextSlide();
-    dispatch(removeUserFromState(users[index].id));
-    dispatch(incrementLikes())
+  const handleNotLike = () => {
+    if (likesCount >= maxLikes) return;
+    
+    removeFirstUser();  
+    dispatch(incrementLikes());
   };
 
   const lp = useLaunchParams();
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
-      // iOS/macOS specific padding (e.g., accounting for notches)
-      return '50px';  // Adjust as needed for iOS notch
+      return '50px'; 
     } else {
-      // Android/base padding
-      return '25px';  // Default padding
+      return '25px';  
     }
   };
 
-
   useEffect(() => {
-    if (users && users.length <= 1 && (page * limit) < total ) {
-      // Dispatch action to fetch more data
-      console.log("Dispatch action to fetch more data")
+    if (users && users.length <= 1 && (page * limit) < total) {
       dispatch(fetchFilteredExplore({
-        userId:user.id.toString(),
-        ageRange:null,
-        city:null,
-        country:null,
-        languages:null,
+        userId: user.id.toString(),
+        ageRange: null,
+        city: null,
+        country: null,
+        languages: null,
         page: page,
         limit
       }));
-
     }
   }, [users, page, limit]);
-  
 
   if (loading) {
     return <motion.div style={{ position: "relative" }}>
-        <motion.div className="flex justify-center items-center" style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
-          <Spinner size="lg" />
-        </motion.div>
+      <motion.div className="flex justify-center items-center" style={{ width: "100vw", height: `calc(100vh - ${getPaddingForPlatform()})`, position: "relative" }}>
+        <Spinner size="lg" />
+      </motion.div>
     </motion.div>;
   }
 
   if (users && users.length <= 0) {
     return <div className="relative h-screen w-screen flex flex-col items-center justify-center">
-      <NotFoundUserExplore/>
+      <NotFoundUserExplore />
       <div className="flex gap-4 flex-col px-6 text-center items-center">
-          <p className="text-tiny">{t("nolikemessage")}</p>
-        </div>
-      </div>;
+        <p className="text-tiny">{t("nolikemessage")}</p>
+      </div>
+    </div>;
   }
 
+
   return (
-    <div className="w-screen" style={{ position: "relative"}}>
-      <ScrollShadow hideScrollBar size={180} style={{overflow:"hidden", height:`calc(100vh - ${getPaddingForPlatform()})` }}>
-        <ul style={{marginTop:"3.6rem"}} className="flex flex-col-reverse	">
-            <AnimatePresence mode={"sync"}>
-              {users.map((user, index) => (
-                <motion.li
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0,zIndex:-10 }}
-                  transition={{ type: "tween" }}
-                  key={index}
-                >
-                  <ExploreCard profile={user} key={index}/>
-                </motion.li>
-              ))}
-            </AnimatePresence>
+    <div className="w-screen" style={{ position: "relative" }}>
+      <ScrollShadow hideScrollBar size={180} style={{ overflow: "hidden", height: `calc(100vh - ${getPaddingForPlatform()})` }}>
+        <ul style={{ marginTop: "3.6rem" }} className="flex flex-col">
+          <AnimatePresence mode={"sync"}>
+            {users.map((user, index) => (
+              <motion.li
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, zIndex: -10 }}
+                transition={{ type: "tween" }}
+                key={user.id}
+              >
+                <ExploreCard profile={user} key={index} />
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </ul>
       </ScrollShadow>
-         
+
       <motion.div
-                  className="m-2 footerswipcard fixed"
-                  style={{ right: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
-                  transition={{ type: "tween" }}
-                >
-                  <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
-                    <CloseCircleIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8" />
-                  </Button>
+        className="m-2 footerswipcard fixed"
+        style={{ right: "50%", borderRadius: "50%", bottom: "30px", zIndex: 50 }}
+        transition={{ type: "tween" }}
+      >
+        <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+          <CloseCircleIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+        </Button>
       </motion.div>
 
       <motion.div
-                  className="card m-2 footerswipcard fixed"
-                  transition={{ type: "tween" }}
-                  style={{ left: "50%", borderRadius:"50%", bottom: "30px", zIndex: 50 }}
-                >
-
-                  {likesCount >= maxLikes ? 
-                    <PopOverPerimum isOpen={true}>
-                        <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
-                            <LockIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
-                        </Button>
-                    </PopOverPerimum>
-                  
-                  
-                  :
-                    <SparklesHeartText
-                      text={
-                        <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                            <LikeIcon style={{width:"2.5rem",height:"2.5rem"}} className="size-8"/> 
-                        </Button>
-                      }
-                      colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-                      sparklesCount={5} // Initial number of hearts
-                    />
-                  }
+        className="card m-2 footerswipcard fixed"
+        transition={{ type: "tween" }}
+        style={{ left: "50%", borderRadius: "50%", bottom: "30px", zIndex: 50 }}
+      >
+        {likesCount >= maxLikes ? (
+          <PopOverPerimum isOpen={true}>
+            <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
+              <LockIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+            </Button>
+          </PopOverPerimum>
+        ) : (
+          <SparklesHeartText
+            text={
+              <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                <LikeIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+              </Button>
+            }
+            colors={{ first: "#ff4b61", second: "#A8B2BD" }}
+            sparklesCount={5} 
+          />
+        )}
       </motion.div>
 
-
-      {users[index] && (
+      {users[0] && (
         <MatchModal
           isOpen={isModalOpen}
-          modalData={users[index]}
+          modalData={users[0]}
           onClose={closeModal}
           thisUserId={user.id}
         />

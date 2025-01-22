@@ -16,7 +16,8 @@ import {
   DrinkStatusIcon,
   KidStatusIcon,
   PetStatusIcon,
-  SmokingStatusIcon
+  SmokingStatusIcon,
+  EducationIcon
 } from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/index";
@@ -27,7 +28,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
-import { BASEURL, getDrinkStatus, gethobbies, getKidStatus, getlanguages, getlookingfor, getPetStatus, getRealationStatus, getSexualityStatus, getSmokingStatus } from "@/constant";
+import { BASEURL, getDrinkStatus, getEducationStatus, gethobbies, getKidStatus, getlanguages, getlookingfor, getPetStatus, getRealationStatus, getSexualityStatus, getSmokingStatus } from "@/constant";
 import { useRef, useState } from "react";
 import EditMoreAboutMeModal from "@/components/profile/editMoreAboutMe";
 import { updateUserPhoto, uploadProfileImage } from "@/features/userSlice";
@@ -55,6 +56,9 @@ export default function EditProfilePage() {
   const DrinkStatus = getDrinkStatus(t)
   const SmokingStatus = getSmokingStatus(t)
   const KidStatus = getKidStatus(t)
+
+  const Edocation = getEducationStatus(t)
+
 
   const handleClick = (item) => {
     setSelectedItem(item)
@@ -188,14 +192,14 @@ export default function EditProfilePage() {
                     
                   <ListboxItem
                     key="2"
-                    onPress={()=> handleClickProfileData("Workandeducation")}
-                    description={user.profileData.education}
-                    startContent={<IconWrapper className="bg-default/30 text-foreground/80"><WorkAndStudyIconSolid className="size-5"/></IconWrapper>}
+                    onPress={()=> handleClickProfileData("Education")}
+                    description={Edocation.find(Education => Education.key == user.profileData.education).label}
+                    startContent={<IconWrapper className="bg-default/30 text-foreground/80"><EducationIcon className="size-5"/></IconWrapper>}
                     endContent={
                       <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
                     }
                   >
-                    {t('Workandeducation')}
+                    {t('Education')}
                   </ListboxItem>
 
                   <ListboxItem

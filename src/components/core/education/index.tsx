@@ -29,9 +29,11 @@ import { useTranslation } from "react-i18next";
   };
   
 const EducationListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
-  
-  const [selected, setSelected] = useState(user.education);
+
   const { t } = useTranslation();
+  const EducationStatus = getEducationStatus(t)
+
+  const [selected, setSelected] = useState(user.education);
 
   useEffect(()=>{
     if(selected !== "") {
@@ -42,7 +44,6 @@ const EducationListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) =
 
   },[selected])
   
-  const EducationStatus = getEducationStatus(t)
 
     return (
       <div className="flex justify-between flex-col px-6  pb-4">

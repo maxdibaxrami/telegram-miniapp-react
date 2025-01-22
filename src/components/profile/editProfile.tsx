@@ -18,7 +18,8 @@ import LookingforList from "@/components/core/WhyIamHereAuthList";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
-import { AboutMeSolid, ProfileIcon, SearchIcon, WorkAndStudyIconSolid } from "@/Icons";
+import { AboutMeSolid, EducationIcon, ProfileIcon, SearchIcon, WorkAndStudyIconSolid } from "@/Icons";
+import EducationListSelector from "../core/education";
 
 
 const EditProfile = forwardRef((props:any, ref)=> {
@@ -37,17 +38,21 @@ const EditProfile = forwardRef((props:any, ref)=> {
   const HandlelookingForList = (_,b) => {
     setWhyIamHere(b)
   }
+
+  const HandleducationForList = (_,b) => {
+    setWorkAndEducation(b)
+  }
+
   // Update ref handlers for opening and closing modal
   useImperativeHandle(ref, () => ({
     openModal: onOpen,
     closeModal: onClose
   }));
 
-  useEffect(()=>{console.log(whyIamHere)},[whyIamHere])
+
   // Dynamically create the payload with only modified fields
   const handleSaveData = async () => {
     const updatedData: any = {};
-    console.log(whyIamHere.id)
     if (firstName !== props.user.firstName) {
       updatedData.firstName = firstName;
     }
@@ -72,7 +77,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
   return (
     <>
-      <Modal hideCloseButton placement={props.selectedItem==="WhyIamhere"? "bottom":"center"} classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur bg-background/90"}} backdrop="opaque" isOpen={isOpen} size={"5xl"} onClose={onClose}>
+      <Modal hideCloseButton placement={props.selectedItem==="WhyIamhere" || props.selectedItem==="Education" ? "bottom":"center"} classNames={{"base":"px-0 backdrop-saturate-150 backdrop-blur bg-background/90"}} backdrop="opaque" isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalContent>
           <ModalHeader className="flex font-bold flex-col gap-1">
 
@@ -81,17 +86,17 @@ const EditProfile = forwardRef((props:any, ref)=> {
               {props.selectedItem==="name" &&  <ProfileIcon className="size-6" />}
               {props.selectedItem==="WhyIamhere" && <SearchIcon className="size-6"/>}
               {props.selectedItem==="Bio" && <AboutMeSolid className="size-6"/>}
-              {props.selectedItem==="Workandeducation" && <WorkAndStudyIconSolid className="size-6"/>}
+              {props.selectedItem==="Education" && <EducationIcon className="size-6"/>}
               
               {props.selectedItem==="name" &&  t("Name")}
               {props.selectedItem==="WhyIamhere" && t("WhyIamhere")}
               {props.selectedItem==="Bio" && t("EnteryourBio")}
-              {props.selectedItem==="Workandeducation" &&  t('Workandeducation') }
+              {props.selectedItem==="Education" &&  t('Education') }
               
             </div>
 
           </ModalHeader>
-          <ModalBody className={`${props.selectedItem==="WhyIamhere"? "px-0":""}`}>
+          <ModalBody className={`${props.selectedItem==="WhyIamhere" || props.selectedItem==="Education"? "px-0":""}`}>
             <form className="flex flex-col">
               {props.selectedItem==="name" &&  <Input autoFocus value={firstName} onChange={(e) => setFirstName(e.target.value)} label={t("Name")} type="text" /> }
 
@@ -99,7 +104,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
               {props.selectedItem==="Bio" && <Textarea autoFocus value={bio} onChange={(e) => setBio(e.target.value)} className="w-full" label={t("Bio")} placeholder={t("EnteryourBio")}/>}
 
-              {props.selectedItem==="Workandeducation" &&  <Input autoFocus value={workAndEducation} onChange={(e) => setWorkAndEducation(e.target.value)} label={t('Workandeducation')} type="text" /> }
+              {props.selectedItem==="Education" &&  <EducationListSelector setSlideUnAvailable={HandlelookingForList} setSlideAvailable={HandleducationForList} user={props.user.profileData}  /> }
             </form>
           </ModalBody>
 
