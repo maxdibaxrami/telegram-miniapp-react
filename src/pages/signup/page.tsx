@@ -20,7 +20,7 @@ import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
 import { useTranslation } from "react-i18next";
 import EducationListSelector from "@/components/core/education";
-import { EducationIcon, HeartIcon, ProfileIcon } from "@/Icons";
+import { CameraIcon, EducationIcon, HashtagIcon, HeartIcon, ProfileIcon, SearchIcon } from "@/Icons";
 
 
 export default function SignupPage() {
@@ -58,6 +58,7 @@ export default function SignupPage() {
     education: '',
     work: '',
     bio: '',
+    relationStatus:'',
     age: 24,
     dateBirth: '2000-01-14',
     languages:[i18n.language],
@@ -154,6 +155,7 @@ export default function SignupPage() {
     }
   };
 
+  
 
 
  // useEffect(()=>{console.log({lp.startParam})},[])
@@ -169,35 +171,44 @@ export default function SignupPage() {
 
 
           <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "9rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
-          <AnimatePresence mode="wait">
               {selectedTab === 0 && (
-                <motion.div
-                  animate={{  opacity: 1 }}
-                  exit={{  opacity: 0 }}
-                  initial={{   opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    animate={{opacity: 1 }}
+                    exit={{opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    transition={{
+                      opacity: { duration: 0.4 },
+                    }}
+                  >
+                    <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                  </motion.div>
+                </AnimatePresence>
               )}
               {selectedTab === 1 && (
-                <motion.div
-                  animate={{  opacity: 1 }}
-                  exit={{  opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ProfileDataAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    animate={{opacity: 1 }}
+                    exit={{opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    transition={{
+                      opacity: { duration: 0.4 },
+                    }}
+                  >
+                    <ProfileDataAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                  </motion.div>
+                </AnimatePresence>
               )}
               {selectedTab === 2 && (
-                
-              <motion.div
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                initial={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    animate={{opacity: 1 }}
+                    exit={{opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    transition={{
+                      opacity: { duration: 0.4 },
+                    }}
+                  >
                    <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
                     <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
                       <ProfileIcon className="size-8" />
@@ -205,17 +216,20 @@ export default function SignupPage() {
                     <p className="font-bold text-medium">{t('Iam')}</p>
                   </div>
                 <GenderStuffAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-              </motion.div>
+                </motion.div>
+              </AnimatePresence>
               )}
 
               {selectedTab === 3 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    animate={{opacity: 1 }}
+                    exit={{opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    transition={{
+                      opacity: { duration: 0.4 },
+                    }}
+                  >
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
                     <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
                       <EducationIcon className="size-8" />
@@ -224,74 +238,112 @@ export default function SignupPage() {
                   </div>
 
                   <EducationListSelector setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} user={user}/>
-
-                </motion.div>
+                  </motion.div>
+                </AnimatePresence>
               )}
 
               {selectedTab === 4 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-
-                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
-                    <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
-                      <HeartIcon className="size-8" />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    animate={{opacity: 1 }}
+                    exit={{opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    transition={{
+                      opacity: { duration: 0.4 },
+                    }}
+                  >
+                    <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                      <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                        <HeartIcon className="size-8" />
+                      </div>
+                      <p className="font-bold text-medium">{t('RealationStatus')}</p>
                     </div>
-                    <p className="font-bold text-medium">{t('RealationStatus')}</p>
-                  </div>
+                    <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                  </motion.div>
 
-                  <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
-                </motion.div>
+                </AnimatePresence>
               )}
 
 
               {selectedTab === 5 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <LookingforList user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                      animate={{opacity: 1 }}
+                      exit={{opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      transition={{
+                        opacity: { duration: 0.4 },
+                      }}
+                    >
+                    <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                      <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                        <SearchIcon className="size-8" />
+                      </div>
+                      <p className="font-bold text-medium">{t('RealationStatus')}</p>
+                    </div>
+
+                    <LookingforList user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                  </motion.div>
+                </AnimatePresence>
               )}
 
               {selectedTab === 6 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{  opacity: 0 }}
-                  initial={{  opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                      animate={{opacity: 1 }}
+                      exit={{opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      transition={{
+                        opacity: { duration: 0.4 },
+                      }}
+                    >
+                    <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                      <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                        <HashtagIcon className="size-8" />
+                      </div>
+                      <p className="font-bold text-medium">{t('interested')}</p>
+                    </div>
+                    <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                  </motion.div>
+                </AnimatePresence>
               )}
 
 
               {selectedTab === 7 && (
-                <motion.div
-                  animate={{  opacity: 1 }}
-                  exit={{  opacity: 0 }}
-                  initial={{  opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                      animate={{opacity: 1 }}
+                      exit={{opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      transition={{
+                        opacity: { duration: 0.4 },
+                      }}
+                    >
+                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                    <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                      <CameraIcon className="size-8" />
+                    </div>
+                    <p className="font-bold text-medium">{t('UploadprofileImage')}</p>
+                  </div>
                   <ImageDataAuth userPhoto={userPhoto} setUserPhoto={setUserPhoto} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
+                  </motion.div>
+                </AnimatePresence>
               )}
               {selectedTab === 8 && (
-                <motion.div
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  initial={{opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <AnimatePresence mode="wait">
+                    <motion.div
+                      animate={{opacity: 1 }}
+                      exit={{opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      transition={{
+                        opacity: { duration: 0.4 },
+                      }}
+                    >
                   <FinalStepAuth uploadImageLoading={uploadImageLoading} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
+                  </motion.div>
+                </AnimatePresence>
               )}
-            </AnimatePresence>
+            
           </div>
 
           {/* Wrapping BottomController in motion.div for smooth position changes */}

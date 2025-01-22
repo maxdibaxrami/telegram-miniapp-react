@@ -51,7 +51,7 @@ export default function InterestingList({onChangeValue, user}) {
       <Listbox
         classNames={{
           base: "w-full",
-          list: "max-h-[400px] overflow-scroll",
+          list: "max-h-[55vh] overflow-scroll",
         }}
         defaultSelectedKeys={user.interests.map(v=> v.toString())}
         items={hobbies}

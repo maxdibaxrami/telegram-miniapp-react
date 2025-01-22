@@ -144,7 +144,7 @@ const ExplorePage = () => {
     </motion.div>;
   }
 
-  if (users.length <= 0) {
+  if (users && users.length <= 0) {
     return <div className="relative h-screen w-screen flex flex-col items-center justify-center">
       <NotFoundUserExplore/>
       <div className="flex gap-4 flex-col px-6 text-center items-center">

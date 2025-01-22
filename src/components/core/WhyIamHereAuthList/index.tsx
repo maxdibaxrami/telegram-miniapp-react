@@ -27,7 +27,7 @@ export const CustomRadio = (props: any) => {
       classNames={{
         base: cn(
           "inline-flex m-0 bg-neutral/20 hover:bg-content items-center justify-between",
-          "flex-row-reverse max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+          "flex-row-reverse max-w-full cursor-pointer rounded-lg p-4 border-2 border-transparent",
           "data-[selected=true]:border-primary data-[selected=true]:bg-primary/10"
         ),
       }}
@@ -75,12 +75,12 @@ const WhyIamHereAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   },
 ];
   return (
-    <div className="flex justify-between flex-col px-6  pb-4">
+    <div className="flex justify-between flex-col px-6 pb-4">
       <form className="flex w-full flex-col gap-4">
         <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}}  value={selected} onValueChange={setSelected} description={t("Selectedplancanbechangedatanytime")}>
           {Items.map((item) => (
             <CustomRadio key={item.id} value={item.id.toString()}>
-              <div className="flex items-center">
+              <div className="flex px-0 items-center">
                 <Avatar icon={item.icon} color={item.color} /> 
                 <p className="mx-2">{item.title}</p>
               </div>

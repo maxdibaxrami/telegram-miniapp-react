@@ -29,7 +29,7 @@ import { useTranslation } from "react-i18next";
   };
   
 const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
-  const [selected, setSelected] = useState(user.moreAboutMe? user.moreAboutMe.relationStatus : user.relationStatus );
+  const [selected, setSelected] = useState(user?.moreAboutMe? user.moreAboutMe.relationStatus : user.relationStatus );
   const { t } = useTranslation();
 
   const RealationStatus = getRealationStatus(t)
@@ -37,10 +37,9 @@ const RealationStatusAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => 
   useEffect(()=>{
     if(selected !==""){
       setSlideAvailable("relationStatus",selected)
-    }else{
-      setSlideUnAvailable("relationStatus",selected)
+      return
     }
-
+    setSlideUnAvailable("relationStatus",selected)
   },[selected])
     return (
       <div className="flex  justify-between flex-col px-6  pb-4">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
-import { PhotoIcon } from "@/Icons/index";
+import { CameraIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import SelectedProfileImageCard from "./selectedProfileImageCard";
 
@@ -59,9 +59,8 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
     console.log(selectedImages)
   }, [selectedImages]);
   return (
-    <div className="flex justify-between flex-col px-6 pt-8 pb-4">
+    <div className="flex justify-between flex-col px-6 pb-4">
       <form className="flex w-full flex-col gap-4">
-        <p className="mb-1">{t("UploadprofileImage")}</p>
 
         <div>
           <input
@@ -74,9 +73,10 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
           <Button
             size="lg"
             className="w-full mb-2 font-bold"
+            radius="lg"
             color="success"
             isDisabled={selectedImages.length >= 6 || loading}  // Disable button if loading or max images reached
-            endContent={<PhotoIcon />}
+            endContent={<CameraIcon />}
             onPress={() => document.getElementById("file-upload").click()}
           >
             {loading ? t("Uploading...") : t("addPhoto")}
@@ -92,7 +92,8 @@ const ImageDataAuth = ({ setSlideAvailable, setSlideUnAvailable, setUserPhoto, u
             ))}
           </div>
 
-          <p className="mb-1 text-small">
+
+          <p className="mb-1 text-small text-warning">
             {t("youshoulduploadminimum3photoandmaximum6photo")}
           </p>
         </div>

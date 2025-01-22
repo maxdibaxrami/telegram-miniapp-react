@@ -7,7 +7,7 @@ const SelectedProfileImageCard = ({ imageUrl, onDelete }) => {
     <Card isFooterBlurred className="border-none relative" radius="lg">
       <Image
         alt="Selected profile"
-        className="object-cover"
+        className="object-cover aspect-square	"
         height={200}
         src={imageUrl}
         width={200}
@@ -23,7 +23,7 @@ const SelectedProfileImageCard = ({ imageUrl, onDelete }) => {
         <Button
           className="text-tiny text-white p-0"
           color="danger"
-          radius="lg"
+          radius="full"
           isIconOnly
           size="sm"
           variant="shadow"
