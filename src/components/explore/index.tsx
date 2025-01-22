@@ -59,16 +59,20 @@ const ExplorePage = () => {
     console.log(users[0])
 
     try {
-      removeFirstUser();  
       dispatch(incrementLikes());
       const resultAction = await dispatch(likeUser({ userId: user.id, likedUserId: users[0].id }));
       // @ts-ignore
       if (resultAction.payload.isMatch === true) {
         dispatch(fetchMatches(user.id.toString()));
         openModal();
+        return
       }
+      removeFirstUser();  
+
     } catch (error) {
       console.error('Failed to like user:', error);
+      removeFirstUser();  
+
     }
   };
 
@@ -133,7 +137,7 @@ const ExplorePage = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, zIndex: -10 }}
                 transition={{ type: "tween" }}
-                key={user.id}
+                key={user.id + 10000}
               >
                 <ExploreCard profile={user} key={index} />
               </motion.li>

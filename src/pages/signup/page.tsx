@@ -21,6 +21,7 @@ import { getLocation } from "@/Location";
 import { useTranslation } from "react-i18next";
 import EducationListSelector from "@/components/core/education";
 import { CameraIcon, EducationIcon, HashtagIcon, HeartIcon, ProfileIcon, SearchIcon } from "@/Icons";
+import { applyReferralReward } from "@/features/refralSlice";
 
 
 export default function SignupPage() {
@@ -143,7 +144,10 @@ export default function SignupPage() {
         await Promise.all(uploadPromises);
         
         await dispatch(fetchUserData(initDataState.user.id.toString()));
-
+       
+        if(lp.startParam && lp.startParam.length >3){
+          dispatch(applyReferralReward(lp.startParam));
+        }
         // Once all images are uploaded, set loading to false
         setUploadImageLoading(false);
       } 
@@ -158,7 +162,6 @@ export default function SignupPage() {
   
 
 
- // useEffect(()=>{console.log({lp.startParam})},[])
 
   return (
     <Page back={false}>
