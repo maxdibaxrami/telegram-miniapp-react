@@ -1,7 +1,6 @@
 import { Calendar, DateValue } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
-import { useTranslation } from "react-i18next";
 
 
 function calculateAge(birthDateString) {
@@ -20,24 +19,21 @@ function calculateAge(birthDateString) {
   return age;
 }
 
-const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
+const CalendarSelector = ({ setAge, setDateBirth, dateBirth }) => {
+
   // Set the initial value to "2000-01-14"
-  const [value, setValue] = useState<DateValue | null>(parseDate(user.dateBirth));
-  const { t } = useTranslation();
+
+  const initialDate = dateBirth ? parseDate(dateBirth) : parseDate("2000-01-14");
+
+  const [value, setValue] = useState<DateValue | null>(initialDate);
 
   useEffect(() => {
     const formattedDate = formatDate(value);
 
     if (value !== null) {
-      setSlideAvailable("dateBirth" , formattedDate);
-      setSlideAvailable("age" , calculateAge(formattedDate));
-
-    } else {
-      setSlideUnAvailable("dateBirth" , formattedDate);
-      setSlideUnAvailable("age" , calculateAge(formattedDate));
-
+      setDateBirth("dateBirth" , formattedDate);
+      setAge("age" , calculateAge(formattedDate));
     }
-    
   }, [value]);
 
   // Helper function to format date to "YYYY-MM-DD"
@@ -62,9 +58,8 @@ const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
   const maxDate = todayDate.subtract({ years: 18 });
 
   return (
-    <div className="flex justify-between flex-col px-6 pt-8 pb-4">
-      <form className="flex w-full flex-col gap-4">
-        <p className="mb-1 font-medium">{t("Selectdateofbirth")} </p>
+    <div className="flex justify-between flex-col pb-4">
+      <form className="flex w-full flex-col">
         <Calendar
           value={value}
           onChange={handleDateChange}  // Use the custom handler
@@ -73,10 +68,13 @@ const ProfileDataAuth2 = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
           aria-label="Date (Show Month and Year Picker)"
           minValue={minDate}
           maxValue={maxDate}
+          calendarWidth={"full"}
+          color="primary"
+          classNames={{"headerWrapper":"bg-primary/70","gridHeaderRow":"bg-neutral/20 pt-1 pb-1"}}
         />
       </form>
     </div>
   );
 };
 
-export default ProfileDataAuth2;
+export default CalendarSelector;

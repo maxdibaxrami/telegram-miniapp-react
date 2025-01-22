@@ -6,6 +6,7 @@
   "Fillprofiledata": "Заполните данные профиля:",
   "name": "Имя",
   "Bio": "Биография",
+  "Education":"образование",
   "EnteryourBio": "Введите свою биографию",
   "Workandeducation": "Работа и образование",
   "EnteryourWorkandeducationstatus": "Введите статус работы и образования",
@@ -299,12 +300,17 @@
 
       "invite_your_friend":"Пригласить друга",
       "premium_account":"Премиум аккаунт",
-      "share_link":"Поделиться ссылкой"
+      "share_link":"Поделиться ссылкой",
 
 
 
 
-
+      "high_school": "Средняя школа",
+      "some_college": "Некоторое образование в колледже",
+      "bachelor_degree": "Степень бакалавра",
+      "master_degree": "Степень магистра",
+      "phd": "Докторская степень",
+      "prefer_not_to_say": "Предпочитаю не говорить"
 
 
 

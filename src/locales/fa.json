@@ -6,6 +6,7 @@
     "Fillprofiledata": "اطلاعات پروفایل را پر کنید:",
     "name": "نام",
     "Bio": "بیوگرافی",
+    "Education":"آموزش",
     "EnteryourBio": "بیوگرافی خود را وارد کنید",
     "Workandeducation": "شغل و تحصیلات",
     "EnteryourWorkandeducationstatus": "وضعیت شغل و تحصیلات خود را وارد کنید",
@@ -298,18 +299,14 @@
 
 
         "premium_account":"حساب پریمیوم",
-        "share_link":"اشتراک‌ گذاری لینک"
+        "share_link":"اشتراک‌ گذاری لینک",
 
-
-
-
-
-
-
-
-
-
-
+          "high_school": "دیپلم دبیرستان",
+          "some_college": "کمی تحصیلات دانشگاهی",
+          "bachelor_degree": "لیسانس",
+          "master_degree": "فوق لیسانس",
+          "phd": "دکترا",
+          "prefer_not_to_say": "ترجیح می‌دهم نگویم"
 
 
 }

@@ -6,6 +6,7 @@
   "Fillprofiledata": "املأ بيانات الملف الشخصي:",
   "name": "الاسم",
   "Bio": "السيرة الذاتية",
+  "Education":"التعليم",
   "EnteryourBio": "أدخل سيرتك الذاتية",
   "Workandeducation": "العمل والتعليم",
   "EnteryourWorkandeducationstatus": "أدخل حالتك الوظيفية والتعليمية",
@@ -300,9 +301,14 @@
 
 
       "premium_account":"حساب بريميوم",
-      "share_link":"مشاركة الرابط"
+      "share_link":"مشاركة الرابط",
 
-
+      "high_school": "الثانوية العامة",
+      "some_college": "بعض الدراسة الجامعية",
+      "bachelor_degree": "درجة البكالوريوس",
+      "master_degree": "درجة الماجستير",
+      "phd": "درجة الدكتوراه",
+      "prefer_not_to_say": "أفضل عدم الإفصاح"
 
 
 

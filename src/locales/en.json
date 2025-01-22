@@ -6,6 +6,7 @@
     "Fillprofiledata":"Fill profile data :",
     "name":"Name",
     "Bio":"Bio",
+    "Education":"Education",
     "EnteryourBio":"Enter your Bio",
     "Workandeducation":"Work and education",
     "EnteryourWorkandeducationstatus":"Enter your Work and education status",
@@ -301,8 +302,14 @@
 
     "invite_your_friend":"Invite friend",
     "premium_account":"Premium account",
-    "share_link":"Share link"
+    "share_link":"Share link",
 
+    "high_school": "High School",
+    "some_college": "Some College",
+    "bachelor_degree": "Bachelor's Degree",
+    "master_degree": "Master's Degree",
+    "phd": "PhD",
+    "prefer_not_to_say": "Prefer not to say"
 
   }
   

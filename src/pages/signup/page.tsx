@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import IntroPage from "@/components/auth/introPage";
 import BottomController from "@/components/auth/BottonController";
 import ProfileDataAuth from "@/components/auth/ProfileDataAuth";
-import ProfileDataAuth2 from "@/components/auth/ProfileDataAuth2";
 import GenderStuffAuth from "@/components/auth/genderStuffAuth";
 import ImageDataAuth from "@/components/auth/ProfileIMagesAuth";
 import FinalStepAuth from "@/components/auth/finalStep";
@@ -20,11 +19,14 @@ import { AppDispatch } from '../../store';
 import { fetchUserData } from "@/features/userSlice";
 import { getLocation } from "@/Location";
 import { useTranslation } from "react-i18next";
+import EducationListSelector from "@/components/core/education";
+import { EducationIcon, HeartIcon, ProfileIcon } from "@/Icons";
 
 
 export default function SignupPage() {
 
-  const { i18n } = useTranslation();
+
+  const { i18n, t } = useTranslation();
 
   const contentRef = useRef(null); // Ref to track content height
 
@@ -62,6 +64,7 @@ export default function SignupPage() {
     language:i18n.language,
     lat: null,
     lon: null,
+    interests:[]
   });
 
   useEffect(()=>{console.log(user)},[user])
@@ -166,7 +169,7 @@ export default function SignupPage() {
 
 
           <div style={{ paddingTop: `${['ios'].includes(lp.platform)? "9rem" : "6rem"}`, overflow:"scroll" , paddingBottom:"90px" }} className="w-full">
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
               {selectedTab === 0 && (
                 <motion.div
                   animate={{  opacity: 1 }}
@@ -188,14 +191,21 @@ export default function SignupPage() {
                 </motion.div>
               )}
               {selectedTab === 2 && (
-                <motion.div
-                  animate={{   opacity: 1 }}
-                  exit={{  opacity: 0 }}
-                  initial={{  opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ProfileDataAuth2 user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
-                </motion.div>
+                
+              <motion.div
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                    <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                      <ProfileIcon className="size-8" />
+                    </div>
+                    <p className="font-bold text-medium">{t('Iam')}</p>
+                  </div>
+                <GenderStuffAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+              </motion.div>
               )}
 
               {selectedTab === 3 && (
@@ -205,7 +215,16 @@ export default function SignupPage() {
                   initial={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <GenderStuffAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                    <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                      <EducationIcon className="size-8" />
+                    </div>
+                    <p className="font-bold text-medium">{t('Education')}</p>
+                  </div>
+
+                  <EducationListSelector setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} user={user}/>
+
                 </motion.div>
               )}
 
@@ -216,6 +235,14 @@ export default function SignupPage() {
                   initial={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
+
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex gap-2 items-center">
+                    <div className="flex items-center rounded-full justify-center p-2 bg-default/30 text-primary/80">
+                      <HeartIcon className="size-8" />
+                    </div>
+                    <p className="font-bold text-medium">{t('RealationStatus')}</p>
+                  </div>
+
                   <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </motion.div>
               )}

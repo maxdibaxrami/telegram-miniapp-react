@@ -95,7 +95,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
   return (
     <div className="flex items-center justify-between h-full px-6 flex-col pt-8 pb-4">
       <div className="pt-16 flex flex-col">
-        <p className="text-base font-medium mb-2 text-center">
+        <p className="mb-2 text-center font-bold text-medium">
           {t('Selectlanguageforcontinue')}
         </p>
 

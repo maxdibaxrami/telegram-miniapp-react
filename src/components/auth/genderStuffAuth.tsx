@@ -49,7 +49,7 @@ const GenderStuffAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   return (
       <div className="flex  justify-between flex-col px-6  pb-4">
         <form className="flex w-full flex-col gap-4">
-            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}} value={selected} onValueChange={setSelected} description={t('Selectedplancanbechangedatanytime')} label={t('Iam')}>
+            <RadioGroup classNames={{"label":"font-medium","description":"font-medium"}} value={selected} onValueChange={setSelected}>
                 {Gender.map((value)=> {
                     return <CustomRadio value={value.key}>
                     {value.label}

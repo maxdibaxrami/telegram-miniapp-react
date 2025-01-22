@@ -23,7 +23,6 @@ export default function InterestingList({onChangeValue, user}) {
 
   useEffect(()=> onChangeValue(values) ,[values])
   
-  console.log(user.interests)
 
   const arrayValues = Array.from(values);
 
