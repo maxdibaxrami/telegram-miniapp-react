@@ -3,7 +3,6 @@ import {  motion } from "framer-motion";
 import {  useEffect, useMemo, useState } from "react";
 import PropTypes from 'prop-types';
 import {
-  WorkAndStudyIconSolid,
   AboutMeSolid,
   HashtagIcon,
   DrinkStatusIcon,

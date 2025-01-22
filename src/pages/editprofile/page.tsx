@@ -4,7 +4,6 @@ import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
 import {
   HashtagIcon,
   ArrowRight,
-  WorkAndStudyIconSolid,
   AboutMeSolid,
   SearchIcon,
   ProfileIcon,

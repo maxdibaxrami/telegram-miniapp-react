@@ -13,12 +13,12 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-import { useEffect, useImperativeHandle, useState } from "react";
+import { useImperativeHandle, useState } from "react";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
-import { AboutMeSolid, EducationIcon, ProfileIcon, SearchIcon, WorkAndStudyIconSolid } from "@/Icons";
+import { AboutMeSolid, EducationIcon, ProfileIcon, SearchIcon } from "@/Icons";
 import EducationListSelector from "../core/education";
 
 

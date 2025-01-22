@@ -6,7 +6,6 @@ import { Avatar, Button, cn, Image, Spinner } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
 import {
   HashtagIcon,
-  WorkAndStudyIconSolid,
   AboutMeSolid,
   LikeIcon,
   HeightIcon,
