@@ -2,7 +2,7 @@
 import "swiper/css";
 import "swiper/css/effect-creative";
 
-import { Avatar, Button, cn, Image, Spinner } from "@nextui-org/react";
+import { Avatar, Button, cn, Image, Popover, PopoverContent, PopoverTrigger, Spinner } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@nextui-org/react";
 import {
   HashtagIcon,
@@ -23,7 +23,9 @@ import {
   FireIcon,
   HeartIcon,
   LockIcon,
-  EducationIcon
+  EducationIcon,
+  GiftIcon,
+  FlashIcon
 } from "@/Icons/index";
 
 import TopBarPages from "@/components/tobBar/index";
@@ -45,6 +47,8 @@ import { motion } from "framer-motion";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/NearByLikeLimitation";
 import { PopOverPerimum } from "@/components/perimum/popOver";
 import { SparklesHeartText } from "@/components/animate/hearSparkles";
+import { SendGiftCard } from "@/components/gift";
+import { FlashMessageCard } from "@/components/explore/flashMessage";
 
 export default function ProfilePage() {
   const maxLikes = 5;
@@ -363,6 +367,33 @@ export default function ProfilePage() {
               
                   <div className="flex w-full justify-between items-center">
                       <div className="flex w-full relative flex-col">
+
+                      <div style={{position:"absolute", top:10,right:10,zIndex:10}}>
+                                      {user.favoriteUsers.map(v=> v.id).includes(UserData.id) ? 
+                                        <Button isLoading={updateUserDataLoading} size="md" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
+                                          <FavoriteColor className="size-5" stroke={"#FFF"} fill={"#FFF"}/>
+                                        </Button>
+                                      : 
+                                        <Button isLoading={updateUserDataLoading} size="md" onPress={() => HandleAddToFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
+                                          <FavoriteColor className="size-5" stroke={"#c98927"} fill={"#c98927"}/> 
+                                        </Button>
+                                      }
+                                    </div>
+
+                        <div style={{position:"absolute", top:10,left:10,zIndex:10}}>
+                        <Popover backdrop="opaque" showArrow placement="bottom-start">
+                                        <PopoverTrigger>
+
+                                        <Button isDisabled={likesCount >= maxLikes} radius="full" size="md" isIconOnly color="success" variant="shadow">
+                                          <GiftIcon className="size-5" fill="#FFFFFF" />
+                                        </Button>
+
+                                        </PopoverTrigger>
+                                        <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
+                                          <SendGiftCard userIds={user} user={UserData}/>
+                                        </PopoverContent>
+                                      </Popover>
+                        </div>
                         <Swiper
                             slidesPerView={1}
                             spaceBetween={30}
@@ -419,7 +450,7 @@ export default function ProfilePage() {
       
                                   {likesCount >= maxLikes ? 
                                       <PopOverPerimum>
-                                          <Button radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
+                                          <Button radius="full" isIconOnly size="md" color="secondary" variant="shadow">
                                             <LockIcon className="size-6"/> 
                                           </Button>
                                       </PopOverPerimum>
@@ -428,7 +459,7 @@ export default function ProfilePage() {
                                     :
                                       <SparklesHeartText
                                         text={
-                                          <Button className="z-50" isDisabled={likedUser || liked || match} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
+                                          <Button className="z-50" isDisabled={likedUser || liked || match} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="md" color="secondary" variant="shadow">
                                             {likedUser || liked || match ? <CheckIcon className="size-6" strokeWidth={2}/> : <LikeIcon className="size-6"/> }
                                           </Button>
                                         }
@@ -436,17 +467,27 @@ export default function ProfilePage() {
                                         sparklesCount={10} // Initial number of hearts
                                       />
                                     }
-                                    
-      
-                                    {user.favoriteUsers.map(v=> v.id).includes(UserData.id) ? 
-                                      <Button isLoading={updateUserDataLoading} size="lg" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
-                                        <FavoriteColor stroke={"#FFF"} fill={"#FFF"}/>
-                                      </Button>
-                                    : 
-                                      <Button isLoading={updateUserDataLoading} size="lg" onPress={() => HandleAddToFavorite(UserData.id)} radius="full" isIconOnly color="warning" variant="shadow">
-                                        <FavoriteColor stroke={"#c98927"} fill={"#c98927"}/> 
-                                      </Button>
-                                    }
+
+                                     
+
+                                      <div
+                                        style={{ borderRadius: "50%", zIndex: 50 }}
+                                      >   
+
+                                        <Popover backdrop="opaque" showArrow placement="bottom-end">
+                                          <PopoverTrigger>
+
+                                          <Button isDisabled={likesCount >= maxLikes} radius="full" size="md" isIconOnly color="warning" variant="shadow">
+                                            <FlashIcon className="size-6" fill="#FFFFFF" />
+                                          </Button>
+
+                                          </PopoverTrigger>
+                                          <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
+                                            <FlashMessageCard userIds={user} user={UserData}/>
+                                          </PopoverContent>
+                                        </Popover>
+                                      </div>
+                                  
       
                                     
                                   </div>

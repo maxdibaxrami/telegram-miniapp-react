@@ -1,11 +1,15 @@
-import { Image, User, Button} from "@nextui-org/react";
+import { Image, User, Button, cn} from "@nextui-org/react";
 import { Pagination, Autoplay } from 'swiper/modules';
+import { shareURL } from "@telegram-apps/sdk-react";
 
 import {
   VerifyIconFill,
   PerimumIcon,
   SettingIcon,
   PenIcon,
+  EnergyIcon,
+  FlashIcon,
+  FirendsIcon,
 } from "@/Icons/index";
 
 import DataList from "./dataList";
@@ -23,6 +27,18 @@ const ProfilePage = () => {
   const { t } = useTranslation();
   const [slideCountrt, setSlideCounter] = useState<number>(1);
   const { data: user } = useSelector((state: RootState) => state.user);
+  const { data: referral } = useSelector((state: RootState) => state.referral);
+
+
+    const AddFirendsDialog = () => {
+      if (shareURL && referral) {
+        // Only share when referral is available
+        shareURL(referral, t("share_link"));
+      } else {
+        console.error('shareURL is not available or referral data is missing');
+      }
+    };
+  
 
   return (
     <div
@@ -101,17 +117,74 @@ const ProfilePage = () => {
                 {t('edit_profile')}
             </Button> 
 
-            <Button radius="full" variant="shadow" as={Link} to="/setting" isIconOnly color="primary" size="md">
+            <Button radius="full" variant="shadow" as={Link} to="/setting" isIconOnly color="secondary" size="md">
                 <SettingIcon className="size-5"/>
             </Button> 
 
           </div>
         </div>
       </div>
+      <div className="grid gap-3 py-3 grid-cols-3 sm:grid-cols-3">
+              <div className="aspect-square">
+                <Button
+                  className="bg-gradient-to-tr w-full h-full aspect-square from-primary/50 to-secondary/50 text-white "
+                  radius="lg"
+                  variant="shadow"
+                  color="secondary"
 
+                >
+                  <div className="flex flex-col my-4 justify-center items-center">
+                    <IconWrapper className="bg-background/80 text-secondary/80">
+                      <EnergyIcon className="size-8"/>
+                    </IconWrapper>
+                    <p className="font-bold capitalize">{t("energy")}</p>
+                  </div>
+                </Button>
+              </div>
+
+              <div className="aspect-square">
+                <Button
+                  className="bg-gradient-to-tr w-full h-full aspect-square from-primary/50 to-secondary/50 text-white"
+                  radius="lg"
+                  variant="shadow"
+                  color="warning"
+                >
+                  <div className="flex flex-col my-4 justify-center items-center">
+                    <IconWrapper className="bg-background/80 text-secondary/80">
+                      <FlashIcon className="size-8"/>
+                    </IconWrapper>
+                    <p className="font-bold capitalize">{t("add_energy")}</p>
+                  </div>
+                </Button>
+              </div>
+
+              <div className="aspect-square">
+                <Button
+                  className="bg-gradient-to-tr w-full h-full aspect-square from-primary/50 to-secondary/50 text-white"
+                  radius="lg"
+                  variant="shadow"
+                  color="primary"
+                  onPress={AddFirendsDialog}
+                >
+                  <div className="flex flex-col my-4 justify-center items-center">
+                    <IconWrapper className="bg-background/80 text-secondary/80">
+                      <FirendsIcon fill="currentColor" className="size-8"/>
+                    </IconWrapper>
+                    <p className="font-bold capitalize">{t("invite_your_friend")}</p>
+                  </div>
+                </Button>
+              </div>
+      </div>
       <DataList user={user}/>
     </div>
   );
 };
+
+
+export const IconWrapper = ({children, className}) => (
+  <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center mb-1 rounded-small justify-center p-2")}>
+    {children}
+  </div>
+);
 
 export default ProfilePage;

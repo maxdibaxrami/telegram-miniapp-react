@@ -24,10 +24,11 @@ const DataList = ({user}) => {
   useEffect(CompiliteProfilePersent ,[])
 
   return (
-    <div className="w-full mt-3 text-default-700 bg-neutral/10 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+    <div className="w-full text-default-700 bg-neutral/10 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
       <Listbox aria-label={t('listbox_aria_label')} variant="solid">
 
         <ListboxItem
+          
           key="invite_your_friend"
           href={"/#/add-firends"}
           showDivider

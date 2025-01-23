@@ -4,10 +4,8 @@ import { useLaunchParams, shareURL } from "@telegram-apps/sdk-react";
 import { AddFirendsImage } from "@/Icons/addFirends";
 import { motion } from "framer-motion";
 import { Button, Spinner } from "@nextui-org/react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
-import { useEffect } from "react";
-import { fetchReferralData } from "@/features/refralSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 import { AddFirendsIcon } from "@/Icons";
 import { useTranslation } from "react-i18next";
 import { SparklesCustomIconText } from "@/components/animate/user-sparkles";
@@ -16,9 +14,7 @@ export default function AddFirends() {
   const lp = useLaunchParams();
   const { t } = useTranslation(); // Initialize translation hook
 
-  const dispatch = useDispatch<AppDispatch>();
   const { data: referral, loading } = useSelector((state: RootState) => state.referral);
-  const { data: user } = useSelector((state: RootState) => state.user);
   
   const getPaddingForPlatform = () => {
     return lp.platform === 'ios' ? '50px' : '25px'; // Padding for different platforms
@@ -32,13 +28,6 @@ export default function AddFirends() {
       console.error('shareURL is not available or referral data is missing');
     }
   };
-
-  useEffect(() => {
-    if (!referral && user?.id) {
-      // Ensure user.id is present and referral data is null before dispatching
-      dispatch(fetchReferralData(user.id.toString()));
-    }
-  }, [dispatch, referral, user?.id]); // Add user.id as a dependency
 
   return (
     <Page>

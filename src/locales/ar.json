@@ -312,7 +312,11 @@
 
       "You_need_more_energy_to_continue_Tap_here_to_recharge.":"أنت بحاجة إلى المزيد من الطاقة للاستمرار. \n اضغط هنا لإعادة الشحن.",
 
-      "You_can_send_a_message_without_matching_with_someone!":"يمكنك إرسال رسالة دون الحاجة إلى مطابقة مع شخص ما!"
+      "You_can_send_a_message_without_matching_with_someone!":"يمكنك إرسال رسالة دون الحاجة إلى مطابقة مع شخص ما!",
+      "energy":"طاقة",
+      "add_energy": "إضافة طاقة"
+
+
 
 
 

@@ -21,6 +21,7 @@ import { fetchFilteredExplore } from '@/features/exploreSlice';
 import { fetchConversations } from '@/features/conversationsSlice';
 import { Toaster } from 'react-hot-toast';
 import { fetchNearBySliceUsers, setFilters } from '@/features/nearBySlice';
+import { fetchReferralData } from '@/features/refralSlice';
 
 const GetStoredLanguage = async () => {
   try {
@@ -84,6 +85,7 @@ export function App() {
 
       const userId = data.id.toString();
 
+      dispatch(fetchReferralData(userId));
       dispatch(fetchLikes(userId));
       dispatch(fetchMatches(userId));
       dispatch(fetchConversations(userId));

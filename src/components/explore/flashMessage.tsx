@@ -98,7 +98,7 @@ export const FlashMessageCard = ({user, userIds}) => {
           </Badge>
 
         </div>
-        <p color="foreground" className="px-1 text-center text-xs">{t("You_can_send_a_message_without_matching_with_someone!")}</p>
+        <p color="foreground" className="px-1 text-center font-bold text-xs">{t("You_can_send_a_message_without_matching_with_someone!")}</p>
 
       </CardHeader>
 
