@@ -1,4 +1,4 @@
-import ProfileViewCard from "./profileViewCard";
+import ProfileViewCard from "./GiftViewCard";
 import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
@@ -11,7 +11,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 
 
 
-export default function ProfileViewPage() {
+export default function GiftViewPage() {
   const { t } = useTranslation();  // Initialize translation hook
   const { data, loading } = useSelector((state: RootState) => state.user);  // Assuming the like slice is in state.like
   const lp = useLaunchParams();
@@ -67,7 +67,7 @@ export default function ProfileViewPage() {
           }}
         >
 
-          {data.profileViews.map((value, index) => (<ProfileViewCard key={index} data={value} />))}
+          {data.giftUsers.map((value, index) => (<ProfileViewCard key={index} data={value} />))}
 
         </motion.div >
         </section>

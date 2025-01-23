@@ -1,5 +1,5 @@
 import { Listbox, ListboxItem, CircularProgress, Chip, cn } from "@nextui-org/react";
-import { ProfileIcon, LikeIcon, ViewIcon, PerimumIcon, FirendsIcon, ArrowRight } from "@/Icons/index";
+import { ProfileIcon, LikeIcon, ViewIcon, PerimumIcon, FirendsIcon, ArrowRight, GiftIcon, FavoriteColor } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -106,6 +106,22 @@ const DataList = ({user}) => {
         </ListboxItem>
 
         <ListboxItem
+          key="see_gift"
+          href={"/#/gift-view"}
+          showDivider
+          description={t('list_of_users_send_you_gift')}
+          className="px-0"
+          endContent={<Chip color="warning">{user && user.giftUsers.length}</Chip>}
+          startContent={
+            <IconWrapper className="bg-default/40 text-warning/80">
+              <GiftIcon className="size-5" />
+            </IconWrapper>
+          }
+        >
+          {t('gift_List')}
+        </ListboxItem>
+
+        <ListboxItem
           key="see_likes"
           href={"/#/main?page=likes"}
           showDivider
@@ -134,6 +150,23 @@ const DataList = ({user}) => {
         >
           {t('who_viewed_profile')}
         </ListboxItem>
+
+
+        <ListboxItem
+          key="favorite_users"
+          description={t('list_of_favorite_users')}
+          href={"/#/favorite-view"}
+          className="px-0"
+          endContent={<Chip color="warning">{user && user.favoriteUsers.length}</Chip>}
+          startContent={
+            <IconWrapper className="bg-default/40 text-success/80">
+              <FavoriteColor className="size-5" />
+            </IconWrapper>
+          }
+        >
+          {t('favorite')}
+        </ListboxItem>
+
       </Listbox>
     </div>
   );

@@ -13,6 +13,8 @@ import SignupPage from '@/pages/signup/page';
 import userProfile from '@/pages/userPage/index';
 import AddFirends from '@/pages/addFirends/page';
 import ProfileViewPage from '@/pages/profileView';
+import GiftViewPage from '@/pages/profileGift';
+import FavoriteViewPage from '@/pages/favoritePage';
 
 
 interface Route {
@@ -36,9 +38,11 @@ export const routes: Route[] = [
   { path: '/sign-up', Component: SignupPage, title: 'signup', auth: false },
   { path: '/add-firends', Component: AddFirends, title: 'add firends', auth: true },
   { path: '/profile-view', Component: ProfileViewPage, title: 'profile View', auth: true },
+  { path: '/gift-view', Component: GiftViewPage, title: 'gift View', auth: true },
+  { path: '/favorite-view', Component: FavoriteViewPage, title: 'favorite View', auth: true },
 
-
-
+  
+  
   
   
   {

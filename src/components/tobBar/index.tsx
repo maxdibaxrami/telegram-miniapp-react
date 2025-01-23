@@ -18,7 +18,9 @@ import {
   VerifyIconFill,
   PerimumIcon,
   AddFirendsIcon,
-  ViewIcon
+  ViewIcon,
+  FavoriteColor,
+  GiftIcon
 } from '@/Icons/index'
 import { useTranslation } from 'react-i18next';
 import BlurFade from "../animate/BlurFade";
@@ -117,6 +119,15 @@ const TopBar = () => {
               </BlurFade>
             }
 
+          {location.pathname === "/favorite-view" && 
+              <BlurFade className="flex items-center">
+                <FavoriteColor className="size-6 text-primary"/>
+                <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                  {t('favorite')}
+                </p>
+              </BlurFade>
+            }
+
             {location.pathname === "/profile-view" && 
               <BlurFade className="flex items-center">
                 <ViewIcon className="size-6 text-primary"/>
@@ -143,6 +154,15 @@ const TopBar = () => {
                   {user.verifiedAccount &&  <VerifyIconFill fill={"#21b6a8"} className="size-5"/>  }        
                   {user.premium && <PerimumIcon className="size-5"/>}
                 </p>
+              </BlurFade>
+            }
+
+            {location.pathname === "/gift-view" &&
+              <BlurFade className="flex items-center">
+                 <GiftIcon className="size-6 text-primary"/>
+                  <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                    {t('gift_List')}
+                  </p>
               </BlurFade>
             }
 

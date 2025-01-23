@@ -68,7 +68,8 @@ interface UserData {
   language: string;
   lat: string;
   lon: string;
-  profileViewsIds?: number[]
+  profileViewsIds?: number[];
+  giftUsers?:number[] | shortuser[] | null
 }
 
 // Define the user state

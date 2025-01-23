@@ -316,7 +316,18 @@
 
     "You_can_send_a_message_without_matching_with_someone!":"You can send a message without matching with someone!",
     "energy":"energy",
-    "add_energy": "add energy"
+    "add_energy": "add energy",
+
+
+
+
+
+
+
+
+    "gift_List" : "Gift List",
+    "list_of_users_send_you_gift":"List of users send you gifts",
+    "list_of_favorite_users":"List of favorite users"
 
   }
   

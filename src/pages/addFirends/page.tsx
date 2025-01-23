@@ -73,7 +73,7 @@ export default function AddFirends() {
                 className="flex items-center flex-col px-4"
                 transition={{ opacity: { duration: 0.6 } }}
               >
-                <p className="font-medium text-xl text-center">
+                <p className="font-bold text-xl text-center">
                   {t("Inviteyourfriendsandgetapremiumaccount")}
                 </p>
 
