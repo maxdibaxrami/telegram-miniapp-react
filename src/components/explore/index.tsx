@@ -214,10 +214,10 @@ const ExplorePage = () => {
           style={{ borderRadius: "50%", zIndex: 50 }}
         >   
 
-          <Popover backdrop="opaque" showArrow placement="bottom-start">
+          <Popover backdrop="opaque" showArrow placement="bottom-end">
             <PopoverTrigger>
 
-            <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="warning" variant="shadow">
+            <Button isDisabled={likesCount >= maxLikes} radius="full" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="warning" variant="shadow">
               <FlashIcon className="size-6" fill="#FFFFFF" />
             </Button>
 

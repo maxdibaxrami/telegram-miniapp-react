@@ -5,42 +5,47 @@ import {
   Button,
   CardHeader,
   Badge,
-  CardBody,
   Link,
+  CardFooter,
 } from "@nextui-org/react";
 import { BASEURL, getlookingfor } from "@/constant";
 import { useTranslation } from "react-i18next";
-import { CheckIcon, FlashIcon, GiftIcon } from "@/Icons";
+import { ChatIcon, CheckIcon, FlashIcon } from "@/Icons";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const FlashMessageCard = ({user, userIds}) => {
   const { t } = useTranslation();
   const lookingfor = getlookingfor(t)
+  const navigate = useNavigate();
 
   const [ gifSended, setgifSended ] = useState(false);
   const [ loading, setLoading ] = useState(false)
 
   const dispatch = useDispatch<AppDispatch>();
 
-     const HandleSendGifts = async () => {
+     const HandleSendMessage = async () => {
         setLoading(true)
 
         await dispatch(updateUserData({
           userId: userIds.id.toString(),
           updatedData: {
-            rewardPoints : userIds.rewardPoints - 3
+            rewardPoints : userIds.rewardPoints - 5
           }
         }));
 
         setLoading(false)
         setgifSended(true)
+        setTimeout(()=>{
+            navigate(`/chat-detail?user1=${userIds.id}&user2=${user.id}`)
+        },1000)
       };
 
       return (
-    <Card className="max-w-[350px] border-none bg-transparent" shadow="none">
-      <CardHeader className="justify-between gap-3">
+    <Card className="max-w-[250px] border-none bg-transparent" shadow="none">
+      <CardHeader className="justify-between gap-3 flex flex-col">
         <div className="flex gap-3">
           <Avatar
             isBordered
@@ -56,11 +61,12 @@ export const FlashMessageCard = ({user, userIds}) => {
             </h5>
           </div>
         </div>
-           
+        <div className="pt-4 pb-4">
           <Badge 
             isOneChar 
             color={gifSended ? "primary" : "warning"}
             size="lg"
+            className="flex flex-col"
             classNames={!gifSended? {"badge":"w-[45px]"}:{}}
             content={
               gifSended ? 
@@ -70,36 +76,43 @@ export const FlashMessageCard = ({user, userIds}) => {
               : 
               <div className="p-0.5 flex items-center">
                 <FlashIcon className="size-4" fill="#FFFFFF" />
-                <p className="font-bold text-[#fff] text-tiny text-s">-3</p>
+                <p className="font-bold text-[#fff] text-tiny text-s">-5</p>
               </div>
             } 
-            placement="top-left"
+            placement="bottom-left"
           >
             <Button
               color="success"
               radius="full"
               size="lg"
               isIconOnly
+              style={{ width: "72px", height: "72px" }}
+              onPress={HandleSendMessage} 
               isLoading={loading}
-              isDisabled={gifSended || userIds.rewardPoints < 3}
+              isDisabled={gifSended || userIds.rewardPoints < 5}
               variant={"solid"}
-              onPress={HandleSendGifts}
-
+              
             >
-              <GiftIcon className="size-6" fill="#FFF"/>
+              <ChatIcon className="size-8" fill="#FFF"/>
             </Button>
           </Badge>
+
+        </div>
+        <p color="foreground" className="px-1 text-center text-xs">{t("You_can_send_a_message_without_matching_with_someone!")}</p>
+
       </CardHeader>
 
-      {userIds.rewardPoints < 3  &&
-          <CardBody>
+      {userIds.rewardPoints < 5  &&
+          <CardFooter>
               <Link anchorIcon={
                 <FlashIcon className="size-4" fill="#FFFFFF" />
-              } className="text-xs" color="warning">
+              } className="text-xs text-center" color="warning">
                 {t("You_need_more_energy_to_continue_Tap_here_to_recharge.")}
               </Link>
-          </CardBody>
+          </CardFooter>
         }
+
+
     </Card>
   );
 };
