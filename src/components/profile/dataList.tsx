@@ -54,6 +54,7 @@ const DataList = ({user}) => {
       <ListboxItem
           key="premium_account"
           showDivider
+          isDisabled={true}
           description={t("Tounlockallfeatures,youneedapremiumaccount.")}
           className="px-0"
           startContent={

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@nextui-org/button";
-import { CloseCircleIcon, LikeIcon, LockIcon } from "@/Icons";
+import { CloseCircleIcon, FlashIcon, GiftIcon, LikeIcon, LockIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { likeUser } from "@/features/likeSlice";
@@ -15,12 +15,14 @@ import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
-import { ScrollShadow, Spinner } from "@nextui-org/react";
+import { Popover, PopoverContent, PopoverTrigger, ScrollShadow, Spinner } from "@nextui-org/react";
 import { fetchMatches } from "@/features/matchSlice";
 import { SparklesHeartText } from "../animate/hearSparkles";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";
 
 import { PopOverPerimum } from "../perimum/popOver";
+import { SendGiftCard } from "../gift";
+import { FlashMessageCard } from "./flashMessage";
 
 const ExplorePage = () => {
   const maxLikes = 50;
@@ -146,38 +148,86 @@ const ExplorePage = () => {
         </ul>
       </ScrollShadow>
 
-      <motion.div
-        className="m-2 footerswipcard fixed"
-        style={{ right: "50%", borderRadius: "50%", bottom: "30px", zIndex: 50 }}
-        transition={{ type: "tween" }}
+      <motion.div 
+        style={{bottom:"25px"}}
+        className="fixed card p-2 w-full flex justify-center items-end"
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}}
       >
-        <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
-          <CloseCircleIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
-        </Button>
-      </motion.div>
 
-      <motion.div
-        className="card m-2 footerswipcard fixed"
-        transition={{ type: "tween" }}
-        style={{ left: "50%", borderRadius: "50%", bottom: "30px", zIndex: 50 }}
-      >
-        {likesCount >= maxLikes ? (
-          <PopOverPerimum isOpen={true}>
-            <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
-              <LockIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
-            </Button>
-          </PopOverPerimum>
-        ) : (
-          <SparklesHeartText
-            text={
-              <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                <LikeIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+        <div
+          className="p-2"
+          style={{ borderRadius: "50%", zIndex: 50 }}
+        >
+
+        <Popover backdrop="opaque" showArrow placement="bottom-start">
+          <PopoverTrigger>
+
+          <Button isDisabled={likesCount >= maxLikes} radius="full" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="success" variant="shadow">
+            <GiftIcon className="size-6" fill="#FFFFFF" />
+          </Button>
+
+          </PopoverTrigger>
+          <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
+            <SendGiftCard userIds={user} user={users[0]}/>
+          </PopoverContent>
+        </Popover>
+
+        </div>
+
+        <div
+          className="p-2"
+          style={{ borderRadius: "50%", zIndex: 50 }}
+        >
+          <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="primary" variant="shadow">
+            <CloseCircleIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+          </Button>
+        </div>
+
+        <div
+          className="p-2 "
+          style={{ borderRadius: "50%", zIndex: 50 }}
+        >
+          {likesCount >= maxLikes ? (
+            <PopOverPerimum isOpen={true}>
+              <Button isDisabled={true} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
+                <LockIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
               </Button>
-            }
-            colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-            sparklesCount={5} 
-          />
-        )}
+            </PopOverPerimum>
+          ) : (
+            <SparklesHeartText
+              text={
+                <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                  <LikeIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+                </Button>
+              }
+              colors={{ first: "#ff4b61", second: "#A8B2BD" }}
+              sparklesCount={5} 
+            />
+          )}
+        </div>
+
+
+        <div
+          className="p-2"
+          style={{ borderRadius: "50%", zIndex: 50 }}
+        >   
+
+          <Popover backdrop="opaque" showArrow placement="bottom-start">
+            <PopoverTrigger>
+
+            <Button isDisabled={likesCount >= maxLikes} onClick={handleNotLike} radius="full" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="warning" variant="shadow">
+              <FlashIcon className="size-6" fill="#FFFFFF" />
+            </Button>
+
+            </PopoverTrigger>
+            <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
+              <FlashMessageCard userIds={user} user={users[0]}/>
+            </PopoverContent>
+          </Popover>
+        </div>
+
       </motion.div>
 
       {users[0] && (

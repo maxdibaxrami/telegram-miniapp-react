@@ -310,7 +310,11 @@
       "bachelor_degree": "Степень бакалавра",
       "master_degree": "Степень магистра",
       "phd": "Докторская степень",
-      "prefer_not_to_say": "Предпочитаю не говорить"
+      "prefer_not_to_say": "Предпочитаю не говорить",
+
+
+      "You_need_more_energy_to_continue_Tap_here_to_recharge.":"Вам нужно больше энергии, чтобы продолжить. \n Нажмите здесь, чтобы пополнить."
+
 
 
 

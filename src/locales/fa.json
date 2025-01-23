@@ -306,7 +306,8 @@
           "bachelor_degree": "لیسانس",
           "master_degree": "فوق لیسانس",
           "phd": "دکترا",
-          "prefer_not_to_say": "ترجیح می‌دهم نگویم"
+          "prefer_not_to_say": "ترجیح می‌دهم نگویم",
+          "You_need_more_energy_to_continue_Tap_here_to_recharge.":"برای ادامه به انرژی بیشتری نیاز دارید.\n اینجا را بزنید تا شارژ کنید."
 
 
 }

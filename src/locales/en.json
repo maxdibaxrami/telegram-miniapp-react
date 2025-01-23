@@ -309,7 +309,10 @@
     "bachelor_degree": "Bachelor's Degree",
     "master_degree": "Master's Degree",
     "phd": "PhD",
-    "prefer_not_to_say": "Prefer not to say"
+    "prefer_not_to_say": "Prefer not to say",
+
+
+    "You_need_more_energy_to_continue_Tap_here_to_recharge.":"You need more energy to continue.\n Tap here to recharge."
 
   }
   
