@@ -1,4 +1,4 @@
-import ProfileViewCard from "./GiftViewCard";
+import ProfileGiftViewCard from "./GiftViewCard";
 import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
@@ -67,7 +67,7 @@ export default function GiftViewPage() {
           }}
         >
 
-          {data.giftUsers.map((value, index) => (<ProfileViewCard key={index} data={value} />))}
+          {data.giftUsers.map((value, index) => (<ProfileGiftViewCard key={index} data={value} />))}
 
         </motion.div >
         </section>

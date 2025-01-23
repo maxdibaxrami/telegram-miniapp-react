@@ -140,6 +140,7 @@ const DataList = ({user}) => {
           key="see_views"
           description={t('see_views')}
           href={"/#/profile-view"}
+          showDivider
           className="px-0"
           endContent={<Chip color="secondary">{user && user.profileViews.length}</Chip>}
           startContent={

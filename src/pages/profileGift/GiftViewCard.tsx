@@ -3,7 +3,7 @@ import { BASEURL } from "@/constant";
 import { PerimumIcon, ProfileIcon, VerifyIconFill } from "@/Icons";
 import { Link } from "react-router-dom";
 
-const ProfileViewCard = ({ data }) => {
+const ProfileGiftViewCard = ({ data }) => {
   
   return (
       <Card
@@ -58,4 +58,4 @@ const ProfileViewCard = ({ data }) => {
   );
 };
 
-export default ProfileViewCard;
+export default ProfileGiftViewCard;

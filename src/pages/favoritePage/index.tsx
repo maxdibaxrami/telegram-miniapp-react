@@ -67,7 +67,7 @@ export default function FavoriteViewPage() {
           }}
         >
 
-          {data.favoriteUsers.map((value, index) => (<ProfileViewCard key={index} data={value} />))}
+          {data && data.favoriteUsers.map((value, index) => (<ProfileViewCard key={index} data={value} />))}
 
         </motion.div >
         </section>
