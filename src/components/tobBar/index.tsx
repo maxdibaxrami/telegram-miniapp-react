@@ -166,6 +166,15 @@ const TopBar = () => {
               </BlurFade>
             }
 
+            {location.pathname === "/verify-account" &&
+              <BlurFade className="flex items-center">
+                 <VerifyIconFill className="size-6 text-primary"/>
+                  <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                    {t('Verification')}
+                  </p>
+              </BlurFade>
+            }
+
           </NavbarItem>
         </NavbarContent>
 

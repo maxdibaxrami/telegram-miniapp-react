@@ -15,6 +15,7 @@ import AddFirends from '@/pages/addFirends/page';
 import ProfileViewPage from '@/pages/profileView';
 import GiftViewPage from '@/pages/profileGift';
 import FavoriteViewPage from '@/pages/favoritePage';
+import VerifyAccontViewPage from '@/pages/verifyAccont';
 
 
 interface Route {
@@ -40,6 +41,7 @@ export const routes: Route[] = [
   { path: '/profile-view', Component: ProfileViewPage, title: 'profile View', auth: true },
   { path: '/gift-view', Component: GiftViewPage, title: 'gift View', auth: true },
   { path: '/favorite-view', Component: FavoriteViewPage, title: 'favorite View', auth: true },
+  { path: '/verify-account', Component: VerifyAccontViewPage, title: 'verify Accont', auth: true },
 
   
   

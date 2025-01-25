@@ -81,6 +81,7 @@ interface UserState {
   userPageData:UserData | null;
   userPageLoading:boolean;
   error: string | null;
+  verifiedAccountLoading:boolean;
 }
 
 // Initial state
@@ -92,6 +93,7 @@ const initialState: UserState = {
   error: null,
   userPageData: null,
   userPageLoading: true,
+  verifiedAccountLoading : false,
 };
 
 
@@ -173,6 +175,29 @@ export const uploadProfileImage = createAsyncThunk(
       maxContentLength: Infinity, // Allow large content sizes
     });
     return response.data;
+  }
+);
+
+
+export const verifyUserPhoto = createAsyncThunk(
+  'user/verifyPhoto',
+  async ({ userId, photoFile }: { userId: string; photoFile: File }, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append('userId', userId);
+      formData.append('file', photoFile);
+
+      const response = await axios.post('/photo/verify', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        maxBodyLength: Infinity, // Allow large body sizes
+      });
+
+      return response.data; // Return the response which includes verified and similarity
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data);
+    }
   }
 );
 
@@ -278,7 +303,25 @@ const userSlice = createSlice({
         state.uploadProfileLoading = false;
         state.error = action.error.message || 'Failed to upload profile image';
         console.log(state.error)
+      })
+
+      .addCase(verifyUserPhoto.pending, (state) => {
+        state.verifiedAccountLoading = true;
+        state.error = null;
+      })
+      .addCase(verifyUserPhoto.fulfilled, (state, action) => {
+        state.verifiedAccountLoading = false;
+
+        // Update verifiedAccount based on the response
+        if (state.data) {
+          state.data.verifiedAccount = action.payload.verified || false;
+        }
+      })
+      .addCase(verifyUserPhoto.rejected, (state, action) => {
+        state.verifiedAccountLoading = false;
+        state.error = action.payload as string || 'Failed to verify photo';
       });
+
   },
 });
 

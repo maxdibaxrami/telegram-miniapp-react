@@ -327,7 +327,11 @@
 
     "gift_List" : "Gift List",
     "list_of_users_send_you_gift":"List of users send you gifts",
-    "list_of_favorite_users":"List of favorite users"
-
+    "list_of_favorite_users":"List of favorite users",
+    "Verification":"Verification",
+    "Boost_Your_Trustworthiness":"Boost Your Trustworthiness",
+    "start_Camera":"Start Camera",
+    "take_Photo":"Take Photo",
+    "upload_Photo":"Upload Photo"
   }
   
