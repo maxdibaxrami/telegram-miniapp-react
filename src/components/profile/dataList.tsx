@@ -1,4 +1,4 @@
-import { Listbox, ListboxItem, CircularProgress, Chip, cn } from "@nextui-org/react";
+import { Listbox, ListboxItem, CircularProgress, Chip, cn, Spinner } from "@nextui-org/react";
 import { ProfileIcon, LikeIcon, ViewIcon, PerimumIcon, FirendsIcon, ArrowRight, GiftIcon, FavoriteColor, VerifyIconFill } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { RootState } from "@/store";
 import { SparklesStarText } from "../animate/star-sparkles";
 import { SparklesCustomIconText } from "../animate/user-sparkles";
 
-const DataList = ({user}) => {
+const DataList = ({user, verifiedAccountLoading}) => {
   const { t, i18n } = useTranslation();  // Initialize translation hook
   const [persent, setPersent] = useState(0)
   const CompiliteProfilePersent = () => {
@@ -26,25 +26,32 @@ const DataList = ({user}) => {
   return (
     <div className="w-full text-default-700 bg-neutral/10 border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
       <Listbox aria-label={t('listbox_aria_label')} variant="solid">
-
-      <ListboxItem
-          
-          key="verify_account"
-          href={"/#/verify-account"}
-          showDivider
-          description={t("Boost_Your_Trustworthiness")}
-          className="px-0"
-          startContent={
-            <IconWrapper className="bg-default/40 text-primary"> 
-              <VerifyIconFill className="size-5"/>
-            </IconWrapper>
-          }
-          endContent={
-            <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
-          }
-        >
-         {t("Verification")}
-        </ListboxItem>
+        {user.verifiedAccount === false &&      
+          <ListboxItem
+            
+            key="verify_account"
+            href={"/#/verify-account"}
+            showDivider
+            isDisabled={verifiedAccountLoading}
+            description={t("Boost_Your_Trustworthiness")}
+            className="px-0"
+            startContent={
+              <IconWrapper className="bg-default/40 text-primary"> 
+                <VerifyIconFill className="size-5"/>
+              </IconWrapper>
+            }
+            endContent={
+              verifiedAccountLoading ?
+                  <Spinner size="sm" />
+                :
+                <ArrowRight style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>
+              }
+            
+          >
+          {t("Verification")}
+          </ListboxItem>     
+        }
+        
 
         <ListboxItem
           

@@ -82,6 +82,7 @@ interface UserState {
   userPageLoading:boolean;
   error: string | null;
   verifiedAccountLoading:boolean;
+  verifiedAccountStatus:boolean;
 }
 
 // Initial state
@@ -94,6 +95,7 @@ const initialState: UserState = {
   userPageData: null,
   userPageLoading: true,
   verifiedAccountLoading : false,
+  verifiedAccountStatus : false,
 };
 
 
@@ -308,6 +310,7 @@ const userSlice = createSlice({
       .addCase(verifyUserPhoto.pending, (state) => {
         state.verifiedAccountLoading = true;
         state.error = null;
+        state.verifiedAccountStatus= false;
       })
       .addCase(verifyUserPhoto.fulfilled, (state, action) => {
         state.verifiedAccountLoading = false;
@@ -319,6 +322,7 @@ const userSlice = createSlice({
       })
       .addCase(verifyUserPhoto.rejected, (state, action) => {
         state.verifiedAccountLoading = false;
+        state.verifiedAccountStatus= true;
         state.error = action.payload as string || 'Failed to verify photo';
       });
 

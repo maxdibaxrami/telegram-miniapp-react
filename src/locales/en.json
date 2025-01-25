@@ -332,6 +332,12 @@
     "Boost_Your_Trustworthiness":"Boost Your Trustworthiness",
     "start_Camera":"Start Camera",
     "take_Photo":"Take Photo",
-    "upload_Photo":"Upload Photo"
+    "upload_Photo":"Upload Photo",
+
+    "Profile_Verification_Requirements":"Profile Verification Requirements:",
+    "Make_sure_your_face_is_clearly_visible,_centered,_and_unobstructed.":"Make sure your face is clearly visible, centered, and unobstructed.",
+    "Ensure_that_your_photo_is_taken_in_good_lighting_to_avoid_shadows_or_dark_areas.":"Ensure that your photo is taken in good lighting to avoid shadows or dark areas.",
+    "Avoid_using_filters_or_any_image_enhancements.":"Avoid using filters or any image enhancements.",
+    "Your_face_should_match_the_one_shown_in_your_profile_image_for_verification_purposes.":"Your face should match the one shown in your profile image for verification purposes."
   }
   

@@ -26,7 +26,7 @@ const ProfilePage = () => {
   
   const { t } = useTranslation();
   const [slideCountrt, setSlideCounter] = useState<number>(1);
-  const { data: user } = useSelector((state: RootState) => state.user);
+  const { data: user, verifiedAccountLoading } = useSelector((state: RootState) => state.user);
   const { data: referral } = useSelector((state: RootState) => state.referral);
 
 
@@ -175,7 +175,7 @@ const ProfilePage = () => {
                 </Button>
               </div>
       </div>
-      <DataList user={user}/>
+      <DataList user={user} verifiedAccountLoading={verifiedAccountLoading}/>
     </div>
   );
 };
