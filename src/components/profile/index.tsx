@@ -9,6 +9,7 @@ import {
   PenIcon,
   EnergyIcon,
   FirendsIcon,
+  FlashIcon,
 } from "@/Icons/index";
 
 import DataList from "./dataList";
@@ -123,8 +124,8 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-2 py-2 grid-cols-2 sm:grid-cols-2">
-              <div>
+      <div className="grid gap-3 py-3 grid-cols-3 sm:grid-cols-3">
+              <div className="aspect-square">
                 <Button
                   className="bg-gradient-to-tr w-full h-full from-primary/50 to-secondary/50 text-white "
                   radius="lg"
@@ -137,14 +138,31 @@ const ProfilePage = () => {
                     <IconWrapper className="bg-background/80 text-secondary/80">
                       <EnergyIcon className="size-8"/>
                     </IconWrapper>
-                    <p className="font-bold capitalize">{t("energy")}</p>
+                    <p className="font-bold capitalize">{t("add_energy")}</p>
                   </div>
                 </Button>
               </div>
-
+              <div className="aspect-square">
+                <Button
+                  className="bg-gradient-to-tr w-full h-full aspect-square from-primary/50 to-secondary/50 text-white"
+                  radius="lg"
+                  variant="shadow"
+                  color="warning"
+                >
+                  <div className="flex flex-col my-4 justify-center items-center">
+                    <IconWrapper className="bg-background/80 text-secondary/80">
+                      <div className="flex flex-col aspect-square items-center justify-center">
+                        <FlashIcon className="size-8"/>
+                        <small></small>
+                        </div>
+                    </IconWrapper>
+                    <p className="font-bold capitalize">{t("energy")} : {user.rewardPoints}</p>
+                  </div>
+                </Button>
+              </div>
               <div>
                 <Button
-                  className="bg-gradient-to-tr w-full h-full from-warning/50 to-secondary/50 text-white"
+                  className="bg-gradient-to-tr w-full h-full aspect-square from-primary/50 to-secondary/50 text-white"
                   radius="lg"
                   variant="shadow"
                   color="primary"
