@@ -44,7 +44,7 @@ export default function FavoriteViewPage() {
   return (
     <Page>
        <div
-          className="container mx-auto max-w-7xl flex-grow"
+          className="container mx-auto h-screen max-w-7xl flex-grow"
           style={{
             maxHeight: "100%",
             height:"100%",

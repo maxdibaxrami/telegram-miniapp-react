@@ -44,7 +44,7 @@ export default function ProfileViewPage() {
   return (
     <Page>
        <div
-          className="container mx-auto max-w-7xl flex-grow"
+          className="container mx-auto max-w-7xl flex-grow h-screen"
           style={{
             maxHeight: "100%",
             height:"100%",

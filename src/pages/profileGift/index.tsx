@@ -44,7 +44,7 @@ export default function GiftViewPage() {
   return (
     <Page>
        <div
-          className="container mx-auto max-w-7xl flex-grow"
+          className="container mx-auto max-w-7xl h-screen flex-grow"
           style={{
             maxHeight: "100%",
             height:"100%",
@@ -54,12 +54,12 @@ export default function GiftViewPage() {
       >
         <TopBarPages />
         <section
-                className="flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center "
                 style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`}}  
               >
       
         <motion.div 
-          className="grid gap-2 grid-cols-2 py-2"
+          className="grid gap-2 grid-cols-2 py-2 "
           style={{
             paddingBottom: "6rem",
             paddingLeft:"18px",
