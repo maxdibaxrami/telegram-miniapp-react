@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const useViewportHeight = (): number => {
   const [viewportHeight, setViewportHeight] = useState<number>(window.visualViewport?.height || window.innerHeight);
