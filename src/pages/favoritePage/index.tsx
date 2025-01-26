@@ -22,12 +22,14 @@ export default function FavoriteViewPage() {
     </div>
   }
   if(!loading && data.favoriteUsers.length === 0){
-    return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
-        <NotFoundLike/>
-        <div className="flex gap-4 flex-col px-6 text-center items-center">
-          <p className="text-tiny">{t("nolikemessage")}</p>
-        </div>
-    </div>
+    return <Page>
+        <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
+          <NotFoundLike/>
+          <div className="flex gap-4 flex-col px-6 text-center items-center">
+            <p className="text-tiny">{t("nolikemessage")}</p>
+          </div>
+      </div>
+    </Page>
   }
 
   const getPaddingForPlatform = () => {
@@ -46,8 +48,6 @@ export default function FavoriteViewPage() {
        <div
           className="container mx-auto h-screen max-w-7xl flex-grow"
           style={{
-            maxHeight: "100%",
-            height:"100%",
             marginBottom:"5rem",
             
           }}
