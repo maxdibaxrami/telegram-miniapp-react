@@ -36,6 +36,7 @@ export default function VerifyAccontViewPage() {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        videoRef.current.play(); // Manually start the video
       }
       setStartCameraAllow(true);
     } catch (error) {
@@ -90,48 +91,43 @@ export default function VerifyAccontViewPage() {
         <TopBarPages />
         <Card radius="lg" className="flex flex-col items-center justify-center" style={{ marginTop: `calc(4rem + ${getPaddingForPlatform()})` }}>
           <CardBody>
-          <canvas ref={canvasRef} className="hidden"></canvas>
-          {!photoTaken ? (
-            <>
-              {!startCameraAllow && <VerifiedAccountImage />}
-              <video
-                ref={videoRef}
-                autoPlay
-                controls={false}
-                className={`w-full h-[300px] ${!startCameraAllow && "hidden"} rounded-xl`}
-                style={{ objectFit: "cover", pointerEvents: "none" }} // Disable resizing and fullscreen
-              />
-              <div className="mt-2 w-full flex items-center justify-center">
-                {!startCameraAllow && (
-                  <Button className="w-full mt-2" onClick={startCamera} variant="shadow" color="primary">
-                    <VideoCamera className="size-6" />
-                    {t("start_Camera")}
-                  </Button>
-                )}
-                {startCameraAllow && !photoTaken && (
-                  <Button onClick={takePhoto} variant="shadow" className="w-full mt-2" color="secondary">
-                    <CameraIcon className="size-6" />
-                    {t("take_Photo")}
-                  </Button>
-                )}
-              </div>
-            </>
-          ) : (
-            <>
-              <Image
-                src={URL.createObjectURL(photo)}
-                alt="Captured"
-                className="w-full h-[300px] aspect-video"
-                classNames={{
-                  wrapper: "w-full h-[300px] maxcontentimportant",
-                }}
-              />
-              <Button onClick={uploadPhoto} variant="shadow" color="primary" className="w-full mt-2">
-                <UploadIcon className="size-6" />
-                {t("upload_Photo")}
-              </Button>
-            </>
-          )}
+            <canvas ref={canvasRef} className="hidden"></canvas>
+            {!photoTaken ? (
+              <>
+                {!startCameraAllow && <VerifiedAccountImage />}
+                <video
+                  ref={videoRef}
+                  className={`w-full h-[300px] ${!startCameraAllow && "hidden"} rounded-xl`}
+                  style={{ objectFit: "cover", pointerEvents: "none" }} // Disable resizing and fullscreen
+                />
+                <div className="mt-2 w-full flex items-center justify-center">
+                  {!startCameraAllow && (
+                    <Button className="w-full mt-2" onClick={startCamera} variant="shadow" color="primary">
+                      <VideoCamera className="size-6" />
+                      {t("start_Camera")}
+                    </Button>
+                  )}
+                  {startCameraAllow && !photoTaken && (
+                    <Button onClick={takePhoto} variant="shadow" className="w-full mt-2" color="secondary">
+                      <CameraIcon className="size-6" />
+                      {t("take_Photo")}
+                    </Button>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <Image
+                  src={URL.createObjectURL(photo)}
+                  alt="Captured"
+                  className="w-full h-[300px] aspect-video"
+                />
+                <Button onClick={uploadPhoto} variant="shadow" color="primary" className="w-full mt-2">
+                  <UploadIcon className="size-6" />
+                  {t("upload_Photo")}
+                </Button>
+              </>
+            )}
           </CardBody>
 
           <CardFooter className="mt-4 flex-col flex items-start text-green-500">
