@@ -10,14 +10,17 @@ import ExplorePage from '@/components/explore';
 import NearByPage from '@/pages/nearby/page';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
 import { Button } from '@nextui-org/button';
-import { FitlerIcon } from '@/Icons';
+import { FitlerIcon, FlashIcon } from '@/Icons';
 import NearByFilter from '@/components/naerby/NearByFilter';
 import { useRef } from 'react';
+import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
 
 const MainPage = () => {
   const [searchParams] = useSearchParams();
   const lp = useLaunchParams();
   const FilterRef = useRef();
+  const { data: user } = useSelector((state: RootState) => state.user);
 
     const getPaddingForPlatform = () => {
       if (['ios'].includes(lp.platform)) {
@@ -139,7 +142,6 @@ const MainPage = () => {
                 </AnimatePresence>
               )}
 
-
               {searchParams.get('page') === "nearby" && (
                         <motion.div
                             style={{
@@ -167,7 +169,40 @@ const MainPage = () => {
                               <FitlerIcon />
                             </Button>
                           </motion.div>
-                      )}
+              )}
+
+
+              {searchParams.get('page') !== "profile" && (
+                        <motion.div
+                            style={{
+                              position: "fixed",
+                              zIndex: 50,
+                              right: 10,
+                              transform: "translateX(-50%)",
+                              top:"100px"
+                            }}
+                            initial={{ opacity:0 }}
+                            animate={{ opacity:1 }}
+                            exit={{ opacity:0 }}
+                          >
+                            <Button
+                              variant="light"
+                              size="sm"
+                              onClick={handleFilterClick}
+                              radius="full"
+                              isIconOnly
+                              aria-label="Like"
+                              color="primary"
+                              className='bg-primary/50 backdrop-blur'
+
+                            >
+                              <div className='flex items-center flex-col relative'>
+                                <FlashIcon fill="#FFF" className="size-4 mt-1"/>
+                                <small className='p-0 m-0 font-bold' style={{fontSize:"8px",color:"#FFF",marginTop:"-4px"}}>{user.rewardPoints}</small>
+                              </div>
+                            </Button>
+                          </motion.div>
+              )}
 
           <NearByFilter ref={FilterRef} />
 

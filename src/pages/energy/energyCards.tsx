@@ -4,7 +4,7 @@ import { Avatar, Button, Card,  CardHeader } from "@nextui-org/react";
 export const EnergyCard = ({color,title,description,price,type}) => {
 
   return (
-    <Card className="max-w-[340px] mb-2">
+    <Card className="max-w-[340px] py-2 mb-2">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Avatar

@@ -70,6 +70,7 @@ interface UserData {
   lon: string;
   profileViewsIds?: number[];
   giftUsers?:number[] | shortuser[] | null
+  rewardPoints? : number
 }
 
 // Define the user state
