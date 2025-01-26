@@ -9,7 +9,6 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useState } from "react";
 import { EnergyCard } from "./energyCards";
 import { FirendsIcon, PerimumIcon, TonCoinIcon } from "@/Icons";
-import { IconWrapper } from "../userPage";
 import { Link } from "react-router-dom";
 
 
@@ -174,7 +173,7 @@ export default function EnergyViewPage() {
 }
 
 
-const IconWrapper = ({children, className}) => (
+export const IconWrapper = ({children, className}) => (
     <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center rounded-small justify-center p-2")}>
       {children}
     </div>
