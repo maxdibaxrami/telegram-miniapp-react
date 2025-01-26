@@ -2,13 +2,15 @@
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Card, CardBody, Spinner, Tab, Tabs } from "@nextui-org/react";
+import { Button, Card, CardBody, cn, Spinner, Tab, Tabs } from "@nextui-org/react";
 import { Page } from '@/components/Page.tsx';
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useState } from "react";
 import { EnergyCard } from "./energyCards";
-import { PerimumIcon, TonCoinIcon } from "@/Icons";
+import { FirendsIcon, PerimumIcon, TonCoinIcon } from "@/Icons";
+import { IconWrapper } from "../userPage";
+import { Link } from "react-router-dom";
 
 
 
@@ -53,7 +55,27 @@ export default function EnergyViewPage() {
                     style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`,}}  
                 >
                      <div className="flex flex-col w-full">
-                        
+                     <div>
+                        <Button
+                            className="bg-gradient-to-tr w-full mb-2 h-full from-primary/50 to-secondary/50 text-white"
+                            radius="lg"
+                            variant="shadow"
+                            color="primary"
+                            as={Link}
+                            to={'/add-firends'}
+                            >
+                            <div className="flex my-4 items-center">
+                                <IconWrapper className="bg-background/80 text-secondary/80">
+                                    <FirendsIcon fill="currentColor" className="size-8"/>
+                                </IconWrapper>
+                                <div className="px-2 flex flex-col">
+                                    <p className="font-bold capitalize text-start">{t("invite_your_friend")}</p>
+                                    <small className="text-wrap text-start">{t("Inviteyourfriendsandgetapremiumaccount")}</small>
+                                </div>
+
+                            </div>
+                        </Button>
+                    </div>
                         <Card className="max-w-full h-full">
                             <CardBody className="overflow-hidden">
                             <Tabs
@@ -150,3 +172,10 @@ export default function EnergyViewPage() {
     </Page>
   );
 }
+
+
+const IconWrapper = ({children, className}) => (
+    <div style={{borderRadius:"50%"}} className={cn(className, "flex items-center rounded-small justify-center p-2")}>
+      {children}
+    </div>
+);
