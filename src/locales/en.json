@@ -264,7 +264,7 @@
     "Youhavereachedyourdailylikelimitof5":"You have reached your daily like limit of 5.",
     "Reachedlimit":"Reached limit",
     "Tounlockallfeatures,youneedapremiumaccount.":"To unlock all features, you need a premium account.",
-    "Inviteyourfriendsandgetapremiumaccount":"Invite your friends and get a premium account!",
+    "Inviteyourfriendsandgetapremiumaccount":"Invite your friends and earn 50 energy to level up your account!",
     "Next":"Next",
 
 
@@ -345,6 +345,7 @@
     "50_Energy":"50 Energy",
     "150_Energy":"150 Energy",
     "500_Energy":"500 Energy",
-    "1000_Energy":"1000 Energy"
+    "1000_Energy":"1000 Energy",
+    "data_not_found":"data not found"
   }
   

@@ -264,7 +264,7 @@
 
       "Reachedlimit":"Достигнут лимит",
       "Tounlockallfeatures,youneedapremiumaccount.":"Для разблокировки всех функций вам необходим премиум-аккаунт.",
-      "Inviteyourfriendsandgetapremiumaccount":"Пригласите своих друзей и получите премиум-аккаунт!",
+      "Inviteyourfriendsandgetapremiumaccount":"Пригласите своих друзей и получите 50 энергии для улучшения аккаунта!",
       "Next":"Следующий",
 
 
@@ -318,8 +318,30 @@
 
       "You_can_send_a_message_without_matching_with_someone!":"Вы можете отправить сообщение, не совпав с кем-либо!",
       "energy":"энергия",
-      "add_energy": "добавить энергии"
+      "add_energy": "добавить энергии",
 
+    "gift_List": "Список подарков",
+    "list_of_users_send_you_gift": "Список пользователей, которые отправили вам подарки",
+    "list_of_favorite_users": "Список любимых пользователей",
+    "Verification": "Подтверждение",
+    "Boost_Your_Trustworthiness": "Увеличьте свою надежность",
+    "start_Camera": "Запустить камеру",
+    "take_Photo": "Сделать фото",
+    "upload_Photo": "Загрузить фото",
+
+    "Profile_Verification_Requirements": "Требования к верификации профиля:",
+    "Make_sure_your_face_is_clearly_visible,_centered,_and_unobstructed.": "Убедитесь, что ваше лицо четко видно, оно центрировано и не закрыто.",
+    "Ensure_that_your_photo_is_taken_in_good_lighting_to_avoid_shadows_or_dark_areas.": "Убедитесь, что ваше фото снято при хорошем освещении, чтобы избежать теней или темных участков.",
+    "Avoid_using_filters_or_any_image_enhancements.": "Избегайте использования фильтров или любых улучшений изображения.",
+    "Your_face_should_match_the_one_shown_in_your_profile_image_for_verification_purposes.": "Ваше лицо должно совпадать с тем, что показано на вашем профиле для целей верификации.",
+    "stars": "Звезды",
+    "ton": "Тон",
+    "buy": "Купить",
+    "50_Energy": "50 Энергии",
+    "150_Energy": "150 Энергии",
+    "500_Energy": "500 Энергии",
+    "1000_Energy": "1000 Энергии",
+    "data_not_found": "Данные не найдены"
 
 
 

@@ -104,7 +104,7 @@ export const FlashMessageCard = ({user, userIds}) => {
 
       {userIds.rewardPoints < 5  &&
           <CardFooter>
-              <Link anchorIcon={
+              <Link href="/#/energy" anchorIcon={
                 <FlashIcon className="size-4" fill="#FFFFFF" />
               } className="text-xs text-center" color="warning">
                 {t("You_need_more_energy_to_continue_Tap_here_to_recharge.")}

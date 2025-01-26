@@ -450,7 +450,7 @@ export default function ProfilePage() {
       
                                   {likesCount >= maxLikes ? 
                                       <PopOverPerimum>
-                                          <Button radius="full" isIconOnly size="md" color="secondary" variant="shadow">
+                                          <Button radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
                                             <LockIcon className="size-6"/> 
                                           </Button>
                                       </PopOverPerimum>
@@ -459,7 +459,7 @@ export default function ProfilePage() {
                                     :
                                       <SparklesHeartText
                                         text={
-                                          <Button className="z-50" isDisabled={likedUser || liked || match} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="md" color="secondary" variant="shadow">
+                                          <Button className="z-50" isDisabled={likedUser || liked || match} isLoading={requestLoading} onPress={handleLikeUser} radius="full" isIconOnly size="lg" color="secondary" variant="shadow">
                                             {likedUser || liked || match ? <CheckIcon className="size-6" strokeWidth={2}/> : <LikeIcon className="size-6"/> }
                                           </Button>
                                         }
@@ -477,7 +477,7 @@ export default function ProfilePage() {
                                         <Popover backdrop="opaque" showArrow placement="bottom-end">
                                           <PopoverTrigger>
 
-                                          <Button isDisabled={likesCount >= maxLikes} radius="full" size="md" isIconOnly color="warning" variant="shadow">
+                                          <Button isDisabled={likesCount >= maxLikes} radius="full" size="lg" isIconOnly color="warning" variant="shadow">
                                             <FlashIcon className="size-6" fill="#FFFFFF" />
                                           </Button>
 

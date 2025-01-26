@@ -2,12 +2,12 @@ import ProfileGiftViewCard from "./GiftViewCard";
 import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
-import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
 import { Spinner } from "@nextui-org/react";
 import { Page } from '@/components/Page.tsx';
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { GiftNotFound } from "@/Icons/giftIcon";
 
 
 
@@ -24,9 +24,9 @@ export default function GiftViewPage() {
   if(!loading && data.giftUsers.length === 0){
     return <Page>
       <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
-        <NotFoundLike/>
+        <GiftNotFound/>
         <div className="flex gap-4 flex-col px-6 text-center items-center">
-          <p className="text-tiny">{t("nolikemessage")}</p>
+        <p className="font-bold">{t("data_not_found")}</p>
         </div>
     </div>
     </Page>

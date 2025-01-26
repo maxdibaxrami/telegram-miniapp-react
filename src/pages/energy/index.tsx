@@ -53,6 +53,7 @@ export default function EnergyViewPage() {
                     style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`,}}  
                 >
                      <div className="flex flex-col w-full">
+                        
                         <Card className="max-w-full h-full">
                             <CardBody className="overflow-hidden">
                             <Tabs

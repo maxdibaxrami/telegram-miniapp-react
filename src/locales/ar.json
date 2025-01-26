@@ -264,7 +264,7 @@
       "Youhavereachedyourdailylikelimitof5":"لقد وصلت إلى الحد اليومي للإعجابات وهو 5.",
       "Reachedlimit":"وصلت إلى الحد",
       "Tounlockallfeatures,youneedapremiumaccount.":"للوصول إلى جميع الميزات، يجب أن يكون لديك حساب مميز.",
-      "Inviteyourfriendsandgetapremiumaccount":"ادعُ أصدقاءك واحصل على حساب بريميوم!",
+      "Inviteyourfriendsandgetapremiumaccount":"ادعُ أصدقائك واحصل على 50 طاقة لترقية حسابك!",
       "Next":"التالي",
 
 
@@ -314,7 +314,30 @@
 
       "You_can_send_a_message_without_matching_with_someone!":"يمكنك إرسال رسالة دون الحاجة إلى مطابقة مع شخص ما!",
       "energy":"طاقة",
-      "add_energy": "إضافة طاقة"
+      "add_energy": "إضافة طاقة",
+
+      "gift_List": "قائمة الهدايا",
+      "list_of_users_send_you_gift": "قائمة المستخدمين الذين أرسلوا لك هدايا",
+      "list_of_favorite_users": "قائمة المستخدمين المفضلين",
+      "Verification": "التحقق",
+      "Boost_Your_Trustworthiness": "تعزيز مصداقيتك",
+      "start_Camera": "ابدأ الكاميرا",
+      "take_Photo": "التقاط صورة",
+      "upload_Photo": "رفع صورة",
+  
+      "Profile_Verification_Requirements": "متطلبات التحقق من الملف الشخصي:",
+      "Make_sure_your_face_is_clearly_visible,_centered,_and_unobstructed.": "تأكد من أن وجهك مرئي بوضوح، في المنتصف، وغير محجوب.",
+      "Ensure_that_your_photo_is_taken_in_good_lighting_to_avoid_shadows_or_dark_areas.": "تأكد من أن صورتك تم التقاطها في إضاءة جيدة لتجنب الظلال أو المناطق المظلمة.",
+      "Avoid_using_filters_or_any_image_enhancements.": "تجنب استخدام الفلاتر أو أي تحسينات على الصورة.",
+      "Your_face_should_match_the_one_shown_in_your_profile_image_for_verification_purposes.": "يجب أن يتطابق وجهك مع الذي يظهر في صورة ملفك الشخصي لأغراض التحقق.",
+      "stars": "نجوم",
+      "ton": "طن",
+      "buy": "شراء",
+      "50_Energy": "50 طاقة",
+      "150_Energy": "150 طاقة",
+      "500_Energy": "500 طاقة",
+      "1000_Energy": "1000 طاقة",
+      "data_not_found": "البيانات غير موجودة"
 
 
 

@@ -265,7 +265,7 @@
 
         "Reachedlimit":"به محدودیت رسیده‌اید",
         "Tounlockallfeatures,youneedapremiumaccount.":"برای دسترسی به تمام ویژگی‌ها، باید حساب کاربری ویژه داشته باشید.",
-        "Inviteyourfriendsandgetapremiumaccount":"دوستان خود را دعوت کنید و حساب پریمیوم دریافت کنید!",
+        "Inviteyourfriendsandgetapremiumaccount":"دوستان خود را دعوت کنید و 50 انرژی برای ارتقاء حساب خود کسب کنید!",
         "Next":"بعدی",
         "has_kids": "فرزند دارد",
         "no_kids": "فرزندی ندارد",
@@ -310,7 +310,29 @@
           "You_need_more_energy_to_continue_Tap_here_to_recharge.":"برای ادامه به انرژی بیشتری نیاز دارید.\n اینجا را بزنید تا شارژ کنید.",
           "You_can_send_a_message_without_matching_with_someone!":"شما می‌توانید بدون تطابق با کسی پیام ارسال کنید!",
           "energy":"انرژی",
-          "add_energy": "افزایش انرژی"
+          "add_energy": "افزایش انرژی",
+          "gift_List": "لیست هدایا",
+          "list_of_users_send_you_gift": "لیست کاربرانی که به شما هدیه ارسال کرده‌اند",
+          "list_of_favorite_users": "لیست کاربران مورد علاقه",
+          "Verification": "تأیید هویت",
+          "Boost_Your_Trustworthiness": "اعتماد خود را افزایش دهید",
+          "start_Camera": "شروع دوربین",
+          "take_Photo": "عکس بگیرید",
+          "upload_Photo": "بارگذاری عکس",
+      
+          "Profile_Verification_Requirements": "الزامات تأیید هویت پروفایل:",
+          "Make_sure_your_face_is_clearly_visible,_centered,_and_unobstructed.": "اطمینان حاصل کنید که صورت شما به وضوح قابل مشاهده، در مرکز و بدون موانع است.",
+          "Ensure_that_your_photo_is_taken_in_good_lighting_to_avoid_shadows_or_dark_areas.": "اطمینان حاصل کنید که عکس شما در نور مناسب گرفته شده تا از سایه‌ها یا نواحی تاریک جلوگیری شود.",
+          "Avoid_using_filters_or_any_image_enhancements.": "از استفاده از فیلترها یا هرگونه بهبود تصویر خودداری کنید.",
+          "Your_face_should_match_the_one_shown_in_your_profile_image_for_verification_purposes.": "صورت شما باید با آنچه در تصویر پروفایل شما برای اهداف تأیید مطابقت داشته باشد.",
+          "stars": "ستاره‌ها",
+          "ton": "تن",
+          "buy": "خرید",
+          "50_Energy": "50 انرژی",
+          "150_Energy": "150 انرژی",
+          "500_Energy": "500 انرژی",
+          "1000_Energy": "1000 انرژی",
+          "data_not_found": "داده‌ای پیدا نشد"
 
 
 

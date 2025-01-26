@@ -26,7 +26,7 @@ export default function ProfileViewPage() {
         <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
           <NotFoundLike/>
           <div className="flex gap-4 flex-col px-6 text-center items-center">
-            <p className="text-tiny">{t("nolikemessage")}</p>
+            <p className="font-bold">{t("data_not_found")}</p>
           </div>
       </div>
     </Page>
