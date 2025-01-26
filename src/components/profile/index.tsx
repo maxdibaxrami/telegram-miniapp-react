@@ -8,7 +8,6 @@ import {
   SettingIcon,
   PenIcon,
   EnergyIcon,
-  FlashIcon,
   FirendsIcon,
 } from "@/Icons/index";
 

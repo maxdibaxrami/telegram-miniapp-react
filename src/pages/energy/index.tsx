@@ -2,7 +2,7 @@
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Button, Card, CardBody, Input, Link, Spinner, Tab, Tabs } from "@nextui-org/react";
+import { Card, CardBody, Spinner, Tab, Tabs } from "@nextui-org/react";
 import { Page } from '@/components/Page.tsx';
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
@@ -14,9 +14,9 @@ import { PerimumIcon, TonCoinIcon } from "@/Icons";
 
 export default function EnergyViewPage() {
   const { t } = useTranslation();  // Initialize translation hook
-  const { data, loading } = useSelector((state: RootState) => state.user);  // Assuming the like slice is in state.like
+  const { loading } = useSelector((state: RootState) => state.user);  // Assuming the like slice is in state.like
   const lp = useLaunchParams();
-  const [selected, setSelected] = useState<React.Key>("login");
+  const [selected, setSelected] = useState<React.Key >("stars");
 
   if(loading){
     return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
@@ -58,6 +58,7 @@ export default function EnergyViewPage() {
                             <Tabs
                                 fullWidth
                                 aria-label="Tabs form"
+                                // @ts-ignore
                                 selectedKey={selected}
                                 size="md"
                                 onSelectionChange={setSelected}

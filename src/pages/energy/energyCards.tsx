@@ -1,9 +1,7 @@
-import { EnergyIcon, FlashIcon, PerimumIcon, TonCoinIcon } from "@/Icons";
+import {  FlashIcon, PerimumIcon, TonCoinIcon } from "@/Icons";
 import { Avatar, Button, Card,  CardHeader } from "@nextui-org/react";
-import { useTranslation } from "react-i18next";
 
 export const EnergyCard = ({color,title,description,price,type}) => {
-  const { t } = useTranslation();  // Initialize translation hook
 
   return (
     <Card className="max-w-[340px] mb-2">
