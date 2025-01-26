@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
+import { FixedSizeGrid as Grid } from "react-window"; // Import the virtualization grid component
 import NearByCard from "@/components/naerby/nearByCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
@@ -6,14 +7,14 @@ import { NotFoundLike } from "@/Icons/notFoundLike";
 import { useTranslation } from "react-i18next";
 import { fetchNearBySliceUsers } from "@/features/nearBySlice";
 import { Spinner } from "@nextui-org/react";
-import { LayoutGroup } from "framer-motion";
 
 export default function NearByPage() {
-
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  
-  const { data: users, loading, page, total, filters, loadingMore } = useSelector((state: RootState) => state.nearBy);
+
+  const { data: users, loading, page, total, filters, loadingMore } = useSelector(
+    (state: RootState) => state.nearBy
+  );
   const { data: user } = useSelector((state: RootState) => state.user);
 
   const observer = useRef<IntersectionObserver | null>(null);
@@ -22,12 +23,14 @@ export default function NearByPage() {
   // Callback to handle fetching users
   const fetchMoreUsers = useCallback(() => {
     if (!loading && users.length < total && !loadingMore) {
-      dispatch(fetchNearBySliceUsers({
-        userId: user.id.toString(),
-        page: page,
-        limit: 30,
-        ...filters
-      }));
+      dispatch(
+        fetchNearBySliceUsers({
+          userId: user.id.toString(),
+          page: page,
+          limit: 40,
+          ...filters,
+        })
+      );
     }
   }, [dispatch, filters, loading, loadingMore, page, total]);
 
@@ -67,7 +70,7 @@ export default function NearByPage() {
 
   if (!loading && users.length === 0) {
     return (
-      <div 
+      <div
         className="h-screen w-screen flex flex-col items-center justify-center"
         style={{
           paddingTop: "4.2rem",
@@ -84,30 +87,43 @@ export default function NearByPage() {
     );
   }
 
-  return (
-    <LayoutGroup>
-      <div
-        className="grid gap-3 grid-cols-3 sm:grid-cols-3"
-        style={{
-          paddingTop: "4.2rem",
-          paddingBottom: "6rem",
-          paddingRight: "18px",
-          paddingLeft: "18px",
-        }}
-      >
-        {users.map((user) => (
-          <NearByCard key={user.id} data={user} />
-        ))}
-
-        {/* Sentinel div for Intersection Observer */}
-        <div ref={loadMoreRef} className="col-span-2 w-full flex items-center justify-center">
-          {!loadingMore && users.length < total && (
-            <div className="col-span-2 w-full mt-6 mb-6 flex items-center justify-center">
-              <Spinner size="lg" />
-            </div>
-          )}
-        </div>
+  // Virtualization using react-window Grid
+  const Cell = ({ columnIndex, rowIndex, style }: any) => {
+    const user = users[rowIndex * 3 + columnIndex]; // Get the user for that cell (3 users per row)
+    return (
+      <div style={style} className="w-1/3 aspect-square flex-shrink-0">
+        {user && <NearByCard data={user} />}
       </div>
-    </LayoutGroup>
+    );
+  };
+
+  return (
+    <div
+      style={{
+        paddingTop: "4.2rem",
+        paddingBottom: "6rem",
+      }}
+    >
+      {/* Virtualized Grid */}
+      <Grid
+        columnCount={3} // 3 items per row
+        columnWidth={window.innerWidth / 3} // Set column width (responsive)
+        height={window.innerHeight} // Full screen height
+        rowCount={Math.ceil(users.length / 3)} // Rows of 3 items
+        rowHeight={window.innerWidth / 3} // Height matches width for aspect-square
+        width={window.innerWidth} // Full screen width
+      >
+        {Cell}
+      </Grid>
+
+      {/* Sentinel div for Intersection Observer */}
+      <div ref={loadMoreRef} className="w-full flex items-center justify-center">
+        {!loadingMore && users.length < total && (
+          <div className="w-full mt-6 mb-6 flex items-center justify-center">
+            <Spinner size="lg" />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

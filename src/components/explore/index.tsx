@@ -132,7 +132,7 @@ const ExplorePage = () => {
       <ScrollShadow hideScrollBar size={180} style={{ overflow: "hidden", height: `calc(100vh - ${getPaddingForPlatform()})` }}>
         <ul style={{ marginTop: "3.6rem" }} className="flex flex-col">
           <AnimatePresence mode={"sync"}>
-            {users.map((user, index) => (
+            {users.slice(0, 5).map((user, index) => (
               <motion.li
                 layout
                 initial={{ opacity: 0 }}

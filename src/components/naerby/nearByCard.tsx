@@ -8,7 +8,7 @@ const NearByCard = ({ data }) => {
       <Card
         isPressable
         disableRipple
-        radius="lg"
+        radius="none"
         disableAnimation
         className="border-none relative"
         as={Link}
@@ -18,6 +18,7 @@ const NearByCard = ({ data }) => {
           alt="Woman listing to music"
           className="object-cover aspect-square"
           loading="lazy"
+          radius="none"
           src={`${BASEURL}${data.photo}`}
           style={{ height: "100%", width: "100%" }}
         />

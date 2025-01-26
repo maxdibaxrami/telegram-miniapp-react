@@ -188,7 +188,6 @@ const MainPage = () => {
                             <Button
                               variant="light"
                               size="sm"
-                              onClick={handleFilterClick}
                               radius="full"
                               isIconOnly
                               aria-label="Like"

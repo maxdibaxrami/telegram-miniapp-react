@@ -16,7 +16,8 @@ const ChatPage = () => {
       }}
       id="chatScrollcontainer"
     >
-      <div className="rounded-xl bg-gradient-to-tr from-primary/50 to-secondary/50 mb-2 shadow" style={{width:"100%", height:"100%", zIndex:1}}>
+
+      <div className="rounded-xl mb-2 shadow bg-neutral/10" style={{width:"100%", height:"100%", zIndex:1}}>
         <MatchList/>
       </div>
 
