@@ -16,6 +16,7 @@ import ProfileViewPage from '@/pages/profileView';
 import GiftViewPage from '@/pages/profileGift';
 import FavoriteViewPage from '@/pages/favoritePage';
 import VerifyAccontViewPage from '@/pages/verifyAccont';
+import EnergyViewPage from '@/pages/energy';
 
 
 interface Route {
@@ -42,6 +43,7 @@ export const routes: Route[] = [
   { path: '/gift-view', Component: GiftViewPage, title: 'gift View', auth: true },
   { path: '/favorite-view', Component: FavoriteViewPage, title: 'favorite View', auth: true },
   { path: '/verify-account', Component: VerifyAccontViewPage, title: 'verify Accont', auth: true },
+  { path: '/energy', Component: EnergyViewPage, title: 'energy Accont', auth: true },
 
   
   

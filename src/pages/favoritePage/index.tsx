@@ -21,7 +21,7 @@ export default function FavoriteViewPage() {
       <Spinner size="lg" />
     </div>
   }
-  if(!loading && data.profileViews.length === 0){
+  if(!loading && data.favoriteUsers.length === 0){
     return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
         <NotFoundLike/>
         <div className="flex gap-4 flex-col px-6 text-center items-center">

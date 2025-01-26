@@ -20,7 +20,8 @@ import {
   AddFirendsIcon,
   ViewIcon,
   FavoriteColor,
-  GiftIcon
+  GiftIcon,
+  EnergyIcon
 } from '@/Icons/index'
 import { useTranslation } from 'react-i18next';
 import BlurFade from "../animate/BlurFade";
@@ -171,6 +172,15 @@ const TopBar = () => {
                  <VerifyIconFill className="size-6 text-primary"/>
                   <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                     {t('Verification')}
+                  </p>
+              </BlurFade>
+            }
+
+            {location.pathname === "/energy" &&
+              <BlurFade className="flex items-center">
+                 <EnergyIcon className="size-6 text-primary"/>
+                  <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                    {t('energy')}
                   </p>
               </BlurFade>
             }
