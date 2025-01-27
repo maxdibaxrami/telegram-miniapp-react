@@ -1,4 +1,4 @@
-import { Card, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { PerimumIcon, VerifyIconFill } from "@/Icons/index";
 import { BASEURL } from "@/constant";
 import { Link } from "react-router-dom";
@@ -8,21 +8,21 @@ const NearByCard = ({ data }) => {
       <Card
         isPressable
         disableRipple
-        radius="none"
         disableAnimation
-        className="border-none relative"
+        className="border-none relative m-1 bg-neutral/10 backdrop-saturate-150 backdrop-blur"
         as={Link}
         to={`/user?userId=${data.id}`}
       >
+      <CardBody className="p-1.5 pb-0">
         <Image
-          alt="Woman listing to music"
-          className="object-cover aspect-square"
-          loading="lazy"
-          radius="none"
-          src={`${BASEURL}${data.photo}`}
-          style={{ height: "100%", width: "100%" }}
-        />
-      <CardFooter style={{height:"32px"}} className="justify-between z-10 bg-background/80 overflow-hidden py-0.5 px-1 absolute before:rounded-xl bottom-0 shadow-small z-10">
+            alt="Woman listing to music"
+            className="object-cover aspect-square"
+            loading="lazy"
+            src={`${BASEURL}${data.photo}`}
+            style={{ height: "100%", width: "100%" }}
+          />
+      </CardBody>
+        <CardFooter style={{height:"32px"}} className="text-small py-1 justify-between">
             <div className=" w-full">
                 <div className="flex justify-between items-center">
                   <p style={{textAlign:"start"}} className="flex items-center text-tiny text-foreground/80 text-handller">
