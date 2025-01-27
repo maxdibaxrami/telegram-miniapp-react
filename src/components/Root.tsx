@@ -5,7 +5,6 @@ import { publicUrl } from '@/helpers/publicUrl.ts';
 import { ViewportHeightProvider } from '@/veiwPortContext';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
-import MobileApp from './wapper';
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
@@ -29,7 +28,6 @@ export function Root() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
      <ViewportHeightProvider>
-        <MobileApp>
               <NextUIProvider>
                 <TonConnectUIProvider manifestUrl={publicUrl('tonconnect-manifest.json')}>
                   <NextThemesProvider attribute="class" defaultTheme="dark">
@@ -37,7 +35,6 @@ export function Root() {
                   </NextThemesProvider>
                 </TonConnectUIProvider>
               </NextUIProvider>
-        </MobileApp>
       </ViewportHeightProvider>
     </ErrorBoundary>
   );

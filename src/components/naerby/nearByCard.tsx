@@ -8,12 +8,11 @@ const NearByCard = ({ data }) => {
       <Card
         isPressable
         disableRipple
-        disableAnimation
-        className="border-none relative m-1 bg-neutral/10 backdrop-saturate-150 backdrop-blur"
+        className="border-none relative m-1"
         as={Link}
         to={`/user?userId=${data.id}`}
       >
-      <CardBody className="p-1.5 pb-0">
+      <CardBody className="p-1.5 aspect-square pb-0">
         <Image
             alt="Woman listing to music"
             className="object-cover aspect-square"

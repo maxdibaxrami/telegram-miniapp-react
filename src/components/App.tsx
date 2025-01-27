@@ -3,7 +3,6 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLaunchParams, miniApp, useSignal, initData } from '@telegram-apps/sdk-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
-import { motion, AnimatePresence } from 'framer-motion';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import i18next from 'i18next';
 import { fetchUserData } from '../features/userSlice';
@@ -22,6 +21,7 @@ import { fetchConversations } from '@/features/conversationsSlice';
 import { Toaster } from 'react-hot-toast';
 import { fetchNearBySliceUsers, setFilters } from '@/features/nearBySlice';
 import { fetchReferralData } from '@/features/refralSlice';
+import MobileApp from './wapper';
 
 const GetStoredLanguage = async () => {
   try {
@@ -139,21 +139,15 @@ export function App() {
     <I18nextProvider i18n={i18next}>
       <AppRoot appearance={isDark ? 'dark' : 'light'} platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
         <HashRouter>
-          <AnimatePresence>
             <Routes>
               {routes.filter(route => route.auth === !!data).map(route => (
                 <Route
                   key={route.path}
                   path={route.path}
                   element={
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 1 }}
-                    >
+                    <MobileApp>
                       <route.Component />
-                    </motion.div>
+                    </MobileApp>
                   }
                 />
               ))}
@@ -164,7 +158,6 @@ export function App() {
             />
             
             </Routes>
-          </AnimatePresence>
         </HashRouter>
         <Toaster />
       </AppRoot>
