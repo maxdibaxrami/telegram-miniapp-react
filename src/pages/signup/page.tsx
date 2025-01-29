@@ -22,6 +22,7 @@ import { useTranslation } from "react-i18next";
 import EducationListSelector from "@/components/core/education";
 import { CameraIcon, EducationIcon, HashtagIcon, HeartIcon, ProfileIcon, SearchIcon } from "@/Icons";
 import { applyReferralReward } from "@/features/refralSlice";
+import SelectBirthDate from "@/components/auth/SelectBirthDate";
 
 
 export default function SignupPage() {
@@ -166,7 +167,7 @@ export default function SignupPage() {
   return (
     <Page back={false}>
         <motion.div className="flex flex-col items-center justify-between">
-          <motion.div animate={selectedTab === 8? {top:"-100px", opacity:0} : "bottom-0"} ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
+          <motion.div animate={selectedTab === 9? {top:"-100px", opacity:0} : "bottom-0"} ref={contentRef} style={{paddingTop:`${getPaddingForPlatform()}`, zIndex:999 }} className="fixed top-0 w-full  backdrop-blur backdrop-saturate-150">
             <div className="text-center">
               <SparklesText text="Mull Mull" />
             </div>
@@ -202,7 +203,24 @@ export default function SignupPage() {
                   </motion.div>
                 </AnimatePresence>
               )}
+
               {selectedTab === 2 && (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    animate={{opacity: 1 }}
+                    exit={{opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    transition={{
+                      opacity: { duration: 0.4 },
+                    }}
+                  >
+                    <SelectBirthDate user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable}/>
+                  </motion.div>
+                </AnimatePresence>
+              )}
+
+
+              {selectedTab === 3 && (
                 <AnimatePresence mode="wait">
                   <motion.div
                     animate={{opacity: 1 }}
@@ -223,7 +241,7 @@ export default function SignupPage() {
               </AnimatePresence>
               )}
 
-              {selectedTab === 3 && (
+              {selectedTab === 4 && (
                 <AnimatePresence mode="wait">
                   <motion.div
                     animate={{opacity: 1 }}
@@ -245,7 +263,7 @@ export default function SignupPage() {
                 </AnimatePresence>
               )}
 
-              {selectedTab === 4 && (
+              {selectedTab === 5 && (
                 <AnimatePresence mode="wait">
                   <motion.div
                     animate={{opacity: 1 }}
@@ -268,7 +286,7 @@ export default function SignupPage() {
               )}
 
 
-              {selectedTab === 5 && (
+              {selectedTab === 6 && (
                 <AnimatePresence mode="wait">
                   <motion.div
                       animate={{opacity: 1 }}
@@ -290,7 +308,7 @@ export default function SignupPage() {
                 </AnimatePresence>
               )}
 
-              {selectedTab === 6 && (
+              {selectedTab === 7 && (
                 <AnimatePresence mode="wait">
                     <motion.div
                       animate={{opacity: 1 }}
@@ -312,7 +330,7 @@ export default function SignupPage() {
               )}
 
 
-              {selectedTab === 7 && (
+              {selectedTab === 8 && (
                 <AnimatePresence mode="wait">
                   <motion.div
                       animate={{opacity: 1 }}
@@ -332,7 +350,7 @@ export default function SignupPage() {
                   </motion.div>
                 </AnimatePresence>
               )}
-              {selectedTab === 8 && (
+              {selectedTab === 9 && (
                 <AnimatePresence mode="wait">
                     <motion.div
                       animate={{opacity: 1 }}
@@ -353,7 +371,7 @@ export default function SignupPage() {
           <motion.div
             className="fixed pb-6 bottom-0 backdrop-blur backdrop-saturate-150 "
             style={{width:"100%",zIndex:999}}
-            animate={selectedTab === 8? {bottom:"-100px"} : "bottom-0"}
+            animate={selectedTab === 9? {bottom:"-100px"} : "bottom-0"}
           >
             <BottomController
               nextPage={NextPage}

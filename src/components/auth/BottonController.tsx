@@ -24,7 +24,7 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
           
         </NavbarContent>
         <NavbarContent className="flex w-full gap-4" justify="center">
-         <Progress style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}} isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 12} />
+         <Progress style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}} isDisabled={selectedTab === 0 } className="w-full" color="primary" value={selectedTab * 11} />
         </NavbarContent>
         <NavbarContent justify="end">
           <Button
@@ -34,9 +34,9 @@ const BottomController = ({ nextPage, prevPage, selectedTab, nextSlideAvalable, 
             size="lg"
             radius="full"
             style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}
-            isDisabled={!nextSlideAvalable || selectedTab === 8}
+            isDisabled={!nextSlideAvalable || selectedTab === 9}
             onClick={()=>{
-              if(selectedTab===7){
+              if(selectedTab===8){
                 nextPage() 
                 handleSignup()
               }else{

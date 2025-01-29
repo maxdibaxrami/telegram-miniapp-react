@@ -16,7 +16,6 @@ const ProfileViewCard = ({ data }) => {
 
       >
         <Image
-          alt="Woman listing to music"
           className="object-cover w-full h-full shadow-small"
           classNames={{
             wrapper:"w-full aspect-square h-full maxcontentimportant",
