@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { RootState, AppDispatch } from "@/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -6,8 +6,8 @@ import { Button, Card, CardBody, CardFooter, Image, Spinner } from "@nextui-org/
 import { Page } from "@/components/Page.tsx";
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
-import { CameraIcon, UploadIcon, VideoCamera } from "@/Icons";
-import { VerifiedAccountImage } from "@/Icons/verifyImage";
+import Webcam from "react-webcam";
+import { UploadIcon } from "@/Icons";
 import { verifyUserPhoto } from "@/features/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -18,57 +18,29 @@ export default function VerifyAccontViewPage() {
   const lp = useLaunchParams();
   const dispatch = useDispatch<AppDispatch>();
   const [photoTaken, setPhotoTaken] = useState(false);
-  const [photo, setPhoto] = useState<Blob | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [startCameraAllow, setStartCameraAllow] = useState(false);
+  const [photo, setPhoto] = useState<string | null>(null);
+  const webcamRef = useRef<Webcam>(null);
 
   const getPaddingForPlatform = () => {
-    if (["ios"].includes(lp.platform)) {
-      return "50px";
-    } else {
-      return "25px";
-    }
+    return ["ios"].includes(lp.platform) ? "50px" : "25px";
   };
 
-  const startCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play(); // Manually start the video
-      }
-      setStartCameraAllow(true);
-    } catch (error) {
-      console.error("Error accessing camera:", error);
-      setStartCameraAllow(false);
-    }
-  };
-
-  const takePhoto = () => {
-    if (canvasRef.current && videoRef.current) {
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
-      if (context) {
-        context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob((blob) => {
-          if (blob) {
-            setPhoto(blob);
-            setPhotoTaken(true);
-          }
-        });
+  const capturePhoto = useCallback(() => {
+    if (webcamRef.current) {
+      const imageSrc = webcamRef.current.getScreenshot();
+      if (imageSrc) {
+        setPhoto(imageSrc);
+        setPhotoTaken(true);
       }
     }
-
-    // Stop the video stream after taking the photo
-    const stream = videoRef.current?.srcObject as MediaStream;
-    stream?.getTracks().forEach((track) => track.stop());
-  };
+  }, [webcamRef]);
 
   const uploadPhoto = async () => {
     if (photo && data) {
       try {
-        const file = new File([photo], "photo.jpg", { type: photo.type, lastModified: Date.now() });
+        const response = await fetch(photo);
+        const blob = await response.blob();
+        const file = new File([blob], "photo.jpg", { type: "image/jpeg" });
         navigate("/main?page=profile");
         await dispatch(verifyUserPhoto({ userId: data.id.toString(), photoFile: file }));
       } catch (error) {
@@ -87,41 +59,27 @@ export default function VerifyAccontViewPage() {
 
   return (
     <Page>
-      <div className="container mx-auto max-w-7xl flex-grow" style={{ maxHeight: "100%", height: "100%", marginBottom: "5rem", padding: "18px " }}>
+      <div className="container mx-auto max-w-7xl flex-grow" style={{ marginBottom: "5rem", padding: "18px " }}>
         <TopBarPages />
         <Card radius="lg" className="flex flex-col items-center justify-center" style={{ marginTop: `calc(4rem + ${getPaddingForPlatform()})` }}>
           <CardBody>
-            <canvas ref={canvasRef} className="hidden"></canvas>
             {!photoTaken ? (
               <>
-                {!startCameraAllow && <VerifiedAccountImage />}
-                <video
-                  ref={videoRef}
-                  className={`w-full h-[300px] ${!startCameraAllow && "hidden"} rounded-xl`}
-                  style={{ objectFit: "cover", pointerEvents: "none" }} // Disable resizing and fullscreen
+                <Webcam
+                  ref={webcamRef}
+                  screenshotFormat="image/jpeg"
+                  className="w-full h-[300px] rounded-xl"
+                  videoConstraints={{ facingMode: "user" }}
                 />
                 <div className="mt-2 w-full flex items-center justify-center">
-                  {!startCameraAllow && (
-                    <Button className="w-full mt-2" onClick={startCamera} variant="shadow" color="primary">
-                      <VideoCamera className="size-6" />
-                      {t("start_Camera")}
-                    </Button>
-                  )}
-                  {startCameraAllow && !photoTaken && (
-                    <Button onClick={takePhoto} variant="shadow" className="w-full mt-2" color="secondary">
-                      <CameraIcon className="size-6" />
-                      {t("take_Photo")}
-                    </Button>
-                  )}
+                  <Button onClick={capturePhoto} variant="shadow" className="w-full mt-2" color="secondary">
+                    {t("take_Photo")}
+                  </Button>
                 </div>
               </>
             ) : (
               <>
-                <Image
-                  src={URL.createObjectURL(photo)}
-                  alt="Captured"
-                  className="w-full h-[300px] aspect-video"
-                />
+                <Image src={photo} alt="Captured" className="w-full h-[300px] aspect-video" />
                 <Button onClick={uploadPhoto} variant="shadow" color="primary" className="w-full mt-2">
                   <UploadIcon className="size-6" />
                   {t("upload_Photo")}
