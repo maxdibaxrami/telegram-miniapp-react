@@ -3,7 +3,7 @@ import NavBar from '@/components/NavBar/index'
 import TopBar from '@/components/tobBar'
 import { Page } from '@/components/Page.tsx';
 import { motion, AnimatePresence } from "framer-motion";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import ProfilePage from '@/components/profile';
 import LikesPage from '@/pages/like/index';
 import ExplorePage from '@/components/explore';
@@ -15,8 +15,12 @@ import NearByFilter from '@/components/naerby/NearByFilter';
 import { useRef } from 'react';
 import { RootState } from '@/store';
 import { useSelector } from 'react-redux';
+import { SparklesFlashIconText } from '@/components/animate/flash-sparkles';
+import { useTranslation } from 'react-i18next';
 
 const MainPage = () => {
+  const { i18n } = useTranslation();
+  
   const [searchParams] = useSearchParams();
   const lp = useLaunchParams();
   const FilterRef = useRef();
@@ -174,32 +178,67 @@ const MainPage = () => {
 
               {searchParams.get('page') !== "profile" && (
                         <motion.div
-                            style={{
+                            style={
+                              i18n.language==="ar" || i18n.language === 'fa'?
+                              
+                              {
+                                position: "fixed",
+                                zIndex: 11,
+                                left: -50,
+                                top:"130px",
+                                display:"flex",
+                                width:"100px",
+                                alignItems:"flex-start",
+                                justifyContent:"start",
+                                borderRadius:"99px",
+                                padding:"4px"
+                              }
+                              
+                              :
+                              {
                               position: "fixed",
-                              zIndex: 50,
-                              right: 10,
-                              transform: "translateX(-50%)",
-                              top:"100px"
-                            }}
+                              zIndex: 11,
+                              right: -50,
+                              top:"130px",
+                              display:"flex",
+                              width:"100px",
+                              alignItems:"flex-start",
+                              justifyContent:"start",
+                              borderRadius:"99px",
+                              padding:"4px"
+                            }
+                        
+                        
+                        }
+                            className={'bg-background/70 backdrop-blur-lg backdrop-saturate-150'}
                             initial={{ opacity:0 }}
                             animate={{ opacity:1 }}
                             exit={{ opacity:0 }}
                           >
-                            <Button
-                              variant="light"
-                              size="sm"
-                              radius="full"
-                              isIconOnly
-                              aria-label="Like"
-                              color="primary"
-                              className='bg-primary/50 backdrop-blur'
-
-                            >
-                              <div className='flex items-center flex-col relative'>
-                                <FlashIcon fill="#FFF" className="size-4 mt-1"/>
-                                <small className='p-0 m-0 font-bold' style={{fontSize:"8px",color:"#FFF",marginTop:"-4px"}}>{user.rewardPoints}</small>
-                              </div>
-                            </Button>
+                             <SparklesFlashIconText
+                                text={
+                                  <Button
+                                    variant="light"
+                                    size="sm"
+                                    radius="full"
+                                    isIconOnly
+                                    aria-label="Like"
+                                    color="primary"
+                                    as={Link}
+                                    to={'/add-firends'}
+                                    className='bg-primary/80 backdrop-blur'
+      
+                                  >
+                                    <div className='flex items-center flex-col relative'>
+                                      <FlashIcon fill="#FFF" className="size-4 mt-1"/>
+                                      <small className='p-0 m-0 font-bold' style={{fontSize:"8px",color:"#FFF",marginTop:"-4px"}}>{user.rewardPoints}</small>
+                                    </div>
+                                  </Button>
+                                }
+                                colors={{ first: "#f59e0c", second: "#f59e0c" }}
+                                sparklesCount={5} 
+                              />
+ 
                           </motion.div>
               )}
 

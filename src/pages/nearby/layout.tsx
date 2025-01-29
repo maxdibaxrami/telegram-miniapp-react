@@ -13,7 +13,7 @@ export default function BlogLayout({
     if (['ios'].includes(lp.platform)) {
       return '40px';
     } else {
-      return '15px';
+      return '20px';
     }
   };
   

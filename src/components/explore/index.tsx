@@ -35,7 +35,6 @@ const ExplorePage = () => {
   const { t } = useTranslation(); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { likesCount, lastReset } = useSelector((state: RootState) => state.likeLimit);
-  const { requestLoading } = useSelector((state: RootState) => state.like);
 
   useEffect(() => {
     const today = new Date().setHours(0, 0, 0, 0); 
@@ -139,7 +138,7 @@ const ExplorePage = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, zIndex: -10 }}
                 transition={{ type: "tween" }}
-                key={user.id + 10000}
+                key={user.id + 12345}
               >
                 <ExploreCard profile={user} key={index} />
               </motion.li>
@@ -198,7 +197,7 @@ const ExplorePage = () => {
           ) : (
             <SparklesHeartText
               text={
-                <Button isLoading={requestLoading} radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                <Button  radius="full" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
                   <LikeIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
                 </Button>
               }

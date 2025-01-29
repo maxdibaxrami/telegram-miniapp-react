@@ -16,6 +16,7 @@
   "dependencies": {
     "@nextui-org/button": "^2.0.38",
     "@nextui-org/react": "^2.4.8",
+    "@nextui-org/use-infinite-scroll": "^2.2.2",
     "@reduxjs/toolkit": "^2.5.0",
     "@telegram-apps/sdk": "^2.9.0",
     "@telegram-apps/sdk-react": "^2.0.7",
@@ -39,6 +40,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.23.0",
     "react-window": "^1.8.11",
+    "react-window-infinite-loader": "^1.0.10",
     "socket.io-client": "^4.8.1",
     "swiper": "^11.1.14"
   },
@@ -47,6 +49,7 @@
     "@types/node": "^20.12.11",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@types/react-window": "^1.8.8",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
