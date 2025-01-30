@@ -9,9 +9,8 @@ const ProfileDataAuth = ({ setSlideAvailable, setSlideUnAvailable, user }) => {
   
   const [name, setName] = useState(user.firstName);
   const [bio, setBio] = useState(user.bio);
-
-  
   const height = useViewportHeight();
+  
   console.log(height)
 
 

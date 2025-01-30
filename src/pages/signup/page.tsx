@@ -47,7 +47,7 @@ export default function SignupPage() {
   const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
   const [error, setError] = useState('');
   
-    
+    console.log(error)
 
   const [user, setUser] = useState({
     telegramId: initDataState.user.id.toString(),
@@ -74,7 +74,6 @@ export default function SignupPage() {
   useEffect(() => {
     // Call getLocation to fetch location and coordinates
     getLocation(setError, setLocation, setCoordinates);
-    console.log(error)
   }, []);
 
   useEffect(() => {

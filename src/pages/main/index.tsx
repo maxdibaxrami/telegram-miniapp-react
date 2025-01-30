@@ -17,6 +17,7 @@ import { RootState } from '@/store';
 import { useSelector } from 'react-redux';
 import { SparklesFlashIconText } from '@/components/animate/flash-sparkles';
 import { useTranslation } from 'react-i18next';
+import LocationModal from '@/components/location/modal';
 
 const MainPage = () => {
   const { i18n } = useTranslation();
@@ -242,7 +243,11 @@ const MainPage = () => {
                           </motion.div>
               )}
 
-          <NearByFilter ref={FilterRef} />
+              <NearByFilter ref={FilterRef} />
+
+              {user.lat === null &&
+                <LocationModal/>
+              }
 
             </section>
       

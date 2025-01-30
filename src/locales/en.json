@@ -348,6 +348,8 @@
     "1000_Energy":"1000 Energy",
     "data_not_found":"data not found",
     "min_max_2_18":"Minimum enter 2 characters and maximum 18",
-    "min_max_2_100":"Minimum enter 2 characters and maximum 100"
+    "min_max_2_100":"Minimum enter 2 characters and maximum 100",
+    "access_to_location":"Access to location",
+    "location_access_prompt":"Please make sure to grant location access at least once for the app functionality to work properly."
   }
   
